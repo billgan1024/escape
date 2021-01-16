@@ -6,3 +6,5 @@ targetX = 0;
 targetY = 0;
 
 respawn = noone;
+
+theme = "blue"; //blue, orange, green, red, purple

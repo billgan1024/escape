@@ -23,8 +23,12 @@ jump = 0;
 lmb = 0;
 rmb = 0;
 
+imgAlpha = 1;
+alpha = 1;
+
+canBlink = true;
 blinkSpd = 12;
-blinkTime = 40;
+blinkTime = 30;
 
 alarms = array_create(16, infinity);
 //state = "ground", "buffer", "jump", "fall", "blink"

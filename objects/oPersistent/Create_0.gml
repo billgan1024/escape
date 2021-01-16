@@ -17,6 +17,8 @@ alarms[1] = random_range(20, 30);
 noAlarms = ds_list_create();
 ds_list_add(noAlarms, oGround);
 ds_list_add(noAlarms, oMenu);
+ds_list_add(noAlarms, oBlink);
+ds_list_add(noAlarms, oDisplay);
 
 enum gs {
 	menu = 0,

@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "sPlayer",
-    "path": "sprites/sPlayer/sPlayer.yy",
+    "name": "sCheckpoint",
+    "path": "sprites/sCheckpoint/sCheckpoint.yy",
   },
   "solid": false,
   "visible": true,
