@@ -14,6 +14,11 @@ kvsp = 0;
 fric = 0.06;
 wallKickSpd = 7;
 
+swordAngle = 0;
+angleTo = 0;
+isAttacking = false;
+atkDir = 0;
+
 jump = 0;
 lmb = 0;
 rmb = 0;

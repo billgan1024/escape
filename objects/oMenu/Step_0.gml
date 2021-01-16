@@ -1,25 +1,25 @@
 if(keyboard_check_pressed(vk_left) || keyboard_check_pressed(ord("A")))
 {
-	col--; 
-	col %= array_length(ds_map_find_value(oPersistent.buttonNames, global.gameState)[0]);	
+	var len = array_length(ds_map_find_value(oPersistent.buttonNames, global.gameState)[0]);
+	col = (col+len-1)%len;
 }
 
 if(keyboard_check_pressed(vk_right) || keyboard_check_pressed(ord("D")))
 {
-	col++; 
-	col %= array_length(ds_map_find_value(oPersistent.buttonNames, global.gameState)[0]);	
+	var len = array_length(ds_map_find_value(oPersistent.buttonNames, global.gameState)[0]);
+	col = (col+1)%len;
 }
 
 if(keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord("W")))
 {
-	row--; 
-	row %= array_length(ds_map_find_value(oPersistent.buttonNames, global.gameState));	
+	var len = array_length(ds_map_find_value(oPersistent.buttonNames, global.gameState));
+	row = (row+len-1)%len;
 }
 
 if(keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord("S")))
 {
-	row++; 
-	row %= array_length(ds_map_find_value(oPersistent.buttonNames, global.gameState));	
+	var len = array_length(ds_map_find_value(oPersistent.buttonNames, global.gameState));
+	row = (row+1)%len;
 }
 
 if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space))

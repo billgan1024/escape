@@ -6,7 +6,7 @@ layer_set_visible("Background", false);
 global.ps_above = part_system_create();
 part_system_depth(global.ps_above, -100);
 global.ps_below = part_system_create();
-part_system_depth(global.ps_below, 250);
+part_system_depth(global.ps_below, 350);
 part_system_automatic_update(global.ps_above, false);
 part_system_automatic_update(global.ps_below, false);
 part_system_automatic_update(0, false);
