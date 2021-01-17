@@ -11,6 +11,13 @@ fireDelay = 360;
 bulletSpeed = 16;
 triple = false;
 
+barrageAngleFrom = 0;
+barrageAngleTo = 180;
+barrageAngle = 0;
+barrageTick = 20;
+barrageDelay = 480;
+barrageResting = true;
+
 moveSpd = 0;
 dir = 1;
 

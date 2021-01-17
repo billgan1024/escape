@@ -1,7 +1,10 @@
 function applyGrav() {
 	if(!keyboard_check(ord("W")) && !keyboard_check(vk_space) && vsp < 0) vsp += grav;
 	if((place_meeting(x+1, y, oGround) || place_meeting(x-1, y, oGround)) && vsp > 0)
-		vsp = approach(vsp, maxGrav/3, grav/3);	
+	{ 
+		if(vsp > maxGrav/3) vsp = approach(vsp, maxGrav/3, grav*2); 
+		else vsp = approach(vsp, maxGrav/3, grav/3); 
+	}
 	else vsp = approach(vsp, maxGrav, grav);	
 }
 
