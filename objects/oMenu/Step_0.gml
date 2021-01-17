@@ -31,11 +31,29 @@ if(keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space))
 		{
 			case 0: room_goto(level1); global.gameState = gs.game;
 			break;
-			case 1: global.gameState = gs.select;
+			case 1: global.gameState = gs.select; row = 0; col = 0;
 			break;
 			case 3: game_end();
 			break;
 		}
+		break;
+		
+		case gs.select:
+		var names = ds_map_find_value(oPersistent.buttonNames, gs.select);
+		if(real(names[row][col]) <= 5)
+		{
+			room_goto(asset_get_index("level" + names[row][col])); global.gameState = gs.game;
+		}
+		break;
+	}
+}
+
+if(keyboard_check_pressed(vk_escape))
+{
+	switch(global.gameState)
+	{
+		case gs.select:
+		global.gameState = gs.menu; row = 0; col = 0;
 		break;
 	}
 }

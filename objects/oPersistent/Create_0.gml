@@ -17,8 +17,8 @@ alarms[1] = random_range(20, 30);
 noAlarms = ds_list_create();
 ds_list_add(noAlarms, oGround);
 ds_list_add(noAlarms, oMenu);
-ds_list_add(noAlarms, oBlink);
 ds_list_add(noAlarms, oDisplay);
+ds_list_add(noAlarms, oInvis);
 
 enum gs {
 	menu = 0,
@@ -32,3 +32,6 @@ global.gameState = gs.menu;
 buttonNames = ds_map_create();
 ds_map_set(buttonNames, gs.menu, [["Play"], ["Level Select"], 
 	["Options"], ["Quit"]]);
+ds_map_set(buttonNames, gs.select, [["1", "2", "3", "4"],
+	["5", "6", "7", "8"], ["9", "10", "11", "12"], 
+	["13", "14", "15", "16"]]);

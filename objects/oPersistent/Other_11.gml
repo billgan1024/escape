@@ -7,4 +7,4 @@ part_type_size(e, 0.15, 0.2, 0, 0);
 part_type_life(e, 4800, 4800);
 part_type_orientation(e, 0, 359, 0.05, 0, false);
 part_particles_create(global.ps_below, 0, random(room_height), e, 1);
-alarms[1] = random_range(20, 30);
+alarms[1] += random_range(20, 30);

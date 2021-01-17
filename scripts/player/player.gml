@@ -1,24 +1,8 @@
-function collision() {
-	if(place_meeting(x+hsp+khsp, y, oGround))
-	{
-		while(!place_meeting(x+sign(hsp+khsp), y, oGround)) x += sign(hsp+khsp);
-		hsp = 0; khsp = 0;
-	}
-	x += hsp+khsp;
-	if(place_meeting(x, y+vsp+kvsp, oGround))
-	{
-		while(!place_meeting(x, y+sign(vsp+kvsp), oGround)) y += sign(vsp+kvsp);
-		vsp = 0; kvsp = 0;
-	}
-	y += vsp+kvsp;	
-}
-
 function applyGrav() {
-	if((!keyboard_check(vk_up) && !keyboard_check(ord("W")) && !keyboard_check(vk_space)) && vsp < 0) vsp += grav;
-	//if((place_meeting(x+1, y, oGround) || place_meeting(x-1, y, oGround)) && vsp > 0)
-		//vsp = approach(vsp, maxGrav/3, grav/3);	
-	//else
-	vsp = approach(vsp, maxGrav, grav);	
+	if(!keyboard_check(ord("W")) && !keyboard_check(vk_space) && vsp < 0) vsp += grav;
+	if((place_meeting(x+1, y, oGround) || place_meeting(x-1, y, oGround)) && vsp > 0)
+		vsp = approach(vsp, maxGrav/3, grav/3);	
+	else vsp = approach(vsp, maxGrav, grav);	
 }
 
 function swingSword() {
@@ -33,7 +17,7 @@ function checkBlink()
 {
 	if(rmb && canBlink)
 	{
-		canBlink = false; imgAlpha = 0; alarms[4] = 480;
+		canBlink = false; imgAlpha = 0; alarms[4] = blinkDelay;
 		audio_play_sound(aBlink, 0, false);
 		ring(c_white); isAttacking = false; 
 		state = "blink"; alarms[2] = blinkTime;
@@ -44,11 +28,12 @@ function checkBlink()
 }
 
 function checkAttack() {
-	if(lmb && !isAttacking) { 
+	if(lmb && canAttack) { 
+		canAttack = false; alarms[3] = attackDelay;
 		audio_play_sound(aSwing, 0, false);
 		isAttacking = true;
-		var dir = point_direction(x, y, mouse_x, mouse_y);
-		var d1 = dir-60, d2 = dir+60;
+		swordDir = point_direction(x, y, mouse_x, mouse_y);
+		var d1 = swordDir-90, d2 = swordDir+90;
 		if(atkDir)
 		{
 			swordAngle = d1; angleTo = d2;
@@ -59,7 +44,12 @@ function checkAttack() {
 }
 
 function checkEnemy() {
-	if(place_meeting(x, y, oEnemy)) death();
+	if(place_meeting(x, y, oEnemyParent)) death();
+	if(place_meeting(x, y, oProjectile))
+	{
+		var b = instance_nearest(x, y, oProjectile);
+		if(!b.friendly) death();
+	}
 }
 
 function death() {

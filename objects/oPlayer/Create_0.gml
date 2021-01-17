@@ -1,4 +1,5 @@
 moveSpd = 4; 
+sprintSpd = 6;
 jumpSpd = 7.5;
 runAcc = 3;
 grav = 0.1; 
@@ -16,7 +17,10 @@ wallKickSpd = 7;
 
 swordAngle = 0;
 angleTo = 0;
+swordDir = 0;
 isAttacking = false;
+canAttack = true;
+attackDelay = 60;
 atkDir = 0;
 
 jump = 0;
@@ -29,6 +33,7 @@ alpha = 1;
 canBlink = true;
 blinkSpd = 12;
 blinkTime = 30;
+blinkDelay = 360;
 
 alarms = array_create(16, infinity);
 //state = "ground", "buffer", "jump", "fall", "blink"

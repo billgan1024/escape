@@ -5,15 +5,15 @@ if(place_meeting(x, y, oRespawn))
 	var r = instance_nearest(x, y, oRespawn);
 	oGame.respawn = r;
 }
-var dir = (keyboard_check(ord("D")) || keyboard_check(vk_right)) - 
-	(keyboard_check(ord("A")) || keyboard_check(vk_left));
+var dir = keyboard_check(ord("D")) - keyboard_check(ord("A"));
 khsp = approach(khsp, 0, fric);
 kvsp = approach(kvsp, 0, fric);
 if(isAttacking) swingSword();
 switch(state)
 {
 	case "ground": 
-		hsp = approach(hsp, (moveSpd-abs(khsp)*3/4)*dir, runAcc);
+		if(keyboard_check(vk_shift)) hsp = approach(hsp, (sprintSpd-abs(khsp)*3/4)*dir, runAcc);
+		else hsp = approach(hsp, (moveSpd-abs(khsp)*3/4)*dir, runAcc);
 		collision();
 		if(jump)
 		{
@@ -27,7 +27,8 @@ switch(state)
 		checkEnemy();
 	break;
 	case "jump":
-		hsp = approach(hsp, (moveSpd-abs(khsp)*3/4)*dir, airAcc);
+		if(keyboard_check(vk_shift)) hsp = approach(hsp, (sprintSpd-abs(khsp)*3/4)*dir, airAcc);
+		else hsp = approach(hsp, (moveSpd-abs(khsp)*3/4)*dir, airAcc);
 		applyGrav();
 		collision();
 		if(jump)
@@ -36,14 +37,14 @@ switch(state)
 			{	
 				vsp = -jumpSpd;	audio_play_sound(aJump, 0, false); 
 			}
-			/*else if(place_meeting(x+1, y, oGround))
+			else if(place_meeting(x+1, y, oGround))
 			{
 				vsp = -jumpSpd;	khsp = -wallKickSpd; audio_play_sound(aJump, 0, false); 
 			}
 			else if(place_meeting(x-1, y, oGround))
 			{
 				vsp = -jumpSpd;	khsp = wallKickSpd; audio_play_sound(aJump, 0, false); 
-			}*/
+			}
 			else
 			{
 				vsp = -jumpSpd;	audio_play_sound(aJump, 0, false); state = "fall";
@@ -55,7 +56,8 @@ switch(state)
 		checkEnemy();
 	break;
 	case "buffer": 
-		hsp = approach(hsp, (moveSpd-abs(khsp)*3/4)*dir, airAcc);
+		if(keyboard_check(vk_shift)) hsp = approach(hsp, (sprintSpd-abs(khsp)*3/4)*dir, airAcc);
+		else hsp = approach(hsp, (moveSpd-abs(khsp)*3/4)*dir, airAcc);
 		applyGrav();
 		collision();
 		if(jump)
@@ -68,7 +70,8 @@ switch(state)
 		checkEnemy();
 	break;
 	case "fall":
-		hsp = approach(hsp, (moveSpd-abs(khsp)*3/4)*dir, airAcc);
+		if(keyboard_check(vk_shift)) hsp = approach(hsp, (sprintSpd-abs(khsp)*3/4)*dir, airAcc);
+		else hsp = approach(hsp, (moveSpd-abs(khsp)*3/4)*dir, airAcc);
 		applyGrav();
 		collision();
 		if(jump)
@@ -77,14 +80,14 @@ switch(state)
 			{
 				vsp = -jumpSpd;	audio_play_sound(aJump, 0, false); state = "jump";
 			}
-			/*else if(place_meeting(x+1, y, oGround))
+			else if(place_meeting(x+1, y, oGround))
 			{
 				vsp = -jumpSpd;	khsp = -wallKickSpd; audio_play_sound(aJump, 0, false); state = "jump";
 			}
 			else if(place_meeting(x-1, y, oGround))
 			{
 				vsp = -jumpSpd;	khsp = wallKickSpd; audio_play_sound(aJump, 0, false); state = "jump";
-			}*/
+			}
 		}
 		if(place_meeting(x, y+1, oGround)) { state = "ground"; }
 		checkBlink();

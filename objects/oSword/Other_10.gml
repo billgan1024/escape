@@ -7,6 +7,12 @@ if(instance_exists(oPlayer))
 		image_alpha = 1;
 		image_yscale = oPlayer.atkDir ? -1 : 1;
 		image_angle = oPlayer.swordAngle;	
+		if(place_meeting(x, y, oProjectile))
+		{
+			var b = instance_nearest(x, y, oProjectile);
+			b.direction = oPlayer.swordDir; b.friendly = true;
+			b.image_angle = oPlayer.swordDir;
+		}
 	}
 	else image_alpha = 0;
 }
