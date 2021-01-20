@@ -1,7 +1,7 @@
 if(inView())
 {
 	audio_play_sound(aShoot, 0, false);
-	var b = instance_create_layer(x+lengthdir_x(60, barrageAngle), y+lengthdir_y(60, barrageAngle), "Below", oProjectile);
+	var b = instance_create_layer(x, y, "Below", oProjectile);
 	b.direction = barrageAngle; b.image_angle = barrageAngle; b.speed = bulletSpeed;
 	b.colour = colour;
 }

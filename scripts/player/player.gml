@@ -5,7 +5,11 @@ function applyGrav() {
 		if(vsp > maxGrav/3) vsp = approach(vsp, maxGrav/3, grav*2); 
 		else vsp = approach(vsp, maxGrav/3, grav/3); 
 	}
-	else vsp = approach(vsp, maxGrav, grav);	
+	else 
+	{
+		if(vsp > 0 && keyboard_check(ord("S"))) vsp = smooth_approach(vsp, maxGrav*9/8, 0.04);
+		else vsp = approach(vsp, maxGrav, grav);
+	}
 }
 
 function swingSword() {

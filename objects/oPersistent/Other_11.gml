@@ -1,6 +1,6 @@
 var e = part_type_create();
 part_type_shape(e, pt_shape_square);
-part_type_colour1(e, make_color_rgb(72, 175, 240));//make_color_rgb(125,81,37));
+part_type_colour1(e, make_color_rgb(16, 107, 163));//make_color_rgb(125,81,37));
 part_type_speed(e, 5, 6, 0, 0);
 part_type_direction(e, 0, 0, 0, 0)
 part_type_size(e, 0.15, 0.2, 0, 0);

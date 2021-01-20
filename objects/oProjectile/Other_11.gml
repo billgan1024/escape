@@ -1,1 +1,0 @@
-instance_destroy(); alarms[1] = infinity;

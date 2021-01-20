@@ -6,4 +6,4 @@ if(alpha == 1 && alarms[4] != infinity)
 	c_black, c_white, c_white, 0, true, true);
 }
 draw_set_font(fMain); draw_set_colour(c_white);
-//draw_text(x, y-50, "angleto: " + string(angleTo) + "\nsword: " + string(swordAngle));
+//draw_text(x, y-50, "angleto: " + string(part_system_position()));

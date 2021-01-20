@@ -1,3 +1,4 @@
+alpha = smooth_approach(alpha, image_alpha, 0.2);
 if(instance_exists(oPlayer))
 {
 	x = oPlayer.x;

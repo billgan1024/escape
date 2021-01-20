@@ -1,5 +1,6 @@
 randomize();
 window_set_fullscreen(true);
+alarms[3] = 50;
 global.timeFactor = 1; gameTimer = 0;
 layer_set_visible("Background", false);
 
