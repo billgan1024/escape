@@ -33,3 +33,26 @@ function light(col, xx, yy)
 	part_type_life(e, 60, 60);
 	part_particles_create(global.ps_above, xx, yy, e, 1);
 }
+
+function firework(col) 
+{
+	repeat(100) {
+		var e = part_type_create();
+		part_type_shape(e, pt_shape_square);
+		part_type_color1(e, col);
+		part_type_speed(e, 0.5, 2.5, -0.02, 0);
+		part_type_orientation(e, 0, 360, 1, 0, 0);
+		part_type_size(e, 0.1, 0.14, -0.0012, 0);
+		part_type_life(e, 150, 150);
+		part_type_direction(e, 0, 360, 0, 0);
+		part_type_alpha2(e, 1, 0);
+		part_particles_create(global.ps_above, x, y, e, 1);
+	}
+}
+
+function playershrink() {
+	var e = part_type_create();
+	part_type_sprite(e, sPlayer, 0, 0, 0);
+	part_type_size(e, 1, 1, -0.035, 0);
+	part_particles_create(global.ps_above, x, y, e, 1);
+}

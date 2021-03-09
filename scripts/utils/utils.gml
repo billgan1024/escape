@@ -122,6 +122,7 @@ function angle_approach(argument0, argument1, argument2) {
 }
 
 function collision() {
+	
 	if(place_meeting(x+hsp+khsp, y, oGround))
 	{
 		while(!place_meeting(x+sign(hsp+khsp), y, oGround)) x += sign(hsp+khsp);

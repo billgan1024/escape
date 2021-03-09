@@ -14,7 +14,7 @@ part_system_automatic_update(0, false);
 part_system_automatic_update(1, false);
 
 alarms = array_create(16, infinity);
-alarms[1] = random_range(20, 30);
+alarms[1] = random_range(30, 40);
 noAlarms = ds_list_create();
 ds_list_add(noAlarms, oGround);
 ds_list_add(noAlarms, oMenu);

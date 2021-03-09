@@ -23,11 +23,11 @@ dir = 1;
 
 alarms = array_create(16, infinity);
 
-switch(oGame.theme)
+/*switch(oGame.theme)
 {
 	case "blue": colour = make_color_rgb(242, 152, 73);
 	break;
 	case "green": colour = make_color_rgb(245, 86, 86);
 	break;
-}
-image_blend = colour;
+}*/
+/*image_blend = colour;

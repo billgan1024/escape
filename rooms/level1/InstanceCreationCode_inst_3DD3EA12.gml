@@ -1,1 +1,0 @@
-text = "WASD keys to move\nW/Space to jump";

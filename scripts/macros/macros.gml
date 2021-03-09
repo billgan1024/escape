@@ -3,3 +3,5 @@
 #macro vy camera_get_view_y(view_camera[0])
 #macro vw camera_get_view_width(view_camera[0])
 #macro vh camera_get_view_height(view_camera[0])
+#macro pr path_action_reverse
+#macro pc path_action_continue
