@@ -1,4 +1,4 @@
-t += 1/240;
+t += 1/240; sz = wave(1.2, 1.5, 0.1, 0, t);
 image_angle += rspd;
 //image_angle = wave(225, 315, 3, 0, t);
 laserWidth = wave(14, 18, 0.2, 0, t); 

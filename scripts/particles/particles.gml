@@ -36,14 +36,15 @@ function light(col, xx, yy)
 
 function firework(col) 
 {
-	repeat(100) {
+	repeat(80) {
 		var e = part_type_create();
-		part_type_shape(e, pt_shape_square);
+		part_type_shape(e, pt_shape_sphere);
 		part_type_color1(e, col);
-		part_type_speed(e, 0.5, 2.5, -0.02, 0);
+		part_type_speed(e, 0.7, 3, -0.026, 0);
 		part_type_orientation(e, 0, 360, 1, 0, 0);
-		part_type_size(e, 0.1, 0.14, -0.0012, 0);
-		part_type_life(e, 150, 150);
+		part_type_blend(e, true);
+		part_type_size(e, 0.12, 0.14, -0.001, 0);
+		part_type_life(e, 180, 200);
 		part_type_direction(e, 0, 360, 0, 0);
 		part_type_alpha2(e, 1, 0);
 		part_particles_create(global.ps_above, x, y, e, 1);
@@ -53,6 +54,6 @@ function firework(col)
 function playershrink() {
 	var e = part_type_create();
 	part_type_sprite(e, sPlayer, 0, 0, 0);
-	part_type_size(e, 1, 1, -0.035, 0);
+	part_type_size(e, 1, 1, -0.25, 0);
 	part_particles_create(global.ps_above, x, y, e, 1);
 }

@@ -1,4 +1,4 @@
-t += 1/240; image_angle += 1;
+t += 1/240; image_angle += 0.75;
 //y = wave(ystart-10, ystart+10, 1.5, 0, t);
 if(place_meeting(x, y, oPlayer)) {
 	audio_play_sound(aCoin, 0, false);

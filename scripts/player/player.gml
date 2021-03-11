@@ -1,5 +1,5 @@
 function applyGrav() {
-	if(!keyboard_check(vk_up) && !keyboard_check(vk_space) && vsp < 0) vsp += grav;
+	if(!keyboard_check(vk_up) && !keyboard_check(vk_space) && vsp < 0) vsp += grav*2;
 	/*if((place_meeting(x+1, y, oGround) || place_meeting(x-1, y, oGround)) && vsp > 0 &&
 		(keyboard_check(vk_left) || keyboard_check(vk_right)))
 	{ 
@@ -62,7 +62,7 @@ function checkEnemy() {
 				with(e) instance_destroy();
 				vsp = -jumpSpd;
 			} else death();
-		} else  death();
+		} else death();
 	}
 	if(place_meeting(x, y, oProjectile))
 	{

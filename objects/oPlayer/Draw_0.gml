@@ -7,4 +7,6 @@ if(alpha == 1 && alarms[4] != infinity)
 	c_black, c_white, c_white, 0, true, true);
 }
 draw_set_font(fMain); draw_set_colour(c_white);
-draw_text(x, y-50, "vsp: " + string(vsp));
+//draw_text(x, y-50, "vsp: " + string(vsp));
+gpu_set_blendmode(bm_add);
+draw_sprite_ext(sCheckpointLight, 0, x, y-100, 4, 4, 0, c_white, 0.6);

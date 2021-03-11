@@ -1,14 +1,15 @@
 moveSpd = 4; 
 sprintSpd = 6;
-jumpSpd = 6.9;
+jumpSpd = 6.4;
 runAcc = 3;
-grav = 0.09; 
+grav = 0.08; 
 maxGrav = 10; 
 airAcc = 0.4;
 bufferTime = 20;
 jumpPixels = 10;
-cameraX = 0;
 cameraOffset = 0;
+
+//audio_sound_gain(aLaser, 1, 0);
 
 hsp = 0;
 vsp = 0;

@@ -16,8 +16,8 @@ switch(global.gameState)
 	for(var i = 0; i < 4; i++)
 	{
 		var w = string_width(names[i][0]), h = string_height(names[i][0]);
-		if(row == i) draw_rectangle(room_width/2-w/2-10, 500+i*120-h/2-5,
-			room_width/2+w/2+10, 500+i*120+h/2+5, true);
+		if(row == i) draw_rectangle(room_width/2-w/2-10, 500+i*120-h/2-4,
+			room_width/2+w/2+10, 500+i*120+h/2+4, true);
 		draw_text(room_width/2, 500+i*120, names[i][0]);
 	}
 	break;
@@ -28,8 +28,8 @@ switch(global.gameState)
 		for(var j = 0; j < 4; j++)
 		{
 			var w = string_width(names[i][j]), h = string_height(names[i][j]);
-		if(row == i && col == j) draw_rectangle(1100+j*120-w/2-10, 500+i*120-h/2-5,
-			1100+j*120+w/2+10, 500+i*120+h/2+5, true);
+		if(row == i && col == j) draw_rectangle(1100+j*120-w/2-10, 500+i*120-h/2-4,
+			1100+j*120+w/2+10, 500+i*120+h/2+4, true);
 			draw_text(1100 + j*120, 500 + i*120, names[i][j]);
 		}
 	}

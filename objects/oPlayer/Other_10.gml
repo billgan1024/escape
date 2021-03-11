@@ -1,5 +1,4 @@
 cameraOffset = smooth_approach(cameraOffset, hsp*100, 0.008);
-cameraX = x+cameraOffset;
 if(y-30 > room_height) death();
 alpha = approach(alpha, imgAlpha, 0.05);
 if(place_meeting(x, y, oRespawn))
@@ -120,3 +119,14 @@ prevState = state;
 jump = false;
 lmb = false;
 rmb = false;
+
+if(keyboard_check_pressed(vk_enter)) 
+{
+	var e = part_type_create();
+	part_type_shape(e, pt_shape_sphere);
+	part_type_alpha2(e, 1, 0);
+	part_type_life(e, 240, 240);
+	part_type_size(e, 1, 1, -0.001, 0);
+	part_type_blend(e, true);
+	part_particles_create(global.ps_below, x, y-100, e, 1);
+}

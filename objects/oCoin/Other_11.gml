@@ -1,9 +1,9 @@
 var e = part_type_create();
 part_type_shape(e, pt_shape_smoke);
 var sz = random_range(1, 1.2);
-part_type_size(e, sz/5.5, sz/5.5, -0.002, 0);
+part_type_size(e, sz/5.7, sz/5.7, -0.003, 0);
 part_type_color1(e, c_yellow);
-part_type_speed(e, sz, sz, -0.01, 0);
+part_type_speed(e, sz, sz, -0.011, 0);
 part_type_life(e, sz/0.02, sz/0.02);
 part_type_direction(e, 0, 360, 0, 0);
 part_type_alpha2(e, 1, 0);

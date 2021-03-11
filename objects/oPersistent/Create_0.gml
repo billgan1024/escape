@@ -4,6 +4,8 @@ alarms[3] = 50;
 global.timeFactor = 1; gameTimer = 0;
 layer_set_visible("Background", false);
 
+audio_group_load(music);
+
 global.ps_above = part_system_create();
 part_system_depth(global.ps_above, -100);
 global.ps_below = part_system_create();
