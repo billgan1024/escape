@@ -1,1 +1,0 @@
-room_goto(asset_get_index("level" + string(real(string_digits(room_get_name(room)))+1)));

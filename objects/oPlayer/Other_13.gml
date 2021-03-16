@@ -1,1 +1,0 @@
-canAttack = true; alarms[3] = infinity;

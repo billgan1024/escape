@@ -20,14 +20,15 @@ function approach(argument0, argument1, argument2) {
 /// @param from
 /// @param to
 /// @param amnt [0-1]
-function smooth_approach(argument0, argument1, argument2) {
+/// @param absoluteError (recommended: 0.005)
+function smoothApproach(argument0, argument1, argument2, argument3) {
 	/*
 	 * Example use (smooth camera movement):
 	 * view_xview = smooth_approach(view_xview, x-view_wview/2, 0.1);
 	 * view_yview = smooth_approach(view_yview, y-view_hview/2, 0.1);
 	 */
 	var diff = argument1-argument0;
-	if abs(diff) < 0.0005
+	if abs(diff) < argument3
 	{
 	   return argument1;
 	}
@@ -37,14 +38,15 @@ function smooth_approach(argument0, argument1, argument2) {
 	}
 }
 
-function check_alarms() {
+function update() {
 	for(var i = 1; i <= 15; i++) 
 	{
-		alarms[i]--;
-		if(alarms[i] <= 0) {
+		a[i]--;
+		if(a[i] <= 0) {
 			event_perform(ev_other, i+10);
 		}
 	}
+	event_perform(ev_other, ev_user0);
 }
 
 /// @param from
@@ -62,7 +64,7 @@ function wave(argument0, argument1, argument2, argument3, argument4) {
 /// @param current
 /// @param  target
 /// @param  turn_speed
-function angle_approach(argument0, argument1, argument2) {
+function angleApproach(argument0, argument1, argument2) {
 	/*
 	 * Example use (rotate to face towards the cursor):
 	 * var target_angle = point_direction(x, y, mouse_x, mouse_y);
@@ -143,5 +145,12 @@ function inView()
 	&& bbox_left < vx+vw
 	&& bbox_bottom > vy
 	&& bbox_top < vy+vh;
+}
+
+function array()
+{
+	var arr;
+	for(var i = 0; i < argument_count; i++) arr[i] = argument[i];
+	return arr;
 }
 

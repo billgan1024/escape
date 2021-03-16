@@ -1,1 +1,0 @@
-if(!immune) death();

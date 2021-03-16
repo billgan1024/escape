@@ -1,1 +1,0 @@
-canBlink = true; alarms[4] = infinity;

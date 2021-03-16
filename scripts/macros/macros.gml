@@ -1,7 +1,12 @@
-#macro inactive infinity
+#macro dshalign draw_set_halign
+#macro dsvalign draw_set_valign
+#macro dsalpha draw_set_alpha
+#macro dscolour draw_set_colour
+#macro dsfont draw_set_font
+
 #macro vx camera_get_view_x(view_camera[0])
 #macro vy camera_get_view_y(view_camera[0])
-#macro vw camera_get_view_width(view_camera[0])
-#macro vh camera_get_view_height(view_camera[0])
-#macro pr path_action_reverse
-#macro pc path_action_continue
+#macro vw 2560
+#macro vh 1440
+
+#macro fadeSpeed 0.05

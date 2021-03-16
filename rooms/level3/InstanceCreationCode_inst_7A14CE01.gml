@@ -1,1 +1,0 @@
-text = "Left click to use your lightsaber to destroy enemies";

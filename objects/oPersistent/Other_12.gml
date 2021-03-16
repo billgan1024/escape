@@ -1,2 +1,2 @@
-window_center();
-alarms[2] = infinity;
+canInteract = true;
+a[2] = infinity;
