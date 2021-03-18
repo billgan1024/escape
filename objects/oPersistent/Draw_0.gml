@@ -1,8 +1,10 @@
+//draw paused tint
+if(gameState == gs.paused || gameState == gs.optionsGame) draw_sprite_ext(sBlack, 0, vx, vy, vw, vh, 0, c_white, 0.5);
 //draw the title based on the gameState
 dshalign(fa_center); dsvalign(fa_middle); dscolour(c_white); dsfont(fTitle); dsalpha(alpha);
-draw_text(vx+vw/2, vy+wave(195, 205, 2, 0, t), titles[gameState]);
-
+draw_text(vx+vw/2, vy+wave(195, 205, 2.5, 0, t), titles[gameState]);
 dsfont(fMain);
+//draw_text(100, 100, a[2]);
 switch(gameState) {
 	case gs.menu:
 	var by = 500;
@@ -24,8 +26,11 @@ switch(gameState) {
 			if(r == i && c == j) {
 				updateSelectorTo(bx+j*120, by+i*120, string_width(string(lvl)), string_height(string(lvl)));
 			}
+			//check when you have reached the number of levels you unlocked
+			if(lvl == ds_map_find_value(data, "lvl")) dsalpha(alpha/5);
 		}
 	}
+	dsalpha(alpha);
 	draw_text(vx+vw/2, vy+by+7*120, "Back");
 	if(r == 4) {
 		updateSelectorTo(vw/2, by+7*120, string_width(string("Back")), string_height(string("Back"))); 
@@ -38,17 +43,18 @@ switch(gameState) {
 	var by = 400;
 	for(var i = 0; i < 4; i++) {
 		var str = "";
-		switch(i+1) {	
-			case 1: str = "Sound: " + string(ds_map_find_value(data, "sfx")) + "%";
+		switch(i) {	
+			case 0: str = "Sound FX: " + string(ds_map_find_value(data, "sfx")) + "%";
 			break;
-			case 2: str = "Music: " + string(ds_map_find_value(data, "mus")) + "%";
+			case 1: str = "Music: " + string(ds_map_find_value(data, "mus")) + "%";
 			break;
-			case 3: str = "Fullscreen: " + (ds_map_find_value(data, "fs") ? "On" : "Off");
+			case 2: str = "Fullscreen: " + (ds_map_find_value(data, "fs") ? "On" : "Off");
 			break;
-			case 4: str = "Timer: " + (ds_map_find_value(data, "timer") ? "On" : "Off");
+			case 3: str = "Timer: " + (ds_map_find_value(data, "timer") ? "On" : "Off");
 			break;
-			case 5: str = "Controls";
-			break;
+			//add controls later
+			/*case 4: str = "Controls";
+			break;*/
 		}
 		draw_text(vx+vw/2, vy+by+i*120, str);
 		if(r == i) {
@@ -61,15 +67,30 @@ switch(gameState) {
 	}
 	break;
 	
-	case gs.game:
-	dshalign(fa_left); dsvalign(fa_bottom);
-	draw_text(vx+10, vy+vh-10, string_digits(room_get_name(room)));
+	case gs.paused:
+	var by = 500;
+	for(var i = 0; i < 4; i++) {
+		draw_text(vx+vw/2, vy+by+i*120, pauseTitles[i]);
+		if(r == i) {
+			updateSelectorTo(vw/2, by+i*120, string_width(pauseTitles[i]), string_height(pauseTitles[i]));
+		}
+	}
 	break;
 }
-//draw selector rectangle
-var sx = selectorFrom.xpos, sy = selectorFrom.ypos;
-var sw = selectorFrom.w, sh = selectorFrom.h;
-var xx = vx+sx-sw/2, yy = vy+sy-sh/2;
-dsalpha(alpha/5);
-draw_rectangle_width(xx, yy, xx+sw, yy+sh, 3);
+if(gameState == gs.game || gameState == gs.paused || gameState == gs.optionsGame) {
+	dshalign(fa_left); dsvalign(fa_bottom);
+	dsalpha(1);
+	draw_text(vx+10, vy+vh-10, "Level " + string_digits(room_get_name(room)));	
+}
+//draw selector rectangle if you're not in game
+if(gameState != gs.game) {
+	var sx = selectorFrom.xpos, sy = selectorFrom.ypos;
+	var sw = selectorFrom.w, sh = selectorFrom.h;
+	var xx = vx+sx-sw/2, yy = vy+sy-sh/2;
+	dsalpha(alpha/5);
+	draw_rectangle_width(xx, yy, xx+sw, yy+sh, 3);
+}
+
+//draw transition tint if we're switching rooms
+draw_sprite_ext(sBlack, 0, vx, vy, vw, vh, 0, c_white, tAlpha);
 dsalpha(1);

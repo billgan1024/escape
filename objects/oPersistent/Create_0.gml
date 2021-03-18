@@ -24,9 +24,6 @@ if(file_exists(fileName)) {
 	data = ds_map_secure_load("data.sav");
 }
 else init();
-keys = ds_map_keys_to_array(data);
-values = ds_map_values_to_array(data);
-show_debug_message(keys);
 //read in values in an array so that it can be used in the draw event
 if(ds_map_find_value(data, "fs")) window_set_fullscreen(true);
 
@@ -45,7 +42,7 @@ gameState = gs.menu;
 //parent array: p[i] represents what screen to go back to (-1 if root)
 parent = array(-1, -1, gs.menu, gs.menu, -1, gs.paused);
 //row[i], col[i] = number of rows and columns for each menu state
-row = array(4, 0, 5, 5, 3, 5);
+row = array(4, 0, 5, 5, 4, 5);
 col = array(1, 0, 8, 1, 1, 1);
 
 //grid variables (with backtracking)
@@ -68,14 +65,17 @@ selectorTo = {
 //pressing any arrow key will disable snap
 snap = true; 
 //delay for inputs
-inputDelay = 15;
+inputDelay = 20;
 
-//transition data
-state = 0; alpha = 1;
-destState = -1;
+//transition data (handles menu AND room transitions)
+state = 0; alpha = 1; 
+tAlpha = 0;
+destState = -1; destRoom = -1;
 canInteract = false; 
 //for buttons which take up multiple rows
 horizontal = true;
+
+paused = false;
 
 //enable interacting and disable snap
 a[4] = inputDelay;
@@ -83,10 +83,13 @@ a[4] = inputDelay;
 //titles
 titles = array("Escape", "", "Level Select", "Options", "Game Paused", "Options");
 menuTitles = array(ds_map_find_value(data, "lvl") > 1 ? "Continue" : "Play", "Level Select", "Options", "Quit");
+pauseTitles = array("Back to Game", "Retry Level", "Options", "Main Menu");
 
-global.timeFactor = 1; gameTimer = 0;
+timeFactor = 1; gameTimer = 0;
+//keep a separate timeFactor and gameTimer for persistent's updates
+pTimeFactor = 1; pGameTimer = 0;
 
-a[1] = 1; a[3] = random_range(30, 40);
+a[1] = 1; a[3] = random_range(60, 80);
 
 global.ps_above = part_system_create();
 part_system_depth(global.ps_above, layer_get_depth("Above"));
@@ -95,9 +98,14 @@ part_system_depth(global.ps_below, layer_get_depth("Below"));
 part_system_automatic_update(global.ps_above, false);
 part_system_automatic_update(global.ps_below, false);
 
-//volume control (map which tracks default gain of audio)
-vol = ds_map_create();
-ds_map_add(vol, aMusic, audio_sound_get_gain(aMusic));
+//initial audio gain for music and sounds (map which tracks default gain of audio)
+musics = array(aMenu, aGame);
+musicGain = array(gain(aMenu), gain(aGame));
+sounds = array(aScroll, aSelect, aPause);
+soundGain = array(gain(aScroll), gain(aSelect), gain(aPause));
 
-audio_sound_gain(aMusic, 0, 0);
-audio_play_sound(aMusic, 0, true);
+//set the appropriate gain
+updateMusicVol();
+
+//play menu music with the appropriate volume set
+mus(aMenu);

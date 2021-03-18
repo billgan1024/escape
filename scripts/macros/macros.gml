@@ -9,4 +9,6 @@
 #macro vw 2560
 #macro vh 1440
 
+#macro gain audio_sound_get_gain
+
 #macro fadeSpeed 0.05
