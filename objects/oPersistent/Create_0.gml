@@ -3,25 +3,25 @@ h = window_get_height();
 window_set_size(h/3*4, h/4*3);
 t = 0;
 
-inputKeys = array(vk_left, vk_right, vk_up, vk_down, 
-	ord("W"), ord("A"), ord("S"), ord("D"), 
-	vk_space, vk_shift);
-	
-inputKeys2 = array(vk_left, vk_right, vk_up, vk_down, 
-	ord("W"), ord("A"), ord("S"), ord("D"), 
-	vk_space, vk_enter, vk_escape);
+a = array_create(16, infinity);
 
-//inputs: keyDown, inputs2: keyPressed
-global.inputs = ds_map_create();
-global.inputs2 = ds_map_create();
-
+//input data
+enum in {
+	left, right, up, down, 
+	keyW, keyA, keyS, keyD, 
+	space, shift, enter, esc, length
+}
+//a[5] = 240;
+global.keyCodes = array(vk_left, vk_right, vk_up, vk_down, ord("W"), ord("A"), ord("S"), ord("D"),
+	vk_space, vk_shift, vk_enter, vk_escape);
+input2 = array_create(in.length);
 //load data
 //if it's undefined, initialize default values
-fileName = "data.sav";
+fileName = "data.dat";
 data = ds_map_create();
 if(file_exists(fileName)) {
-	ds_map_destroy(data); 
-	data = ds_map_secure_load("data.sav");
+	ds_map_destroy(data);
+	data = ds_map_secure_load(fileName);
 }
 else init();
 //read in values in an array so that it can be used in the draw event
@@ -31,8 +31,6 @@ if(ds_map_find_value(data, "fs")) window_set_fullscreen(true);
 //gs.menu = 0, gs.game = 1, and so on
 //menu -> (select, options)
 //paused -> options2
-
-a = array_create(16, infinity);
 
 enum gs {
 	menu, game, select, options, paused, optionsGame
@@ -64,8 +62,6 @@ selectorTo = {
 //current button selected upon draw
 //pressing any arrow key will disable snap
 snap = true; 
-//delay for inputs
-inputDelay = 20;
 
 //transition data (handles menu AND room transitions)
 state = 0; alpha = 1; 
@@ -82,7 +78,7 @@ a[4] = inputDelay;
 
 //titles
 titles = array("Escape", "", "Level Select", "Options", "Game Paused", "Options");
-menuTitles = array(ds_map_find_value(data, "lvl") > 1 ? "Continue" : "Play", "Level Select", "Options", "Quit");
+menuTitles = array(data[?"lvl"] > 1 ? "Continue" : "Play", "Level Select", "Options", "Quit");
 pauseTitles = array("Back to Game", "Retry Level", "Options", "Main Menu");
 
 timeFactor = 1; gameTimer = 0;
@@ -92,8 +88,8 @@ pTimeFactor = 1; pGameTimer = 0;
 a[1] = 1; a[3] = random_range(60, 80);
 
 global.ps_above = part_system_create();
-part_system_depth(global.ps_above, layer_get_depth("Above"));
 global.ps_below = part_system_create();
+part_system_depth(global.ps_above, layer_get_depth("Above"));
 part_system_depth(global.ps_below, layer_get_depth("Below"));
 part_system_automatic_update(global.ps_above, false);
 part_system_automatic_update(global.ps_below, false);
@@ -101,11 +97,12 @@ part_system_automatic_update(global.ps_below, false);
 //initial audio gain for music and sounds (map which tracks default gain of audio)
 musics = array(aMenu, aGame);
 musicGain = array(gain(aMenu), gain(aGame));
-sounds = array(aScroll, aSelect, aPause);
-soundGain = array(gain(aScroll), gain(aSelect), gain(aPause));
+sounds = array(aScroll, aSelect, aPause, aCoin, aExplosion, aGem, aJump, aLaser, aShoot, aSplat);
+soundGain = array(gain(aScroll), gain(aSelect), gain(aPause), gain(aCoin), gain(aExplosion), gain(aGem), gain(aJump), gain(aLaser), gain(aShoot), gain(aSplat));
 
 //set the appropriate gain
 updateMusicVol();
+updateSoundVol();
 
 //play menu music with the appropriate volume set
 mus(aMenu);

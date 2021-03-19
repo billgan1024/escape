@@ -1,6 +1,6 @@
-checkInput();
+checkInputPressed();
 pTimeFactor = min(delta_time/1000000*240, 8);
-if(window_has_focus() && !paused) {
+if(window_has_focus() && gameState != gs.paused) {
 	timeFactor = min(delta_time/1000000*240, 8);
 } else {
 	timeFactor = 0;
@@ -19,9 +19,7 @@ if(floor(gameTimer) != floor(gameTimer - timeFactor))
 	}
 }
 
-//persistent update must happen after everything else so that keyPressed inputs can register
-//in the current step before clearPressed() happens
-//this update is also not affected by the pause menu
+//update persistent
 pGameTimer += pTimeFactor;
 if(floor(pGameTimer) != floor(pGameTimer - pTimeFactor))
 {
@@ -32,3 +30,4 @@ if(floor(pGameTimer) != floor(pGameTimer - pTimeFactor))
 		update(); 
 	}
 }
+

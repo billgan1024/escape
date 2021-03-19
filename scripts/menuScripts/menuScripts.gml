@@ -1,8 +1,8 @@
 function updateSelector() {
-	selectorFrom.xpos = smoothApproach(selectorFrom.xpos, selectorTo.xpos, 0.1, 1);
-	selectorFrom.ypos = smoothApproach(selectorFrom.ypos, selectorTo.ypos, 0.1, 1);
-	selectorFrom.w = smoothApproach(selectorFrom.w, selectorTo.w, 0.1, 1);
-	selectorFrom.h = smoothApproach(selectorFrom.h, selectorTo.h, 0.1, 1);
+	selectorFrom.xpos = smoothApproach(selectorFrom.xpos, selectorTo.xpos, 0.1);
+	selectorFrom.ypos = smoothApproach(selectorFrom.ypos, selectorTo.ypos, 0.1);
+	selectorFrom.w = smoothApproach(selectorFrom.w, selectorTo.w, 0.1);
+	selectorFrom.h = smoothApproach(selectorFrom.h, selectorTo.h, 0.1);
 }
 
 function updateSelectorTo(nx, ny, nw, nh) {
@@ -38,6 +38,5 @@ function goForward(newState) {
 function transitTo(newState, newRoom) {
 	state = 3; destState = newState; destRoom = newRoom;
 	tr = 0; tc = 0; pr = 0; pc = 0;
-	canInteract = false; snap = true;	
+	canInteract = false; snap = true;
 }
-

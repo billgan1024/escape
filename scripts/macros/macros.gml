@@ -12,3 +12,4 @@
 #macro gain audio_sound_get_gain
 
 #macro fadeSpeed 0.05
+#macro inputDelay 15

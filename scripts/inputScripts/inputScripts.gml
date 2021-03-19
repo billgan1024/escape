@@ -1,15 +1,17 @@
 function checkInput() {
-	//update global.inputs to be used in menus and player
-	for(var i = 0; i < array_length(inputKeys); i++) {
-		ds_map_replace(global.inputs, inputKeys[i], keyboard_check(inputKeys[i]));
+	for(var i = 0; i < in.length; i++) {
+		input[i] = keyboard_check(global.keyCodes[i]);	
 	}
-	for(var i = 0; i < array_length(inputKeys2); i++) {
-		ds_map_replace(global.inputs2, inputKeys2[i], keyboard_check_pressed(inputKeys2[i]));
+}
+
+function checkInputPressed() {
+	for(var i = 0; i < in.length; i++) {
+		input2[i] |= keyboard_check_pressed(global.keyCodes[i]);	
 	}
 }
 
 function clearPressed() {
-	for(var i = 0; i < array_length(inputKeys2); i++) {
-		ds_map_replace(global.inputs2, inputKeys2[i], 0);
+	for(var i = 0; i < in.length; i++) {
+		input2[i] = false;
 	}
 }

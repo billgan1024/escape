@@ -20,15 +20,14 @@ function approach(argument0, argument1, argument2) {
 /// @param from
 /// @param to
 /// @param amnt [0-1]
-/// @param absoluteError (recommended: 0.005)
-function smoothApproach(argument0, argument1, argument2, argument3) {
+function smoothApproach(argument0, argument1, argument2) {
 	/*
 	 * Example use (smooth camera movement):
 	 * view_xview = smooth_approach(view_xview, x-view_wview/2, 0.1);
 	 * view_yview = smooth_approach(view_yview, y-view_hview/2, 0.1);
 	 */
 	var diff = argument1-argument0;
-	if abs(diff) < argument3
+	if abs(diff) < 1
 	{
 	   return argument1;
 	}
@@ -39,11 +38,14 @@ function smoothApproach(argument0, argument1, argument2, argument3) {
 }
 
 function update() {
-	for(var i = 1; i <= 15; i++) 
-	{
-		a[i]--;
-		if(a[i] <= 0) {
-			event_perform(ev_other, i+10);
+	if(variable_instance_exists(id, "a"))
+		{
+		for(var i = 1; i <= 15; i++) 
+		{
+			a[i]--;
+			if(a[i] <= 0) {
+				event_perform(ev_other, i+10);
+			}
 		}
 	}
 	event_perform(ev_other, ev_user0);
@@ -121,22 +123,6 @@ function angleApproach(argument0, argument1, argument2) {
 	    }
 	}
 	return angle;
-}
-
-function collision() {
-	
-	if(place_meeting(x+hsp+khsp, y, oGround))
-	{
-		while(!place_meeting(x+sign(hsp+khsp), y, oGround)) x += sign(hsp+khsp);
-		hsp = 0; khsp = 0;
-	}
-	x += hsp+khsp;
-	if(place_meeting(x, y+vsp+kvsp, oGround))
-	{
-		while(!place_meeting(x, y+sign(vsp+kvsp), oGround)) y += sign(vsp+kvsp);
-		vsp = 0; kvsp = 0;
-	}
-	y += vsp+kvsp;	
 }
 
 function inView()

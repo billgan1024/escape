@@ -77,11 +77,6 @@ switch(gameState) {
 	}
 	break;
 }
-if(gameState == gs.game || gameState == gs.paused || gameState == gs.optionsGame) {
-	dshalign(fa_left); dsvalign(fa_bottom);
-	dsalpha(1);
-	draw_text(vx+10, vy+vh-10, "Level " + string_digits(room_get_name(room)));	
-}
 //draw selector rectangle if you're not in game
 if(gameState != gs.game) {
 	var sx = selectorFrom.xpos, sy = selectorFrom.ypos;
