@@ -23,7 +23,7 @@ switch(state)
 {
 	case "ground": 
 		boosted = false;
-		khsp = approach(khsp, 0, 3*fric);
+		khsp = approach(khsp, 0, 4*fric);
 		updateHsp(walkAcc, walkAcc);
 		if(jump) { vsp = -jumpSpd; state = "jump"; snd(aJump); }
 		if(!place_meeting(x, y+1, oGround)) {

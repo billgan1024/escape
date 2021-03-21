@@ -1,5 +1,5 @@
 //draw paused tint
-if(gameState == gs.paused || gameState == gs.optionsGame) draw_sprite_ext(sBlack, 0, vx, vy, vw, vh, 0, c_white, 0.5);
+if(gameState == gs.paused || gameState == gs.optionsGame) draw_sprite_ext(sBlack, 0, vx, vy, vw, vh, 0, c_white, 0.6);
 //draw the title based on the gameState
 dshalign(fa_center); dsvalign(fa_middle); dscolour(c_white); dsfont(fTitle); dsalpha(alpha);
 draw_text(vx+vw/2, vy+wave(195, 205, 2.5, 0, t), titles[gameState]);

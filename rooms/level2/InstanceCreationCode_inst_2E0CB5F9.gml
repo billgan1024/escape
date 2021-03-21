@@ -1,0 +1,1 @@
+text = "Hold shift to move faster";

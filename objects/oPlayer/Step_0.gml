@@ -1,1 +1,1 @@
-if(oPersistent.gameState != gs.paused) checkInputPressed();
+if(oPersistent.gameState != gs.paused && oPersistent.gameState != gs.optionsGame) checkInputPressed();

@@ -1,0 +1,1 @@
+text = "Arrow/WASD keys to move\nUp/W/Space to jump";

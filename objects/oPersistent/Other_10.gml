@@ -162,6 +162,8 @@ if(canInteract) {
 				switch(r) {
 					case 0: gameState = gs.game; clearPressed();
 					break;
+					case 1: transitTo(gs.game, room);
+					break;
 					case 2: goForward(gs.optionsGame);
 					break;
 					case 3: audio_stop_sound(aGame); transitTo(gs.menu, menu);

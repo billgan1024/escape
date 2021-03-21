@@ -26,8 +26,10 @@ function smoothApproach(argument0, argument1, argument2) {
 	 * view_xview = smooth_approach(view_xview, x-view_wview/2, 0.1);
 	 * view_yview = smooth_approach(view_yview, y-view_hview/2, 0.1);
 	 */
+	var error = 1;
+	if(argument_count == 4) error = argument3;
 	var diff = argument1-argument0;
-	if abs(diff) < 1
+	if abs(diff) < error
 	{
 	   return argument1;
 	}

@@ -22,7 +22,7 @@ hsp = 0;
 vsp = 0;
 khsp = 0;
 fric = 0.05;
-wallKickSpd = 7;
+wallKickSpd = 6.5;
 
 //state = "ground", "buffer", "jump", "fall", "blink"
 state = "ground";

@@ -2,6 +2,7 @@ randomize();
 h = window_get_height();
 window_set_size(h/3*4, h/4*3);
 t = 0;
+gameSpd = 1;
 
 a = array_create(16, infinity);
 

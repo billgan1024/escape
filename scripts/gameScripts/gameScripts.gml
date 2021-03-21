@@ -1,6 +1,6 @@
 function checkEnemy() {
-	if(y-30 >= room_height) death();
-	if(place_meeting(x, y, oEnemyParent)) death();
+	if(y-30 >= room_height) death(aSplat);
+	if(place_meeting(x, y, oEnemyParent)) death(aExplosion);
 }
 
 function collision() {
@@ -21,8 +21,8 @@ function collision() {
 /// @param walkAcc
 /// @param runAcc
 function updateHsp(walkAcc, runAcc) {
-	if(dash) hsp = approach(hsp, dir*(runSpd-abs(khsp)*3/4), runAcc); 
-	else hsp = approach(hsp, dir*(walkSpd-abs(khsp)*3/4), walkAcc);
+	if(dash) hsp = approach(hsp, dir*(runSpd-abs(khsp)*11/12), runAcc); 
+	else hsp = approach(hsp, dir*(walkSpd-abs(khsp)*11/12), walkAcc);
 }
 
 function updateVsp() {
@@ -33,14 +33,15 @@ function updateVsp() {
 		if(vsp > maxGrav/3) vsp = approach(vsp, maxGrav/3, grav*2); 
 		else vsp = approach(vsp, maxGrav/3, grav/3); 
 	}
-	else if(vsp > 0 && down) vsp = smoothApproach(vsp, maxGrav*9/8, 0.03);
+	else if(vsp > 0 && down) vsp = smoothApproach(vsp, maxGrav*9/8, 0.025);
 	else vsp = approach(vsp, maxGrav, grav);
 }
 
-function death() {
-	snd(aExplosion); instance_destroy();
-	firework(c_white);
+function death(audio) {
+	snd(audio); instance_destroy();
+	firework(c_white, c_white);
 	shrink(sPlayer);
-	oGame.shake = 10;	
+	oGame.shake = 10;
+	oGame.targetLvl = oGame.lvl;
 	oGame.a[1] = 120;
 }
