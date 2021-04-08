@@ -111,5 +111,8 @@ soundGain = array(gain(aScroll), gain(aSelect), gain(aPause), gain(aCoin), gain(
 updateMusicVol();
 updateSoundVol();
 
+//attempt counter
+attempts = 0;
+
 //play menu music with the appropriate volume set
 mus(aMenu);

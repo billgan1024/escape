@@ -116,7 +116,7 @@ if(canInteract) {
 			switch(gameState) {
 				case gs.menu:
 				switch(r) {
-					case 0: audio_stop_sound(aMenu); transitTo(gs.game, level1);
+					case 0: audio_stop_sound(aMenu); transitTo(gs.game, level1); attempts = 0;
 					break;
 					case 1: goForward(gs.select);
 					break;
@@ -133,7 +133,7 @@ if(canInteract) {
 					//go to a particular level if you have unlocked it
 					if(ds_map_find_value(data, "lvl") >= lvl) {
 						audio_stop_sound(aMenu);
-						transitTo(gs.game, asset_get_index("level" + string(lvl)));
+						transitTo(gs.game, asset_get_index("level" + string(lvl))); attempts = 0;
 					} else clearPressed(); 
 				}
 				break;
@@ -162,11 +162,11 @@ if(canInteract) {
 				switch(r) {
 					case 0: gameState = gs.game; clearPressed();
 					break;
-					case 1: transitTo(gs.game, room);
+					case 1: transitTo(gs.game, room); attempts = 0;
 					break;
 					case 2: goForward(gs.optionsGame);
 					break;
-					case 3: audio_stop_sound(aGame); transitTo(gs.menu, menu);
+					case 3: audio_stop_sound(aGame); transitTo(gs.menu, menu); 
 					break;
 				}
 				break;

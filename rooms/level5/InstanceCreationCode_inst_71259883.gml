@@ -1,1 +1,2 @@
-count = 16;
+count = 8;
+dir = "horizontal";

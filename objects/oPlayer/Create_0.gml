@@ -42,3 +42,5 @@ input2 = array_create(in.length);
 
 //update the view instantly
 camera_set_view_pos(view_camera[0], clamp(oPlayer.x - vw/2 + oPlayer.cameraOffset, 0, room_width-vw), clamp(floor(oPlayer.y/vh)*vh, 0, room_height/vh-1));
+//increase attempts
+oPersistent.attempts++;

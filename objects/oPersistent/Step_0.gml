@@ -3,7 +3,7 @@ pTimeFactor = min(delta_time/1000000*240*gameSpd, 8);
 if(window_has_focus() && (gameState != gs.paused && gameState != gs.optionsGame)) {
 	timeFactor = min(delta_time/1000000*240*gameSpd, 8);
 } else {
-	timeFactor = 0;
+	timeFactor = 0; 
 }	
 
 //update everything before persistent
