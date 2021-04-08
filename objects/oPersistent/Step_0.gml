@@ -6,6 +6,7 @@ if(window_has_focus() && (gameState != gs.paused && gameState != gs.optionsGame)
 	timeFactor = 0;
 }	
 
+//update everything before persistent
 gameTimer += timeFactor; 
 if(floor(gameTimer) != floor(gameTimer - timeFactor))
 {
@@ -13,13 +14,14 @@ if(floor(gameTimer) != floor(gameTimer - timeFactor))
 	
 	repeat _remainder
 	{
+		//step
 		with(all) {
 			if(object_index != oPersistent) update();
 		}
 	}
 }
 
-//update persistent
+//update persistent (remember: it needs to update even while gameTimer = 0
 pGameTimer += pTimeFactor;
 if(floor(pGameTimer) != floor(pGameTimer - pTimeFactor))
 {

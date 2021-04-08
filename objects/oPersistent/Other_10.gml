@@ -2,7 +2,7 @@
 t += 1/240;
 
 updateSelector();
-show_debug_message(keyboard_lastkey);
+//show_debug_message(keyboard_lastkey);
 //update whether horizontal controls are allowed
 horizontal = !((gameState == gs.select && r == 4));
 

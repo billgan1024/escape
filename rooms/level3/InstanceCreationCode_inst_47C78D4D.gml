@@ -1,0 +1,1 @@
+text = "Perform wall jumps to climb heights";

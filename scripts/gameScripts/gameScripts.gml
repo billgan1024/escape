@@ -3,21 +3,31 @@ function checkEnemy() {
 	if(place_meeting(x, y, oEnemyParent)) death(aExplosion);
 }
 
-function collision() {
-	if(place_meeting(x+hsp+khsp, y, oGround))
+function hCollision() {
+	var tsp = hsp+khsp+phsp;
+	if(place_meeting(x+tsp, y, oGround))
 	{
-		while(!place_meeting(x+sign(hsp+khsp), y, oGround)) x += sign(hsp+khsp);
-		hsp = 0; khsp = 0;
+		while(!place_meeting(x+sign(tsp), y, oGround)) x += sign(tsp);
+		hsp = 0; khsp = 0; phsp = 0;
 	}
-	x += hsp+khsp;
+	x += hsp+khsp+phsp;
+}
+
+function vCollision() {
 	if(place_meeting(x, y+vsp, oGround))
 	{
 		while(!place_meeting(x, y+sign(vsp), oGround)) y += sign(vsp);
-		vsp = 0;
+		//anti-jumperror check 
+		if(vsp < 0)
+		{
+			var b = instance_place(x, y-1, oGround);
+			if(x >= b.bbox_right+30-jumpError) x = b.bbox_right+31;
+			else if(x <= b.bbox_left-30+jumpError) x = b.bbox_left-31;
+			else vsp = 0;
+		} else vsp = 0;
 	}
 	y += vsp;	
 }
-
 /// @param walkAcc
 /// @param runAcc
 function updateHsp(walkAcc, runAcc) {
@@ -44,4 +54,17 @@ function death(audio) {
 	oGame.shake = 10;
 	oGame.targetLvl = oGame.lvl;
 	oGame.a[1] = 120;
+}
+
+/// @param pathIndex
+/// @param pathSpeed [0-1]
+/// @param loop
+function path(p, pathSpd, loop) {
+	path_start(p, 0, path_action_stop, true);
+	spd = pathSpd; rev = !loop;
+}
+
+function resetArea() {
+	with(oEnemy) { x = xstart; y = ystart; hsp = hspStart; }
+	with(oSpike) { path_position = 0; image_angle = 0; }
 }

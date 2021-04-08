@@ -1,5 +1,5 @@
 /// @description handle state
-cameraOffset = smoothApproach(cameraOffset, hsp*100, 0.008);
+cameraOffset = smoothApproach(cameraOffset, hsp*100, 0.006);
 //get input
 checkInput();
 //check for all hazards
@@ -25,7 +25,7 @@ switch(state)
 		boosted = false;
 		khsp = approach(khsp, 0, 4*fric);
 		updateHsp(walkAcc, walkAcc);
-		if(jump) { vsp = -jumpSpd; state = "jump"; snd(aJump); }
+		if(jump || jumpTimer) { vsp = -jumpSpd; state = "jump"; snd(aJump); jumpTimer = false; a[3] = infinity; }
 		if(!place_meeting(x, y+1, oGround)) {
 			state = "jump"; a[2] = bufferTime;	
 		}
@@ -36,16 +36,14 @@ switch(state)
 		updateVsp();
 		if(jump)
 		{
-			if(place_meeting(x, y+jumpPixels, oGround)) {	
-				vsp = -jumpSpd;	snd(aJump); boosted = false;
-			} else if(grip != 0) {
+			if(grip != 0) {
 				vsp = -jumpSpd;	khsp = wallKickSpd*-grip; snd(aJump); state = "djump"; boosted = false;
 			} else {
 				vsp = -jumpSpd;	snd(aJump); boosted = false;
 				if(a[2] != infinity) a[2] = infinity; else state = "djump";
 			}
 		}
-		if(place_meeting(x, y+1, oGround)) { state = "ground"; }
+		if(place_meeting(x, y+1, oGround) && vsp >= 0) { state = "ground"; }
 	break;
 	case "djump":
 		khsp = approach(khsp, 0, fric);
@@ -53,15 +51,24 @@ switch(state)
 		updateHsp(airAcc, airAcc/2); 
 		if(jump)
 		{
-			if(place_meeting(x, y+jumpPixels, oGround)) {	
-				vsp = -jumpSpd;	snd(aJump); boosted = false; state = "jump";
-			} else if(grip != 0) {
+			if(grip != 0) {
 				vsp = -jumpSpd;	khsp = wallKickSpd*-grip; snd(aJump); boosted = false;
+			} else {
+				//jump buffer (like geometry dash)
+				jumpTimer = true; a[3] = jumpBuffer;	
 			}
 		}
-		if(place_meeting(x, y+1, oGround)) { state = "ground"; }
+		if(place_meeting(x, y+1, oGround) && vsp >= 0) { state = "ground"; }
 	break;
-}
+}	
+
+//platform code (horizontal)
+var p = instance_place(x, y+1, oMovingPlatform); 
+if(p != noone) {
+	phsp = p.hsp;
+} else phsp = 0;
+
+
 //check collision
-collision();
+hCollision(); vCollision();
 clearPressed();

@@ -2,10 +2,13 @@
   "kind": 0,
   "closed": false,
   "precision": 4,
-  "points": [],
+  "points": [
+    {"speed":100.0,"x":1950.0,"y":690.0,},
+    {"speed":100.0,"x":1950.0,"y":990.0,},
+  ],
   "parent": {
-    "name": "lvl1",
-    "path": "folders/Paths/lvl1.yy",
+    "name": "Paths",
+    "path": "folders/Paths.yy",
   },
   "resourceVersion": "1.0",
   "name": "p1",

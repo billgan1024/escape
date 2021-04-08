@@ -2,13 +2,13 @@ walkSpd = 3.6;
 runSpd = 5.4;
 jumpSpd = 6.4;
 walkAcc = 3;
-grav = 0.08; 
-maxGrav = 10; 
 airAcc = 0.4;
 bufferTime = 15;
-jumpPixels = 10;
+jumpError = 20;
 cameraOffset = 0;
 boosted = false;
+
+phsp = 0;
 
 //input variables
 dir = 1;
@@ -23,6 +23,10 @@ vsp = 0;
 khsp = 0;
 fric = 0.05;
 wallKickSpd = 6.5;
+
+//jumptimer
+jumpTimer = false;
+jumpBuffer = 15;
 
 //state = "ground", "buffer", "jump", "fall", "blink"
 state = "ground";

@@ -55,15 +55,20 @@ function update() {
 
 /// @param from
 /// @param to
-/// @param duration
-/// @param offset
+/// @param period
 /// @param parameter
-function wave(argument0, argument1, argument2, argument3, argument4) {
-
-	var arg4 = (argument1 - argument0) * 0.5;
-	return argument0 + arg4 + sin(((argument4 + argument2 * argument3) / argument2) * (pi*2)) * arg4;
+function wave(from, to, period, t) {
+	return (to-from)/2*sin(2*pi/period*t) + (from+to)/2;
 }
 
+//dx/dt for wave
+/// @param from
+/// @param to
+/// @param period
+/// @param parameter
+function dwave(from, to, period, t) {
+	return wave(from, to, period, t)-wave(from, to, period, t-1/240);
+}
 
 /// @param current
 /// @param  target

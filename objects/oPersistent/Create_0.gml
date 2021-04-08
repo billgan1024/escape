@@ -49,6 +49,12 @@ col = array(1, 0, 8, 1, 1, 1);
 //pr, pc = previous row, previous col which will be used when u press escape
 r = 0; c = 0; pr = 0; pc = 0; tr = 0; tc = 0;
 
+//camera data for levels
+//use -1 if you want no y-level checking
+cameraData = [
+	-1, -1, -1, -1, [[[0, 3600]], [[0, 3600]]]
+];
+
 //rectangle selector location (by default, it's at the 'Play' button)
 //relative location (upon draw, add by vx and vy)
 //to lerp these values, two arrays are required
@@ -98,8 +104,8 @@ part_system_automatic_update(global.ps_below, false);
 //initial audio gain for music and sounds (map which tracks default gain of audio)
 musics = array(aMenu, aGame);
 musicGain = array(gain(aMenu), gain(aGame));
-sounds = array(aScroll, aSelect, aPause, aCoin, aExplosion, aGem, aJump, aLaser, aShoot, aSplat);
-soundGain = array(gain(aScroll), gain(aSelect), gain(aPause), gain(aCoin), gain(aExplosion), gain(aGem), gain(aJump), gain(aLaser), gain(aShoot), gain(aSplat));
+sounds = array(aScroll, aSelect, aPause, aCoin, aExplosion, aGem, aJump, aLaser, aShoot, aSplat, sDoor);
+soundGain = array(gain(aScroll), gain(aSelect), gain(aPause), gain(aCoin), gain(aExplosion), gain(aGem), gain(aJump), gain(aLaser), gain(aShoot), gain(aSplat), gain(aDoor));
 
 //set the appropriate gain
 updateMusicVol();

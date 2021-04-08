@@ -13,3 +13,7 @@
 
 #macro fadeSpeed 0.05
 #macro inputDelay 15
+
+//global gravity
+#macro grav 0.08
+#macro maxGrav 10

@@ -1,0 +1,1 @@
+draw_sprite_ext(sBg, 0, vx, vy, 2560/1440, 1, 0, c_white, 1);
