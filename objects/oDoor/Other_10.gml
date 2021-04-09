@@ -8,10 +8,10 @@ switch(state) {
 	break;
 	case 1:
 	if(dir == "vertical") {
-		image_yscale = smoothApproach(image_yscale, 0, 0.03, 0.005);
+		image_yscale = smoothApproach(image_yscale, 0, 0.06, 0.005);
 		if(image_yscale == 0) instance_destroy();
 	} else {
-		image_xscale = smoothApproach(image_xscale, 0, 0.03, 0.005);
+		image_xscale = smoothApproach(image_xscale, 0, 0.06, 0.005);
 		if(image_xscale == 0) instance_destroy();
 	}
 	break;

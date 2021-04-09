@@ -10,7 +10,7 @@ if(room == menu) {
 	part_type_size(e, 0.14, 0.18, 0, 0);
 } else {
 	part_type_speed(e, 9.5, 11, 0, 0);
-	part_type_alpha1(e, random_range(0.5, 0.6));
+	part_type_alpha1(e, random_range(0.3, 0.4));
 	part_type_size(e, 0.18, 0.2, 0, 0);
 }
 part_type_orientation(e, 0, 359, 0.05, 0, false);

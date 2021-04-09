@@ -61,14 +61,16 @@ switch(state)
 		if(place_meeting(x, y+1, oGround) && vsp >= 0) { state = "ground"; }
 	break;
 }	
-
-//platform code (horizontal)
-var p = instance_place(x, y+1, oMovingPlatform); 
-if(p != noone) {
-	phsp = p.hsp;
+if(vsp >= 0)
+{
+	var p = instance_place(x, y+1, oMovingPlatform); 
+	if(p != noone) {
+		phsp = p.hsp;
+	} else phsp = 0;
+	var q = instance_place(x, y+1, oFallingPlatform);
+	if(q != noone && q.state == 0) { snd(aPlatform); q.state = 1; q.a[2] = 120; }
 } else phsp = 0;
 
-
 //check collision
-hCollision(); vCollision();
+hCollision(); vCollision(true);
 clearPressed();

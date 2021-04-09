@@ -1,5 +1,6 @@
-vsp = approach(vsp, maxGrav, grav);
-x += hsp;
+vsp = approach(vsp, maxGrav*gravDir, grav);
+var actualSpd = hsp/4;
+x += actualSpd;
 if(place_meeting(x, y, oInvis)) {
 	var b = instance_place(x, y, oInvis);
 	if(hsp > 0) {
@@ -12,4 +13,9 @@ if(place_meeting(x, y, oInvis)) {
 	hsp *= -1;
 }
 
-vCollision();
+if(place_meeting(x+actualSpd*sight, y, oJumpTrigger) && place_meeting(x, y+1, oGround)) {
+	//jump (note that your y coord will update in vCollision
+	//so you won't jump twice in two consecutive frames)
+	vsp = -jumpSpd;
+}
+vCollision(false);

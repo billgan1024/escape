@@ -13,12 +13,13 @@ function hCollision() {
 	x += hsp+khsp+phsp;
 }
 
-function vCollision() {
+/// @param checkError
+function vCollision(checkError) {
 	if(place_meeting(x, y+vsp, oGround))
 	{
 		while(!place_meeting(x, y+sign(vsp), oGround)) y += sign(vsp);
 		//anti-jumperror check 
-		if(vsp < 0)
+		if(checkError && vsp < 0)
 		{
 			var b = instance_place(x, y-1, oGround);
 			if(x >= b.bbox_right+30-jumpError) x = b.bbox_right+31;
@@ -66,5 +67,8 @@ function path(p, pathSpd, loop) {
 
 function resetArea() {
 	with(oEnemy) { x = xstart; y = ystart; hsp = hspStart; }
-	with(oSpike) { path_position = 0; image_angle = 0; }
+	with(oSpike) { path_position = 0; image_angle = 0; image_angle = 0; }
+	with(oCoin) { image_angle = 0; x = xstart; t = 0; }
+	with(oMovingPlatform) { t = 0; }
+	with(oFallingPlatform) { state = 0; }
 }

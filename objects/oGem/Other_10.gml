@@ -5,6 +5,6 @@ if(place_meeting(x, y, oPlayer)) {
 	light(c_green, 1.2);
 	firework(c_white, c_green);
 	shrink(sGem);
-	oGame.targetLvl = oGame.lvl+1; oGame.a[1] = 120;
+	oGame.targetLvl = oGame.lvl+1; oGame.a[1] = 120; oGame.resetAttempts = true;
 	instance_destroy();
 }

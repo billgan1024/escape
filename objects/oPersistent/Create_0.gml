@@ -49,10 +49,11 @@ col = array(1, 0, 8, 1, 1, 1);
 //pr, pc = previous row, previous col which will be used when u press escape
 r = 0; c = 0; pr = 0; pc = 0; tr = 0; tc = 0;
 
-//camera data for levels
+//camera data for levels (cameraData[0] = dummy value)
 //use -1 if you want no y-level checking
 cameraData = [
-	-1, -1, -1, -1, [[[0, 3600]], [[0, 3600]]]
+	-1, -1, -1, -1, -1, [[[0, 3600]], [[0, 3600]]], [[[0, 4200]], [[960, 4200]]], 
+	[[[0, 2700]], [[0, 4200]]], [[[0, 5100]], [[1320, 5100]]]
 ];
 
 //rectangle selector location (by default, it's at the 'Play' button)
@@ -85,7 +86,7 @@ a[4] = inputDelay;
 
 //titles
 titles = array("Escape", "", "Level Select", "Options", "Game Paused", "Options");
-menuTitles = array(data[?"lvl"] > 1 ? "Continue" : "Play", "Level Select", "Options", "Quit");
+menuTitles = array(/*data[?"lvl"] > 1 ? "Continue" : "Play"*/"Play", "Level Select", "Options", "Quit");
 pauseTitles = array("Back to Game", "Retry Level", "Options", "Main Menu");
 
 timeFactor = 1; gameTimer = 0;
@@ -104,8 +105,11 @@ part_system_automatic_update(global.ps_below, false);
 //initial audio gain for music and sounds (map which tracks default gain of audio)
 musics = array(aMenu, aGame);
 musicGain = array(gain(aMenu), gain(aGame));
-sounds = array(aScroll, aSelect, aPause, aCoin, aExplosion, aGem, aJump, aLaser, aShoot, aSplat, sDoor);
-soundGain = array(gain(aScroll), gain(aSelect), gain(aPause), gain(aCoin), gain(aExplosion), gain(aGem), gain(aJump), gain(aLaser), gain(aShoot), gain(aSplat), gain(aDoor));
+sounds = array(aScroll, aSelect, aPause, aCoin, aExplosion, aGem, aJump, aLaser, 
+aShoot, aSplat, aDoor, aJump2, aPlatform);
+soundGain = array(gain(aScroll), gain(aSelect), gain(aPause), gain(aCoin), 
+gain(aExplosion), gain(aGem), gain(aJump), gain(aLaser), gain(aShoot), 
+gain(aSplat), gain(aDoor), gain(aJump2), gain(aPlatform));
 
 //set the appropriate gain
 updateMusicVol();
@@ -113,6 +117,11 @@ updateSoundVol();
 
 //attempt counter
 attempts = 0;
+//whether persistent will reset attempts on transition
+resetAttempts = false;
+
+//wasFocused (tracking the time when the window loses focus)
+wasFocused = true;
 
 //play menu music with the appropriate volume set
 mus(aMenu);

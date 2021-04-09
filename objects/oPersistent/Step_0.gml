@@ -5,7 +5,14 @@ if(window_has_focus() && (gameState != gs.paused && gameState != gs.optionsGame)
 } else {
 	timeFactor = 0; 
 }	
-
+//pause the game on unfocus window
+if(window_has_focus() != wasFocused) {
+	if(gameState == gs.game) { 
+		gameState = gs.paused; r = 0; c = 0;
+		canInteract = false; snap = true; a[4] = inputDelay;
+	}
+}
+wasFocused = window_has_focus();
 //update everything before persistent
 gameTimer += timeFactor; 
 if(floor(gameTimer) != floor(gameTimer - timeFactor))

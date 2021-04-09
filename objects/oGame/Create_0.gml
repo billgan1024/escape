@@ -7,3 +7,4 @@ lvl = real(string_digits(room_get_name(room)));
 targetLvl = 0;
 
 yLevel = -1; leftBoundary = 0; rightBoundary = 0;
+resetAttempts = false;
