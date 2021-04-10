@@ -1,2 +1,2 @@
 draw_self();
-//draw_text(x, y-50, phsp);
+//draw_text(x, y-50, canMove);

@@ -49,7 +49,7 @@ function updateVsp() {
 }
 
 function death(audio) {
-	snd(audio); instance_destroy();
+	snd(audio); dead = true; image_alpha = 0;
 	firework(c_white, c_white);
 	shrink(sPlayer);
 	oGame.shake = 10;
@@ -67,8 +67,15 @@ function path(p, pathSpd, loop) {
 
 function resetArea() {
 	with(oEnemy) { x = xstart; y = ystart; hsp = hspStart; }
-	with(oSpike) { path_position = 0; image_angle = 0; image_angle = 0; }
+	with(oSpike) { 
+		path_position = 0; image_angle = 0; 
+		image_angle = 0; path_position = startPos; }
 	with(oCoin) { image_angle = 0; x = xstart; t = 0; }
 	with(oMovingPlatform) { t = 0; }
 	with(oFallingPlatform) { state = 0; }
+	with(oBullet) instance_destroy();
+	with(oBulletCannon) {
+		a[3] = delayStart;
+		a[2] = infinity;
+	}
 }

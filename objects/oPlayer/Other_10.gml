@@ -1,9 +1,9 @@
 /// @description handle state
 cameraOffset = smoothApproach(cameraOffset, hsp*100, 0.006);
 //get input
-checkInput();
+if(canMove) checkInput();
 //check for all hazards
-checkEnemy();
+if(!dead) checkEnemy();
 
 var right = input[in.right] || input[in.keyD];
 var left = input[in.left] || input[in.keyA];
@@ -12,6 +12,13 @@ jump = input2[in.up] || input2[in.keyW] || input2[in.space];
 jumpHeld = input[in.up] || input[in.keyW] || input[in.space];
 dash = input[in.shift];
 down = input[in.down] || input[in.keyS];
+
+//if we're in freecam mode, cancel all inputs and only care about dir
+//to control the game's camera
+if(freecam) {
+	oGame.targetX = clamp(oGame.targetX + 6*dir, oGame.leftBoundary, oGame.rightBoundary);
+	dir = 0; jump = false; jumpHeld = false; dash = false; down = false;
+}
 
 //check if you're grabbing onto any walls
 if(place_meeting(x+1, y, oGround)) grip = 1;
@@ -22,6 +29,12 @@ cameraOffset = smoothApproach(cameraOffset, hsp*100, 0.008);
 switch(state)
 {
 	case "ground": 
+		//only allow freecam if the player is grounded
+		if(input2[in.enter]) {
+			freecam = !freecam;
+			if(freecam) snd(aCamOn);
+			else snd(aCamOff);
+		}
 		boosted = false;
 		khsp = approach(khsp, 0, 4*fric);
 		updateHsp(walkAcc, walkAcc);
@@ -72,5 +85,7 @@ if(vsp >= 0)
 } else phsp = 0;
 
 //check collision
-hCollision(); vCollision(true);
+if(!dead) {
+	hCollision(); vCollision(true);
+}
 clearPressed();

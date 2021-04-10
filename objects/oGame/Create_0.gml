@@ -8,3 +8,5 @@ targetLvl = 0;
 
 yLevel = -1; leftBoundary = 0; rightBoundary = 0;
 resetAttempts = false;
+
+borderRadius = 0;

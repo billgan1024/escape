@@ -1,0 +1,1 @@
+fpsLevel = max(fpsLevel-1, 0);

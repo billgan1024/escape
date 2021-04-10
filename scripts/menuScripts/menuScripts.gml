@@ -17,12 +17,15 @@ function updateSelectorTo(nx, ny, nw, nh) {
 		selectorFrom.h = selectorTo.h;
 	}
 }
+
+//spaced = 1 (true): rectangles don't overlap
 function draw_rectangle_width(x1, y1, x2, y2, w)
 {
-	draw_line_width(x1, y1, x2, y1, w);
-	draw_line_width(x2, y1, x2, y2, w);
-	draw_line_width(x1, y2, x2, y2, w);
-	draw_line_width(x1, y1, x1, y2, w);
+	if(w == 0) return;
+	draw_rectangle(x1, y1, x1+w, y2, false);
+	draw_rectangle(x2-w, y1, x2, y2, false);
+	draw_rectangle(x1+(w+1), y1, x2-(w+1), y1+w, false);
+	draw_rectangle(x1+(w+1), y2-w, x2-(w+1), y2, false);
 }
 
 function goBack() {

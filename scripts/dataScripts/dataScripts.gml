@@ -3,7 +3,7 @@ function init() {
 	data[?"mus"] = 100;
 	data[?"sfx"] = 100;
 	data[?"timer"] = false;
-	data[?"lvl"] = 7;
+	data[?"lvl"] = 32;
 	save();
 }
 

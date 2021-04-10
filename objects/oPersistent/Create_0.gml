@@ -53,8 +53,12 @@ r = 0; c = 0; pr = 0; pc = 0; tr = 0; tc = 0;
 //use -1 if you want no y-level checking
 cameraData = [
 	-1, -1, -1, -1, -1, [[[0, 3600]], [[0, 3600]]], [[[0, 4200]], [[960, 4200]]], 
-	[[[0, 2700]], [[0, 4200]]], [[[0, 5100]], [[1320, 5100]]]
+	[[[0, 2700]], [[0, 4200]]], [[[0, 2560], [2560, 5160]], [[1260, 5160]]]
 ];
+
+//fps (for debug)
+fpsLevel = 3;
+debugFps = [30, 60, 120, 240];
 
 //rectangle selector location (by default, it's at the 'Play' button)
 //relative location (upon draw, add by vx and vy)
@@ -106,10 +110,11 @@ part_system_automatic_update(global.ps_below, false);
 musics = array(aMenu, aGame);
 musicGain = array(gain(aMenu), gain(aGame));
 sounds = array(aScroll, aSelect, aPause, aCoin, aExplosion, aGem, aJump, aLaser, 
-aShoot, aSplat, aDoor, aJump2, aPlatform);
+aShoot, aSplat, aDoor, aJump2, aPlatform, aShoot, aCamOn, aCamOff);
 soundGain = array(gain(aScroll), gain(aSelect), gain(aPause), gain(aCoin), 
 gain(aExplosion), gain(aGem), gain(aJump), gain(aLaser), gain(aShoot), 
-gain(aSplat), gain(aDoor), gain(aJump2), gain(aPlatform));
+gain(aSplat), gain(aDoor), gain(aJump2), gain(aPlatform), gain(aShoot),
+gain(aCamOn), gain(aCamOff));
 
 //set the appropriate gain
 updateMusicVol();

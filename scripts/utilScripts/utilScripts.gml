@@ -21,11 +21,6 @@ function approach(argument0, argument1, argument2) {
 /// @param to
 /// @param amnt [0-1]
 function smoothApproach(argument0, argument1, argument2) {
-	/*
-	 * Example use (smooth camera movement):
-	 * view_xview = smooth_approach(view_xview, x-view_wview/2, 0.1);
-	 * view_yview = smooth_approach(view_yview, y-view_hview/2, 0.1);
-	 */
 	var error = 1;
 	if(argument_count == 4) error = argument3;
 	var diff = argument1-argument0;
@@ -41,7 +36,7 @@ function smoothApproach(argument0, argument1, argument2) {
 
 function update() {
 	if(variable_instance_exists(id, "a"))
-		{
+	{
 		for(var i = 1; i <= 15; i++) 
 		{
 			a[i]--;
@@ -132,12 +127,13 @@ function angleApproach(argument0, argument1, argument2) {
 	return angle;
 }
 
-function inView()
+/// @param offset
+function inView(offset)
 {
-	return bbox_right > vx
-	&& bbox_left < vx+vw
-	&& bbox_bottom > vy
-	&& bbox_top < vy+vh;
+	return bbox_right > vx-offset
+	&& bbox_left < vx+vw+offset
+	&& bbox_bottom > vy-offset
+	&& bbox_top < vy+vh+offset;
 }
 
 function array()

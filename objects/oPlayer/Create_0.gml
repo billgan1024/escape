@@ -22,7 +22,7 @@ hsp = 0;
 vsp = 0;
 khsp = 0;
 fric = 0.05;
-wallKickSpd = 6.5;
+wallKickSpd = 6;
 
 //jumptimer
 jumpTimer = false;
@@ -31,11 +31,16 @@ jumpBuffer = 15;
 //state = "ground", "buffer", "jump", "fall", "blink"
 state = "ground";
 
+//death variable so that the player never gets destroyed
+dead = false;
+
+//freecam
+freecam = false;
+
+a = array_create(16, infinity);
 //disable movement for a bit
 canMove = false;
 a[1] = inputDelay;
-
-a = array_create(16, infinity);
 
 input = array_create(in.length);
 input2 = array_create(in.length);

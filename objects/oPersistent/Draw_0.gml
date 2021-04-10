@@ -15,6 +15,11 @@ switch(gameState) {
 			updateSelectorTo(vw/2, by+i*120, string_width(menuTitles[i]), string_height(menuTitles[i]));
 		}
 	}
+	dshalign(fa_left); dsvalign(fa_bottom);
+	draw_text(vx+10, vy+vh-6, "Bill Gan");
+	dshalign(fa_right); dsfont(fSmall);
+	draw_text(vx+vw-10, vy+vh-6, "Arrow/WASD Keys: Navigate\nEnter: Select\nEsc: Back");
+	dsfont(fMain); dshalign(fa_center); dsvalign(fa_center);
 	break;
 	
 	case gs.select:
