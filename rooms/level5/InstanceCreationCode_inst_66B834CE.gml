@@ -1,1 +1,1 @@
-hsp = 6;
+setEnemyHsp(6);

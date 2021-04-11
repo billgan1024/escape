@@ -15,12 +15,14 @@ if(window_has_focus() != wasFocused) {
 wasFocused = window_has_focus();
 //update everything before persistent
 gameTimer += timeFactor; 
-if(floor(gameTimer) != floor(gameTimer - timeFactor))
+if(timeFactor != 0 && floor(gameTimer) != floor(gameTimer - timeFactor))
 {
 	var _remainder = floor(gameTimer) - floor(gameTimer - timeFactor);
 	
 	repeat _remainder
 	{
+		part_system_update(global.ps_above);
+		part_system_update(global.ps_below); 
 		//step
 		with(all) {
 			if(object_index != oPersistent) update();
@@ -34,8 +36,7 @@ if(floor(pGameTimer) != floor(pGameTimer - pTimeFactor))
 {
 	var _remainder = floor(pGameTimer) - floor(pGameTimer - pTimeFactor);
 	repeat _remainder { 
-		part_system_update(global.ps_above);
-		part_system_update(global.ps_below); 
+		part_system_update(global.ps_bg);
 		update(); 
 	}
 }

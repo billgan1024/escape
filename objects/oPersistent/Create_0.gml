@@ -53,7 +53,8 @@ r = 0; c = 0; pr = 0; pc = 0; tr = 0; tc = 0;
 //use -1 if you want no y-level checking
 cameraData = [
 	-1, -1, -1, -1, -1, [[[0, 3600]], [[0, 3600]]], [[[0, 4200]], [[960, 4200]]], 
-	[[[0, 2700]], [[0, 4200]]], [[[0, 2560], [2560, 5160]], [[1260, 5160]]]
+	[[[0, 2700]], [[0, 4200]]], [[[0, 2560], [2560, 5160]], [[1260, 5160]]],
+	[[[0, 5160]], [[0, 4200]]], -1
 ];
 
 //fps (for debug)
@@ -101,20 +102,23 @@ a[1] = 1; a[3] = random_range(60, 80);
 
 global.ps_above = part_system_create();
 global.ps_below = part_system_create();
+global.ps_bg = part_system_create();
 part_system_depth(global.ps_above, layer_get_depth("Above"));
 part_system_depth(global.ps_below, layer_get_depth("Below"));
+part_system_depth(global.ps_bg, layer_get_depth("Below"));
 part_system_automatic_update(global.ps_above, false);
 part_system_automatic_update(global.ps_below, false);
+part_system_automatic_update(global.ps_bg, false);
 
 //initial audio gain for music and sounds (map which tracks default gain of audio)
 musics = array(aMenu, aGame);
 musicGain = array(gain(aMenu), gain(aGame));
 sounds = array(aScroll, aSelect, aPause, aCoin, aExplosion, aGem, aJump, aLaser, 
-aShoot, aSplat, aDoor, aJump2, aPlatform, aShoot, aCamOn, aCamOff);
+aShoot, aSplat, aDoor, aJump2, aPlatform, aShoot, aCamOn, aCamOff, aLaunch);
 soundGain = array(gain(aScroll), gain(aSelect), gain(aPause), gain(aCoin), 
 gain(aExplosion), gain(aGem), gain(aJump), gain(aLaser), gain(aShoot), 
 gain(aSplat), gain(aDoor), gain(aJump2), gain(aPlatform), gain(aShoot),
-gain(aCamOn), gain(aCamOff));
+gain(aCamOn), gain(aCamOff), gain(aLaunch));
 
 //set the appropriate gain
 updateMusicVol();

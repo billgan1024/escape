@@ -1,1 +1,1 @@
-hsp = 12; gravDir = -1;
+setEnemy(12, -1);

@@ -1,1 +1,1 @@
-count = 18; dir = "horizontal";
+count = 18;

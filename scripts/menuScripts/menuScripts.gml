@@ -18,7 +18,6 @@ function updateSelectorTo(nx, ny, nw, nh) {
 	}
 }
 
-//spaced = 1 (true): rectangles don't overlap
 function draw_rectangle_width(x1, y1, x2, y2, w)
 {
 	if(w == 0) return;

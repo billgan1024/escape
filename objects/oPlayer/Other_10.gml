@@ -1,9 +1,10 @@
 /// @description handle state
 cameraOffset = smoothApproach(cameraOffset, hsp*100, 0.006);
 //get input
-if(canMove) checkInput();
-//check for all hazards
-if(!dead) checkEnemy();
+if(!dead) {
+	if(canMove) checkInput();
+	checkEnemy();
+}
 
 var right = input[in.right] || input[in.keyD];
 var left = input[in.left] || input[in.keyA];
@@ -86,6 +87,6 @@ if(vsp >= 0)
 
 //check collision
 if(!dead) {
-	hCollision(); vCollision(true);
+	hCollision(); vCollision();
 }
 clearPressed();

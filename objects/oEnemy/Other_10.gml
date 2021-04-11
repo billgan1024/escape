@@ -18,4 +18,4 @@ if(place_meeting(x+actualSpd*sight, y, oJumpTrigger) && place_meeting(x, y+1, oG
 	//so you won't jump twice in two consecutive frames)
 	vsp = -jumpSpd;
 }
-vCollision(false);
+vCollision();

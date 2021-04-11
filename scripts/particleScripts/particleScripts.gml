@@ -10,10 +10,17 @@ function light(col, size)
 	part_particles_create(global.ps_below, x, y, e, 1);
 }
 
-function firework(col1, col2) 
+/// @param col1
+/// @param col2
+/// @param [small]
+/// @param [large]
+function firework() 
 {
+	var col1 = argument0, col2 = argument1;
+	var lo = 0.2, hi = 4;
+	if(argument_count >= 4) { lo = argument2; hi = argument3; }
 	repeat(80) {
-		var spd = random_range(0.2, 4), sz = random_range(0.1, 0.2);
+		var spd = random_range(lo, hi), sz = random_range(0.1, 0.2);
 		var lifetime = random_range(140, 160);
 		var e = part_type_create();
 		part_type_shape(e, pt_shape_sphere);
@@ -36,3 +43,14 @@ function shrink(spr) {
 	part_type_size(e, 1, 1, -0.07, 0);
 	part_particles_create(global.ps_above, x, y, e, 1);
 }
+
+function smoke(col) {
+	var e = part_type_create();
+	part_type_shape(e, pt_shape_smoke);
+	part_type_alpha2(e, 1, 0);
+	part_type_colour1(e, col);
+	part_type_size(e, 0.3, 0.3, -0.01, 0);
+	part_type_blend(e, true);
+	part_type_life(e, 60, 60);
+	part_particles_create(global.ps_below, x, y, e, 1);
+}	

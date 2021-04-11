@@ -1,1 +1,1 @@
-hsp = 16;
+setEnemy(16);

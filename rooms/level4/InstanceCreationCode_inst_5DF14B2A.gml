@@ -1,1 +1,1 @@
-hsp = -8;
+setEnemy(-8);

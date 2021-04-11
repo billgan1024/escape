@@ -1,1 +1,1 @@
-a[3] = 240;
+setBulletCannon(120, 480, 5);

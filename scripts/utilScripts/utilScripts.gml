@@ -20,7 +20,8 @@ function approach(argument0, argument1, argument2) {
 /// @param from
 /// @param to
 /// @param amnt [0-1]
-function smoothApproach(argument0, argument1, argument2) {
+/// @param [error]
+function smoothApproach() {
 	var error = 1;
 	if(argument_count == 4) error = argument3;
 	var diff = argument1-argument0;

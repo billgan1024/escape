@@ -1,3 +1,4 @@
+/// @description gem particles
 var e = part_type_create();
 part_type_shape(e, pt_shape_smoke);
 var sz = random_range(1.5, 1.6);

@@ -1,0 +1,1 @@
+setBulletCannon(360, 480, 8);

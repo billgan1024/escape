@@ -1,8 +1,5 @@
-a = array_create(16, infinity);
 //cannon that shoots default bullets (that travel in one direction)
-
-delay = 480;
-bulletSpd = 5;
-
+a = array_create(16, infinity);
+delay = 0;
+bulletSpd = 0;
 delayStart = 0;
-a[1] = 1;

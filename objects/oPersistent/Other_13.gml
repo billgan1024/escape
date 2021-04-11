@@ -14,6 +14,6 @@ if(room == menu) {
 	part_type_size(e, 0.18, 0.2, 0, 0);
 }
 part_type_orientation(e, 0, 359, 0.05, 0, false);
-part_particles_create(global.ps_below, 0, random(room_height), e, 1);
+part_particles_create(global.ps_bg, 0, random(room_height), e, 1);
 if(room == menu) a[3] += random_range(60, 420);
 else a[3] += random_range(30, 40);

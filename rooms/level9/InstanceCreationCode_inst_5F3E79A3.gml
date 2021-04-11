@@ -1,0 +1,1 @@
+sway = true; radius = 5; duration = 3.5; flip = true;

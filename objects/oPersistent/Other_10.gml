@@ -30,10 +30,16 @@ switch(state) {
 	tAlpha = approach(tAlpha, 1, fadeSpeed);
 	if(tAlpha == 1) {
 		gameState = destState; room_goto(destRoom); r = tr; c = tc; 
+		//clear all particles
 		part_system_clear(global.ps_above);
 		part_system_clear(global.ps_below);
+		part_system_clear(global.ps_bg);
+		part_system_automatic_update(global.ps_above, false);
+		part_system_automatic_update(global.ps_below, false);
+		part_system_automatic_update(global.ps_bg, false);
 		part_system_depth(global.ps_above, layer_get_depth("Above"));
 		part_system_depth(global.ps_below, layer_get_depth("Below"));
+		part_system_depth(global.ps_bg, layer_get_depth("Below"));
 		//swap songs only if you stopped the audio in the transition menu -> game
 		if(gameState == gs.game && !audio_is_playing(aGame)) mus(aGame);
 		else if(gameState == gs.menu && !audio_is_playing(aMenu)) mus(aMenu);
