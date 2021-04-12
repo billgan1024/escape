@@ -1,10 +1,12 @@
+c = lightCollision(x, y, x+lengthdir_x(1024, image_angle), y+lengthdir_y(1024, image_angle), oGround, false, false);
 if(inView(0) && !oPlayer.dead && !collision_line(x, y, oPlayer.x, oPlayer.y, oGround, false, false))
 {
-	image_angle = angleApproach(image_angle, point_direction(x, y, oPlayer.x, oPlayer.y), 1);
+	image_angle = angleApproach(image_angle, point_direction(x, y, oPlayer.x, oPlayer.y), 2.5);
 	laserAlpha = smoothApproach(laserAlpha, 0.2, 0.16, 0.005);
 	var dx = oPlayer.x-x, dy = oPlayer.y-y;
-	len = min(1024, sqrt(dx*dx + dy*dy));
+	var dx2 = c[1]-x, dy2 = c[2]-y;
+	len = min(sqrt(dx*dx + dy*dy), sqrt(dx2*dx2 + dy2*dy2));
 } else {
 	laserAlpha = smoothApproach(laserAlpha, 0, 0.16, 0.005);
-	image_angle = angleApproach(image_angle, angleStart, 1);
+	image_angle = angleApproach(image_angle, angleStart, 2);
 }
