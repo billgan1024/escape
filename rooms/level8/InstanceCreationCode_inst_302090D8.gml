@@ -1,1 +1,1 @@
-setBulletCannon(360, 480, 5);
+setCannon(360, 480, 5);

@@ -9,7 +9,9 @@ if(!dead) {
 var right = input[in.right] || input[in.keyD];
 var left = input[in.left] || input[in.keyA];
 dir = right-left;
+
 jump = input2[in.up] || input2[in.keyW] || input2[in.space];
+
 jumpHeld = input[in.up] || input[in.keyW] || input[in.space];
 dash = input[in.shift];
 down = input[in.down] || input[in.keyS];
@@ -39,7 +41,11 @@ switch(state)
 		boosted = false;
 		khsp = approach(khsp, 0, 4*fric);
 		updateHsp(walkAcc, walkAcc);
-		if(jump || jumpTimer) { vsp = -jumpSpd; state = "jump"; snd(aJump); jumpTimer = false; a[3] = infinity; }
+		if(jump || jumpTimer) { 
+			vsp = -jumpSpd; state = "jump"; snd(aJump); 
+			event_perform(ev_other, ev_user3); 
+			
+		}
 		if(!place_meeting(x, y+1, oGround)) {
 			state = "jump"; a[2] = bufferTime;	
 		}
@@ -48,7 +54,7 @@ switch(state)
 		khsp = approach(khsp, 0, fric);
 		updateHsp(airAcc, airAcc/2); 
 		updateVsp();
-		if(jump)
+		if(jump || boostTimer)
 		{
 			if(grip != 0) {
 				vsp = -jumpSpd;	khsp = wallKickSpd*-grip; snd(aJump); state = "djump"; boosted = false;
@@ -56,6 +62,7 @@ switch(state)
 				vsp = -jumpSpd;	snd(aJump); boosted = false;
 				if(a[2] != infinity) a[2] = infinity; else state = "djump";
 			}
+			event_perform(ev_other, ev_user4);
 		}
 		if(place_meeting(x, y+1, oGround) && vsp >= 0) { state = "ground"; }
 	break;
@@ -63,7 +70,7 @@ switch(state)
 		khsp = approach(khsp, 0, fric);
 		updateVsp();
 		updateHsp(airAcc, airAcc/2); 
-		if(jump)
+		if(jump || boostTimer)
 		{
 			if(grip != 0) {
 				vsp = -jumpSpd;	khsp = wallKickSpd*-grip; snd(aJump); boosted = false;
@@ -71,8 +78,21 @@ switch(state)
 				//jump buffer (like geometry dash)
 				jumpTimer = true; a[3] = jumpBuffer;	
 			}
+			event_perform(ev_other, ev_user4);
 		}
 		if(place_meeting(x, y+1, oGround) && vsp >= 0) { state = "ground"; }
+	break;
+	case "boosted":
+	//boosted state for when you hit a jump powerup
+	//you can't jump until you reach a certain vsp threshold (i.e. when you aren't moving as quick anymore)
+		khsp = approach(khsp, 0, fric);
+		updateVsp();
+		updateHsp(airAcc, airAcc/2); 
+		if(jump) {
+			boostTimer = true; a[4] = jumpBuffer;
+		}
+		//renew the jump i guess
+		if(vsp >= -jumpSpd) { state = "jump"; }
 	break;
 }	
 if(vsp >= 0)

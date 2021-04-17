@@ -7,7 +7,6 @@ bufferTime = 15;
 jumpError = 20;
 cameraOffset = 0;
 boosted = false;
-
 phsp = 0;
 
 //input variables
@@ -21,12 +20,15 @@ grip = false;
 hsp = 0;
 vsp = 0;
 khsp = 0;
-fric = 0.05;
-wallKickSpd = 6;
+fric = 0.04;
+wallKickSpd = 5;
 
-//jumptimer
+//jumptimer for when you're pressing jump as you're falling 
 jumpTimer = false;
 jumpBuffer = 15;
+
+//boost timer for when you're pressing jump as you're still in boost mode
+boostTimer = false;
 
 //state = "ground", "buffer", "jump", "fall", "blink"
 state = "ground";

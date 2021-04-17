@@ -1,1 +1,1 @@
-setEnemyHsp(-12);
+setEnemy(-12);

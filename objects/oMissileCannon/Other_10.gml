@@ -1,5 +1,5 @@
 c = lightCollision(x, y, x+lengthdir_x(1024, image_angle), y+lengthdir_y(1024, image_angle), oGround, false, false);
-if(inView(0) && !oPlayer.dead && !collision_line(x, y, oPlayer.x, oPlayer.y, oGround, false, false))
+if(!oPlayer.dead && !collision_line(x, y, oPlayer.x, oPlayer.y, oGround, false, false) && !collision_line(x, y, oPlayer.x, oPlayer.y, oInvis, false, false))
 {
 	image_angle = angleApproach(image_angle, point_direction(x, y, oPlayer.x, oPlayer.y), 2.5);
 	laserAlpha = smoothApproach(laserAlpha, 0.2, 0.16, 0.005);

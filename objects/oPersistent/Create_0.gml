@@ -54,7 +54,7 @@ r = 0; c = 0; pr = 0; pc = 0; tr = 0; tc = 0;
 cameraData = [
 	-1, -1, -1, -1, -1, [[[0, 3600]], [[0, 3600]]], [[[0, 4200]], [[960, 4200]]], 
 	[[[0, 2700]], [[0, 4200]]], [[[0, 2560], [2560, 5160]], [[1260, 5160]]],
-	[[[0, 5160]], [[0, 4200]]], -1
+	[[[0, 5160]], [[0, 4200]]], [[[0, 5400]], [[0, 3960]]]
 ];
 
 //fps (for debug)
@@ -111,14 +111,13 @@ part_system_automatic_update(global.ps_below, false);
 part_system_automatic_update(global.ps_bg, false);
 
 //initial audio gain for music and sounds (map which tracks default gain of audio)
+//ALWAYS use soundGain[i] as a baseline if you want to scale audio volume up/down
 musics = array(aMenu, aGame);
 musicGain = array(gain(aMenu), gain(aGame));
-sounds = array(aScroll, aSelect, aPause, aCoin, aExplosion, aGem, aJump, aLaser, 
-aShoot, aSplat, aDoor, aJump2, aPlatform, aShoot, aCamOn, aCamOff, aLaunch);
-soundGain = array(gain(aScroll), gain(aSelect), gain(aPause), gain(aCoin), 
-gain(aExplosion), gain(aGem), gain(aJump), gain(aLaser), gain(aShoot), 
-gain(aSplat), gain(aDoor), gain(aJump2), gain(aPlatform), gain(aShoot),
-gain(aCamOn), gain(aCamOff), gain(aLaunch));
+sounds = array(aScroll, aSelect, aPause, aCoin, aExplosion, aExplosion2, aGem, aJump, aLaser, 
+aShoot, aSplat, aDoor, aJump2, aPlatform, aShoot, aCamOn, aCamOff, aLaunch); 
+soundGain = array_create(array_length(sounds));
+for(var i = 0; i < array_length(sounds); i++) soundGain[i] = gain(sounds[i]); 
 
 //set the appropriate gain
 updateMusicVol();
@@ -133,4 +132,5 @@ resetAttempts = false;
 wasFocused = true;
 
 //play menu music with the appropriate volume set
-mus(aMenu);
+var m = mus(aMenu);
+//audio_sound_gain(m, 0, 0);

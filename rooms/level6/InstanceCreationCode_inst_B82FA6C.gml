@@ -1,1 +1,1 @@
-setEnemy(-14);
+setEnemy(-10);

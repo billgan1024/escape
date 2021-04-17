@@ -14,7 +14,7 @@ if(place_meeting(x, y, oGround))
 			y += lengthdir_y(1, dir);
 		}
 		instance_destroy();
-		snd(aExplosion2);
+		if(inView()) snd(aExplosion2);
 		firework(c_orange, c_orange, 0.1, 2);
 	}
 }

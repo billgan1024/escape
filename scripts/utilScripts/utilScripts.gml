@@ -1,3 +1,12 @@
+/// @param arr
+/// @param elem
+function find(arr, elem) {
+	for(var i = 0; i < array_length(arr); i++) {
+		if(arr[i] == elem) return i;
+	}
+	return -1;
+}
+
 /// @param from
 /// @param to
 /// @param amnt [absolute value]
@@ -128,13 +137,9 @@ function angleApproach(argument0, argument1, argument2) {
 	return angle;
 }
 
-/// @param offset
-function inView(offset)
+function inView()
 {
-	return bbox_right > vx-offset
-	&& bbox_left < vx+vw+offset
-	&& bbox_bottom > vy-offset
-	&& bbox_top < vy+vh+offset;
+	return x >= vx && x <= vx+vw && y >= vy && y <= vy+vh;
 }
 
 function array()

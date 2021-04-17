@@ -40,4 +40,3 @@ if(floor(pGameTimer) != floor(pGameTimer - pTimeFactor))
 		update(); 
 	}
 }
-

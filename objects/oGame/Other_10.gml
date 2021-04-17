@@ -1,3 +1,4 @@
+//show_debug_message(vx);
 shake = approach(shake, 0, 0.08);
 borderRadius = smoothApproach(borderRadius, oPlayer.freecam ? 30 : 0, 0.08);
 if(!oPlayer.dead && !oPlayer.freecam) {
@@ -21,7 +22,6 @@ if(!oPlayer.dead && !oPlayer.freecam) {
 				show_debug_message(newRight);
 				if(oPlayer.x >= newLeft && oPlayer.x <= newRight) {
 					leftBoundary = newLeft; rightBoundary = newRight-vw;
-					//instantly snap the camera horizontally
 					targetX = clamp(oPlayer.x-vw/2, leftBoundary, rightBoundary);
 					break;
 				}
@@ -32,7 +32,9 @@ if(!oPlayer.dead && !oPlayer.freecam) {
 			instance_deactivate_all(true);
 			instance_activate_object(oPersistent);
 			instance_activate_object(oBg);
-			instance_activate_object(oGlow);
+			instance_activate_object(oCoinLight);
+			instance_activate_object(oBelowLight);
+			instance_activate_object(oBulletLight);
 			instance_activate_object(oPlayer);
 			//instance_activate_object(oBulletCannon);
 			//note: region checks intersections of bounding boxes,

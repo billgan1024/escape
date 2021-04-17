@@ -22,7 +22,6 @@ function hCollision() {
 	x += hsp+khsp+phsp;
 }
 
-/// @param checkError
 function vCollision() {
 	if(place_meeting(x, y+vsp, oGround))
 	{
@@ -51,7 +50,7 @@ function updateVsp() {
 	if(!boosted && !jumpHeld && vsp < 0) vsp += grav*2;
 	if(grip != 0 && vsp > 0)
 	{ 
-		if(vsp > maxGrav/3) vsp = approach(vsp, maxGrav/3, grav*2); 
+		if(vsp > maxGrav/3) vsp = approach(vsp, maxGrav/3, grav*4); 
 		else vsp = approach(vsp, maxGrav/3, grav/3); 
 	}
 	else if(vsp > 0 && down) vsp = smoothApproach(vsp, maxGrav*9/8, 0.025);
@@ -84,7 +83,11 @@ function resetArea() {
 	with(oMovingPlatform) { t = 0; }
 	with(oFallingPlatform) { state = 0; a[1] = random_range(40, 60); a[2] = infinity; }
 	with(oBullet) instance_destroy();
+	with(oMissile) instance_destroy();
 	with(oBulletCannon) { a[1] = delayStart; a[2] = infinity; }
+	with(oMissileCannon) { a[1] = delayStart; a[2] = infinity; image_angle = angleStart; }
+	with(oGem) { t = 0; a[1] = random_range(15, 60); }
+	with(oGemOrange) { state = 0; t = 0; a[1] = random_range(15, 60); }
 }
 
 /// @param hspStart
