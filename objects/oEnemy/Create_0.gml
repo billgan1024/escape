@@ -4,6 +4,5 @@ hspStart = 0;
 a = array_create(16, infinity);
 //how far away from which it can see jump triggers
 sight = 60;
-jumpSpd = 6;
-jumpError = 20;
+jumpSpd = 5.8;
 gravDir = 1;

@@ -1,4 +1,4 @@
 if(oPersistent.gameState != gs.paused && oPersistent.gameState != gs.optionsGame && canMove) 
 {
-	checkInputPressed();
+	checkInputPressed(); checkInputReleased();
 }

@@ -89,8 +89,8 @@ if(gameState != gs.game) {
 	var xx = vx+sx-sw/2, yy = vy+sy-sh/2;
 	dsalpha(alpha/5);
 	draw_rectangle_width(xx, yy, xx+sw, yy+sh, 3);
+	dsalpha(1);
 }
 
 //draw transition tint if we're switching rooms
 draw_sprite_ext(sBlack, 0, vx, vy, vw, vh, 0, c_white, tAlpha);
-dsalpha(1);

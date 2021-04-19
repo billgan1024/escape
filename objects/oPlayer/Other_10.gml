@@ -19,7 +19,11 @@ down = input[in.down] || input[in.keyS];
 //if we're in freecam mode, cancel all inputs and only care about dir
 //to control the game's camera
 if(freecam) {
-	oGame.targetX = clamp(oGame.targetX + 6*dir, oGame.leftBoundary, oGame.rightBoundary);
+	//oGame.targetX = clamp(oGame.targetX + 6*dir, oGame.leftBoundary, oGame.rightBoundary);
+	
+	//free camera movement 
+	oGame.targetX += 6*dir; oGame.targetY += 6*(input[in.down]-input[in.up]);
+	
 	dir = 0; jump = false; jumpHeld = false; dash = false; down = false;
 }
 
@@ -32,25 +36,26 @@ cameraOffset = smoothApproach(cameraOffset, hsp*100, 0.008);
 switch(state)
 {
 	case "ground": 
-		//only allow freecam if the player is grounded
-		if(input2[in.enter]) {
+		//only allow freecam if the player is actually on solid ground
+		if(input2[in.enter] && place_meeting(x, y+1, oGround)) {
 			freecam = !freecam;
 			if(freecam) snd(aCamOn);
 			else snd(aCamOff);
 		}
 		boosted = false;
-		khsp = approach(khsp, 0, 4*fric);
-		updateHsp(walkAcc, walkAcc);
+		khsp = 0;
+		updateHsp(walkAcc, walkAcc/8);
 		if(jump || jumpTimer) { 
 			vsp = -jumpSpd; state = "jump"; snd(aJump); 
 			event_perform(ev_other, ev_user3); 
-			
 		}
-		if(!place_meeting(x, y+1, oGround)) {
+		if(!place_meeting(x, y+1, oGround) && !place_meeting(x, y+1, oPlatform)) {
 			state = "jump"; a[2] = bufferTime;	
 		}
 	break;
 	case "jump":
+		//special check to cancel wallkick speed if you started to move in the other direction and released the key
+		checkReleasedWallKick();
 		khsp = approach(khsp, 0, fric);
 		updateHsp(airAcc, airAcc/2); 
 		updateVsp();
@@ -64,9 +69,10 @@ switch(state)
 			}
 			event_perform(ev_other, ev_user4);
 		}
-		if(place_meeting(x, y+1, oGround) && vsp >= 0) { state = "ground"; }
+		if((place_meeting(x, y+1, oGround) || place_meeting(x, y+1, oPlatform)) && vsp >= 0) { state = "ground"; }
 	break;
 	case "djump":
+		checkReleasedWallKick();
 		khsp = approach(khsp, 0, fric);
 		updateVsp();
 		updateHsp(airAcc, airAcc/2); 
@@ -80,11 +86,12 @@ switch(state)
 			}
 			event_perform(ev_other, ev_user4);
 		}
-		if(place_meeting(x, y+1, oGround) && vsp >= 0) { state = "ground"; }
+		if((place_meeting(x, y+1, oGround) || place_meeting(x, y+1, oPlatform)) && vsp >= 0) { state = "ground"; }
 	break;
 	case "boosted":
-	//boosted state for when you hit a jump powerup
-	//you can't jump until you reach a certain vsp threshold (i.e. when you aren't moving as quick anymore)
+		//boosted state for when you hit a jump powerup
+		//you can't jump until you reach a certain vsp threshold (i.e. when you aren't moving as quick anymore)
+		checkReleasedWallKick();
 		khsp = approach(khsp, 0, fric);
 		updateVsp();
 		updateHsp(airAcc, airAcc/2); 
@@ -95,18 +102,12 @@ switch(state)
 		if(vsp >= -jumpSpd) { state = "jump"; }
 	break;
 }	
-if(vsp >= 0)
-{
-	var p = instance_place(x, y+1, oMovingPlatform); 
-	if(p != noone) {
-		phsp = p.hsp;
-	} else phsp = 0;
-	var q = instance_place(x, y+1, oFallingPlatform);
-	if(q != noone && q.state == 0) { snd(aPlatform); q.state = 1; q.a[2] = 120; }
-} else phsp = 0;
+
+//falling platform check
+if(vsp >= 0) pCollision(); else phsp = 0;
 
 //check collision
 if(!dead) {
 	hCollision(); vCollision();
 }
-clearPressed();
+clearPressed(); clearReleased();

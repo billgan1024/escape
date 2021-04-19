@@ -1,3 +1,4 @@
+if(!inBoundary()) instance_destroy();
 if(place_meeting(x+lengthdir_x(spd, dir), y+lengthdir_y(spd, dir), oInvis)) 
 {
 	//note: lasers should pass through platforms
@@ -11,4 +12,3 @@ if(place_meeting(x+lengthdir_x(spd, dir), y+lengthdir_y(spd, dir), oInvis))
 
 x += lengthdir_x(spd, dir);
 y += lengthdir_y(spd, dir);
-

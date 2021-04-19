@@ -26,23 +26,31 @@ function vCollision() {
 	if(place_meeting(x, y+vsp, oGround))
 	{
 		while(!place_meeting(x, y+sign(vsp), oGround)) y += sign(vsp);
-		//anti-jumperror check (kinda useless) 
-		/*if(checkError && vsp < 0)
-		{
-			var b = instance_place(x, y-1, oGround);
-			if(x >= b.bbox_right+30-jumpError) x = b.bbox_right+31;
-			else if(x <= b.bbox_left-30+jumpError) x = b.bbox_left-31;
-			else vsp = 0;
-		} else vsp = 0;*/
+		vsp = 0;
+	}
+	if(place_meeting(x, y+vsp, oPlatform))
+	{
+		while(!place_meeting(x, y+sign(vsp), oPlatform)) y += sign(vsp);
 		vsp = 0;
 	}
 	y += vsp;	
+}
+
+function pCollision() {
+	var p = instance_place(x, y+1, oMovingPlatform); 
+	if(p != noone) {
+		phsp = p.hsp;
+	} else phsp = 0;
+	var q = instance_place(x, y+1, oFallingPlatform);
+	if(q != noone && q.state == 0) { snd(aPlatform); q.state = 1; q.a[2] = 120; }
 }
 /// @param walkAcc
 /// @param runAcc
 function updateHsp(walkAcc, runAcc) {
 	if(dash) hsp = approach(hsp, dir*(runSpd-abs(khsp)*11/12), runAcc); 
-	else hsp = approach(hsp, dir*(walkSpd-abs(khsp)*11/12), walkAcc);
+	else {
+		hsp = approach(hsp, dir*(walkSpd-abs(khsp)*11/12), walkAcc);
+	}
 }
 
 function updateVsp() {
@@ -55,6 +63,11 @@ function updateVsp() {
 	}
 	else if(vsp > 0 && down) vsp = smoothApproach(vsp, maxGrav*9/8, 0.025);
 	else vsp = approach(vsp, maxGrav, grav);
+}
+
+function checkReleasedWallKick() {
+	if(khsp > 0 && hsp+khsp < 0 && input3[in.left]) khsp = 0;
+	if(khsp < 0 && hsp+khsp > 0 && input3[in.right]) khsp = 0;
 }
 
 function death(audio) {

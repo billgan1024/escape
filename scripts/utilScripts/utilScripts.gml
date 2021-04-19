@@ -142,6 +142,11 @@ function inView()
 	return x >= vx && x <= vx+vw && y >= vy && y <= vy+vh;
 }
 
+function inBoundary() {
+	return x >= oGame.leftBoundary && x <= oGame.rightBoundary+vw 
+	&& y >= oGame.yLevel*vh && y <= oGame.yLevel*vh+vh; 
+}
+
 function array()
 {
 	var arr;

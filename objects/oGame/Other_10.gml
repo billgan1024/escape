@@ -36,13 +36,14 @@ if(!oPlayer.dead && !oPlayer.freecam) {
 			instance_activate_object(oBelowLight);
 			instance_activate_object(oBulletLight);
 			instance_activate_object(oPlayer);
+			instance_activate_object(oBorder);
 			//instance_activate_object(oBulletCannon);
 			//note: region checks intersections of bounding boxes,
 			//since falling/moving platforms have sNone if the player's not above them,
 			//they wont activate so you need to activate them manually
 			instance_activate_object(oFallingPlatform);
 			instance_activate_object(oMovingPlatform);
-			//activate region
+			//activate region (note: things on the border aren't activated)
 			instance_activate_region(leftBoundary, targetY, rightBoundary-leftBoundary+vw, vh, true);
 		}
 		//reset enemies after the new ones are active

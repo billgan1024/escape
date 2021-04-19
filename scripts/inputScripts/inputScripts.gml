@@ -10,8 +10,20 @@ function checkInputPressed() {
 	}
 }
 
+function checkInputReleased() {
+	for(var i = 0; i < in.length; i++) {
+		input3[i] |= keyboard_check_released(global.keyCodes[i]);	
+	}
+}
+
 function clearPressed() {
 	for(var i = 0; i < in.length; i++) {
 		input2[i] = false;
+	}
+}
+
+function clearReleased() {
+	for(var i = 0; i < in.length; i++) {
+		input3[i] = false;
 	}
 }
