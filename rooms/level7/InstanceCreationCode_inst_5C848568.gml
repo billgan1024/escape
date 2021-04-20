@@ -1,1 +1,0 @@
-text = "Press Enter to toggle free-camera movement";
