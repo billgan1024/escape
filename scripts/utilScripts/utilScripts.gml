@@ -147,9 +147,14 @@ function inBoundary() {
 	&& y >= oGame.yLevel*vh && y <= oGame.yLevel*vh+vh; 
 }
 
-function array()
+//remember that arrays are passed by reference (see gms2 accessors)
+function array_sort(array, ascend)
 {
-	var arr;
-	for(var i = 0; i < argument_count; i++) arr[i] = argument[i];
-	return arr;
+    var list = ds_list_create();
+    var count = array_length(array);
+    for (var i=0; i<count; i++) list[| i] = array[i];
+    ds_list_sort(list, ascend);
+    for (i=0; i<count; i++) array[i] = list[| i];
+    ds_list_destroy(list);
+    return array;
 }

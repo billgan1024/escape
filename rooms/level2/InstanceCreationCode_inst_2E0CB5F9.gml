@@ -1,1 +1,1 @@
-text = "Hold shift to move faster";
+text = "Release jump quickly to jump lower\nHold jump to jump higher";

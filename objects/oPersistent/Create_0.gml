@@ -13,8 +13,8 @@ enum in {
 	space, shift, enter, esc, length
 }
 //a[5] = 240;
-global.keyCodes = array(vk_left, vk_right, vk_up, vk_down, ord("W"), ord("A"), ord("S"), ord("D"),
-	vk_space, vk_shift, vk_enter, vk_escape);
+global.keyCodes = [vk_left, vk_right, vk_up, vk_down, ord("W"), ord("A"), ord("S"), ord("D"),
+	vk_space, vk_shift, vk_enter, vk_escape];
 input2 = array_create(in.length);
 //load data
 //if it's undefined, initialize default values
@@ -39,10 +39,10 @@ enum gs {
 gameState = gs.menu;
 
 //parent array: p[i] represents what screen to go back to (-1 if root)
-parent = array(-1, -1, gs.menu, gs.menu, -1, gs.paused);
+parent = [-1, -1, gs.menu, gs.menu, -1, gs.paused];
 //row[i], col[i] = number of rows and columns for each menu state
-row = array(4, 0, 5, 5, 4, 5);
-col = array(1, 0, 8, 1, 1, 1);
+row = [4, 0, 5, 5, 4, 5];
+col = [1, 0, 8, 1, 1, 1];
 
 //grid variables (with backtracking)
 //tr, tc = row, col after transition
@@ -50,12 +50,9 @@ col = array(1, 0, 8, 1, 1, 1);
 r = 0; c = 0; pr = 0; pc = 0; tr = 0; tc = 0;
 
 //camera data for levels (cameraData[0] = dummy value)
-//use -1 if you want no y-level checking
-cameraData = [
-	-1, -1, -1, -1, -1, [[[0, 3600]], [[0, 3600]]], [[[0, 4200]], [[960, 4200]]], 
-	[[[0, 2700]], [[0, 4200]]], [[[0, 2560], [2560, 5160]], [[1260, 5160]]],
-	[[[0, 5160]], [[0, 4200]]], [[[0, 5400]], [[0, 3960]]]
-];
+//it is calculated with boundary objects
+cameraData = array_create(33, -1);
+//show_debug_message(cameraData);
 
 //fps (for debug)
 fpsLevel = 3;
@@ -90,9 +87,9 @@ paused = false;
 a[4] = inputDelay;
 
 //titles
-titles = array("Escape", "", "Level Select", "Options", "Game Paused", "Options");
-menuTitles = array(/*data[?"lvl"] > 1 ? "Continue" : "Play"*/"Play", "Level Select", "Options", "Quit");
-pauseTitles = array("Back to Game", "Retry Level", "Options", "Main Menu");
+titles = ["Escape", "", "Level Select", "Options", "Game Paused", "Options"];
+menuTitles = [/*data[?"lvl"] > 1 ? "Continue" : "Play"*/"Play", "Level Select", "Options", "Quit"];
+pauseTitles = ["Back to Game", "Retry Level", "Options", "Main Menu"];
 
 timeFactor = 1; gameTimer = 0;
 //keep a separate timeFactor and gameTimer for persistent's updates
@@ -112,10 +109,10 @@ part_system_automatic_update(global.ps_bg, false);
 
 //initial audio gain for music and sounds (map which tracks default gain of audio)
 //ALWAYS use soundGain[i] as a baseline if you want to scale audio volume up/down
-musics = array(aMenu, aGame);
-musicGain = array(gain(aMenu), gain(aGame));
-sounds = array(aScroll, aSelect, aPause, aCoin, aExplosion, aExplosion2, aGem, aJump, aLaser, 
-aShoot, aSplat, aDoor, aJump2, aPlatform, aShoot, aCamOn, aCamOff, aLaunch); 
+musics = [aMenu, aGame];
+musicGain = [gain(aMenu), gain(aGame)];
+sounds = [aScroll, aSelect, aPause, aCoin, aExplosion, aExplosion2, aGem, aJump, aLaser, 
+aShoot, aSplat, aDoor, aJump2, aPlatform, aShoot, aCamOn, aCamOff, aLaunch];
 soundGain = array_create(array_length(sounds));
 for(var i = 0; i < array_length(sounds); i++) soundGain[i] = gain(sounds[i]); 
 

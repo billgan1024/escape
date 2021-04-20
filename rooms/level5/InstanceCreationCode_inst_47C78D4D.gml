@@ -1,0 +1,1 @@
+text = "Collect all the coins before advancing";

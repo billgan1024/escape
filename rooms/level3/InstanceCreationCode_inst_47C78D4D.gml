@@ -1,1 +1,1 @@
-text = "Perform wall jumps to climb heights";
+text = "Hold shift to move faster";

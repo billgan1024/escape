@@ -1,0 +1,1 @@
+text = "Jump in midair to perform a double jump";

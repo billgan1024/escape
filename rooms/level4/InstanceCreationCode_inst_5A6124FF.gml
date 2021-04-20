@@ -1,1 +1,0 @@
-text = "Press Enter to toggle freecam mode to look around";
