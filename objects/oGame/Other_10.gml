@@ -33,7 +33,7 @@ if(!oPlayer.dead && !oPlayer.freecam) {
 		instance_activate_object(oCoinLight);
 		instance_activate_object(oBelowLight);
 		instance_activate_object(oBulletLight);
-		instance_activate_object(oPlayer);
+		instance_activate_object(oPlayer);	
 		instance_activate_object(oBorder);
 		//instance_activate_object(oBulletCannon);
 		//note: region checks intersections of bounding boxes,
@@ -43,6 +43,7 @@ if(!oPlayer.dead && !oPlayer.freecam) {
 		instance_activate_object(oMovingPlatform);
 		//activate region (note: things on the border aren't activated)
 		instance_activate_region(leftBoundary, targetY, rightBoundary-leftBoundary+vw, vh, true);
+		with(oDoor) { count = instance_number(oCoin)/3; }
 		//reset enemies after the new ones are active
 		resetArea(); 
 	}

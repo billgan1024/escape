@@ -82,9 +82,11 @@ function death(audio) {
 /// @param pathIndex
 /// @param pathSpeed [0-1]
 /// @param loop
+/// @param [pathPos=0]
 function path(p, pathSpd, loop) {
 	path_start(p, 0, path_action_stop, true);
 	spd = pathSpd; rev = !loop;
+	if(argument_count == 4) { path_position = argument3; startPos = path_position; }
 }
 
 function resetArea() {
@@ -106,7 +108,7 @@ function resetArea() {
 /// @param hspStart
 /// @param [gravDir=1]
 function setEnemy() {
-	if(argument_count == 2) gravDir = argument1;
+	if(argument_count == 2) { gravDir = argument1; gravDirStart = gravDir; }
 	hsp = argument0; hspStart = argument0;	
 }
 
@@ -117,6 +119,15 @@ function setCannon() {
 	a[1] = argument0; delayStart = argument0;
 	delay = argument1; bulletSpd = argument2;
 	if(object_index == oMissileCannon) angleStart = image_angle;
+}
+
+/// @param radius
+/// @param period
+/// @param [flip=false]
+function setWave() {
+	if(object_index == oCoin) sway = true;
+	radius = argument0; period = argument1;
+	if(argument_count == 3) flip = argument2;
 }
 
 //returns an array c[3] 

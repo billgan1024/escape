@@ -3,7 +3,7 @@ a[1] = random_range(90, 120);
 
 //whether to wave or not
 sway = false;
-radius = 3;
-duration = 2;
+radius = 0;
+period = 0;
 flip = false;
 t = 0;

@@ -1,7 +1,7 @@
 image_angle += 0.75;
 t += 1/240;
 if(sway) {
-	x = wave(xstart-60*radius, xstart+60*radius, duration, t*(flip ? -1 : 1));
+	x = wave(xstart-60*radius, xstart+60*radius, period, t*(flip ? -1 : 1));
 }
 if(place_meeting(x, y, oPlayer)) {
 	snd(aCoin);

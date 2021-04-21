@@ -1,5 +1,6 @@
 if(!inBoundary()) instance_destroy();
-if(place_meeting(x+lengthdir_x(spd, dir), y+lengthdir_y(spd, dir), oInvis)) 
+var actualSpd = spd/4;
+if(place_meeting(x+lengthdir_x(actualSpd, dir), y+lengthdir_y(actualSpd, dir), oInvis)) 
 {
 	//note: lasers should pass through platforms
 	while(!place_meeting(x+lengthdir_x(1, dir), y+lengthdir_y(1, dir), oInvis))
@@ -10,5 +11,5 @@ if(place_meeting(x+lengthdir_x(spd, dir), y+lengthdir_y(spd, dir), oInvis))
 	instance_destroy();
 }
 
-x += lengthdir_x(spd, dir);
-y += lengthdir_y(spd, dir);
+x += lengthdir_x(actualSpd, dir);
+y += lengthdir_y(actualSpd, dir);

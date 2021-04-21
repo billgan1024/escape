@@ -8,6 +8,6 @@ if(state != 2) {
 	part_type_direction(e, 270, 270, 0, 0);
 	part_type_orientation(e, 0, 360, random_range(-3, 3), 0, 0);
 	part_type_alpha2(e, 1, 0);
-	part_particles_create(global.ps_below, random_range(x-100, x+100), y, e, 1);
+	part_particles_create(global.ps_below, random_range(x-100, x+100), y+10, e, 1);
 }
 a[1] += random_range(40, 60);

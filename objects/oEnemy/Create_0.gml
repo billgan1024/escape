@@ -6,3 +6,4 @@ a = array_create(16, infinity);
 sight = 60;
 jumpSpd = 5.6;
 gravDir = 1;
+gravDirStart = 1;
