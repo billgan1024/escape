@@ -43,7 +43,9 @@ if(!oPlayer.dead && !oPlayer.freecam) {
 		instance_activate_object(oMovingPlatform);
 		//activate region (note: things on the border aren't activated)
 		instance_activate_region(leftBoundary, targetY, rightBoundary-leftBoundary+vw, vh, true);
-		with(oDoor) { count = instance_number(oCoin)/3; }
+		//with(oDoor) { count = instance_number(oCoin); show_debug_message(count); }
+		//	with(oCoin) { with(oDoor){  count++; show_debug_message(count); }  }
+		//a[2] = 1;
 		//reset enemies after the new ones are active
 		resetArea(); 
 	}

@@ -1,4 +1,4 @@
-smoke(c_orange, 60*5/spd);
+smoke(c_orange, 60*5/spd, -0.01, true);
 x += lengthdir_x(spd, dir);
 y += lengthdir_y(spd, dir);
 

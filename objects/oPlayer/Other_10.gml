@@ -1,5 +1,5 @@
 /// @description handle state
-cameraOffset = smoothApproach(cameraOffset, hsp*100, 0.006);
+cameraOffset = 0; //smoothApproach(cameraOffset, hsp*50, 0.004);
 //get input
 if(!dead) {
 	if(canMove) checkInput();
@@ -27,10 +27,8 @@ if(freecam) {
 	dir = 0; jump = false; jumpHeld = false; dash = false; down = false;
 }
 
-//check if you're grabbing onto any walls
-if(place_meeting(x+1, y, oGround)) grip = 1;
-else if(place_meeting(x-1, y, oGround)) grip = -1;
-else grip = 0;
+//check if you're grabbing onto any walls and update grip timer if necessary
+checkGrip();
 
 cameraOffset = smoothApproach(cameraOffset, hsp*100, 0.008);
 switch(state)
@@ -62,7 +60,13 @@ switch(state)
 		if(jump || boostTimer)
 		{
 			if(grip != 0) {
-				vsp = -jumpSpd;	khsp = wallKickSpd*-grip; snd(aJump); state = "djump"; boosted = false;
+				vsp = -jumpSpd;	khsp = wallKickSpd*-grip; snd(aJump);
+				//state = "djump";
+				boosted = false;
+			} else if(gripTimer) {
+				vsp = -jumpSpd;	khsp = wallKickSpd*-gripDirLastFrame; snd(aJump); 
+				//state = "djump"; 
+				boosted = false;
 			} else {
 				vsp = -jumpSpd;	snd(aJump); boosted = false;
 				if(a[2] != infinity) a[2] = infinity; else state = "djump";
@@ -72,6 +76,7 @@ switch(state)
 		if((place_meeting(x, y+1, oGround) || place_meeting(x, y+1, oPlatform)) && vsp >= 0) { state = "ground"; }
 	break;
 	case "djump":
+		if(!dead) smoke(c_gray, 120, -0.005, false);
 		checkReleasedWallKick();
 		khsp = approach(khsp, 0, fric);
 		updateVsp();
@@ -79,7 +84,9 @@ switch(state)
 		if(jump || boostTimer)
 		{
 			if(grip != 0) {
-				vsp = -jumpSpd;	khsp = wallKickSpd*-grip; snd(aJump); boosted = false;
+				vsp = -jumpSpd;	khsp = wallKickSpd*-grip; snd(aJump); state = "jump"; boosted = false;
+			} else if(gripTimer) {
+				vsp = -jumpSpd;	khsp = wallKickSpd*-gripDirLastFrame; snd(aJump); state = "jump"; boosted = false;
 			} else {
 				//jump buffer (like geometry dash)
 				jumpTimer = true; a[3] = jumpBuffer;	

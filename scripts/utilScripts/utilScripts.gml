@@ -147,8 +147,9 @@ function inBoundary() {
 	&& y >= oGame.yLevel*vh && y <= oGame.yLevel*vh+vh; 
 }
 
-//remember that arrays are passed by reference (see gms2 accessors)
-function array_sort(array, ascend)
+//remember that arrays are passed by reference but if ur changing this array
+//it gets copied
+function arraySort(array, ascend)
 {
     var list = ds_list_create();
     var count = array_length(array);
@@ -157,4 +158,11 @@ function array_sort(array, ascend)
     for (i=0; i<count; i++) array[i] = list[| i];
     ds_list_destroy(list);
     return array;
+}
+
+function drawHitbox() {
+	draw_line(bbox_left, bbox_top, bbox_right, bbox_top);
+	draw_line(bbox_left, bbox_top, bbox_left, bbox_bottom);
+	draw_line(bbox_right, bbox_top, bbox_right, bbox_bottom);
+	draw_line(bbox_left, bbox_bottom, bbox_right, bbox_bottom);
 }

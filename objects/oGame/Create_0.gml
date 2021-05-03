@@ -4,6 +4,7 @@ shake = 0;
 targetX = 0; 
 targetY = 0;
 lvl = real(string_digits(room_get_name(room)));
+show_debug_message(lvl);
 targetLvl = 0;
 
 yLevel = -1; leftBoundary = 0; rightBoundary = 0;
@@ -27,8 +28,8 @@ if(oPersistent.cameraData[lvl] == -1)
 	}
 	//finally, sort all of the boundaries by x-coord and adjust the right boundary x-values
 	for(var i = 0; i < array_length(oPersistent.cameraData[lvl]); i++) {
-		array_sort(oPersistent.cameraData[lvl][i], true);
+		oPersistent.cameraData[lvl][i] = arraySort(oPersistent.cameraData[lvl][i], true);
 		for(var j = 1; j < array_length(oPersistent.cameraData[lvl][i]); j += 2) oPersistent.cameraData[lvl][i][j] += 60; 
 	}
 }
-//show_debug_message(oPersistent.cameraData);
+show_debug_message(oPersistent.cameraData);

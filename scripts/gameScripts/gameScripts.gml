@@ -42,7 +42,7 @@ function pCollision() {
 		phsp = p.hsp;
 	} else phsp = 0;
 	var q = instance_place(x, y+1, oFallingPlatform);
-	if(q != noone && q.state == 0) { snd(aPlatform); q.state = 1; q.a[2] = 120; }
+	if(q != noone && q.state == 0) { snd(aPlatform); q.state = 1; q.a[2] = 240; }
 }
 /// @param walkAcc
 /// @param runAcc
@@ -55,7 +55,7 @@ function updateHsp(walkAcc, runAcc) {
 
 function updateVsp() {
 	//apply more grav if player isn't holding jump
-	if(!boosted && !jumpHeld && vsp < 0) vsp += grav*2;
+	if(!boosted && !jumpHeld && vsp < 0) vsp += grav*1.5;
 	if(grip != 0 && vsp > 0)
 	{ 
 		if(vsp > maxGrav/3) vsp = approach(vsp, maxGrav/3, grav*4); 
@@ -68,6 +68,18 @@ function updateVsp() {
 function checkReleasedWallKick() {
 	if(khsp > 0 && hsp+khsp < 0 && input3[in.left]) khsp = 0;
 	if(khsp < 0 && hsp+khsp > 0 && input3[in.right]) khsp = 0;
+}
+
+function checkGrip() {
+	if(place_meeting(x+1, y, oGround)) grip = 1;
+	else if(place_meeting(x-1, y, oGround)) grip = -1;
+	else grip = 0;
+	
+	if(grip != gripLastFrame && grip == 0) {
+		//update grip timer and grip direction last frame
+		gripTimer = true; gripDirLastFrame = gripLastFrame; a[5] = gripBuffer; 
+	}
+	gripLastFrame = grip;
 }
 
 function death(audio) {
