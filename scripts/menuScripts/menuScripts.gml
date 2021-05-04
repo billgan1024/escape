@@ -50,9 +50,10 @@ function checkPressed() {
 }
 
 function setInputDelay() {
+	canInteract = false;
 	var pressed = false;
 	for(var i = 0; i < argument_count; i++) pressed |= input2[argument[i]];
-	if(pressed) a[2] = inputDelay*2;
+	if(pressed) a[2] = inputDelay*2.5;
 	else a[2] = inputDelay;
 }
 
@@ -72,12 +73,12 @@ function handleMenu() {
 		//menu navigation controls (only activate if state == 0 and the selector isn't moving)
 		if(input[in.down] || input[in.keyS]) {
 			r = (r+1) % row[gameState];
-			canInteract = false; setInputDelay(in.down, in.keyS);
+			setInputDelay(in.down, in.keyS);
 			snd(aScroll); clearInput(); clearPressed(); 
 		}
 		if(input[in.up] || input[in.keyW]) {
 			r = (r-1+row[gameState]) % row[gameState];
-			canInteract = false; setInputDelay(in.up, in.keyW);
+			setInputDelay(in.up, in.keyW);
 			snd(aScroll); clearInput(); clearPressed();
 		}
 		if((input[in.right] || input[in.keyD]) && horizontal) {
@@ -93,12 +94,10 @@ function handleMenu() {
 					updateMusicVol();
 					save();
 				}
-				canInteract = false;
 				setInputDelay(in.right, in.keyD);
 				snd(aScroll); clearInput(); clearPressed();
 			} else if(col[gameState] > 1) {
 				c = (c+1) % col[gameState];
-				canInteract = false;
 				setInputDelay(in.right, in.keyD);
 				snd(aScroll); clearInput(); clearPressed();
 			}
@@ -116,12 +115,10 @@ function handleMenu() {
 					updateMusicVol();
 					save();
 				}
-				canInteract = false;
 				setInputDelay(in.left, in.keyA);
 				snd(aScroll); clearInput(); clearPressed();
 			} else if(col[gameState] > 1) {
 				c = (c-1+col[gameState]) % col[gameState];
-				canInteract = false;
 				setInputDelay(in.left, in.keyA);
 				snd(aScroll); clearInput(); clearPressed();
 			}

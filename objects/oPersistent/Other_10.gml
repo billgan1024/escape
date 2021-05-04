@@ -1,4 +1,4 @@
-/// @description step event
+/// @description 
 checkInput(); 
 //if the user pressed the key this frame, immediately enable interactions
 if(checkPressed(in.left, in.right, in.up, in.down, in.keyW, in.keyA, in.keyS, in.keyD, in.esc, in.enter)) { canInteract = true; a[2] = infinity; }
@@ -57,8 +57,7 @@ switch(state) {
 	break;
 }
 
-//handle pausing 
-//handle menus
-if(canInteract) handleMenu();
+//handle pausing and menus only if the menu isn't transitioning
+if(canInteract && state == 0) handleMenu();
 clearInput();
 clearPressed();
