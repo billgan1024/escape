@@ -1,6 +1,6 @@
-walkSpd = 3.2; 
-runSpd = 4.6;
-jumpSpd = 5.8;
+walkSpd = 3; 
+runSpd = 4;
+jumpSpd = 5.6;
 walkAcc = 3;
 airAcc = 0.4;
 bufferTime = 15;
@@ -39,7 +39,7 @@ jumpBuffer = 15;
 boostTimer = false;
 
 //state = "ground", "buffer", "jump", "fall", "blink"
-state = "ground";
+state = "ground"; prevState = "";
 
 //death variable so that the player never gets destroyed
 dead = false;

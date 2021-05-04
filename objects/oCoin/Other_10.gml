@@ -5,7 +5,6 @@ if(sway) {
 }
 if(place_meeting(x, y, oPlayer)) {
 	snd(aCoin);
-	with(oDoor) count--;
 
 	light(c_yellow, 0.4);
 	var e = part_type_create();
@@ -18,4 +17,7 @@ if(place_meeting(x, y, oPlayer)) {
 	part_type_life(e, 60, 60);
 	part_particles_create(global.ps_below, x, y, e, 1);
 	instance_destroy();
+	with(oDoor) {
+		count = instance_number(oCoin); show_debug_message(count);
+	}
 }

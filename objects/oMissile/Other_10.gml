@@ -1,6 +1,7 @@
-smoke(c_orange, 60*5/spd, -0.01, true);
-x += lengthdir_x(spd, dir);
-y += lengthdir_y(spd, dir);
+smoke(c_orange, 60*5/spd, -0.01, true, 1);
+var actualSpd = spd/4;
+x += lengthdir_x(actualSpd, dir);
+y += lengthdir_y(actualSpd, dir);
 
 if(place_meeting(x, y, oGround)) 
 {
@@ -10,6 +11,6 @@ if(place_meeting(x, y, oGround))
 		y += lengthdir_y(1, dir);
 	}
 	instance_destroy();
-	if(inView()) snd(aExplosion2);
+	if(inView()) { audio_stop_sound(aExplosion2); snd(aExplosion2); }
 	firework(c_orange, c_orange, 0.1, 2);
 }

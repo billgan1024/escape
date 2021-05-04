@@ -16,6 +16,12 @@ function checkInputReleased() {
 	}
 }
 
+function clearInput() {
+	for(var i = 0; i < in.length; i++) {
+		input[i] = false;
+	}
+}
+
 function clearPressed() {
 	for(var i = 0; i < in.length; i++) {
 		input2[i] = false;

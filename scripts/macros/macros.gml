@@ -12,8 +12,8 @@
 #macro gain audio_sound_get_gain
 
 #macro fadeSpeed 0.05
-#macro inputDelay 15
+#macro inputDelay 35
 
 //global gravity
-#macro grav 0.065
-#macro maxGrav 7.5
+#macro grav 0.06
+#macro maxGrav 7

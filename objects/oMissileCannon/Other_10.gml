@@ -7,6 +7,7 @@ if(!oPlayer.dead && !collision_line(x, y, oPlayer.x, oPlayer.y, oGround, false, 
 	var dx2 = c[1]-x, dy2 = c[2]-y;
 	len = min(sqrt(dx*dx + dy*dy), sqrt(dx2*dx2 + dy2*dy2));
 } else {
+	var dx = c[1]-x, dy = c[2]-y; len = sqrt(dx*dx + dy*dy);
 	laserAlpha = smoothApproach(laserAlpha, 0, 0.16, 0.005);
 	image_angle = angleApproach(image_angle, angleStart, 2);
 }

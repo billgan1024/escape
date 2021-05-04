@@ -1,1 +1,1 @@
-setEnemy(9);
+setEnemy(7);

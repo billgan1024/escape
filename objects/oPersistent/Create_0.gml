@@ -15,6 +15,7 @@ enum in {
 //a[5] = 240;
 global.keyCodes = [vk_left, vk_right, vk_up, vk_down, ord("W"), ord("A"), ord("S"), ord("D"),
 	vk_space, vk_shift, vk_enter, vk_escape];
+input = array_create(in.length);
 input2 = array_create(in.length);
 //load data
 //if it's undefined, initialize default values
@@ -31,7 +32,7 @@ if(ds_map_find_value(data, "fs")) window_set_fullscreen(true);
 //this enum assigns numbers to values 
 //gs.menu = 0, gs.game = 1, and so on
 //menu -> (select, options)
-//paused -> options2
+//paused -> optionsGame
 
 enum gs {
 	menu, game, select, options, paused, optionsGame
