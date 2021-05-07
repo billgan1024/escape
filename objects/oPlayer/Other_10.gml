@@ -68,6 +68,7 @@ switch(state)
 				//state = "djump"; 
 				boosted = false;
 			} else {
+				khsp = 0;
 				vsp = -jumpSpd;	snd(aJump); boosted = false;
 				if(a[2] != infinity) a[2] = infinity; else state = "djump";
 			}

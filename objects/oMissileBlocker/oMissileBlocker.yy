@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "sInvis",
-    "path": "sprites/sInvis/sInvis.yy",
+    "name": "sInvisPeach",
+    "path": "sprites/sInvisPeach/sInvisPeach.yy",
   },
   "solid": false,
   "visible": false,
@@ -28,7 +28,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "oInvis",
+  "name": "oMissileBlocker",
   "tags": [],
   "resourceType": "GMObject",
 }

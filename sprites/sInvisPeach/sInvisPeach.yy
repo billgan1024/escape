@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"9e1960af-1ebf-478f-96c3-3156a7b6b8ac","path":"sprites/sInvis/sInvis.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"9e1960af-1ebf-478f-96c3-3156a7b6b8ac","path":"sprites/sInvis/sInvis.yy",},"LayerId":{"name":"d3d5889b-5e98-409f-bf2e-c80fa8e82cfb","path":"sprites/sInvis/sInvis.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"sInvis","path":"sprites/sInvis/sInvis.yy",},"resourceVersion":"1.0","name":"9e1960af-1ebf-478f-96c3-3156a7b6b8ac","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"9d90aedc-697d-4012-9a8c-8359a253e797","path":"sprites/sInvisPeach/sInvisPeach.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"9d90aedc-697d-4012-9a8c-8359a253e797","path":"sprites/sInvisPeach/sInvisPeach.yy",},"LayerId":{"name":"ab154cb3-0133-4b18-a2cc-7efe0f3114b1","path":"sprites/sInvisPeach/sInvisPeach.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"sInvisPeach","path":"sprites/sInvisPeach/sInvisPeach.yy",},"resourceVersion":"1.0","name":"9d90aedc-697d-4012-9a8c-8359a253e797","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"sInvis","path":"sprites/sInvis/sInvis.yy",},
+    "spriteId": {"name":"sInvisPeach","path":"sprites/sInvisPeach/sInvisPeach.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"7f49493c-a64d-43ae-9131-22492f631b63","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"9e1960af-1ebf-478f-96c3-3156a7b6b8ac","path":"sprites/sInvis/sInvis.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"45b84fa1-ac35-4d07-a0e4-8a34852f2f2b","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"9d90aedc-697d-4012-9a8c-8359a253e797","path":"sprites/sInvisPeach/sInvisPeach.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
     "visibleRange": null,
@@ -58,14 +58,14 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"sInvis","path":"sprites/sInvis/sInvis.yy",},
+    "parent": {"name":"sInvisPeach","path":"sprites/sInvisPeach/sInvisPeach.yy",},
     "resourceVersion": "1.3",
-    "name": "sInvis",
+    "name": "sInvisPeach",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"d3d5889b-5e98-409f-bf2e-c80fa8e82cfb","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"ab154cb3-0133-4b18-a2cc-7efe0f3114b1","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
@@ -73,7 +73,7 @@
     "path": "folders/Sprites.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sInvis",
+  "name": "sInvisPeach",
   "tags": [],
   "resourceType": "GMSprite",
 }

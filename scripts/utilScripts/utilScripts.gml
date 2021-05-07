@@ -77,64 +77,15 @@ function dwave(from, to, period, t) {
 
 /// @param current
 /// @param  target
-/// @param  turn_speed
-function angleApproach(argument0, argument1, argument2) {
-	/*
-	 * Example use (rotate to face towards the cursor):
-	 * var target_angle = point_direction(x, y, mouse_x, mouse_y);
-	 * image_angle = angle_approach(image_angle, target_angle, 4);
-	 */
-	var tempdir;
-	var angle = argument0;
-	var target_angle = argument1;
-	var turn_speed = argument2;
-	var diff = abs(target_angle-angle);
-	if (diff > 180)
-	{
-	    if (target_angle > 180)
-	    {
-	        tempdir = target_angle - 360;
-	        if (abs(tempdir-angle ) > turn_speed)
-	        {
-	            angle -= turn_speed;
-	        }
-	        else
-	        {
-	            angle = target_angle;
-	        }
-	    }
-	    else
-	    {
-	        tempdir = target_angle + 360;
-	        if (abs(tempdir-angle) > turn_speed)
-	        {
-	            angle += turn_speed;
-	        }
-	        else
-	        {
-	            angle = target_angle;
-	        }
-	    }
+/// @param  turnSpd
+function angleApproach(current, target, turnSpd) {
+	//we assume that all angles are in [0, 360) and the angle returned will also be in [0, 360)
+	var d = angle_difference(current, target), angle1 = (current-turnSpd+360)%360, angle2 = (current+turnSpd)%360;
+	if(abs(d) <= turnSpd) return target;
+	else {
+		if(abs(angle_difference(angle1, target)) < abs(angle_difference(angle2, target))) return angle1;
+		else return angle2;
 	}
-	else
-	{
-	    if (diff > turn_speed)
-	    {
-	        if (target_angle > angle)
-	        {
-	            angle += turn_speed;
-	        }
-	        else
-	        {
-	            angle -= turn_speed;
-	        }
-	    }
-	    else
-	    {
-	        angle = target_angle;
-	    }
-	}
-	return angle;
 }
 
 function inView()

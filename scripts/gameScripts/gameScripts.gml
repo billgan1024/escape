@@ -61,13 +61,13 @@ function updateVsp() {
 		if(vsp > maxGrav/3) vsp = approach(vsp, maxGrav/3, grav*4); 
 		else vsp = approach(vsp, maxGrav/3, grav/3); 
 	}
-	else if(vsp > 0 && down) vsp = smoothApproach(vsp, maxGrav*9/8, 0.025);
+	else if(vsp > 0 && down) vsp = smoothApproach(vsp, maxGrav*9/8, 0.027);
 	else vsp = approach(vsp, maxGrav, grav);
 }
 
 function checkReleasedWallKick() {
-	if(khsp > 0 && hsp+khsp < 0 && input3[in.left]) khsp = 0;
-	if(khsp < 0 && hsp+khsp > 0 && input3[in.right]) khsp = 0;
+	if(khsp > 0 && hsp+khsp < 0 && input3[in.left]) khsp /= 2;
+	if(khsp < 0 && hsp+khsp > 0 && input3[in.right]) khsp /= 2;
 }
 
 function checkGrip() {
@@ -87,25 +87,36 @@ function death(audio) {
 	firework(c_white, c_white);
 	shrink(sPlayer);
 	oGame.shake = 10;
-	oGame.targetLvl = oGame.lvl;
-	oGame.a[1] = 120;
+	//only reset the level if u haven't collected the gem yet
+	if(oGame.a[1] == infinity) {
+		oGame.targetLvl = oGame.lvl;
+		oGame.a[1] = 120;
+	}
 }
 
 /// @param pathIndex
 /// @param pathSpeed [0-1]
 /// @param loop
 /// @param [pathPos=0]
+/// @param [absolute=true]
 function path(p, pathSpd, loop) {
-	path_start(p, 0, path_action_stop, true);
-	spd = pathSpd; rev = !loop;
-	if(argument_count == 4) { path_position = argument3; startPos = path_position; }
+	spd = pathSpd; rev = !loop; var absolute = true;
+	if(argument_count >= 4) { path_position = argument3; startPos = path_position; }
+	if(argument_count >= 5) absolute = argument4;
+	path_start(p, 0, path_action_stop, absolute);
+}
+
+function setRotate(pathSpd, pathPoint) {
+	originX = path_get_point_x(pathPoint, 0);  
+	originY = path_get_point_y(pathPoint, 0); 
+	radialSpd = pathSpd;
 }
 
 function resetArea() {
 	with(oEnemy) { x = xstart; y = ystart; hsp = hspStart; }
 	with(oSpike) { 
 		path_position = 0; image_angle = 0; 
-		image_angle = 0; path_position = startPos; }
+		image_angle = 0; path_position = startPos; t = 0; }
 	with(oCoin) { image_angle = 0; x = xstart; t = 0; a[1] = random_range(90, 120); }
 	with(oMovingPlatform) { t = 0; }
 	with(oFallingPlatform) { state = 0; a[1] = random_range(40, 60); a[2] = infinity; }

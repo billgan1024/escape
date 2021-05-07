@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"d8fa6051-1ee5-4647-b760-bfea148b2ffa","path":"sprites/sJumpTrigger/sJumpTrigger.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"d8fa6051-1ee5-4647-b760-bfea148b2ffa","path":"sprites/sJumpTrigger/sJumpTrigger.yy",},"LayerId":{"name":"ad85ea94-ed28-41a2-bad8-32c12855749c","path":"sprites/sJumpTrigger/sJumpTrigger.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"sJumpTrigger","path":"sprites/sJumpTrigger/sJumpTrigger.yy",},"resourceVersion":"1.0","name":"d8fa6051-1ee5-4647-b760-bfea148b2ffa","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"9e1960af-1ebf-478f-96c3-3156a7b6b8ac","path":"sprites/sInvisWhite/sInvisWhite.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"9e1960af-1ebf-478f-96c3-3156a7b6b8ac","path":"sprites/sInvisWhite/sInvisWhite.yy",},"LayerId":{"name":"d3d5889b-5e98-409f-bf2e-c80fa8e82cfb","path":"sprites/sInvisWhite/sInvisWhite.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"sInvisWhite","path":"sprites/sInvisWhite/sInvisWhite.yy",},"resourceVersion":"1.0","name":"9e1960af-1ebf-478f-96c3-3156a7b6b8ac","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"sJumpTrigger","path":"sprites/sJumpTrigger/sJumpTrigger.yy",},
+    "spriteId": {"name":"sInvisWhite","path":"sprites/sInvisWhite/sInvisWhite.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"d210c43d-8fec-4b05-9efc-97cb130b23d1","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"d8fa6051-1ee5-4647-b760-bfea148b2ffa","path":"sprites/sJumpTrigger/sJumpTrigger.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"7f49493c-a64d-43ae-9131-22492f631b63","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"9e1960af-1ebf-478f-96c3-3156a7b6b8ac","path":"sprites/sInvisWhite/sInvisWhite.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
     "visibleRange": null,
@@ -58,14 +58,14 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"sJumpTrigger","path":"sprites/sJumpTrigger/sJumpTrigger.yy",},
+    "parent": {"name":"sInvisWhite","path":"sprites/sInvisWhite/sInvisWhite.yy",},
     "resourceVersion": "1.3",
-    "name": "sJumpTrigger",
+    "name": "sInvisWhite",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"ad85ea94-ed28-41a2-bad8-32c12855749c","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"d3d5889b-5e98-409f-bf2e-c80fa8e82cfb","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
@@ -73,7 +73,7 @@
     "path": "folders/Sprites.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sJumpTrigger",
+  "name": "sInvisWhite",
   "tags": [],
   "resourceType": "GMSprite",
 }

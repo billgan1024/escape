@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "sJumpTrigger",
-    "path": "sprites/sJumpTrigger/sJumpTrigger.yy",
+    "name": "sInvisPink",
+    "path": "sprites/sInvisPink/sInvisPink.yy",
   },
   "solid": false,
   "visible": false,

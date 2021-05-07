@@ -1,7 +1,7 @@
 //convert spd to the appropriate value
 var actualSpd = spd/path_get_length(path_index)/4;
 path_position += actualSpd;
-image_angle += log2(abs(spd))/2;
+image_angle = (image_angle+log2(abs(spd))/2) % 360;
 if(!rev) path_position = frac(path_position);
 else {
 	if(path_position <= 0) {

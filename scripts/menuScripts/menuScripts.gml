@@ -43,20 +43,6 @@ function transitTo(newState, newRoom) {
 	canInteract = false; snap = true;
 }
 
-function checkPressed() {
-	var pressed = false;
-	for(var i = 0; i < argument_count; i++) pressed |= input2[argument[i]];
-	return pressed;
-}
-
-function setInputDelay() {
-	canInteract = false;
-	var pressed = false;
-	for(var i = 0; i < argument_count; i++) pressed |= input2[argument[i]];
-	if(pressed) a[2] = inputDelay*2.5;
-	else a[2] = inputDelay;
-}
-
 function handleMenu() {
 	if(gameState == gs.game || gameState == gs.paused) {
 		if(input2[in.esc]) {
@@ -65,23 +51,21 @@ function handleMenu() {
 				canInteract = false; snap = true; a[4] = inputDelay;
 			}
 			else gameState = gs.game;
-			clearInput(); clearPressed();
+			clearPressed();
 		}
 	}
 	if(gameState != gs.game)
 	{
 		//menu navigation controls (only activate if state == 0 and the selector isn't moving)
-		if(input[in.down] || input[in.keyS]) {
+		if(input2[in.down] || input2[in.keyS]) {
 			r = (r+1) % row[gameState];
-			setInputDelay(in.down, in.keyS);
-			snd(aScroll); clearInput(); clearPressed(); 
+			snd(aScroll); clearPressed(); 
 		}
-		if(input[in.up] || input[in.keyW]) {
+		if(input2[in.up] || input2[in.keyW]) {
 			r = (r-1+row[gameState]) % row[gameState];
-			setInputDelay(in.up, in.keyW);
-			snd(aScroll); clearInput(); clearPressed();
+			snd(aScroll); clearPressed();
 		}
-		if((input[in.right] || input[in.keyD]) && horizontal) {
+		if((input2[in.right] || input2[in.keyD]) && horizontal) {
 			if((gameState == gs.options || gameState == gs.optionsGame) && (r == 0 || r == 1)) {
 				if(r == 0) {
 					//update sound
@@ -94,15 +78,13 @@ function handleMenu() {
 					updateMusicVol();
 					save();
 				}
-				setInputDelay(in.right, in.keyD);
-				snd(aScroll); clearInput(); clearPressed();
+				snd(aScroll); clearPressed();
 			} else if(col[gameState] > 1) {
 				c = (c+1) % col[gameState];
-				setInputDelay(in.right, in.keyD);
-				snd(aScroll); clearInput(); clearPressed();
+				snd(aScroll); clearPressed();
 			}
 		}
-		if((input[in.left] || input[in.keyA]) && horizontal) {
+		if((input2[in.left] || input2[in.keyA]) && horizontal) {
 			if((gameState == gs.options || gameState == gs.optionsGame) && (r == 0 || r == 1)) {
 				if(r == 0) {
 					//update sound
@@ -115,12 +97,10 @@ function handleMenu() {
 					updateMusicVol();
 					save();
 				}
-				setInputDelay(in.left, in.keyA);
-				snd(aScroll); clearInput(); clearPressed();
+				snd(aScroll); clearPressed();
 			} else if(col[gameState] > 1) {
 				c = (c-1+col[gameState]) % col[gameState];
-				setInputDelay(in.left, in.keyA);
-				snd(aScroll); clearInput(); clearPressed();
+				snd(aScroll); clearPressed();
 			}
 		}
 		if(input2[in.enter]) {
@@ -148,7 +128,7 @@ function handleMenu() {
 						audio_stop_sound(aMenu);
 						transitTo(gs.game, asset_get_index("level" + string(lvl))); 
 						resetAttempts = true;
-					} else clearInput(); clearPressed(); 
+					} else clearPressed(); 
 				}
 				break;
 				//options and optionsGame represent the same state
@@ -162,19 +142,19 @@ function handleMenu() {
 							ds_map_replace(data, "fs", window_get_fullscreen());
 							save();
 							window_set_size(h/3*4, h/4*3);
-							a[1] = 10; clearInput(); clearPressed();
+							a[1] = 10; clearPressed();
 						break;
 					
 						case 3:
 						ds_map_replace(data, "timer", !ds_map_find_value(data, "timer"));
-						save(); clearInput(); clearPressed();
+						save(); clearPressed();
 						break;
 					}
 				}
 				break;
 				case gs.paused:
 				switch(r) {
-					case 0: gameState = gs.game; clearInput(); clearPressed();
+					case 0: gameState = gs.game; clearPressed();
 					break;
 					case 1: transitTo(gs.game, room);
 					break;

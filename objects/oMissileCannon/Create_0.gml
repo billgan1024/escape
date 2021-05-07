@@ -7,6 +7,7 @@ delayStart = 0;
 laserAlpha = 0;
 len = 0;
 angleStart = 0;
+radius = 1536;
 
 //collision data
 c = array_create(3, infinity);

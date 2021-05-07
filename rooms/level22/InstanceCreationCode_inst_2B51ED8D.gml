@@ -1,1 +1,1 @@
-setCannon(120, 360, 28);
+setCannon(120, 360, 32);

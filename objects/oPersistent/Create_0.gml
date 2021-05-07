@@ -15,7 +15,6 @@ enum in {
 //a[5] = 240;
 global.keyCodes = [vk_left, vk_right, vk_up, vk_down, ord("W"), ord("A"), ord("S"), ord("D"),
 	vk_space, vk_shift, vk_enter, vk_escape];
-input = array_create(in.length);
 input2 = array_create(in.length);
 //load data
 //if it's undefined, initialize default values

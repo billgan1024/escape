@@ -1,8 +1,8 @@
 vsp = approach(vsp, maxGrav*gravDir, grav);
 var actualSpd = hsp/4;
 x += actualSpd;
-if(place_meeting(x, y, oInvis)) {
-	var b = instance_place(x, y, oInvis);
+if(place_meeting(x, y, oEnemyBlocker)) {
+	var b = instance_place(x, y, oEnemyBlocker);
 	if(hsp > 0) {
 		var d = bbox_right-b.bbox_left; 
 		x -= 2*d;
