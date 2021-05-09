@@ -6,6 +6,7 @@ targetY = 0;
 lvl = real(string_digits(room_get_name(room)));
 show_debug_message(lvl);
 targetLvl = 0;
+t = 0;
 
 yLevel = -1; leftBoundary = 0; rightBoundary = 0;
 resetAttempts = false;

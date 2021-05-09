@@ -1,3 +1,8 @@
+//initialize http variables
+post = undefined;
+headerMap = ds_map_create();
+ds_map_add(headerMap, "Content-Type", "application/json");
+
 randomize();
 h = window_get_height();
 window_set_size(h/3*4, h/4*3);

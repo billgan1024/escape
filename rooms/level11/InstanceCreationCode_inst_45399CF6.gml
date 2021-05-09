@@ -1,1 +1,1 @@
-path(p11b, 7, true);
+path(p11b, 6.5, true);

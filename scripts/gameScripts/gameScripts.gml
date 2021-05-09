@@ -91,6 +91,12 @@ function death(audio) {
 	if(oGame.a[1] == infinity) {
 		oGame.targetLvl = oGame.lvl;
 		oGame.a[1] = 120;
+		var body = {
+			level: oGame.lvl,
+			xpos: x,
+			ypos: y
+		}
+		with(oPersistent) post = http_request("https://escape-server-1024.herokuapp.com/deaths/add", "POST", headerMap, json_stringify(body));
 	}
 }
 

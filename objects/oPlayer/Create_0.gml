@@ -7,6 +7,7 @@ bufferTime = 15;
 cameraOffset = 0;
 boosted = false;
 phsp = 0;
+cameraSpd = 0;
 
 //variable to track when the player loses grip on a wall (coyote time implementation for wall jump)
 //basically keep track of the grip direction and store it in a variable whenever it changes

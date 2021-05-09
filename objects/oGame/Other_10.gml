@@ -1,4 +1,5 @@
 //show_debug_message(vx);
+t += 1/240;
 shake = approach(shake, 0, 0.08);
 borderRadius = smoothApproach(borderRadius, oPlayer.freecam ? 30 : 0, 0.08);
 if(!oPlayer.dead && !oPlayer.freecam) {

@@ -16,10 +16,13 @@ jumpHeld = input[in.up] || input[in.keyW] || input[in.space];
 dash = input[in.shift];
 down = input[in.down] || input[in.keyS];
 
-//if we're in freecam mode, cancel all inputs and only care about dir
-//to control the game's camera
+//update camera speed variable 
+cameraSpd = approach(cameraSpd, 5.5*dir, 0.4);
+
+//if we're in freecam mode, cancel all inputs and move the camera
 if(freecam) {
-	oGame.targetX = clamp(oGame.targetX + 6*dir, oGame.leftBoundary, oGame.rightBoundary);
+	
+	oGame.targetX = clamp(oGame.targetX + cameraSpd, oGame.leftBoundary, oGame.rightBoundary);
 	
 	//free camera movement 
 	//oGame.targetX += 6*dir; oGame.targetY += 6*(input[in.down]-input[in.up]);
