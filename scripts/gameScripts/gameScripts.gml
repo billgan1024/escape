@@ -96,7 +96,9 @@ function death(audio) {
 			xpos: x,
 			ypos: y
 		}
-		with(oPersistent) post = http_request("https://escape-server-1024.herokuapp.com/deaths/add", "POST", headerMap, json_stringify(body));
+		with(oPersistent) {
+			if(transmitData) post = http_request("https://escape-server-1024.herokuapp.com/deaths/add", "POST", headerMap, json_stringify(body));
+		}
 	}
 }
 

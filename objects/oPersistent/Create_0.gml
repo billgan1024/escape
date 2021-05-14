@@ -2,6 +2,7 @@
 post = undefined;
 headerMap = ds_map_create();
 ds_map_add(headerMap, "Content-Type", "application/json");
+transmitData = false;
 
 randomize();
 h = window_get_height();

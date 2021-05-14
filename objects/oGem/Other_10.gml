@@ -11,6 +11,8 @@ if(place_meeting(x, y, oPlayer)) {
 		attempts: oPersistent.attempts,
 		duration: oGame.t
 	}
-	with(oPersistent) post = http_request("https://escape-server-1024.herokuapp.com/completions/add", "POST", headerMap, json_stringify(body));
+	with(oPersistent) {
+		if(transmitData) post = http_request("https://escape-server-1024.herokuapp.com/completions/add", "POST", headerMap, json_stringify(body));
+	}
 	instance_destroy();
 }
