@@ -9,11 +9,11 @@
     {"speed":100.0,"x":2730.0,"y":660.0,},
   ],
   "parent": {
-    "name": "level15",
-    "path": "folders/Paths/level15.yy",
+    "name": "level16",
+    "path": "folders/Paths/level16.yy",
   },
   "resourceVersion": "1.0",
-  "name": "p15a",
+  "name": "p16b",
   "tags": [],
   "resourceType": "GMPath",
 }

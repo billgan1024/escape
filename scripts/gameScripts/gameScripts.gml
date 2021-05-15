@@ -108,16 +108,30 @@ function death(audio) {
 /// @param [pathPos=0]
 /// @param [absolute=true]
 function path(p, pathSpd, loop) {
-	spd = pathSpd; rev = !loop; var absolute = true;
+	spd = pathSpd/4; rev = !loop; var absolute = true;
 	if(argument_count >= 4) { path_position = argument3; startPos = path_position; }
 	if(argument_count >= 5) absolute = argument4;
 	path_start(p, 0, path_action_stop, absolute);
 }
 
-function setRotate(pathSpd, pathPoint) {
+/// @param pathPoint
+/// @param pathSpd
+/// @param startingAngle
+/// @param [radial=true]
+function setRotate(pathPoint, pathSpd, startingAngle) {
+	var radial = true; if(argument_count == 4) radial = argument3;
 	originX = path_get_point_x(pathPoint, 0);  
 	originY = path_get_point_y(pathPoint, 0); 
-	radialSpd = pathSpd;
+	radius = point_distance(x, y, originX, originY);
+	angle = startingAngle; startAngle = startingAngle;
+	if(radial) {
+		//angularSpd is speed in degrees per second
+		angularSpd = pathSpd; 
+		spd = degtorad(angularSpd)*radius; 
+	} else {
+		angularSpd = radtodeg((pathSpd/4)/radius);
+		spd = pathSpd/4;
+	}
 }
 
 function resetArea() {
@@ -140,7 +154,7 @@ function resetArea() {
 /// @param [gravDir=1]
 function setEnemy() {
 	if(argument_count == 2) { gravDir = argument1; gravDirStart = gravDir; }
-	hsp = argument0; hspStart = argument0;	
+	hsp = argument0/4; hspStart = hsp; 
 }
 
 /// @param startDelay
@@ -148,7 +162,7 @@ function setEnemy() {
 /// @param bulletSpd
 function setCannon() {
 	a[1] = argument0; delayStart = argument0;
-	delay = argument1; bulletSpd = argument2;
+	delay = argument1; bulletSpd = argument2/4;
 	if(object_index == oMissileCannon) angleStart = image_angle;
 }
 
