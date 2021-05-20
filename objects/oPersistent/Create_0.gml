@@ -2,7 +2,7 @@
 post = undefined;
 headerMap = ds_map_create();
 ds_map_add(headerMap, "Content-Type", "application/json");
-transmitData = false;
+transmitData = true;
 
 randomize();
 h = window_get_height();
@@ -101,7 +101,7 @@ timeFactor = 1; gameTimer = 0;
 //keep a separate timeFactor and gameTimer for persistent's updates
 pTimeFactor = 1; pGameTimer = 0;
 
-a[1] = 1; a[3] = random_range(60, 80);
+a[1] = 1; a[3] = random_range(240, 300);
 
 global.ps_above = part_system_create();
 global.ps_below = part_system_create();

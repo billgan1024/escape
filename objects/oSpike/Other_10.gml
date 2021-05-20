@@ -1,7 +1,7 @@
 //key note: spd = actual pixels per frame
 image_angle = (image_angle+1+abs(spd/4)) % 360;
 if(angularSpd != 0) {
-	angle = (angle + angularSpd) % 360;
+	angle = (angle + angularSpd + 360) % 360;
 	x = originX + lengthdir_x(radius, angle); y = originY + lengthdir_y(radius, angle);
 } else {
 	var actualSpd = spd/path_get_length(path_index);
