@@ -16,9 +16,9 @@ switch(gameState) {
 		}
 	}
 	dshalign(fa_left); dsvalign(fa_bottom);
-	draw_text(vx+10, vy+vh-6, "Bill Gan");
+	draw_text(vx+10, vy+vh, "Bill Gan");
 	dshalign(fa_right); dsfont(fSmall);
-	draw_text(vx+vw-10, vy+vh-6, "Arrow/WASD Keys: Navigate\nEnter: Select\nEsc: Back");
+	draw_text(vx+vw-10, vy+vh, "Arrow/WASD Keys: Navigate\nEnter: Select\nEsc: Back");
 	dsfont(fMain); dshalign(fa_center); dsvalign(fa_center);
 	break;
 	

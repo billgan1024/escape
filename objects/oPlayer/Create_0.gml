@@ -1,6 +1,6 @@
 walkSpd = 3; 
-runSpd = 4;
-jumpSpd = 5.6;
+runSpd = 3.9;
+jumpSpd = 5.4;
 walkAcc = 3;
 airAcc = 0.4;
 bufferTime = 15;

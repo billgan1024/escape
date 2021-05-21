@@ -15,5 +15,5 @@
 #macro inputDelay 15
 
 //global gravity
-#macro grav 0.06
-#macro maxGrav 7
+#macro grav 0.058
+#macro maxGrav 6.8
