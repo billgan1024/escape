@@ -1,1 +1,0 @@
-text = "Hold down/S to fall faster";

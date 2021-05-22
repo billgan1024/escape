@@ -1,1 +1,0 @@
-path(p26, 12, false);

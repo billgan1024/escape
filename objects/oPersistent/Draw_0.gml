@@ -16,9 +16,9 @@ switch(gameState) {
 		}
 	}
 	dshalign(fa_left); dsvalign(fa_bottom);
-	draw_text(vx+10, vy+vh, "Bill Gan");
+	draw_text(vx+10, vy+vh+6, "Bill Gan");
 	dshalign(fa_right); dsfont(fSmall);
-	draw_text(vx+vw-10, vy+vh, "Arrow/WASD Keys: Navigate\nEnter: Select\nEsc: Back");
+	draw_text(vx+vw-10, vy+vh+6, "Arrow/WASD Keys: Navigate\nEnter: Select\nEsc: Back");
 	dsfont(fMain); dshalign(fa_center); dsvalign(fa_center);
 	break;
 	
@@ -88,7 +88,7 @@ if(gameState != gs.game) {
 	var sw = selectorFrom.w, sh = selectorFrom.h;
 	var xx = vx+sx-sw/2, yy = vy+sy-sh/2;
 	dsalpha(alpha/5);
-	draw_rectangle_width(xx, yy, xx+sw, yy+sh, 3);
+	draw_rectangle_width(xx, yy, xx+sw, yy+sh-5, 3);
 	dsalpha(1);
 }
 

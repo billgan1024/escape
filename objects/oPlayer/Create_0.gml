@@ -1,5 +1,5 @@
-walkSpd = 3; 
-runSpd = 3.9;
+walkSpd = 2.9; 
+runSpd = 3.8;
 jumpSpd = 5.4;
 walkAcc = 3;
 airAcc = 0.4;
