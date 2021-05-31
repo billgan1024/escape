@@ -1,0 +1,240 @@
+[
+  {
+    "_id": "60ac587488da1900047c2e62",
+    "attempts": 1,
+    "duration": 3.983333333333426,
+    "level": 1,
+    "__v": 0
+  },
+  {
+    "_id": "60ac588788da1900047c2e64",
+    "attempts": 2,
+    "duration": 18.195833333332622,
+    "level": 2,
+    "__v": 0
+  },
+  {
+    "_id": "60ac588e88da1900047c2e65",
+    "attempts": 1,
+    "duration": 5.954166666666649,
+    "level": 3,
+    "__v": 0
+  },
+  {
+    "_id": "60ac589688da1900047c2e67",
+    "attempts": 2,
+    "duration": 5.34583333333335,
+    "level": 4,
+    "__v": 0
+  },
+  {
+    "_id": "60ac58bb88da1900047c2e69",
+    "attempts": 2,
+    "duration": 26.312499999998828,
+    "level": 5,
+    "__v": 0
+  },
+  {
+    "_id": "60ac58c588da1900047c2e6a",
+    "attempts": 1,
+    "duration": 8.587499999999833,
+    "level": 6,
+    "__v": 0
+  },
+  {
+    "_id": "60ac58d388da1900047c2e6b",
+    "attempts": 1,
+    "duration": 13.38749999999956,
+    "level": 7,
+    "__v": 0
+  },
+  {
+    "_id": "60ac58ec88da1900047c2e6d",
+    "attempts": 2,
+    "duration": 10.170833333333077,
+    "level": 8,
+    "__v": 0
+  },
+  {
+    "_id": "60ac58fd88da1900047c2e6e",
+    "attempts": 1,
+    "duration": 16.837499999999366,
+    "level": 9,
+    "__v": 0
+  },
+  {
+    "_id": "60ac591a88da1900047c2e6f",
+    "attempts": 1,
+    "duration": 28.43333333333204,
+    "level": 10,
+    "__v": 0
+  },
+  {
+    "_id": "60ac592788da1900047c2e70",
+    "attempts": 1,
+    "duration": 11.729166666666321,
+    "level": 11,
+    "__v": 0
+  },
+  {
+    "_id": "60ac593b88da1900047c2e71",
+    "attempts": 1,
+    "duration": 19.591666666665876,
+    "level": 12,
+    "__v": 0
+  },
+  {
+    "_id": "60ac595688da1900047c2e73",
+    "attempts": 2,
+    "duration": 18.949999999999246,
+    "level": 13,
+    "__v": 0
+  },
+  {
+    "_id": "60ac598788da1900047c2e77",
+    "attempts": 4,
+    "duration": 17.31249999999934,
+    "level": 14,
+    "__v": 0
+  },
+  {
+    "_id": "60ac599f88da1900047c2e79",
+    "attempts": 2,
+    "duration": 13.383333333332894,
+    "level": 15,
+    "__v": 0
+  },
+  {
+    "_id": "60ac59bd88da1900047c2e7b",
+    "attempts": 2,
+    "duration": 14.4624999999995,
+    "level": 16,
+    "__v": 0
+  },
+  {
+    "_id": "60ac59dc88da1900047c2e7e",
+    "attempts": 3,
+    "duration": 11.92916666666631,
+    "level": 17,
+    "__v": 0
+  },
+  {
+    "_id": "60ac5a1c88da1900047c2e82",
+    "attempts": 4,
+    "duration": 34.04583333333346,
+    "level": 18,
+    "__v": 0
+  },
+  {
+    "_id": "60ac5a5288da1900047c2e8a",
+    "attempts": 8,
+    "duration": 11.120833333333023,
+    "level": 19,
+    "__v": 0
+  },
+  {
+    "_id": "60ac5a6888da1900047c2e8e",
+    "attempts": 4,
+    "duration": 13.654166666666212,
+    "level": 20,
+    "__v": 0
+  },
+  {
+    "_id": "60ac5a7a88da1900047c2e8f",
+    "attempts": 1,
+    "duration": 17.09999999999935,
+    "level": 21,
+    "__v": 0
+  },
+  {
+    "_id": "60ac5ac288da1900047c2e97",
+    "attempts": 8,
+    "duration": 20.829166666665806,
+    "level": 22,
+    "__v": 0
+  },
+  {
+    "_id": "60ad6441c0a51d0004fb0b1d",
+    "attempts": 1,
+    "duration": 5.275000000000021,
+    "level": 1,
+    "__v": 0
+  },
+  {
+    "_id": "60ad6448c0a51d0004fb0b1e",
+    "attempts": 1,
+    "duration": 6.691666666666607,
+    "level": 2,
+    "__v": 0
+  },
+  {
+    "_id": "60ad644cc0a51d0004fb0b1f",
+    "attempts": 1,
+    "duration": 3.891666666666755,
+    "level": 3,
+    "__v": 0
+  },
+  {
+    "_id": "60ad646bc0a51d0004fb0b25",
+    "attempts": 6,
+    "duration": 2.4541666666666835,
+    "level": 4,
+    "__v": 0
+  },
+  {
+    "_id": "60ad6477c0a51d0004fb0b26",
+    "attempts": 1,
+    "duration": 11.245833333333016,
+    "level": 5,
+    "__v": 0
+  },
+  {
+    "_id": "60ad6481c0a51d0004fb0b27",
+    "attempts": 1,
+    "duration": 9.258333333333129,
+    "level": 6,
+    "__v": 0
+  },
+  {
+    "_id": "60ad648fc0a51d0004fb0b29",
+    "attempts": 2,
+    "duration": 10.083333333333082,
+    "level": 7,
+    "__v": 0
+  },
+  {
+    "_id": "60ad649cc0a51d0004fb0b2a",
+    "attempts": 1,
+    "duration": 12.887499999999589,
+    "level": 8,
+    "__v": 0
+  },
+  {
+    "_id": "60ad64b0c0a51d0004fb0b2c",
+    "attempts": 2,
+    "duration": 13.237499999999569,
+    "level": 9,
+    "__v": 0
+  },
+  {
+    "_id": "60ad64c4c0a51d0004fb0b2d",
+    "attempts": 1,
+    "duration": 19.35416666666589,
+    "level": 10,
+    "__v": 0
+  },
+  {
+    "_id": "60ad64e5c0a51d0004fb0b35",
+    "attempts": 8,
+    "duration": 6.133333333333305,
+    "level": 11,
+    "__v": 0
+  },
+  {
+    "_id": "60ad6530c0a51d0004fb0b43",
+    "attempts": 14,
+    "duration": 10.849999999999705,
+    "level": 12,
+    "__v": 0
+  }
+]

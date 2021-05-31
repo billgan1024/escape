@@ -3,12 +3,12 @@
   "closed": false,
   "precision": 4,
   "points": [
-    {"speed":100.0,"x":3750.0,"y":660.0,},
-    {"speed":100.0,"x":4410.0,"y":660.0,},
+    {"speed":100.0,"x":2010.0,"y":270.0,},
+    {"speed":100.0,"x":2010.0,"y":750.0,},
   ],
   "parent": {
-    "name": "Paths",
-    "path": "folders/Paths.yy",
+    "name": "level17",
+    "path": "folders/Paths/level17.yy",
   },
   "resourceVersion": "1.0",
   "name": "p27",

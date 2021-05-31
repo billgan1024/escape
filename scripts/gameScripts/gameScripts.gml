@@ -42,7 +42,7 @@ function pCollision() {
 		phsp = p.hsp;
 	} else phsp = 0;
 	var q = instance_place(x, y+1, oFallingPlatform);
-	if(q != noone && q.state == 0) { snd(aPlatform); q.state = 1; q.a[2] = 240; }
+	if(q != noone && q.state == 0) { snd(aPlatform); q.state = 1; q.a[2] = 210; }
 }
 /// @param walkAcc
 /// @param runAcc
@@ -125,7 +125,7 @@ function setRotate(pathPoint, pathSpd, startingAngle) {
 	radius = point_distance(x, y, originX, originY);
 	angle = startingAngle; startAngle = startingAngle;
 	if(radial) {
-		//angularSpd is speed in degrees per second
+		//angularSpd is speed in degrees per second, and it's not divided by 4
 		angularSpd = pathSpd; 
 		spd = degtorad(angularSpd)*radius; 
 	} else {

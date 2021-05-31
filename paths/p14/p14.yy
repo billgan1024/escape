@@ -1,14 +1,16 @@
 {
   "kind": 0,
-  "closed": false,
+  "closed": true,
   "precision": 4,
   "points": [
-    {"speed":100.0,"x":2880.0,"y":690.0,},
-    {"speed":100.0,"x":2880.0,"y":1410.0,},
+    {"speed":100.0,"x":1110.0,"y":930.0,},
+    {"speed":100.0,"x":1410.0,"y":930.0,},
+    {"speed":100.0,"x":1410.0,"y":1050.0,},
+    {"speed":100.0,"x":1110.0,"y":1050.0,},
   ],
   "parent": {
-    "name": "Paths",
-    "path": "folders/Paths.yy",
+    "name": "level11",
+    "path": "folders/Paths/level11.yy",
   },
   "resourceVersion": "1.0",
   "name": "p14",

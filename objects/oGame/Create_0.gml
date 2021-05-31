@@ -20,12 +20,16 @@ borderRadius = 0;
 if(oPersistent.cameraData[lvl] == -1)
 {
 	var l = lvl;
+	var flag = array_create(room_height/vh);
 	with(oBoundary)
 	{
 		//append the x coord to the end of data[level][ycoord]
 		//note that we can append things by assuming that the position already exists
 		var yy = y/vh;
-		oPersistent.cameraData[l][yy][array_length(oPersistent.cameraData[l][yy])] = x;
+		if(!flag[yy]) {
+			oPersistent.cameraData[l][yy][0] = x; flag[yy] = true;
+		}
+		else oPersistent.cameraData[l][yy][array_length(oPersistent.cameraData[l][yy])] = x;
 	}
 	//finally, sort all of the boundaries by x-coord and adjust the right boundary x-values
 	for(var i = 0; i < array_length(oPersistent.cameraData[lvl]); i++) {

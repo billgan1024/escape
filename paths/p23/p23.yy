@@ -1,16 +1,14 @@
 {
   "kind": 0,
-  "closed": true,
+  "closed": false,
   "precision": 4,
   "points": [
-    {"speed":100.0,"x":2130.0,"y":1710.0,},
-    {"speed":100.0,"x":4110.0,"y":1710.0,},
-    {"speed":100.0,"x":4110.0,"y":2310.0,},
-    {"speed":100.0,"x":2130.0,"y":2310.0,},
+    {"speed":100.0,"x":450.0,"y":330.0,},
+    {"speed":100.0,"x":1950.0,"y":330.0,},
   ],
   "parent": {
-    "name": "Paths",
-    "path": "folders/Paths.yy",
+    "name": "level15",
+    "path": "folders/Paths/level15.yy",
   },
   "resourceVersion": "1.0",
   "name": "p23",

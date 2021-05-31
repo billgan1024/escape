@@ -1,1 +1,1 @@
-path(p15a, 8, true);
+setRotate(p22, 8, 90, false);

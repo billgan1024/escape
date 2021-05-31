@@ -3,14 +3,16 @@ post = undefined;
 headerMap = ds_map_create();
 ds_map_add(headerMap, "Content-Type", "application/json");
 transmitData = false;
-
+a = array_create(16, infinity);
 randomize();
 h = window_get_height();
+//if(os_type == os_windows) {
 window_set_size(h/3*4, h/4*3);
+a[1] = 1;
+//surface_resize(application_surface, view_wport[0], view_hport[0]);
+//}
 t = 0;
 gameSpd = 1;
-
-a = array_create(16, infinity);
 
 //input data
 enum in {
@@ -101,7 +103,7 @@ timeFactor = 1; gameTimer = 0;
 //keep a separate timeFactor and gameTimer for persistent's updates
 pTimeFactor = 1; pGameTimer = 0;
 
-a[1] = 1; a[3] = random_range(240, 300);
+a[3] = random_range(240, 300);
 
 global.ps_above = part_system_create();
 global.ps_below = part_system_create();

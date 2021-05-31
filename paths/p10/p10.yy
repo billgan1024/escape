@@ -3,12 +3,12 @@
   "closed": false,
   "precision": 4,
   "points": [
-    {"speed":100.0,"x":1200.0,"y":570.0,},
-    {"speed":100.0,"x":1200.0,"y":1410.0,},
+    {"speed":100.0,"x":720.0,"y":90.0,},
+    {"speed":100.0,"x":720.0,"y":390.0,},
   ],
   "parent": {
-    "name": "Paths",
-    "path": "folders/Paths.yy",
+    "name": "level9",
+    "path": "folders/Paths/level9.yy",
   },
   "resourceVersion": "1.0",
   "name": "p10",
