@@ -1,1 +1,1 @@
-path(p6, 8, false, 1, false);
+vpath(8);

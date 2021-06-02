@@ -102,44 +102,86 @@ function death(audio) {
 	}
 }
 
+function getRotateSpd(s) {
+	return 1 + abs(s)/4;
+}
+
 /// @param pathIndex
 /// @param pathSpeed [0-1]
 /// @param loop
-/// @param [pathPos=0]
-/// @param [absolute=true]
-function path(p, pathSpd, loop) {
-	spd = pathSpd/4; rev = !loop; var absolute = true;
-	if(argument_count >= 4) { path_position = argument3; startPos = path_position; }
-	if(argument_count >= 5) absolute = argument4;
-	path_start(p, 0, path_action_stop, absolute);
+/// @param [pos=0]
+/// @param [offsetX=default]
+/// @param [offsetY=default]
+function path(_pathIdx, _spd, _loop) {
+	//in this new implementation, the spikes are always put in relative mode
+	//if an hpath/vpath is selected, the new path will be created and destroyed on cleanup
+	//if you specify hpath/vpath as the path, only put 
+	pathIdx = _pathIdx;
+	spd = _spd/4; rotateSpd = getRotateSpd(spd); loop = _loop; 
+	if(argument_count >= 4) { pos = argument3; startPos = pos; }
+	offsetX = x-path_get_x(pathIdx, startPos); offsetY = y-path_get_y(pathIdx, startPos);
+	if(argument_count >= 6) { offsetX = argument4; offsetY = argument5; }
 }
 
-/// @param pathPoint
-/// @param pathSpd
-/// @param startingAngle
-/// @param [radial=true]
-function setRotate(pathPoint, pathSpd, startingAngle) {
-	var radial = true; if(argument_count == 4) radial = argument3;
-	originX = path_get_point_x(pathPoint, 0);  
-	originY = path_get_point_y(pathPoint, 0); 
-	radius = point_distance(x, y, originX, originY);
-	angle = startingAngle; startAngle = startingAngle;
-	if(radial) {
-		//angularSpd is speed in degrees per second, and it's not divided by 4
-		angularSpd = pathSpd; 
-		spd = degtorad(angularSpd)*radius; 
-	} else {
-		angularSpd = radtodeg((pathSpd/4)/radius);
-		spd = pathSpd/4;
+/// @param spd
+function hpath(_spd) {
+	//automatically constructs a path and updates the necessary path data for this spike
+	//spd can be positive or negative. (+) means you're moving to the right, (-) means you're
+	//returning from the left.
+	customPath = true;
+	pathIdx = path_add(); var x1 = x, x2 = x;
+	while(x1 > lb && instance_place(x1, y, oGround) == noone) x1 -= 30;
+	while(x2 < rb && instance_place(x2, y, oGround) == noone) x2 += 30;
+	x1 += 30; x2 -= 30;
+	path_add_point(pathIdx, x1, y, 100); path_add_point(pathIdx, x2, y, 100);
+	path_set_closed(pathIdx, false);
+	path_set_kind(pathIdx, 0);
+	spd = _spd/4; rotateSpd = getRotateSpd(spd); pos = (x-x1)/(x2-x1); startPos = pos;
+}
+
+/// @param spd
+function vpath(_spd) {
+	//automatically constructs a path and updates the necessary path data for this spike
+	//spd can be positive or negative. (+) means you're moving to the right, (-) means you're
+	//returning from the left.
+	customPath = true;
+	pathIdx = path_add(); var y1 = y, y2 = y;
+	while(y1 > top && instance_place(x, y1, oGround) == noone) y1 -= 30;
+	while(y2 < top+vh && instance_place(x, y2, oGround) == noone) y2 += 30;
+	y1 += 30; y2 -= 30;
+	path_add_point(pathIdx, x, y1, 100); path_add_point(pathIdx, x, y2, 100);
+	path_set_closed(pathIdx, false);
+	path_set_kind(pathIdx, 0);
+	spd = _spd/4; rotateSpd = getRotateSpd(spd); pos = (y-y1)/(y2-y1); startPos = pos;
+}
+
+//take the current path of the user and apply it to a group of spikes
+//with the option of applying circular speed and a starting angle
+//remember to set a path first before calling this function
+function generateSpikes(l, r, circularSpd, startingAngle, radial) {
+	var _pathIdx = pathIdx, _spd = spd, _loop = loop, _pos = pos, ox = offsetX, oy = offsetY, 
+	for(var i = l; i <= r; i++) {
+		with(instance_create_layer(x + lengthdir_x(60*i, startingAngle), y + lengthdir_y(60*i, startingAngle), "Enemies", oSpike)) {
+			pathIdx = _pathIdx; spd = _spd; loop = _loop;
+			angle = startingAngle; offsetX = ox; offsetY = oy; startAngle = startingAngle;
+			radius = 60*i; pos = _pos; startPos = pos;
+			if(radial) {
+				angularSpd = circularSpd; 
+				rotateSpd = getRotateSpd(degtorad(circularSpd)*radius);
+			} else {
+				//remember to divide pathSpd by 4
+				angularSpd = radtodeg((circularSpd/4)/radius);
+				rotateSpd = getRotateSpd(circularSpd/4);
+			}
+		}
 	}
+	instance_destroy();
 }
 
 function resetArea() {
 	with(oEnemy) { x = xstart; y = ystart; hsp = hspStart; }
 	with(oSpike) { 
-		path_position = 0; image_angle = 0; 
-		image_angle = 0; path_position = startPos; t = 0; 
-		angle = startAngle;
+		image_angle = 0; pos = startPos; angle = startAngle;
 	}
 	with(oCoin) { image_angle = 0; x = xstart; t = 0; a[1] = random_range(90, 120); }
 	with(oMovingPlatform) { t = 0; }
@@ -152,19 +194,19 @@ function resetArea() {
 	with(oGemOrange) { state = 0; t = 0; a[1] = random_range(15, 60); }
 }
 
-/// @param hspStart
+/// @param hsp
 /// @param [gravDir=1]
-function setEnemy() {
+function setEnemy(_hsp) {
 	if(argument_count == 2) { gravDir = argument1; gravDirStart = gravDir; }
-	hsp = argument0/4; hspStart = hsp; 
+	hsp = _hsp/4; hspStart = hsp; 
 }
 
-/// @param startDelay
-/// @param actualDelay
+/// @param delayStart 
+/// @param delay
 /// @param bulletSpd
-function setCannon() {
-	a[1] = argument0; delayStart = argument0;
-	delay = argument1; bulletSpd = argument2/4;
+function setCannon(_delayStart, _delay, _bulletSpd) {
+	a[1] = _delayStart; delayStart = _delayStart;
+	delay = _delay; bulletSpd = _bulletSpd/4;
 	if(object_index == oMissileCannon) angleStart = image_angle;
 }
 

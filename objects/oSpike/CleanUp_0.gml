@@ -1,0 +1,1 @@
+if(customPath) path_delete(pathIdx);

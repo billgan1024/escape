@@ -5,7 +5,7 @@ borderRadius = smoothApproach(borderRadius, oPlayer.freecam ? 30 : 0, 0.08);
 if(!oPlayer.dead && !oPlayer.freecam) {
 	targetX = smoothApproach(vx, clamp(oPlayer.x-vw/2+oPlayer.cameraOffset, 
 		leftBoundary, rightBoundary), 0.01);
-	targetY =  clamp(floor(oPlayer.y/vh)*vh, 0, room_height-vh);
+	targetY = clamp(floor(oPlayer.y/vh)*vh, 0, room_height-vh);
 	
 	//check if player exited the current section
 	var newLevel = targetY/vh;

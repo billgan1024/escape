@@ -1,1 +1,1 @@
-path(p4, 4, false);
+hpath(4);

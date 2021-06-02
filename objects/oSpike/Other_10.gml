@@ -1,21 +1,20 @@
-//key note: spd = actual pixels per frame
-image_angle = (image_angle+1+abs(spd/4)) % 360;
-if(angularSpd != 0) {
-	angle = (angle + angularSpd + 360) % 360;
-	x = originX + lengthdir_x(radius, angle); y = originY + lengthdir_y(radius, angle);
-} else {
-	var actualSpd = spd/path_get_length(path_index);
-	path_position += actualSpd;
-	if(!rev) path_position = frac(path_position);
-	else {
-		if(path_position <= 0) {
-			var d = -path_position;	
-			path_position += 2*d;
-			spd *= -1;
-		} else if(path_position >= 1) {
-			var d = path_position-1;	
-			path_position -= 2*d;
-			spd *= -1;
-		}
+var actualSpd = spd/path_get_length(pathIdx);
+pos += actualSpd;
+image_angle = (image_angle+rotateSpd) % 360;
+if(loop) pos = frac(pos);
+else {
+	if(pos <= 0) {
+		var d = -pos;	
+		pos += 2*d;
+		spd *= -1;
+	} else if(pos >= 1) {
+		var d = pos-1;	
+		pos -= 2*d;
+		spd *= -1;
 	}
 }
+angle = (angle + angularSpd + 360) % 360;
+//add offsetX and offsetY to account for when the spike is isolated from the original path location
+//basically, this represents that the whole path is translated by that vector
+x = path_get_x(pathIdx, pos) + lengthdir_x(radius, angle) + offsetX;
+y = path_get_y(pathIdx, pos) + lengthdir_y(radius, angle) + offsetY; 

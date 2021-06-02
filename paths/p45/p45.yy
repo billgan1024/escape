@@ -10,7 +10,7 @@
     "path": "folders/Paths/level26.yy",
   },
   "resourceVersion": "1.0",
-  "name": "p26c",
+  "name": "p45",
   "tags": [],
   "resourceType": "GMPath",
 }

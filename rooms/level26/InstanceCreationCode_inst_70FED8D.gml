@@ -1,1 +1,1 @@
-setRotate(p26a, 0.5, 90);
+generateSpikes(5, p43, 0, false, 0, 0.5, 90);
