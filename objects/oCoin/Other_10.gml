@@ -18,6 +18,7 @@ if(place_meeting(x, y, oPlayer)) {
 	part_particles_create(global.ps_below, x, y, e, 1);
 	instance_destroy();
 	with(oDoor) {
-		count = instance_number(oCoin); show_debug_message(count);
+		if(fixed) count--;
+		else count = instance_number(oCoin); 
 	}
 }

@@ -3,6 +3,7 @@ post = undefined;
 headerMap = ds_map_create();
 ds_map_add(headerMap, "Content-Type", "application/json");
 transmitData = false;
+receiveData = false;
 a = array_create(16, infinity);
 randomize();
 h = window_get_height();
@@ -49,7 +50,7 @@ gameState = gs.menu;
 //parent array: p[i] represents what screen to go back to (-1 if root)
 parent = [-1, -1, gs.menu, gs.menu, -1, gs.paused];
 //row[i], col[i] = number of rows and columns for each menu state
-row = [4, 0, 5, 5, 4, 5];
+row = [4, 0, 5, 6, 4, 5];
 col = [1, 0, 8, 1, 1, 1];
 
 //grid variables (with backtracking)

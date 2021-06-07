@@ -123,6 +123,17 @@ function path(_pathIdx, _spd, _loop) {
 	if(argument_count >= 6) { offsetX = argument4; offsetY = argument5; }
 }
 
+function open(_x, _y) {
+	return instance_place(_x, _y, oGround) == noone &&
+	instance_place(_x, _y, oEnemyBlocker) == noone;
+}
+
+//constructs a single point at the starting position as a path.
+function point() {
+	customPath = true;
+	pathIdx = path_add(); path_add_point(pathIdx, x, y, 100);
+}
+
 /// @param spd
 function hpath(_spd) {
 	//automatically constructs a path and updates the necessary path data for this spike
@@ -130,8 +141,8 @@ function hpath(_spd) {
 	//returning from the left.
 	customPath = true;
 	pathIdx = path_add(); var x1 = x, x2 = x;
-	while(x1 > lb && instance_place(x1, y, oGround) == noone) x1 -= 30;
-	while(x2 < rb && instance_place(x2, y, oGround) == noone) x2 += 30;
+	while(x1 > lb && open(x1, y)) x1 -= 30;
+	while(x2 < rb && open(x2, y)) x2 += 30;
 	x1 += 30; x2 -= 30;
 	path_add_point(pathIdx, x1, y, 100); path_add_point(pathIdx, x2, y, 100);
 	path_set_closed(pathIdx, false);
@@ -146,13 +157,14 @@ function vpath(_spd) {
 	//returning from the left.
 	customPath = true;
 	pathIdx = path_add(); var y1 = y, y2 = y;
-	while(y1 > top && instance_place(x, y1, oGround) == noone) y1 -= 30;
-	while(y2 < top+vh && instance_place(x, y2, oGround) == noone) y2 += 30;
+	while(y1 > top && open(x, y1)) y1 -= 30;
+	while(y2 < top+vh && open(x, y2)) y2 += 30;
 	y1 += 30; y2 -= 30;
 	path_add_point(pathIdx, x, y1, 100); path_add_point(pathIdx, x, y2, 100);
 	path_set_closed(pathIdx, false);
 	path_set_kind(pathIdx, 0);
 	spd = _spd/4; rotateSpd = getRotateSpd(spd); pos = (y-y1)/(y2-y1); startPos = pos;
+	log(pos);
 }
 
 //take the current path of the user and apply it to a group of spikes
@@ -175,21 +187,27 @@ function generateSpikes(l, r, circularSpd, startingAngle, radial) {
 			}
 		}
 	}
-	instance_destroy();
+	//deactivate this spike
+	image_alpha = 0; mask_index = sNone;
 }
 
 function resetArea() {
 	with(oEnemy) { x = xstart; y = ystart; hsp = hspStart; }
 	with(oSpike) { 
 		image_angle = 0; pos = startPos; angle = startAngle;
+		x = path_get_x(pathIdx, pos) + lengthdir_x(radius, angle) + offsetX;
+		y = path_get_y(pathIdx, pos) + lengthdir_y(radius, angle) + offsetY;
 	}
 	with(oCoin) { image_angle = 0; x = xstart; t = 0; a[1] = random_range(90, 120); }
 	with(oMovingPlatform) { t = 0; }
 	with(oFallingPlatform) { state = 0; a[1] = random_range(40, 60); a[2] = infinity; }
-	with(oBullet) instance_destroy();
-	with(oMissile) instance_destroy();
+	instance_destroy(oBullet);
+	instance_destroy(oMissile, false);	
 	with(oBulletCannon) { a[1] = delayStart; a[2] = infinity; }
-	with(oMissileCannon) { a[1] = delayStart; a[2] = infinity; image_angle = angleStart; }
+	with(oMissileCannon) { 
+		a[1] = delayStart; a[2] = infinity; image_angle = angleStart; 
+		len = 0; laserAlpha = 0;	
+	}
 	with(oGem) { t = 0; a[1] = random_range(15, 60); }
 	with(oGemOrange) { state = 0; t = 0; a[1] = random_range(15, 60); }
 }
@@ -257,4 +275,52 @@ function lightCollision(x1, y1, x2, y2, qi, qp, qn)
 	r[1] = rx;
 	r[2] = ry;
 	return r;
+}
+
+//for testing purposes only, since this function takes a lot of time to execute
+function createLevel(img) {
+	var w = sprite_get_width(img); // image width
+	var h = sprite_get_height(img); // image height
+	var surf = surface_create(w, h); // create a surface
+
+	surface_set_target(surf); // set the surface target
+	draw_sprite(img, 0, 0, 0); // draw the image to the surface
+	surface_reset_target(); // reset the surface target
+	for (var i = 0; i < w; i++) { // cycle through width of image
+    	for (var j = 0; j < h; j++) { // cycle through height of image
+	        // get the pixel color at the given coordinates (SLOW FUNCTION, use graciously)
+	        var col = surface_getpixel(surf, i, j);
+	        var boundary = make_colour_rgb(0, 104, 171), ground = make_colour_rgb(22, 24, 26);
+	        var player = make_colour_rgb(34, 197, 94);
+			var platform = make_colour_rgb(107, 114, 128);
+			var tmp = make_colour_rgb(249, 115, 22);
+	        if(col == boundary) {
+	        	instance_create_layer(60*i, 60*j, "Persistent", oBoundary);
+	        	instance_create_layer(60*i, 60*j, "Ground", oGround);
+	        }
+	        else if(col == ground) instance_create_layer(60*i, 60*j, "Ground", oGround);
+	        else if(col == player) instance_create_layer(60*i, 60*j, "Player", oPlayer);
+	        else if(col == platform) instance_create_layer(60*i, 60*j, "Ground", oFallingPlatform);
+	        else if(col == tmp) {
+	        	for(var k = 0; k < 360; k += 90) {
+	        		with(instance_create_layer(60*i, 60*j, "Enemies", oBulletCannon)) {
+	        			image_angle = k;
+	        			setCannon(120, 480, 18);
+	        		}
+	        	}
+	        }
+    	}
+	}
+}
+
+function missileCollision(obj) {
+	if(place_meeting(x, y, obj)) 
+	{
+		while(!place_meeting(x+lengthdir_x(1, dir), y+lengthdir_y(1, dir), obj))
+		{
+			x += lengthdir_x(1, dir);
+			y += lengthdir_y(1, dir);
+		}
+		instance_destroy();
+	}
 }

@@ -1,1 +1,2 @@
-generateSpikes(4, 4, p22, 0, false, 0, 8, 90, false);
+point();
+generateSpikes(4, 4, 8, 90, false);

@@ -1,7 +1,7 @@
 checkInputPressed(); 
-pTimeFactor = min(delta_time/1000000*debugFps[fpsLevel]*gameSpd, 8);
+pTimeFactor = min(delta_time/1000000*debugFps[fpsLevel], 8);
 if(window_has_focus() && (gameState != gs.paused && gameState != gs.optionsGame)) {
-	timeFactor = min(delta_time/1000000*debugFps[fpsLevel]*gameSpd, 8);
+	timeFactor = min(delta_time/1000000*debugFps[fpsLevel], 8);
 } else {
 	timeFactor = 0; 
 }	
@@ -15,7 +15,7 @@ if(window_has_focus() != wasFocused) {
 wasFocused = window_has_focus();
 //update everything before persistent
 gameTimer += timeFactor; 
-if(timeFactor != 0 && floor(gameTimer) != floor(gameTimer - timeFactor))
+if(floor(gameTimer) != floor(gameTimer - timeFactor))
 {
 	var _remainder = floor(gameTimer) - floor(gameTimer - timeFactor);
 	

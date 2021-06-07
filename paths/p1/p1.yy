@@ -1,14 +1,18 @@
 {
   "kind": 0,
-  "closed": false,
+  "closed": true,
   "precision": 4,
   "points": [
-    {"speed":100.0,"x":1050.0,"y":1410.0,},
-    {"speed":100.0,"x":1050.0,"y":150.0,},
+    {"speed":100.0,"x":690.0,"y":570.0,},
+    {"speed":100.0,"x":1110.0,"y":570.0,},
+    {"speed":100.0,"x":1110.0,"y":690.0,},
+    {"speed":100.0,"x":1470.0,"y":690.0,},
+    {"speed":100.0,"x":1470.0,"y":870.0,},
+    {"speed":100.0,"x":690.0,"y":870.0,},
   ],
   "parent": {
-    "name": "level3",
-    "path": "folders/Paths/level3.yy",
+    "name": "level4",
+    "path": "folders/Paths/level4.yy",
   },
   "resourceVersion": "1.0",
   "name": "p1",

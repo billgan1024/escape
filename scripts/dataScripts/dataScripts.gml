@@ -4,6 +4,7 @@ function init() {
 	data[?"sfx"] = 100;
 	data[?"timer"] = false;
 	data[?"lvl"] = 32;
+	data[?"toggle-sprint"] = false;
 	save();
 }
 

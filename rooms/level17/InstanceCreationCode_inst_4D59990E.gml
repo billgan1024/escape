@@ -1,2 +1,2 @@
-path(p25, 0, false);
-setRotate(10, 0, false);
+point();
+generateSpikes(4.5, 4.5, 10, 0, false);

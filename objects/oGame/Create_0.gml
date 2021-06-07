@@ -1,3 +1,6 @@
+//sLevel = sprite_add("level27.png", 1, false, false, 0, 0);
+//createLevel(sLevel);
+//sprite_delete(sLevel);
 a = array_create(16, infinity);
 shake = 0;
 
@@ -12,6 +15,10 @@ yLevel = -1; leftBoundary = 0; rightBoundary = 0;
 resetAttempts = false;
 
 borderRadius = 0;
+
+//data visualization
+surf = -1;
+get = undefined;
 
 //update camera data:
 //get x and y coords of all boundaries in the room

@@ -65,6 +65,7 @@ function handleMenu() {
 			r = (r-1+row[gameState]) % row[gameState];
 			snd(aScroll); clearPressed();
 		}
+		//for horizontal menu keys, only play the sound & update if there's more than one column
 		if((input2[in.right] || input2[in.keyD]) && horizontal) {
 			if((gameState == gs.options || gameState == gs.optionsGame) && (r == 0 || r == 1)) {
 				if(r == 0) {
@@ -134,7 +135,7 @@ function handleMenu() {
 				//options and optionsGame represent the same state
 				case gs.options:
 				case gs.optionsGame:
-				if(r == 4) goBack(); 
+				if(r == 5) goBack(); 
 				else {
 					switch(r) {
 						case 2:
@@ -146,7 +147,12 @@ function handleMenu() {
 						break;
 					
 						case 3:
-						ds_map_replace(data, "timer", !ds_map_find_value(data, "timer"));
+						ds_map_replace(data, "timer", !data[?"timer"]);
+						save(); clearPressed();
+						break;
+						
+						case 4:
+						ds_map_replace(data, "toggle-sprint", !data[?"toggle-sprint"]);
 						save(); clearPressed();
 						break;
 					}

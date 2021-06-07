@@ -13,7 +13,7 @@
     {"inherit":false,"visible":false,"xview":0,"yview":0,"wview":1366,"hview":768,"xport":0,"yport":0,"wport":1366,"hport":768,"hborder":32,"vborder":32,"hspeed":-1,"vspeed":-1,"objectId":null,},
   ],
   "layers": [
-    {"pathId":{"name":"p43","path":"paths/p43/p43.yy",},"colour":4278190335,"visible":true,"depth":0,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":30,"gridY":30,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"Paths","tags":[],"resourceType":"GMRPathLayer",},
+    {"pathId":null,"colour":4278190335,"visible":true,"depth":0,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":30,"gridY":30,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"Paths","tags":[],"resourceType":"GMRPathLayer",},
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"oBoundary","path":"objects/oBoundary/oBoundary.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":2580.0,"y":0.0,"resourceVersion":"1.0","name":"inst_1E288C92","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"oBoundary","path":"objects/oBoundary/oBoundary.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":0.0,"y":0.0,"resourceVersion":"1.0","name":"inst_7CDAE326","tags":[],"resourceType":"GMRInstance",},
@@ -63,7 +63,7 @@
         {"properties":[],"isDnd":false,"objectId":{"name":"oBulletCannon","path":"objects/oBulletCannon/oBulletCannon.yy",},"inheritCode":false,"hasCreationCode":true,"colour":4294967295,"rotation":270.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":4590.0,"y":90.0,"resourceVersion":"1.0","name":"inst_57D1BECA","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"oMissileCannon","path":"objects/oMissileCannon/oMissileCannon.yy",},"inheritCode":false,"hasCreationCode":true,"colour":4294967295,"rotation":315.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":2790.0,"y":450.0,"resourceVersion":"1.0","name":"inst_341AE66","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"oMissileCannon","path":"objects/oMissileCannon/oMissileCannon.yy",},"inheritCode":false,"hasCreationCode":true,"colour":4294967295,"rotation":225.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":5070.0,"y":450.0,"resourceVersion":"1.0","name":"inst_7C6C40D8","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[],"isDnd":false,"objectId":{"name":"oSpike","path":"objects/oSpike/oSpike.yy",},"inheritCode":false,"hasCreationCode":true,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1200.0,"y":510.0,"resourceVersion":"1.0","name":"inst_2842FFC2","tags":[],"resourceType":"GMRInstance",},
+        {"properties":[],"isDnd":false,"objectId":{"name":"oSpike","path":"objects/oSpike/oSpike.yy",},"inheritCode":false,"hasCreationCode":true,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1200.0,"y":510.0,"resourceVersion":"1.0","name":"inst_61E36922","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":600,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":30,"gridY":30,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"Enemies","tags":[],"resourceType":"GMRInstanceLayer",},
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"oBulletLight","path":"objects/oBulletLight/oBulletLight.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":-150.0,"y":-120.0,"resourceVersion":"1.0","name":"inst_6CBC7820","tags":[],"resourceType":"GMRInstance",},
@@ -195,7 +195,7 @@
     {"name":"inst_3956BC44","path":"rooms/level26/level26.yy",},
     {"name":"inst_501943BA","path":"rooms/level26/level26.yy",},
     {"name":"inst_70FED8D","path":"rooms/level26/level26.yy",},
-    {"name":"inst_2842FFC2","path":"rooms/level26/level26.yy",},
+    {"name":"inst_61E36922","path":"rooms/level26/level26.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,

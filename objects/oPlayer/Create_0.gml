@@ -53,6 +53,7 @@ a = array_create(16, infinity);
 canMove = false;
 a[1] = inputDelay;
 
+toggleSprint = false;
 //input: key down
 //input2: key pressed
 //input3: key released

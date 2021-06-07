@@ -12,5 +12,3 @@ else draw_text(vx+vw-10, vy+vh+6, "Attempt " + string(oPersistent.attempts));
 draw_set_alpha(0.1);
 draw_rectangle_width(vx, vy, vx+vw, vy+vh, borderRadius);
 draw_set_alpha(1);
-
-//draw the boundary at the appropriate depth

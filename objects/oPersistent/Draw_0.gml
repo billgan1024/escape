@@ -46,7 +46,7 @@ switch(gameState) {
 	case gs.options:
 	case gs.optionsGame:
 	var by = 400;
-	for(var i = 0; i < 4; i++) {
+	for(var i = 0; i < 5; i++) {
 		var str = "";
 		switch(i) {	
 			case 0: str = "Sound FX: " + string(ds_map_find_value(data, "sfx")) + "%";
@@ -56,6 +56,8 @@ switch(gameState) {
 			case 2: str = "Fullscreen: " + (ds_map_find_value(data, "fs") ? "On" : "Off");
 			break;
 			case 3: str = "Timer: " + (ds_map_find_value(data, "timer") ? "On" : "Off");
+			break;
+			case 4: str = "Toggle Sprint: " + (ds_map_find_value(data, "toggle-sprint") ? "On" : "Off");
 			break;
 			//add controls later
 			/*case 4: str = "Controls";
@@ -67,7 +69,7 @@ switch(gameState) {
 		}
 	}
 	draw_text(vx+vw/2, vy+by+7*120, "Back");
-	if(r == 4) {
+	if(r == 5) {
 		updateSelectorTo(vw/2, by+7*120, string_width(string("Back")), string_height(string("Back"))); 
 	}
 	break;

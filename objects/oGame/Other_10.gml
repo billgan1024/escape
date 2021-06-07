@@ -1,5 +1,18 @@
 //show_debug_message(vx);
 t += 1/240;
+//get all death locations for this level
+if(oPersistent.receiveData && !surface_exists(surf)) {
+	surf = surface_create(room_width, room_height);
+	surface_set_target(surf);
+	draw_clear(c_white);
+	draw_set_colour(c_black);
+	with(oGround) {
+		draw_rectangle(x, y, x + 60*image_xscale - 1, y + 60*image_yscale-1, false);
+	}
+	get = http_request("http://escape-server-1024.herokuapp.com/deaths", "GET", oPersistent.headerMap, "");
+	surface_reset_target();
+	surface_save(surf, room_get_name(room) + ".png");
+}
 shake = approach(shake, 0, 0.08);
 borderRadius = smoothApproach(borderRadius, oPlayer.freecam ? 30 : 0, 0.08);
 if(!oPlayer.dead && !oPlayer.freecam) {

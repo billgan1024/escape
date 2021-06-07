@@ -2,9 +2,9 @@
 cameraOffset = 0; //smoothApproach(cameraOffset, hsp*50, 0.004);
 //get input
 if(!dead) {
-	if(canMove) checkInput();
 	checkEnemy();
 }
+if(!dead && canMove) checkInput();
 
 var right = input[in.right] || input[in.keyD];
 var left = input[in.left] || input[in.keyA];
@@ -13,7 +13,7 @@ dir = right-left;
 jump = input2[in.up] || input2[in.keyW] || input2[in.space];
 
 jumpHeld = input[in.up] || input[in.keyW] || input[in.space];
-dash = input[in.shift];
+dash = input[in.shift] || toggleSprint;
 down = input[in.down] || input[in.keyS];
 
 //update camera speed variable 
