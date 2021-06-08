@@ -4,7 +4,6 @@ jumpSpd = 5.4;
 walkAcc = 3;
 airAcc = 0.4;
 bufferTime = 15;
-cameraOffset = 0;
 boosted = false;
 phsp = 0;
 cameraSpd = 0;
@@ -62,6 +61,6 @@ input2 = array_create(in.length);
 input3 = array_create(in.length);
 
 //update the view instantly
-camera_set_view_pos(view_camera[0], clamp(oPlayer.x - vw/2 + oPlayer.cameraOffset, 0, room_width-vw), clamp(floor(oPlayer.y/vh)*vh, 0, room_height/vh-1));
+camera_set_view_pos(view_camera[0], clamp(oPlayer.x - vw/2, 0, room_width-vw), clamp(floor(oPlayer.y/vh)*vh, 0, room_height/vh-1));
 //increase attempts
 oPersistent.attempts++;

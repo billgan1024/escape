@@ -33,7 +33,6 @@ if(freecam) {
 //check if you're grabbing onto any walls and update grip timer if necessary
 checkGrip();
 
-cameraOffset = smoothApproach(cameraOffset, hsp*100, 0.008);
 switch(state)
 {
 	case "ground": 

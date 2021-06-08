@@ -39,7 +39,7 @@ function vCollision() {
 function pCollision() {
 	var p = instance_place(x, y+1, oMovingPlatform); 
 	if(p != noone) {
-		phsp = p.hsp;
+		phsp = p.hsp; log(x-p.x);
 	} else phsp = 0;
 	var q = instance_place(x, y+1, oFallingPlatform);
 	if(q != noone && q.state == 0) { snd(aPlatform); q.state = 1; q.a[2] = 210; }
@@ -228,11 +228,17 @@ function setCannon(_delayStart, _delay, _bulletSpd) {
 	if(object_index == oMissileCannon) angleStart = image_angle;
 }
 
+function setLaserInterval(_delayStart, _delayActive, _delayRest) {
+	a[1] = _delayStart; delayStart = _delayStart;
+	delayActive = _delayActive; delayRest = _delayStart;
+}
+
 /// @param radius
 /// @param period
 /// @param [flip=false]
 function setWave() {
-	if(object_index == oCoin) sway = true;
+	//note: setWave can also be used to set laser cannon stuff
+	if(object_index == oCoin || object_index == oLaserCannon) sway = true;
 	radius = argument0; period = argument1;
 	if(argument_count == 3) flip = argument2;
 }
