@@ -24,6 +24,7 @@
     {"id":{"name":"oBulletLight","path":"objects/oBulletLight/oBulletLight.yy",},"order":28,},
     {"id":{"name":"p1","path":"paths/p1/p1.yy",},"order":0,},
     {"id":{"name":"level27","path":"rooms/level27/level27.yy",},"order":35,},
+    {"id":{"name":"oSpikes","path":"objects/oSpikes/oSpikes.yy",},"order":36,},
     {"id":{"name":"oLaserCannon","path":"objects/oLaserCannon/oLaserCannon.yy",},"order":35,},
     {"id":{"name":"p14","path":"paths/p14/p14.yy",},"order":0,},
     {"id":{"name":"level14","path":"rooms/level14/level14.yy",},"order":21,},

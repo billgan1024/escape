@@ -66,11 +66,18 @@ function updateVsp() {
 }
 
 function checkReleasedWallKick() {
-	if(khsp > 0 && hsp+khsp < 0 && input3[in.left]) khsp /= 2;
-	if(khsp < 0 && hsp+khsp > 0 && input3[in.right]) khsp /= 2;
+	if(khsp > 0 && hsp+khsp < wallKickSpd/2 && input3[in.left]) khsp /= 2;
+	if(khsp < 0 && hsp+khsp > -wallKickSpd/2 && input3[in.right]) khsp /= 2;
 }
 
 function checkGrip() {
+	//grip = -1, 0, 1 depending on whether the player is touching a side wall for delayed 
+	//walljump time
+	//first, check if the grip buffer should be set to false prematurely 
+	//this is when you let go of the movement key
+	if(input3[in.right] && gripDirLastFrame == -1) { gripTimer = false; a[5] = infinity; }
+	if(input3[in.left] && gripDirLastFrame == 1) { gripTimer = false; a[5] = infinity; }
+	if(sign(hsp+khsp) == sign(gripDirLastFrame)) { gripTimer = false; a[5] = infinity; }
 	if(place_meeting(x+1, y, oGround)) grip = 1;
 	else if(place_meeting(x-1, y, oGround)) grip = -1;
 	else grip = 0;
@@ -206,7 +213,11 @@ function resetArea() {
 	with(oBulletCannon) { a[1] = delayStart; a[2] = infinity; }
 	with(oMissileCannon) { 
 		a[1] = delayStart; a[2] = infinity; image_angle = angleStart; 
-		len = 0; laserAlpha = 0;	
+		len = 0; laserAlpha = 0;
+	}
+	with(oLaserCannon) {
+		state = 0; a[1] = delayStart; a[2] = infinity; t = 0; len = 0; a[3] = 8;
+		image_angle = angleStart;
 	}
 	with(oGem) { t = 0; a[1] = random_range(15, 60); }
 	with(oGemOrange) { state = 0; t = 0; a[1] = random_range(15, 60); }
@@ -228,9 +239,17 @@ function setCannon(_delayStart, _delay, _bulletSpd) {
 	if(object_index == oMissileCannon) angleStart = image_angle;
 }
 
+//for laser cannons 
+//set laser interval + speed
+/// @param delayStart
+/// @param delayActive
+/// @param delayRest
+/// @param [angularSpd = 0]
 function setLaserInterval(_delayStart, _delayActive, _delayRest) {
+	var _angularSpd = 0; if(argument_count == 4) angularSpd = argument3;
 	a[1] = _delayStart; delayStart = _delayStart;
-	delayActive = _delayActive; delayRest = _delayStart;
+	delayActive = _delayActive; delayRest = _delayRest; angleStart = image_angle;
+	angularSpd = _angularSpd;
 }
 
 /// @param radius

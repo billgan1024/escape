@@ -79,7 +79,7 @@ switch(state)
 		if((place_meeting(x, y+1, oGround) || place_meeting(x, y+1, oPlatform)) && vsp >= 0) { state = "ground"; }
 	break;
 	case "djump":
-		if(!dead) smoke(c_gray, 120, -0.005, false, 0.5);
+		if(!dead) smoke(c_gray, 120, -0.005, true, 0.5);
 		checkReleasedWallKick();
 		khsp = approach(khsp, 0, fric);
 		updateVsp();
