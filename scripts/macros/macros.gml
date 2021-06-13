@@ -16,6 +16,5 @@
 
 //global gravity
 #macro grav 0.058
-#macro maxGrav 6.8
+#macro maxGrav 6.5
 
-#macro log show_debug_message

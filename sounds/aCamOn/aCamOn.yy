@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "aCamOn.ogg",
-  "duration": 0.319694,
+  "duration": 0.118832,
   "parent": {
     "name": "SFX",
     "path": "folders/Sounds/SFX.yy",

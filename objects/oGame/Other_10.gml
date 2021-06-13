@@ -5,7 +5,7 @@ if(oPersistent.receiveData && !surface_exists(surf)) {
 	surf = surface_create(room_width, room_height);
 	surface_set_target(surf);
 	draw_clear(c_white);
-	draw_set_colour(c_black);
+	dscolour(c_black);
 	with(oGround) {
 		draw_rectangle(x, y, x + 60*image_xscale - 1, y + 60*image_yscale-1, false);
 	}

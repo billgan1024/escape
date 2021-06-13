@@ -1,21 +1,10 @@
 function updateSelector() {
-	selectorFrom.xpos = smoothApproach(selectorFrom.xpos, selectorTo.xpos, 0.1);
-	selectorFrom.ypos = smoothApproach(selectorFrom.ypos, selectorTo.ypos, 0.1);
-	selectorFrom.w = smoothApproach(selectorFrom.w, selectorTo.w, 0.1);
-	selectorFrom.h = smoothApproach(selectorFrom.h, selectorTo.h, 0.1);
+	for(var i = 0; i < 4; i++) selectorFrom[i] = smoothApproach(selectorFrom[i], selectorTo[i], snap ? 1 : 0.1); 
 }
 
-function updateSelectorTo(nx, ny, nw, nh) {
-	selectorTo.xpos = nx;
-	selectorTo.ypos = ny;
-	selectorTo.w = nw+20;
-	selectorTo.h = nh+6;
-	if(snap) {
-		selectorFrom.xpos = selectorTo.xpos;
-		selectorFrom.ypos = selectorTo.ypos;
-		selectorFrom.w = selectorTo.w;
-		selectorFrom.h = selectorTo.h;
-	}
+function updateSelectorTo() {
+	for(var i = 0; i < 4; i++) selectorTo[i] = argument[i]; 
+	selectorTo[2] += 20; selectorTo[3] += 6;
 }
 
 function draw_rectangle_width(x1, y1, x2, y2, w)
@@ -57,16 +46,16 @@ function handleMenu() {
 	if(gameState != gs.game)
 	{
 		//menu navigation controls (only activate if state == 0 and the selector isn't moving)
-		if(input2[in.down] || input2[in.keyS]) {
+		if(input2[in.down]) {
 			r = (r+1) % row[gameState];
 			snd(aScroll); clearPressed(); 
 		}
-		if(input2[in.up] || input2[in.keyW]) {
+		if(input2[in.up]) {
 			r = (r-1+row[gameState]) % row[gameState];
 			snd(aScroll); clearPressed();
 		}
 		//for horizontal menu keys, only play the sound & update if there's more than one column
-		if((input2[in.right] || input2[in.keyD]) && horizontal) {
+		if(input2[in.right] && horizontal) {
 			if((gameState == gs.options || gameState == gs.optionsGame) && (r == 0 || r == 1)) {
 				if(r == 0) {
 					//update sound
@@ -85,7 +74,7 @@ function handleMenu() {
 				snd(aScroll); clearPressed();
 			}
 		}
-		if((input2[in.left] || input2[in.keyA]) && horizontal) {
+		if(input2[in.left] && horizontal) {
 			if((gameState == gs.options || gameState == gs.optionsGame) && (r == 0 || r == 1)) {
 				if(r == 0) {
 					//update sound

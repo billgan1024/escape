@@ -1,5 +1,5 @@
 walkSpd = 2.9; 
-runSpd = 3.8;
+runSpd = 3.7;
 jumpSpd = 5.4;
 walkAcc = 3;
 airAcc = 0.4;
@@ -7,6 +7,7 @@ bufferTime = 15;
 boosted = false;
 phsp = 0;
 cameraSpd = 0;
+airRes = 0.1; 
 
 //variable to track when the player loses grip on a wall (coyote time implementation for wall jump)
 //basically keep track of the grip direction and store it in a variable whenever it changes
@@ -16,7 +17,6 @@ gripLastFrame = 0;
 gripDirLastFrame = 0;
 gripTimer = false;
 gripBuffer = 20;
-
 //input variables
 dir = 1;
 jump = false;

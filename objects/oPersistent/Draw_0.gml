@@ -1,11 +1,14 @@
 //draw paused tint
 if(gameState == gs.paused || gameState == gs.optionsGame) draw_sprite_ext(sBlack, 0, vx, vy, vw, vh, 0, c_white, 0.6);
 //draw the title based on the gameState
-dshalign(fa_center); dsvalign(fa_middle); dscolour(c_white); dsfont(fTitle); dsalpha(alpha);
+dsfont(fTitle); dsalpha(alpha);
 draw_text(vx+vw/2, vy+wave(195, 205, 2.5, t), titles[gameState]);
 dsfont(fMain);
 //draw_text(100, 100, a[2]);
 switch(gameState) {
+	case gs.username:
+	break;
+	
 	case gs.menu:
 	var by = 500;
 	for(var i = 0; i < 4; i++) {
@@ -18,7 +21,7 @@ switch(gameState) {
 	dshalign(fa_left); dsvalign(fa_bottom);
 	draw_text(vx+10, vy+vh+6, "Bill Gan");
 	dshalign(fa_right); dsfont(fSmall);
-	draw_text(vx+vw-10, vy+vh+6, "Arrow/WASD Keys: Navigate\nEnter: Select\nEsc: Back");
+	draw_text(vx+vw-10, vy+vh+6, navigationHelp);
 	dsfont(fMain); dshalign(fa_center); dsvalign(fa_center);
 	break;
 	
@@ -86,13 +89,15 @@ switch(gameState) {
 }
 //draw selector rectangle if you're not in game
 if(gameState != gs.game) {
-	var sx = selectorFrom.xpos, sy = selectorFrom.ypos;
-	var sw = selectorFrom.w, sh = selectorFrom.h;
+	var sx = selectorFrom[0], sy = selectorFrom[1], sw = selectorFrom[2], sh = selectorFrom[3];
 	var xx = vx+sx-sw/2, yy = vy+sy-sh/2;
 	dsalpha(alpha/5);
 	draw_rectangle_width(xx, yy, xx+sw, yy+sh-5, 3);
-	dsalpha(1);
 }
 
 //draw transition tint if we're switching rooms
 draw_sprite_ext(sBlack, 0, vx, vy, vw, vh, 0, c_white, tAlpha);
+
+//reset to default font settings (note that in the draw code, all deviations from the default
+//settings are resolved as soon as possible)
+dsalpha(1);

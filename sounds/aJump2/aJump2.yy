@@ -10,8 +10,8 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "aJump2",
-  "duration": 0.434569,
+  "soundFile": "aJump2.ogg",
+  "duration": 0.390238,
   "parent": {
     "name": "SFX",
     "path": "folders/Sounds/SFX.yy",

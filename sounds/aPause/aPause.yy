@@ -10,8 +10,8 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "aPause",
-  "duration": 0.527449,
+  "soundFile": "aPause.ogg",
+  "duration": 0.248651,
   "parent": {
     "name": "SFX",
     "path": "folders/Sounds/SFX.yy",

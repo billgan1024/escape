@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "aJump.ogg",
-  "duration": 0.449082,
+  "duration": 0.191984,
   "parent": {
     "name": "SFX",
     "path": "folders/Sounds/SFX.yy",

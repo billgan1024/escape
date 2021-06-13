@@ -6,15 +6,15 @@ if(!dead) {
 }
 if(!dead && canMove) checkInput();
 
-var right = input[in.right] || input[in.keyD];
-var left = input[in.left] || input[in.keyA];
+var right = input[in.right];
+var left = input[in.left];
 dir = right-left;
 
-jump = input2[in.up] || input2[in.keyW] || input2[in.space];
+jump = input2[in.up] || input2[in.space];
 
-jumpHeld = input[in.up] || input[in.keyW] || input[in.space];
+jumpHeld = input[in.up] || input[in.space];
 dash = input[in.shift] || toggleSprint;
-down = input[in.down] || input[in.keyS];
+down = input[in.down];
 
 //update camera speed variable 
 cameraSpd = approach(cameraSpd, 5.5*dir, 0.4);
@@ -63,11 +63,11 @@ switch(state)
 		{
 			if(grip != 0) {
 				vsp = -jumpSpd;	khsp = wallKickSpd*-grip; snd(aJump);
-				//state = "djump";
+				wallJumpParticles(grip);	
 				boosted = false;
 			} else if(gripTimer) {
 				vsp = -jumpSpd;	khsp = wallKickSpd*-gripDirLastFrame; snd(aJump); 
-				//state = "djump"; 
+				wallJumpParticles(gripDirLastFrame);
 				boosted = false;
 			} else {
 				khsp = 0;
@@ -87,9 +87,13 @@ switch(state)
 		if(jump || boostTimer)
 		{
 			if(grip != 0) {
-				vsp = -jumpSpd;	khsp = wallKickSpd*-grip; snd(aJump); state = "jump"; boosted = false;
+				vsp = -jumpSpd;	khsp = wallKickSpd*-grip; snd(aJump); 
+				wallJumpParticles(grip);
+				state = "jump"; boosted = false;
 			} else if(gripTimer) {
-				vsp = -jumpSpd;	khsp = wallKickSpd*-gripDirLastFrame; snd(aJump); state = "jump"; boosted = false;
+				vsp = -jumpSpd;	khsp = wallKickSpd*-gripDirLastFrame; snd(aJump);
+				wallJumpParticles(gripDirLastFrame);
+				state = "jump"; boosted = false;
 			} else {
 				//jump buffer (like geometry dash)
 				jumpTimer = true; a[3] = jumpBuffer;	

@@ -7,7 +7,7 @@ if(place_meeting(x+lengthdir_x(spd, dir), y+lengthdir_y(spd, dir), oBulletBlocke
 		x += lengthdir_x(1, dir);
 		y += lengthdir_y(1, dir);
 	}
-	instance_destroy();
+	instance_destroy(id, false);
 }
 
 x += lengthdir_x(spd, dir);

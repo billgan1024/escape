@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "aCamOff.ogg",
-  "duration": 0.302211,
+  "duration": 0.098583,
   "parent": {
     "name": "SFX",
     "path": "folders/Sounds/SFX.yy",

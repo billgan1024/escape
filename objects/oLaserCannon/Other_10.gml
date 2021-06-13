@@ -2,7 +2,6 @@ t += 1/240;
 laserWidth = wave(0.8, 1, 0.15, t); 
 laserBurstSize = random_range(0.5, 1);
 
-
 if(sway) {
 	image_angle = wave(angleStart-radius, angleStart+radius, period, t*(flip ? -1 : 1));
 }

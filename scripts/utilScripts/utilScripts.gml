@@ -76,8 +76,8 @@ function dwave(from, to, period, t) {
 }
 
 /// @param current
-/// @param  target
-/// @param  turnSpd
+/// @param target
+/// @param turnSpd
 function angleApproach(current, target, turnSpd) {
 	//we assume that all angles are in [0, 360) and the angle returned will also be in [0, 360)
 	var d = angle_difference(current, target), angle1 = (current-turnSpd+360)%360, angle2 = (current+turnSpd)%360;
@@ -94,8 +94,8 @@ function inView()
 }
 
 function inBoundary() {
-	return x >= oGame.leftBoundary && x <= oGame.rightBoundary+vw 
-	&& y >= oGame.yLevel*vh && y <= oGame.yLevel*vh+vh; 
+	return x >= oGame.leftBoundary-sprite_width/2-60 && x <= oGame.rightBoundary+vw+sprite_width/2+60 
+	&& y >= oGame.yLevel*vh-sprite_height/2-60 && y <= oGame.yLevel*vh+vh+sprite_height/2+60; 
 }
 
 //remember that arrays are passed by reference but if ur changing this array
@@ -116,4 +116,12 @@ function drawHitbox() {
 	draw_line(bbox_left, bbox_top, bbox_left, bbox_bottom);
 	draw_line(bbox_right, bbox_top, bbox_right, bbox_bottom);
 	draw_line(bbox_left, bbox_bottom, bbox_right, bbox_bottom);
+}
+
+function log() {
+	var str = "";
+	for(var i = 0; i < argument_count; i++) {
+		str += string(argument[i]) + " ";	
+	}
+	show_debug_message(str);
 }
