@@ -1,10 +1,9 @@
 walkSpd = 2.9; 
-runSpd = 3.7;
-jumpSpd = 5.4;
+runSpd = 3.6;
+jumpSpd = 5.3;
 walkAcc = 3;
 airAcc = 0.4;
 bufferTime = 15;
-boosted = false;
 phsp = 0;
 cameraSpd = 0;
 airRes = 0.1; 
@@ -17,6 +16,7 @@ gripLastFrame = 0;
 gripDirLastFrame = 0;
 gripTimer = false;
 gripBuffer = 20;
+wallJumpedThisFrame = false;
 //input variables
 dir = 1;
 jump = false;
@@ -28,18 +28,15 @@ grip = false;
 hsp = 0;
 vsp = 0;
 khsp = 0;
-fric = 0.025;
-wallKickSpd = 4.5;
+fric = 0.024;
+wallKickSpd = 4.4;
 
-//jumptimer for when you're pressing jump as you're falling 
-jumpTimer = false;
+//preparedJump for when you're pressing jump as you're falling 
+preparedJump = false;
 jumpBuffer = 15;
 
-//boost timer for when you're pressing jump as you're still in boost mode
-boostTimer = false;
-
 //state = "ground", "buffer", "jump", "fall", "blink"
-state = "ground"; prevState = "";
+state = "ground"; 
 
 //death variable so that the player never gets destroyed
 dead = false;

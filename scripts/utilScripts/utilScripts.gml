@@ -44,20 +44,6 @@ function smoothApproach() {
 	}
 }
 
-function update() {
-	if(variable_instance_exists(id, "a"))
-	{
-		for(var i = 1; i <= 15; i++) 
-		{
-			a[i]--;
-			if(a[i] <= 0) {
-				event_perform(ev_other, i+10);
-			}
-		}
-	}
-	event_perform(ev_other, ev_user0);
-}
-
 /// @param from
 /// @param to
 /// @param period

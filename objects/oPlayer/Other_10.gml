@@ -30,22 +30,17 @@ if(freecam) {
 	dir = 0; jump = false; jumpHeld = false; dash = false; down = false;
 }
 
-//check if you're grabbing onto any walls and update grip timer if necessary
-checkGrip();
 
 switch(state)
 {
 	case "ground": 
 		//only allow freecam if the player is actually on solid ground
 		if(input2[in.enter] && place_meeting(x, y+1, oGround)) {
-			freecam = !freecam;
-			if(freecam) snd(aCamOn);
-			else snd(aCamOff);
+			freecam = !freecam; snd(freecam ? aCamOn : aCamOff);
 		}
-		boosted = false;
 		khsp = 0;
 		updateHsp(walkAcc, walkAcc/8);
-		if(jump || jumpTimer) { 
+		if(jump || preparedJump) { 
 			vsp = -jumpSpd; state = "jump"; snd(aJump); 
 			event_perform(ev_other, ev_user3); 
 		}
@@ -59,19 +54,13 @@ switch(state)
 		khsp = approach(khsp, 0, fric);
 		updateHsp(airAcc, airAcc/2); 
 		updateVsp();
-		if(jump || boostTimer)
+		if(jump)
 		{
-			if(grip != 0) {
-				vsp = -jumpSpd;	khsp = wallKickSpd*-grip; snd(aJump);
-				wallJumpParticles(grip);	
-				boosted = false;
-			} else if(gripTimer) {
-				vsp = -jumpSpd;	khsp = wallKickSpd*-gripDirLastFrame; snd(aJump); 
-				wallJumpParticles(gripDirLastFrame);
-				boosted = false;
-			} else {
+			if(grip != 0) wallJump(false);
+			else if(gripTimer) wallJump(true);
+			else {
 				khsp = 0;
-				vsp = -jumpSpd;	snd(aJump); boosted = false;
+				vsp = -jumpSpd;	snd(aJump);
 				if(a[2] != infinity) a[2] = infinity; else state = "djump";
 			}
 			event_perform(ev_other, ev_user4);
@@ -84,36 +73,16 @@ switch(state)
 		khsp = approach(khsp, 0, fric);
 		updateVsp();
 		updateHsp(airAcc, airAcc/2); 
-		if(jump || boostTimer)
+		if(jump)
 		{
-			if(grip != 0) {
-				vsp = -jumpSpd;	khsp = wallKickSpd*-grip; snd(aJump); 
-				wallJumpParticles(grip);
-				state = "jump"; boosted = false;
-			} else if(gripTimer) {
-				vsp = -jumpSpd;	khsp = wallKickSpd*-gripDirLastFrame; snd(aJump);
-				wallJumpParticles(gripDirLastFrame);
-				state = "jump"; boosted = false;
-			} else {
+			if(grip != 0) wallJump(false);
+			else if(gripTimer) wallJump(true);
+			else {
 				//jump buffer (like geometry dash)
-				jumpTimer = true; a[3] = jumpBuffer;	
+				preparedJump = true; a[3] = jumpBuffer;	
 			}
-			event_perform(ev_other, ev_user4);
 		}
 		if((place_meeting(x, y+1, oGround) || place_meeting(x, y+1, oPlatform)) && vsp >= 0) { state = "ground"; }
-	break;
-	case "boosted":
-		//boosted state for when you hit a jump powerup
-		//you can't jump until you reach a certain vsp threshold (i.e. when you aren't moving as quick anymore)
-		checkReleasedWallKick();
-		khsp = approach(khsp, 0, fric);
-		updateVsp();
-		updateHsp(airAcc, airAcc/2); 
-		if(jump) {
-			boostTimer = true; a[4] = jumpBuffer;
-		}
-		//renew the jump i guess
-		if(vsp >= -jumpSpd) { state = "jump"; }
 	break;
 }	
 
@@ -124,5 +93,10 @@ if(vsp >= 0) pCollision(); else phsp = 0;
 if(!dead) {
 	hCollision(); vCollision();
 }
-prevState = state;
+
+//check if you're grabbing onto any walls and update grip timer if necessary
+//make sure you can wall jump a short time after leaving the wall, but not after you already performed a wall jump
+//while touching the wall
+checkGrip();
+wallJumpedThisFrame = false;
 clearPressed(); clearReleased();

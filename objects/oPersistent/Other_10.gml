@@ -1,8 +1,10 @@
 /// @description 
 t += 1/240;
+
+//run step events for all current menu items
 updateSelector();
-//show_debug_message(keyboard_lastkey);
-//update whether horizontal controls are allowed
+
+//update whether horizontal selector movement is allowed
 horizontal = !((gameState == gs.select && r == 4));
 
 //smooth transition handler for menus and room switching
@@ -29,13 +31,8 @@ switch(state) {
 	tAlpha = approach(tAlpha, 1, fadeSpeed);
 	if(tAlpha == 1) {
 		gameState = destState; room_goto(destRoom); r = tr; c = tc; 
-		//clear all particles
 		part_particles_clear(global.ps_above);
 		part_particles_clear(global.ps_below);
-		//part_system_clear(global.ps_bg);
-		//part_system_automatic_update(global.ps_bg, false);
-		//part_system_depth(global.ps_bg, layer_get_depth("Below"));
-		//swap songs only if you stopped the audio in the transition menu -> game
 		if(gameState == gs.game && !audio_is_playing(aGame)) mus(aGame);
 		else if(gameState == gs.menu && !audio_is_playing(aMenu)) mus(aMenu);
 		//reset attempts if necessary

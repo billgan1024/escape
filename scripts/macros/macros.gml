@@ -15,6 +15,8 @@
 #macro inputDelay 15
 
 //global gravity
-#macro grav 0.058
-#macro maxGrav 6.5
+#macro grav 0.056
+#macro maxGrav 6.4
 
+//span keyword for menu items which take up the whole row/column
+#macro span -1

@@ -7,6 +7,10 @@ function updateSelectorTo() {
 	selectorTo[2] += 20; selectorTo[3] += 6;
 }
 
+function checkSelected() {
+	if(oPersistent.r == r && oPersistent.c == c) updateSelectorTo(x, y, w, h);
+}
+
 function draw_rectangle_width(x1, y1, x2, y2, w)
 {
 	if(w == 0) return;
@@ -167,3 +171,4 @@ function handleMenu() {
 		}
 	}
 }
+

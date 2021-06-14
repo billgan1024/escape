@@ -1,3 +1,3 @@
 /// @description end jump timer
-jumpTimer = false;
+preparedJump = false;
 a[3] = infinity;

@@ -141,7 +141,6 @@
     {"name":"level26","path":"rooms/level26/level26.yy",},
     {"name":"level26","path":"rooms/level26/level26.yy",},
     {"name":"level26","path":"rooms/level26/level26.yy",},
-    {"name":"level26","path":"rooms/level26/level26.yy",},
     {"name":"inst_1E288C92","path":"rooms/template/template.yy",},
     {"name":"inst_7CDAE326","path":"rooms/template/template.yy",},
     {"name":"inst_7802EE8F","path":"rooms/template/template.yy",},

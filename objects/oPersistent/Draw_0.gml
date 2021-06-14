@@ -89,6 +89,8 @@ switch(gameState) {
 }
 //draw selector rectangle if you're not in game
 if(gameState != gs.game) {
+	//selectorFrom[] = [x, y, w, h]
+	//x, y is the center position of the text
 	var sx = selectorFrom[0], sy = selectorFrom[1], sw = selectorFrom[2], sh = selectorFrom[3];
 	var xx = vx+sx-sw/2, yy = vy+sy-sh/2;
 	dsalpha(alpha/5);
