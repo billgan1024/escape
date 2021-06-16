@@ -1,8 +1,23 @@
+function checkSelected() {
+	with(oMenuItem) {
+		if((oPersistent.r == r || r == -1) && (oPersistent.c == c || c == -1)) {
+			oPersistent.cur = id; updateSelectorTo(x, y, w, h); 
+		}
+	}
+}
+
+function updateSelector() {
+	for(var i = 0; i < 4; i++) selectorFrom[i] = smoothApproach(selectorFrom[i], selectorTo[i], snap ? 1 : 0.12); 
+}
+
+function updateSelectorTo() {
+	for(var i = 0; i < 4; i++) oPersistent.selectorTo[i] = argument[i]; 
+	oPersistent.selectorTo[2] += 20; oPersistent.selectorTo[3] += 6;
+}
+
 function update() {
-	if(variable_instance_exists(id, "a"))
-	{
-		for(var i = 1; i <= 15; i++) 
-		{
+	if(variable_instance_exists(id, "a")) {
+		for(var i = 1; i <= 15; i++) {
 			a[i]--;
 			if(a[i] <= 0) {
 				event_perform(ev_other, i+10);
@@ -28,7 +43,7 @@ function updateGlobal() {
 }
 
 //operate on this array by reference by using the @ accessor
-//take in an update function as well
+//take in an update function as well (upd is a function's integer reference)
 //note that upd() will still be called from the original calling instance (in this case, oPersistent)
 /// @param timeArray
 /// @param updateFunction

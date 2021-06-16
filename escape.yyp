@@ -140,6 +140,7 @@
     {"id":{"name":"template","path":"rooms/template/template.yy",},"order":37,},
     {"id":{"name":"spikeScripts","path":"scripts/spikeScripts/spikeScripts.yy",},"order":11,},
     {"id":{"name":"persistentScripts","path":"scripts/persistentScripts/persistentScripts.yy",},"order":12,},
+    {"id":{"name":"menuActions","path":"scripts/menuActions/menuActions.yy",},"order":13,},
   ],
   "Options": [
     {"name":"Linux","path":"options/linux/options_linux.yy",},

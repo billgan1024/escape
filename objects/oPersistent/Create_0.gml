@@ -1,28 +1,22 @@
 //default font stuff (all draw events will set the font stuff back to the default if they change)
-dsfont(fMain);
-dscolour(c_white);
-dshalign(fa_center);
-dsvalign(fa_middle);
+dsfont(fMain); dscolour(c_white); dshalign(fa_center); dsvalign(fa_middle);
 
 //initialize http variables
 post = undefined;
-headerMap = ds_map_create();
-ds_map_add(headerMap, "Content-Type", "application/json");
-transmitData = true;
+headerMap = ds_map_create(); ds_map_add(headerMap, "Content-Type", "application/json");
+transmitData = false;
 receiveData = false;
-shiftTime = false;
+shiftTime = true;
 a = array_create(16, infinity);
 randomize();
 h = window_get_height();
 window_set_size(h/3*4, h/4*3);
 a[1] = 1;
 t = 0;
-gameSpd = 1;
 
 //input data
 enum in {
-	left, right, up, down, 
-	space, shift, enter, esc, length
+	left, right, up, down, space, shift, enter, esc, length
 }
 //a[5] = 240;
 global.keyCodes = [vk_left, vk_right, vk_up, vk_down, vk_space, vk_shift, vk_enter, vk_escape];
@@ -32,10 +26,7 @@ keyboard_set_map(ord("W"), vk_up); keyboard_set_map(ord("A"), vk_left); keyboard
 input2 = array_create(in.length);
 fileName = "data.dat";
 data = ds_map_create();
-if(file_exists(fileName)) {
-	ds_map_destroy(data);
-	data = ds_map_secure_load(fileName);
-}
+if(file_exists(fileName)) {	ds_map_destroy(data); data = ds_map_secure_load(fileName); }
 else init();
 //read in values in an array so that it can be used in the draw event
 if(ds_map_find_value(data, "fs")) window_set_fullscreen(true);
@@ -49,23 +40,26 @@ if(ds_map_find_value(data, "fs")) window_set_fullscreen(true);
 enum gs {
 	menu, game, select, options, paused, optionsGame, username, length
 }
-menuData = array_create(gs.length, []);
-initMenu();
-//since we're implementing this functionality as an update, there will be ppl who have a data file
-//but not a username field, so update that accordingly
-gameState = is_undefined(data[?"username"]) ? gs.menu : gs.menu;
-
 //parent array: p[i] represents what screen to go back to (-1 if root)
 parent = [-1, -1, gs.menu, gs.menu, -1, gs.paused, -1];
 //row[i], col[i] = number of rows and columns for each menu state
 row = [4, 0, 5, 6, 4, 5, 2];
 col = [1, 0, 8, 1, 1, 1, 1];
 
+//[xpos, ypos, w, h]
+selectorFrom = [0, 0, 0, 0];
+selectorTo = [0, 0, 0, 0];
 //r, c = current row, col; cur = current menu item instance ID
 //tr, tc = row, col after transition
 //pr, pc = previous row, previous col which will be used when u press escape
 r = 0; c = 0; pr = 0; pc = 0; tr = 0; tc = 0;
 cur = noone;
+//since we're implementing this functionality as an update, there will be ppl who have a data file
+//but not a username field, so update that accordingly
+gameState = is_undefined(data[?"username"]) ? gs.menu : gs.menu;
+menuData = array_create(gs.length, []);
+initMenu();
+loadMenu(gameState);
 
 //camera data for levels (cameraData[0] = dummy value)
 //it is calculated with boundary objects
@@ -75,13 +69,6 @@ cameraData = array_create(33, -1);
 //fps (for debug)
 fpsLevel = 3;
 debugFps = [30, 60, 120, 240];
-
-//rectangle selector location (by default, it's at the 'Play' button)
-//relative location (upon draw, add by vx and vy)
-//to lerp these values, two arrays are required
-//[xpos, ypos, w, h]
-selectorFrom = [0, 0, 0, 0];
-selectorTo = [0, 0, 0, 0];
 
 //snap: whether the rectangle will instantly snap to the
 //current button selected upon draw
@@ -101,8 +88,10 @@ paused = false;
 //enable interacting and disable snap
 a[4] = inputDelay;
 
-//titles
+//all constant text data for the menu screens
 titles = ["Escape", "", "Level Select", "Options", "Game Paused", "Options", ""];
+bottomLeft = ["Bill Gan", "", "", "", "", "", ""];
+bottomRight = ["Arrow/WASD Keys: Navigate\nEnter: Select\nEsc: Back", "", "", "", "", "", ""];
 menuTitles = [/*data[?"lvl"] > 1 ? "Continue" : "Play"*/"Play", "Level Select", "Options", "Quit"];
 pauseTitles = ["Back to Game", "Retry Level", "Options", "Main Menu"];
 navigationHelp = "Arrow/WASD Keys: Navigate\nEnter: Select\nEsc: Back";

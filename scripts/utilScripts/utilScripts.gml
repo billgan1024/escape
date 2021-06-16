@@ -111,3 +111,52 @@ function log() {
 	}
 	show_debug_message(str);
 }
+
+//returns an array c[3] 
+//c[0] = FIRST instance which collides with this laser (noone if it doesn't exist)
+//c[1], c[2] = points of collision
+/// @param x1
+/// @param y1
+/// @param x2
+/// @param y2
+/// @param object
+/// @param precise
+/// @param notme
+function lightCollision(x1, y1, x2, y2, qi, qp, qn)
+{
+	rr = collision_line(x1, y1, x2, y2, qi, qp, qn);
+	rx = x2;
+	ry = y2;
+	if (rr != noone) {
+	    var _p0 = 0;
+	    var _p1 = 1;
+	    repeat (ceil(log2(point_distance(x1, y1, x2, y2))) + 1) {
+	        var np = _p0 + (_p1 - _p0) * 0.5;
+	        var nx = x1 + (x2 - x1) * np;
+	        var ny = y1 + (y2 - y1) * np;
+	        var px = x1 + (x2 - x1) * _p0;
+	        var py = y1 + (y2 - y1) * _p0;
+	        var nr = collision_line(px, py, nx, ny, qi, qp, qn);
+	        if (nr != noone) {
+	            rr = nr;
+	            rx = nx;
+	            ry = ny;
+	            _p1 = np;
+	        } else _p0 = np;
+	    }
+	}
+	var r;
+	r[0] = rr;
+	r[1] = rx;
+	r[2] = ry;
+	return r;
+}
+
+function draw_rectangle_width(x1, y1, x2, y2, w)
+{
+	if(w == 0) return;
+	draw_rectangle(x1, y1, x1+w, y2, false);
+	draw_rectangle(x2-w, y1, x2, y2, false);
+	draw_rectangle(x1+(w+1), y1, x2-(w+1), y1+w, false);
+	draw_rectangle(x1+(w+1), y2-w, x2-(w+1), y2, false);
+}

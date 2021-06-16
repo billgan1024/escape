@@ -16,8 +16,10 @@ switch(state) {
 	case 1: 
 	alpha = approach(alpha, 0, fadeSpeed);
 	if(alpha == 0) {
-		//swap game states
+		//destroy all items and load the new gameState
+		with(oMenuItem) instance_destroy();
 		gameState = destState; r = tr; c = tc;
+		loadMenu(gameState);
 		state++;
 	}
 	break;
@@ -47,5 +49,5 @@ switch(state) {
 }
 
 //handle pausing and menus only if the menu isn't transitioning
-if(canInteract) handleMenu();
+if(canInteract) handleMenuNew();
 clearPressed();

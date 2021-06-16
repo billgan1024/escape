@@ -1,0 +1,1 @@
+function quit() { game_end(); }
