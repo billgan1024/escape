@@ -6,7 +6,9 @@ post = undefined;
 headerMap = ds_map_create(); ds_map_add(headerMap, "Content-Type", "application/json");
 transmitData = false;
 receiveData = false;
+
 shiftTime = true;
+
 a = array_create(16, infinity);
 randomize();
 h = window_get_height();
@@ -23,13 +25,13 @@ global.keyCodes = [vk_left, vk_right, vk_up, vk_down, vk_space, vk_shift, vk_ent
 //bind WASD to arrow keys
 keyboard_set_map(ord("W"), vk_up); keyboard_set_map(ord("A"), vk_left); keyboard_set_map(ord("S"), vk_down); keyboard_set_map(ord("D"), vk_right);
 
-input2 = array_create(in.length);
+for(var i = 0; i < 3; i++) input[i] = array_create(in.length);
 fileName = "data.dat";
 data = ds_map_create();
 if(file_exists(fileName)) {	ds_map_destroy(data); data = ds_map_secure_load(fileName); }
 else init();
 //read in values in an array so that it can be used in the draw event
-if(ds_map_find_value(data, "fs")) window_set_fullscreen(true);
+window_set_fullscreen(data[?"fs"]);
 //log("idx", asset_get_index("utilScripts"));
 
 //this enum assigns numbers to values 
@@ -42,22 +44,23 @@ enum gs {
 }
 //parent array: p[i] represents what screen to go back to (-1 if root)
 parent = [-1, -1, gs.menu, gs.menu, -1, gs.paused, -1];
+activeMenu = [true, false, true, true, true, true, true];
 //row[i], col[i] = number of rows and columns for each menu state
-row = [4, 0, 5, 6, 4, 5, 2];
-col = [1, 0, 8, 1, 1, 1, 1];
+maxRow = [4, 0, 5, 6, 4, 5, 2];
+maxCol = [1, 0, 8, 1, 1, 1, 1];
 
-//[xpos, ypos, w, h]
+//[xpos, ypos, w, h], (x, y) is in the range (0, 0) to (vw, vh)
 selectorFrom = [0, 0, 0, 0];
 selectorTo = [0, 0, 0, 0];
 //r, c = current row, col; cur = current menu item instance ID
 //tr, tc = row, col after transition
 //pr, pc = previous row, previous col which will be used when u press escape
-r = 0; c = 0; pr = 0; pc = 0; tr = 0; tc = 0;
+r = 0; c = 0; tr = 0; tc = 0;
+pr = ds_stack_create(); pc = ds_stack_create();
 cur = noone;
 //since we're implementing this functionality as an update, there will be ppl who have a data file
 //but not a username field, so update that accordingly
 gameState = is_undefined(data[?"username"]) ? gs.menu : gs.menu;
-menuData = array_create(gs.length, []);
 initMenu();
 loadMenu(gameState);
 
@@ -78,10 +81,8 @@ snap = true;
 //transition data (handles menu AND room transitions)
 state = 0; alpha = 1; 
 tAlpha = 0;
-destState = -1; destRoom = -1;
+destState = -1; destRoom = -1; destSong = -1;
 canInteract = false; 
-//for buttons which take up multiple rows
-horizontal = true;
 
 paused = false;
 
@@ -112,8 +113,8 @@ part_system_automatic_update(global.ps_above, false); part_system_automatic_upda
 //ALWAYS use soundGain[i] as a baseline if you want to scale audio volume up/down
 musics = [aMenu, aGame];
 musicGain = [gain(aMenu), gain(aGame)];
-sounds = [aScroll, aSelect, aPause, aCoin, aExplosion, aExplosion2, aGem, aJump, aLaser, 
-aShoot, aSplat, aDoor, aJump2, aPlatform, aShoot, aCamOn, aCamOff, aLaunch];
+sounds = [aScroll, aSelect, aCoin, aExplosion, aExplosion2, aGem, aJump, aLaser, 
+ aSplat, aDoor, aJump2, aPlatform, aCamOn, aCamOff, aLaunch];
 soundGain = array_create(array_length(sounds));
 for(var i = 0; i < array_length(sounds); i++) soundGain[i] = gain(sounds[i]); 
 
@@ -129,6 +130,5 @@ resetAttempts = false;
 //wasFocused (tracking the time when the window loses focus)
 wasFocused = true;
 
-//play menu music with the appropriate volume set
-mus(aMenu);
+mus(aMenu); 
 //audio_sound_gain(m, 0, 0);

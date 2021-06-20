@@ -3,7 +3,8 @@ function initMenu() {
 	var titles = ["Play", "Level Select", "Options", "Quit"];
 	//note: gamemaker won't convert functions into integer references, so u need to define all functions yourself
 	//e.g. you can't put function() { game_end(); } into actions[]
-	var actions = [transitTo, goForward, goForward, quit], args = [[level1], [gs.select], [gs.options], []];
+	var actions = [transitTo, transitTo, transitTo, quit];
+	var args = [[gs.game, level1], [gs.select, menu], [gs.options, menu], []];
 	for(var i = 0; i < 4; i++) {
 		//note: array_push is buggy, use dynamic allocation instead 
 		//you can also pass in arrays to be assigned to the menu item later. 
@@ -81,11 +82,11 @@ function handleMenuNew() {
 	//pro tip: calling a function using id.f() will have the caller as that object
 	//however, using script_execute(id.f) will have the caller as the original instance which called script_execute;
 	//in this case, it's oPersistent
-	if(input2[in.left] && !is_undefined(cur.left)) { script_execute_ext(cur.left[0], cur.left[1]); snd(aScroll); clearPressed(); }
-	if(input2[in.right] && !is_undefined(cur.right)) { script_execute_ext(cur.right[0], cur.right[1]); snd(aScroll); clearPressed(); }
-	if(input2[in.up] && !is_undefined(cur.up)) { script_execute_ext(cur.up[0], cur.up[1]); snd(aScroll); clearPressed(); }
-	if(input2[in.down] && !is_undefined(cur.down)) { script_execute_ext(cur.down[0], cur.down[1]); snd(aScroll); clearPressed(); }
-	if(input2[in.enter] && !is_undefined(cur.enter)) { script_execute_ext(cur.enter[0], cur.enter[1]); snd(aSelect); clearPressed(); }
+	if(input[1][in.left] && !is_undefined(cur.left)) { script_execute_ext(cur.left[0], cur.left[1]); snd(aScroll); clearInput(); }
+	if(input[1][in.right] && !is_undefined(cur.right)) { script_execute_ext(cur.right[0], cur.right[1]); snd(aScroll); clearInput(); }
+	if(input[1][in.up] && !is_undefined(cur.up)) { script_execute_ext(cur.up[0], cur.up[1]); snd(aScroll); clearInput(); }
+	if(input[1][in.down] && !is_undefined(cur.down)) { script_execute_ext(cur.down[0], cur.down[1]); snd(aScroll); clearInput(); }
+	if(input[1][in.enter] && !is_undefined(cur.enter)) { script_execute_ext(cur.enter[0], cur.enter[1]); snd(aSelect); clearInput(); }
 }
 
 

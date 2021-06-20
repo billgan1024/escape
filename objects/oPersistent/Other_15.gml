@@ -1,0 +1,1 @@
+loadMenu(gameState); a[5] = infinity;

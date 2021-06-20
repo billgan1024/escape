@@ -6,15 +6,17 @@ if(!dead) {
 }
 if(!dead && canMove) checkInput();
 
-var right = input[in.right];
-var left = input[in.left];
+if(input[1][in.shift] && oPersistent.data[?"toggle-sprint"]) toggledSprint = !toggledSprint;
+
+var right = input[0][in.right];
+var left = input[0][in.left];
 dir = right-left;
 
-jump = input2[in.up] || input2[in.space];
+jump = input[1][in.up] || input[1][in.space];
 
-jumpHeld = input[in.up] || input[in.space];
-dash = input[in.shift] || toggleSprint;
-down = input[in.down];
+jumpHeld = input[0][in.up] || input[0][in.space];
+dash = input[0][in.shift] || toggledSprint;
+down = input[0][in.down];
 
 //update camera speed variable 
 cameraSpd = approach(cameraSpd, 5.5*dir, 0.4);
@@ -35,7 +37,7 @@ switch(state)
 {
 	case "ground": 
 		//only allow freecam if the player is actually on solid ground
-		if(input2[in.enter] && place_meeting(x, y+1, oGround)) {
+		if(input[1][in.enter] && place_meeting(x, y+1, oGround)) {
 			freecam = !freecam; snd(freecam ? aCamOn : aCamOff);
 		}
 		khsp = 0;
@@ -99,4 +101,4 @@ if(!dead) {
 //while touching the wall
 checkGrip();
 wallJumpedThisFrame = false;
-clearPressed(); clearReleased();
+clearInput();

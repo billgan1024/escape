@@ -21,3 +21,7 @@ function updateSoundVol() {
 		audio_sound_gain(sounds[i], data[?"sfx"]*soundGain[i]/100, 0);
 	}
 }
+
+function stopMusic() {
+	for(var i = 0; i < array_length(musics); i++) audio_stop_sound(musics[i]);
+}

@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "Menu Items",
+    "path": "folders/Scripts/Menu Items.yy",
   },
   "resourceVersion": "1.0",
-  "name": "menuScriptsNew",
+  "name": "selectItems",
   "tags": [],
   "resourceType": "GMScript",
 }

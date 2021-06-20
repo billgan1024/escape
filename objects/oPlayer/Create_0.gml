@@ -49,13 +49,9 @@ a = array_create(16, infinity);
 canMove = false;
 a[1] = inputDelay;
 
-toggleSprint = false;
-//input: key down
-//input2: key pressed
-//input3: key released
-input = array_create(in.length);
-input2 = array_create(in.length);
-input3 = array_create(in.length);
+toggledSprint = false;
+
+for(var i = 0; i < 3; i++) input[i] = array_create(in.length);
 
 //update the view instantly
 camera_set_view_pos(view_camera[0], clamp(oPlayer.x - vw/2, 0, room_width-vw), clamp(floor(oPlayer.y/vh)*vh, 0, room_height/vh-1));

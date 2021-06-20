@@ -1,11 +1,6 @@
 /// @description 
 t += 1/240;
-
-//run step events for all current menu items
 updateSelector();
-
-//update whether horizontal selector movement is allowed
-horizontal = !((gameState == gs.select && r == 4));
 
 //smooth transition handler for menus and room switching
 //when you want to initiate a menu transition, disable interacting and enable snapping
@@ -19,7 +14,7 @@ switch(state) {
 		//destroy all items and load the new gameState
 		with(oMenuItem) instance_destroy();
 		gameState = destState; r = tr; c = tc;
-		loadMenu(gameState);
+		loadMenu(gameState); 
 		state++;
 	}
 	break;
@@ -27,16 +22,17 @@ switch(state) {
 	alpha = approach(alpha, 1, fadeSpeed);
 	if(alpha == 1) { state = 0; canInteract = true; snap = false; }
 	break;
-	//handle any room transition, whether it's from menu -> game
-	//or when u go to another level
 	case 3: 
 	tAlpha = approach(tAlpha, 1, fadeSpeed);
 	if(tAlpha == 1) {
-		gameState = destState; room_goto(destRoom); r = tr; c = tc; 
+		gameState = destState; r = tr; c = tc; room_goto(destRoom); 
+		with(oMenuItem) instance_destroy();
+		loadMenu(gameState); 
+		a[5] = 4;
 		part_particles_clear(global.ps_above);
 		part_particles_clear(global.ps_below);
-		if(gameState == gs.game && !audio_is_playing(aGame)) mus(aGame);
-		else if(gameState == gs.menu && !audio_is_playing(aMenu)) mus(aMenu);
+		//automatically play the queued song and reset it
+		if(destSong != -1) { mus(destSong); destSong = -1; }
 		//reset attempts if necessary
 		if(resetAttempts) { attempts = 0; resetAttempts = false; }
 		state++;
@@ -49,5 +45,9 @@ switch(state) {
 }
 
 //handle pausing and menus only if the menu isn't transitioning
-if(canInteract) handleMenuNew();
-clearPressed();
+if(canInteract && activeMenu[gameState]) handleMenu();
+//always handle escape function 
+if(input[1][in.esc] && !is_undefined(escActions[gameState])) { 
+	script_execute_ext(escActions[gameState][0], escActions[gameState][1]); snd(aSelect); clearInput(); 
+}
+clearInput();

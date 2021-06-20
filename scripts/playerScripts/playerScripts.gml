@@ -66,8 +66,8 @@ function updateVsp() {
 }
 
 function checkReleasedWallKick() {
-	if(khsp > 0 && hsp+khsp < wallKickSpd/2 && input3[in.left]) khsp /= 2;
-	if(khsp < 0 && hsp+khsp > -wallKickSpd/2 && input3[in.right]) khsp /= 2;
+	if(khsp > 0 && hsp+khsp < wallKickSpd/2 && input[2][in.left]) khsp /= 2;
+	if(khsp < 0 && hsp+khsp > -wallKickSpd/2 && input[2][in.right]) khsp /= 2;
 }
 
 function checkGrip() {
@@ -75,8 +75,8 @@ function checkGrip() {
 	//walljump time
 	//first, check if the grip buffer should be set to false prematurely 
 	//this is when you let go of the movement key
-	if(input3[in.right] && gripDirLastFrame == -1) { gripTimer = false; a[5] = infinity; }
-	if(input3[in.left] && gripDirLastFrame == 1) { gripTimer = false; a[5] = infinity; }
+	if(input[2][in.right] && gripDirLastFrame == -1) { gripTimer = false; a[5] = infinity; }
+	if(input[2][in.left] && gripDirLastFrame == 1) { gripTimer = false; a[5] = infinity; }
 	if(sign(hsp+khsp) == sign(gripDirLastFrame)) { gripTimer = false; a[5] = infinity; }
 	if(place_meeting(x+1, y, oGround)) grip = 1;
 	else if(place_meeting(x-1, y, oGround)) grip = -1;

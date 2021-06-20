@@ -8,7 +8,7 @@ dshalign(fa_right); draw_text(vx+vw-10, vy+vh+6, bottomRight[gameState]);
 dshalign(fa_center); dsvalign(fa_middle);
 dsfont(fMain);
 with(oButton) draw_text(vx+x, vy+y, text);
-with(oTextBox) draw_rectangle_width(x-80, y-20, x+80, y+20, 3);
+with(oTextBox) draw_rectangle_width(vx+x-80, vy+y-20, vx+x+80, vy+y+20, 3);
 //draw selector rectangle if you're not in game
 if(gameState != gs.game) {
 	//selectorFrom[] = [x, y, w, h]

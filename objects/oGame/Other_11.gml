@@ -1,7 +1,6 @@
 /// @description go to the target room
-var reset = resetAttempts;
 with(oPersistent) {
-	transitTo(gs.game, asset_get_index("level" + string(oGame.targetLvl)));
-	resetAttempts = reset;
+	transitionTo(gs.game, 0, 0, asset_get_index("level" + string(oGame.targetLvl)));
+	resetAttempts = other.resetAttempts;
 }
 a[1] = infinity;
