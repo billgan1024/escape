@@ -20,12 +20,12 @@ function transitionTo() {
 	
 	newRoom = -1; if(argument_count >= 4) newRoom = argument3;
 	//set newRoom if you want to trigger room_goto(), which resets everything.
-	if(newRoom == -1) {
+	if(newRoom == sameRoom) {
 		state = 1; destState = newState;
 	} else {
 		//every new room transition will automatically clear the previous row/col stack 
 		state = 3; destState = newState; 
-		if(newRoom == -2) destRoom = room; else destRoom = newRoom;
+		if(newRoom == restartRoom) destRoom = room; else destRoom = newRoom;
 		ds_stack_clear(pr); ds_stack_clear(pc);
 	}
 	if(argument_count == 5) {

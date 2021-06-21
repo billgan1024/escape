@@ -19,7 +19,7 @@ function hCollision() {
 		while(!place_meeting(x+sign(tsp), y, oGround)) x += sign(tsp);
 		hsp = 0; khsp = 0; phsp = 0;
 	}
-	x += hsp+khsp+phsp;
+	x += hsp+khsp+phsp; 
 }
 
 function vCollision() {
@@ -54,15 +54,23 @@ function updateHsp(walkAcc, runAcc) {
 }
 
 function updateVsp() {
-	//apply more grav if player isn't holding jump
-	if(!jumpHeld && vsp < 0) vsp += grav*1.5;
-	if(grip != 0 && vsp > 0)
-	{ 
-		if(vsp > maxGrav/3) vsp = approach(vsp, maxGrav/3, grav*4); 
-		else vsp = approach(vsp, maxGrav/3, grav/3); 
+	if(vsp < 0) {
+		if(!jumpHeld) vsp += grav*2;
+		else vsp += grav;
+	} else {
+		if(grip != 0) {
+			if(vsp > maxGrav/3) vsp = approach(vsp, maxGrav/3, grav*4); 
+			else vsp = approach(vsp, maxGrav/3, grav/3); 
+		} else if(down) {
+			vsp = smoothApproach(vsp, maxGrav*9/8, 0.026);
+		} else if(jumpHeld) {
+			if(vsp > maxGrav/2) vsp = approach(vsp, maxGrav/2, grav*4); 
+			else vsp = approach(vsp, maxGrav/2, grav/2); 
+		} else {
+			if(vsp > maxGrav) vsp = approach(vsp, maxGrav, grav*4);
+			else vsp = approach(vsp, maxGrav, grav); 
+		}
 	}
-	else if(vsp > 0 && down) vsp = smoothApproach(vsp, maxGrav*9/8, 0.026);
-	else vsp = approach(vsp, maxGrav, grav);
 }
 
 function checkReleasedWallKick() {

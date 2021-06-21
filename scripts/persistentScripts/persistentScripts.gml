@@ -1,6 +1,6 @@
 function checkSelected() {
-	with(oMenuItem) {
-		if((oPersistent.r == r || r == -1) && (oPersistent.c == c || c == -1)) {
+	with(oButton) {
+		if((oPersistent.r == r || r == span) && (oPersistent.c == c || c == span)) {
 			oPersistent.cur = id; updateSelectorTo(x, y, w, h); 
 		}
 	}
@@ -12,7 +12,8 @@ function updateSelector() {
 
 function updateSelectorTo() {
 	for(var i = 0; i < 4; i++) oPersistent.selectorTo[i] = argument[i]; 
-	oPersistent.selectorTo[2] += 20; oPersistent.selectorTo[3] += 6;
+	oPersistent.selectorTo[2] += 20; 
+	oPersistent.selectorTo[3] += 6; 
 }
 
 function update() {
@@ -46,15 +47,14 @@ function updateGlobal() {
 //operate on this array by reference by using the @ accessor
 //take in an update function as well (upd is a function's integer reference)
 //note that upd() will still be called from the original calling instance (in this case, oPersistent)
-/// @param timeArray
-/// @param updateFunction
-function step(time, upd) {
-    time[@1] += time[0]; 
+function step() {
+    time[1] += time[0]; 
     if(floor(time[1]) != floor(time[1]-time[0]))
     {
     	var rem = floor(time[1]) - floor(time[1]-time[0]);
     	repeat rem {
-    		upd();
+	    	if(gameState != gs.paused && gameState != gs.optionsGame) updateLocal();
+    		updateGlobal();
     	}
     }
 }

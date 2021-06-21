@@ -1,38 +1,50 @@
 //note that array_push and array_pop are the only functions that work with structs 
 function initMenu() {
+	enum gs {
+		menu, game, select, options, paused, optionsGame, username, length
+	}
+	
+	gameState = is_undefined(data[?"username"]) ? gs.menu : gs.menu;
+	activeMenu = [true, false, true, true, true, true, true];
+	//row[i], col[i] = number of rows and columns for each menu state
+	maxRow = [4, 0, 5, 6, 4, 6, 2];
+	maxCol = [1, 0, 8, 1, 1, 1, 1];
+	
+	//[xpos, ypos, w, h], (x, y) is in the range (0, 0) to (vw, vh)
+	selectorFrom = [0, 0, 0, 0];
+	selectorTo = [0, 0, 0, 0];
+	//r, c = current row, col; cur = current menu item instance ID
+	//tr, tc = row, col after transition
+	//pr, pc = previous row, previous col which will be used when u press escape
+	r = 0; c = 0; tr = 0; tc = 0;
+	pr = ds_stack_create(); pc = ds_stack_create();
+	cur = noone; hover = noone;
+	
 	//menuData = array holding all of the UI elements for every state
 	menuData = array_create(gs.length, []);
 	//escActions = array holding all of the functions that activate upon pressing esc, for every state
 	escActions = array_create(gs.length, undefined);
-	escActions[gs.select] = [transitionTo, [gs.menu, -1, -1, -1]];
-	escActions[gs.options] = [transitionTo, [gs.menu, -1, -1, -1]];
+	escActions[gs.select] = [transitionTo, [gs.menu, -1, -1, sameRoom]];
+	escActions[gs.options] = [transitionTo, [gs.menu, -1, -1, sameRoom]];
 	escActions[gs.game] = [teleportTo, [gs.paused]];
 	escActions[gs.paused] = [teleportTo, [gs.game]];
+	escActions[gs.optionsGame] = [transitionTo, [gs.paused, -1, -1, sameRoom]]; 
 	menuItems();
 	selectItems();
 	optionsItems();
 	pausedItems();
+	optionsGameItems();
 }
 
 function loadMenu(_gameState) {
-	//note: all menuItems have relative coordinates; oPersistent will apply the necessary shift (+vx, +vy)
+    //this implementation ensures that properties which are not set will remain at their default value
     for(var i = 0; i < array_length(menuData[_gameState]); i++) {
-        log(menuData[_gameState][i]);
-    }
-    for(var i = 0; i < array_length(menuData[_gameState]); i++) {
-        var item = menuData[_gameState][i];
-        var g = instance_create_layer(item.x, item.y, "Persistent", item.obj);
-        with(g) {
-        	r = item.r; c = item.c; up = item.up; down = item.down; left = item.left; right = item.right; 
-        	enter = item.enter;
-        	if(object_index == oButton) {
-	            text = item.text;
-	            w = string_width(item.text);
-	            h = string_height(item.text);
-        	} else if(object_index == oTextBox) {
-	            w = 200; h = 50;
-        	}
-        }
+    	var item = menuData[_gameState][i], props = variable_struct_get_names(item);
+    	with(instance_create_layer(0, 0, "Persistent", item.obj)) {
+    		for(var j = 0; j < array_length(props); j++) {
+    			variable_instance_set(id, props[j], item[$props[j]]);
+    		}
+    	}
     }
     checkSelected();
     //log(cur.enter);	

@@ -4,10 +4,12 @@ dsfont(fMain); dscolour(c_white); dshalign(fa_center); dsvalign(fa_middle);
 //initialize http variables
 post = undefined;
 headerMap = ds_map_create(); ds_map_add(headerMap, "Content-Type", "application/json");
-transmitData = false;
-receiveData = false;
 
-shiftTime = true;
+global.production = false;
+
+transmitData = global.production;
+shiftTime = !global.production;
+receiveData = false;
 
 a = array_create(16, infinity);
 randomize();
@@ -18,12 +20,13 @@ t = 0;
 
 //input data
 enum in {
-	left, right, up, down, space, shift, enter, esc, length
+	left, right, up, down, space, shift, enter, esc, mbLeft, mbRight, mbMiddle, length 
 }
+
 //a[5] = 240;
-global.keyCodes = [vk_left, vk_right, vk_up, vk_down, vk_space, vk_shift, vk_enter, vk_escape];
+global.inputCodes = [vk_left, vk_right, vk_up, vk_down, vk_space, vk_shift, vk_enter, vk_escape, mb_left, mb_right, mb_middle];
 //bind WASD to arrow keys
-keyboard_set_map(ord("W"), vk_up); keyboard_set_map(ord("A"), vk_left); keyboard_set_map(ord("S"), vk_down); keyboard_set_map(ord("D"), vk_right);
+bindInput();
 
 for(var i = 0; i < 3; i++) input[i] = array_create(in.length);
 fileName = "data.dat";
@@ -39,28 +42,8 @@ window_set_fullscreen(data[?"fs"]);
 //menu -> (select, options)
 //paused -> optionsGame
 
-enum gs {
-	menu, game, select, options, paused, optionsGame, username, length
-}
-//parent array: p[i] represents what screen to go back to (-1 if root)
-parent = [-1, -1, gs.menu, gs.menu, -1, gs.paused, -1];
-activeMenu = [true, false, true, true, true, true, true];
-//row[i], col[i] = number of rows and columns for each menu state
-maxRow = [4, 0, 5, 6, 4, 5, 2];
-maxCol = [1, 0, 8, 1, 1, 1, 1];
-
-//[xpos, ypos, w, h], (x, y) is in the range (0, 0) to (vw, vh)
-selectorFrom = [0, 0, 0, 0];
-selectorTo = [0, 0, 0, 0];
-//r, c = current row, col; cur = current menu item instance ID
-//tr, tc = row, col after transition
-//pr, pc = previous row, previous col which will be used when u press escape
-r = 0; c = 0; tr = 0; tc = 0;
-pr = ds_stack_create(); pc = ds_stack_create();
-cur = noone;
 //since we're implementing this functionality as an update, there will be ppl who have a data file
 //but not a username field, so update that accordingly
-gameState = is_undefined(data[?"username"]) ? gs.menu : gs.menu;
 initMenu();
 loadMenu(gameState);
 
@@ -114,7 +97,7 @@ part_system_automatic_update(global.ps_above, false); part_system_automatic_upda
 musics = [aMenu, aGame];
 musicGain = [gain(aMenu), gain(aGame)];
 sounds = [aScroll, aSelect, aCoin, aExplosion, aExplosion2, aGem, aJump, aLaser, 
- aSplat, aDoor, aJump2, aPlatform, aCamOn, aCamOff, aLaunch];
+ aSplat, aShoot, aDoor, aJump2, aPlatform, aCamOn, aCamOff, aLaunch];
 soundGain = array_create(array_length(sounds));
 for(var i = 0; i < array_length(sounds); i++) soundGain[i] = gain(sounds[i]); 
 

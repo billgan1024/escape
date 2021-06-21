@@ -14,13 +14,13 @@ function optionsItems() {
 			x: vw/2,
 			y: 400+120*i,
 			r: i,
-			c: 0,
 			up: [changeCursor, [-1, 0]],
 			down: [changeCursor, [1, 0]],
 			left: [actions[i], [-10]],
 			right: [actions[i], [10]],
-			enter: undefined,
-			text: labels[i]
+			text: labels[i],
+			w: string_width(labels[i]),
+			h: string_height(labels[i])
 		}
 	}
 	for(var i = 2; i < 5; i++) {
@@ -29,13 +29,12 @@ function optionsItems() {
 			x: vw/2,
 			y: 400+120*i,
 			r: i,
-			c: 0,
 			up: [changeCursor, [-1, 0]],
 			down: [changeCursor, [1, 0]],
-			left: undefined,
-			right: undefined,
 			enter: [actions[i], []],
-			text: labels[i]
+			text: labels[i],
+			w: string_width(labels[i]),
+			h: string_height(labels[i])
 		}
 	}
 	
@@ -44,13 +43,12 @@ function optionsItems() {
 		x: vw/2,
 		y: 400+120*7,
 		r: 5,
-		c: 0,
 		up: [changeCursor, [-1, 0]],
 		down: [changeCursor, [1, 0]],
-		left: undefined,
-		right: undefined,
 		enter: escActions[gs.options],
-		text: "Back"
+		text: "Back",
+		w: string_width("Back"),
+		h: string_height("Back")
 	}
 }
 
@@ -72,6 +70,7 @@ function toggleFs() {
 	window_set_fullscreen(data[?"fs"]); window_set_size(h/3*4, h/4*3);
 	a[1] = 15;
 	changeText("Fullscreen: " + (data[?"fs"] ? "On" : "Off"));
+	canInteract = false; a[4] = inputDelay*6;
 }
 
 function toggleTimer() {

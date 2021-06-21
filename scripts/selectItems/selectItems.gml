@@ -12,7 +12,9 @@ function selectItems() {
 				left: [changeCursor, [0, -1]],
 				right: [changeCursor, [0, 1]],
 				enter: [transitionTo, [gs.game, 0, 0, asset_get_index("level" + string(8*i+j+1)), aGame]],
-				text: 8*i+j+1
+				text: 8*i+j+1,
+				w: string_width(8*i+j+1),
+				h: string_height(8*i+j+1)
 			}
 		}
 	}
@@ -21,12 +23,12 @@ function selectItems() {
 		x: vw/2,
 		y: 400+120*7,
 		r: 4,
-		c: -1,
+		c: span,
 		up: [changeCursor, [-1, 0]],
 		down: [changeCursor, [1, 0]],
-		left: undefined,
-		right: undefined,
 		enter: escActions[gs.select],
-		text: "Back"
+		text: "Back",
+		w: string_width("Back"),
+		h: string_height("Back")
 	}
 }

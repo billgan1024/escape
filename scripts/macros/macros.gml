@@ -20,3 +20,7 @@
 
 //span keyword for menu items which take up the whole row/column
 #macro span -1
+
+//room transition keywords for transitionTo() (-1 represents no room change, and -2 represents a restart)
+#macro sameRoom -1
+#macro restartRoom -2

@@ -29,7 +29,7 @@ function approach(argument0, argument1, argument2) {
 /// @param from
 /// @param to
 /// @param amnt [0-1]
-/// @param [error]
+/// @param [error=1]
 function smoothApproach() {
 	var error = 1;
 	if(argument_count == 4) error = argument3;
@@ -159,4 +159,8 @@ function draw_rectangle_width(x1, y1, x2, y2, w)
 	draw_rectangle(x2-w, y1, x2, y2, false);
 	draw_rectangle(x1+(w+1), y1, x2-(w+1), y1+w, false);
 	draw_rectangle(x1+(w+1), y2-w, x2-(w+1), y2, false);
+}
+
+function mouseOver(x1, y1, x2, y2) {
+	return mouse_x >= x1 && mouse_x <= x2 && mouse_y >= y1 && mouse_y <= y2;
 }

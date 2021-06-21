@@ -142,6 +142,7 @@
     {"id":{"name":"menuItems","path":"scripts/menuItems/menuItems.yy",},"order":0,},
     {"id":{"name":"selectItems","path":"scripts/selectItems/selectItems.yy",},"order":1,},
     {"id":{"name":"optionsItems","path":"scripts/optionsItems/optionsItems.yy",},"order":2,},
+    {"id":{"name":"oArrowControl","path":"objects/oArrowControl/oArrowControl.yy",},"order":5,},
     {"id":{"name":"pausedItems","path":"scripts/pausedItems/pausedItems.yy",},"order":3,},
     {"id":{"name":"optionsGameItems","path":"scripts/optionsGameItems/optionsGameItems.yy",},"order":4,},
   ],
