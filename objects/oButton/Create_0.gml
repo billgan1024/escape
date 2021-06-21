@@ -1,5 +1,5 @@
 text = ""; r = 0; c = 0; w = 0; h = 0;
-textScale = 0.92;
+textScale = mainTextScale;
 
 left = undefined;
 right = undefined;

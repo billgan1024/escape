@@ -44,21 +44,27 @@ switch(state) {
 	break;
 }
 
-//handle pausing and menus only if the menu isn't transitioning
+//handle mouse events (again, only if canInteract is true)
 var hover = false;
 with(oMenuItem) {
-	if(mouseOver(vx+x-w/2, vy+y-h/2, vx+x+w/2, vy+y+h/2-5) && other.canInteract) {
+	if(mouseOver(vx+x-w/2-15, vy+y-h/2-4.5, vx+x+w/2+15, vy+y+h/2+4.5-9) && other.canInteract) {
 		textScale = smoothApproach(textScale, 1, 0.3, 0.005);
 		hover = true;
 		if(other.input[1][in.mbLeft] && !is_undefined(enter)) {
-			//execute the enter function
-			with(other) { script_execute_ext(other.enter[0], other.enter[1]); snd(aSelect); clearInput(); }
+			//instantly snap the cursor onto the clicked element so that any interaction will update
+			//cur, which will represent the clicked element
+			other.r = r; other.c = c; other.cur = id;
+			//perform the update as usual and update the selector to match the clicked element and any 
+			//changes in the width/height that might have occured
+			with(other) { script_execute_ext(other.enter[0], other.enter[1]); snd(aSelect); checkSelected(); clearInput(); }
 		}
 	}
-	else textScale = smoothApproach(textScale, 0.92, 0.3, 0.005);
+	else textScale = smoothApproach(textScale, mainTextScale, 0.3, 0.005);
 }
-window_set_cursor(hover ? cr_drag : cr_default);
+if(!activeMenu[gameState]) window_set_cursor(cr_none);
+else window_set_cursor(hover ? cr_drag : cr_default);
 
+//handle pausing and menus only if the menu isn't transitioning
 if(canInteract) {
 	if(activeMenu[gameState]) handleMenu();
 	//always handle escape function 

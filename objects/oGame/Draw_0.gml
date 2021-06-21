@@ -1,11 +1,11 @@
 dshalign(fa_left);
 dsvalign(fa_bottom);
-draw_text(vx+10, vy+vh+6, "Level " + string(lvl));
+draw_text_transformed(vx+10, vy+vh+6, "Level " + string(lvl), mainTextScale, mainTextScale, 0);
 
 dshalign(fa_right);
 
-if(oPersistent.data[?"timer"]) draw_text(vx+vw-10, vy+vh+6, "Time: " + string(t) + "s");
-else draw_text(vx+vw-10, vy+vh+6, "Attempt " + string(oPersistent.attempts));
+if(oPersistent.data[?"timer"]) draw_text_transformed(vx+vw-10, vy+vh+6, "Time: " + string(t) + "s", mainTextScale, mainTextScale, 0);
+else draw_text_transformed(vx+vw-10, vy+vh+6, "Attempt " + string(oPersistent.attempts), mainTextScale, mainTextScale, 0);
 
 dsalpha(0.1);
 draw_rectangle_width(vx, vy, vx+vw, vy+vh, borderRadius);

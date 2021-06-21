@@ -24,3 +24,6 @@
 //room transition keywords for transitionTo() (-1 represents no room change, and -2 represents a restart)
 #macro sameRoom -1
 #macro restartRoom -2
+
+//text is actually scaled lower so that we can enlarge it to the original size when menu items are hovered over
+#macro mainTextScale 0.92

@@ -16,7 +16,7 @@ if(gameState != gs.game) {
 	var sx = selectorFrom[0], sy = selectorFrom[1], sw = selectorFrom[2], sh = selectorFrom[3];
 	var xx = vx+sx-sw/2, yy = vy+sy-sh/2;
 	dsalpha(alpha/5);
-	draw_rectangle_width(xx, yy, xx+sw, yy+sh-5, 3);
+	draw_rectangle_width(xx, yy, xx+sw, yy+sh-9, 3);
 }
 
 //draw transition tint if we're switching rooms

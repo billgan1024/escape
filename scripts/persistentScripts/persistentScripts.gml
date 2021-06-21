@@ -12,8 +12,8 @@ function updateSelector() {
 
 function updateSelectorTo() {
 	for(var i = 0; i < 4; i++) oPersistent.selectorTo[i] = argument[i]; 
-	oPersistent.selectorTo[2] += 20; 
-	oPersistent.selectorTo[3] += 6; 
+	oPersistent.selectorTo[2] += 30; 
+	oPersistent.selectorTo[3] += 9; 
 }
 
 function update() {

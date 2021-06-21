@@ -47,11 +47,9 @@ function changeCursor(dr, dc) {
 	//log(object_get_name(object_index));
 	r = (r+dr+maxRow[gameState]) % maxRow[gameState];
 	c = (c+dc+maxCol[gameState]) % maxCol[gameState];	
-	checkSelected();
 }
 
 function changeText(newText) {
 	cur.text = newText; 
 	cur.w = string_width(newText); cur.h = string_height(newText); 
-	updateSelectorTo(cur.x, cur.y, cur.w, cur.h);
 }
