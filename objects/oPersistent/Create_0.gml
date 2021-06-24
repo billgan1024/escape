@@ -25,7 +25,6 @@ enum in {
 
 //a[5] = 240;
 global.inputCodes = [vk_left, vk_right, vk_up, vk_down, vk_space, vk_shift, vk_enter, vk_escape, mb_left, mb_right, mb_middle];
-//bind WASD to arrow keys
 bindInput();
 
 for(var i = 0; i < 3; i++) input[i] = array_create(in.length);
@@ -56,9 +55,6 @@ cameraData = array_create(33, -1);
 fpsLevel = 3;
 debugFps = [30, 60, 120, 240];
 
-//snap: whether the rectangle will instantly snap to the
-//current button selected upon draw
-//pressing any arrow key will disable snap
 snap = true; 
 
 //transition data (handles menu AND room transitions)

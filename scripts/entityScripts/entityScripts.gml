@@ -1,7 +1,7 @@
 /// @param hsp
 /// @param [gravDir=1]
 function setEnemy(_hsp) {
-	if(argument_count == 2) { gravDir = argument1; gravDirStart = gravDir; }
+	if(argument_count == 2) { gravDir = argument[1]; gravDirStart = gravDir; }
 	hsp = _hsp/4; hspStart = hsp; 
 }
 
@@ -21,7 +21,7 @@ function setCannon(_delayStart, _delay, _bulletSpd) {
 /// @param delayRest
 /// @param [angularSpd = 0]
 function setLaserInterval(_delayStart, _delayActive, _delayRest) {
-	var _angularSpd = 0; if(argument_count == 4) angularSpd = argument3;
+	var _angularSpd = 0; if(argument_count == 4) angularSpd = argument[3];
 	a[1] = _delayStart; delayStart = _delayStart;
 	delayActive = _delayActive; delayRest = _delayRest; angleStart = image_angle;
 	angularSpd = _angularSpd;
@@ -30,11 +30,11 @@ function setLaserInterval(_delayStart, _delayActive, _delayRest) {
 /// @param radius
 /// @param period
 /// @param [flip=false]
-function setWave() {
+function setWave(_radius, _period) {
 	//note: setWave can also be used to set laser cannon stuff
 	if(object_index == oCoin || object_index == oLaserCannon) sway = true;
-	radius = argument0; period = argument1;
-	if(argument_count == 3) flip = argument2;
+	radius = _radius; period = _period; 
+	if(argument_count == 3) flip = argument[2];
 }
 
 function missileCollision(obj) {

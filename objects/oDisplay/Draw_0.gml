@@ -1,1 +1,1 @@
-draw_text_transformed(x, wave(ystart-5, ystart+5, 2.5, t), text, mainTextScale, mainTextScale, 0);
+draw_text_transformed(x, wave(ystart-5, ystart+5, 2.5, t), text, mainScale, mainScale, 0);

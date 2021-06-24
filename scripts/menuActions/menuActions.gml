@@ -6,30 +6,26 @@
 /// @param [newCol=0]
 /// @param [newRoom] (leave blank or -1 for no change in room or -2 for restarting the current room)
 /// @param [newSong] (leave blank to avoid switching the song, or -1 to stop playing the song) 
-function transitionTo() {
-	var newState = argument0;
-	var newRow = 0, newCol = 0; if(argument_count >= 3) { newRow = argument1; newCol = argument2; } 
+function transitionTo(newState) {
+	var newRow = 0, newCol = 0; if(argument_count >= 3) { newRow = argument[1]; newCol = argument[2]; } 
 	
 	if(newRow == -1 && newCol == -1) {
 		tr = ds_stack_pop(pr); tc = ds_stack_pop(pc); 
 	} else { 
 		ds_stack_push(pr, r); ds_stack_push(pc, c); tr = newRow; tc = newCol; 
 	}
-	
-	canInteract = false; snap = true; 
-	
-	newRoom = -1; if(argument_count >= 4) newRoom = argument3;
+	canInteract = false; 
+	newRoom = undefined; if(argument_count >= 4) newRoom = argument[3];
 	//set newRoom if you want to trigger room_goto(), which resets everything.
-	if(newRoom == sameRoom) {
+	if(is_undefined(newRoom)) {
 		state = 1; destState = newState;
 	} else {
 		//every new room transition will automatically clear the previous row/col stack 
-		state = 3; destState = newState; 
-		if(newRoom == restartRoom) destRoom = room; else destRoom = newRoom;
+		state = 3; destState = newState; destRoom = newRoom;
 		ds_stack_clear(pr); ds_stack_clear(pc);
 	}
 	if(argument_count == 5) {
-		var newSong = argument4;
+		var newSong = argument[4];
 		stopMusic(); if(newSong != -1) destSong = newSong;
 	}
 }
@@ -49,7 +45,11 @@ function changeCursor(dr, dc) {
 	c = (c+dc+maxCol[gameState]) % maxCol[gameState];	
 }
 
-function changeText(newText) {
-	cur.text = newText; 
-	cur.w = string_width(newText); cur.h = string_height(newText); 
+//changes the text of the current selected button by matching a particular row/column
+function changeText(newText, mr, mc) {
+	with(oMenuItem) {
+		if(r == mr && c == mc) {
+			text = newText; w = string_width(newText)+h_offset; h = string_height(newText)+v_offset; break;
+		}	
+	}
 }

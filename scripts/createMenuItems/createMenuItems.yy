@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Menu Items.yy",
   },
   "resourceVersion": "1.0",
-  "name": "pausedItems",
+  "name": "createMenuItems",
   "tags": [],
   "resourceType": "GMScript",
 }

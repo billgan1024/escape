@@ -1,7 +1,7 @@
 function checkSelected() {
 	with(oButton) {
 		if((oPersistent.r == r || r == span) && (oPersistent.c == c || c == span)) {
-			oPersistent.cur = id; updateSelectorTo(x, y, w, h); 
+			oPersistent.cur = id; oPersistent.vOffset = vOffset; updateSelectorTo(x, y, w, h); break;
 		}
 	}
 }
@@ -12,8 +12,6 @@ function updateSelector() {
 
 function updateSelectorTo() {
 	for(var i = 0; i < 4; i++) oPersistent.selectorTo[i] = argument[i]; 
-	oPersistent.selectorTo[2] += 30; 
-	oPersistent.selectorTo[3] += 9; 
 }
 
 function update() {

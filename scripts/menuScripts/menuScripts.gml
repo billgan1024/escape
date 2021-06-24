@@ -19,35 +19,35 @@ function initMenu() {
 	r = 0; c = 0; tr = 0; tc = 0;
 	pr = ds_stack_create(); pc = ds_stack_create();
 	cur = noone; hover = noone;
+	//bottom offset for drawing the selector properly
+	vOffset = 0;
 	
-	//menuData = array holding all of the UI elements for every state
-	menuData = array_create(gs.length, []);
-	//escActions = array holding all of the functions that activate upon pressing esc, for every state
+	//menuData = array holding all of the UI elements for every state (initialized dynamically)
+	menuData = array_create(gs.length);
+	//instead of loading every menu at runtime, bind each one to a function which creates
+	//all of the menu items automatically
+	menuData[gs.menu] = [createMenuItems, []];
+	menuData[gs.select] = [createSelectItems, []];
+	menuData[gs.options] = [createOptionsItems, [gs.options]];
+	menuData[gs.game] = undefined;
+	menuData[gs.paused] = [createPausedItems, []];
+	menuData[gs.optionsGame] = [createOptionsItems, [gs.optionsGame]];
+	
+	//escActions = static array holding the necessary actions performed when u press esc
+	//substitute (pr, pc) with constants
 	escActions = array_create(gs.length, undefined);
-	escActions[gs.select] = [transitionTo, [gs.menu, -1, -1, sameRoom]];
-	escActions[gs.options] = [transitionTo, [gs.menu, -1, -1, sameRoom]];
+	escActions[gs.select] = [transitionTo, [gs.menu, -1, -1]];
+	escActions[gs.options] = [transitionTo, [gs.menu, -1, -1]];
 	escActions[gs.game] = [teleportTo, [gs.paused]];
 	escActions[gs.paused] = [teleportTo, [gs.game]];
-	escActions[gs.optionsGame] = [transitionTo, [gs.paused, -1, -1, sameRoom]]; 
-	menuItems();
-	selectItems();
-	optionsItems();
-	pausedItems();
-	optionsGameItems();
+	escActions[gs.optionsGame] = [transitionTo, [gs.paused, -1, -1]]; 
 }
 
 function loadMenu(_gameState) {
-    //this implementation ensures that properties which are not set will remain at their default value
-    for(var i = 0; i < array_length(menuData[_gameState]); i++) {
-    	var item = menuData[_gameState][i], props = variable_struct_get_names(item);
-    	with(instance_create_layer(0, 0, "Persistent", item.obj)) {
-    		for(var j = 0; j < array_length(props); j++) {
-    			variable_instance_set(id, props[j], item[$props[j]]);
-    		}
-    	}
-    }
-    checkSelected();
-    //log(cur.enter);	
+	if(!is_undefined(menuData[_gameState])) {
+		script_execute_ext(menuData[_gameState][0], menuData[_gameState][1]);
+		checkSelected();	
+	}
 }
 
 function handleMenu() {

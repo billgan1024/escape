@@ -11,6 +11,8 @@
 
 #macro gain audio_sound_get_gain
 
+#macro len array_length
+
 #macro fadeSpeed 0.05
 #macro inputDelay 15
 
@@ -19,11 +21,11 @@
 #macro maxGrav 6.4
 
 //span keyword for menu items which take up the whole row/column
-#macro span -1
+#macro span -2
 
-//room transition keywords for transitionTo() (-1 represents no room change, and -2 represents a restart)
-#macro sameRoom -1
-#macro restartRoom -2
 
 //text is actually scaled lower so that we can enlarge it to the original size when menu items are hovered over
-#macro mainTextScale 0.92
+#macro mainScale 0.92
+
+#macro h_offset 30
+#macro v_offset 9
