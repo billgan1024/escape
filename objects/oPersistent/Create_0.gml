@@ -74,7 +74,7 @@ bottomLeft = ["Bill Gan", "", "", "", "", "", ""];
 bottomRight = ["Arrow/WASD Keys: Navigate\nEnter: Select\nEsc: Back", "", "", "", "", "", ""];
 menuTitles = [/*data[?"lvl"] > 1 ? "Continue" : "Play"*/"Play", "Level Select", "Options", "Quit"];
 pauseTitles = ["Back to Game", "Retry Level", "Options", "Main Menu"];
-navigationHelp = "Arrow/WASD Keys: Navigate\nEnter: Select\nEsc: Back";
+navigationHelp = "Arrow Keys/WASD/Mouse: Navigate\nEnter: Select\nEsc: Back";
 
 //[timeFactor as a multiple of the desired game speed, total number of frames that have passed]
 //update these according to delta time in the step event
