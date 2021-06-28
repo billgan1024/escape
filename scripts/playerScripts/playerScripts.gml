@@ -44,8 +44,7 @@ function pCollision() {
 	var q = instance_place(x, y+1, oFallingPlatform);
 	if(q != noone && q.state == 0) { snd(aPlatform); q.state = 1; q.a[2] = 210; }
 }
-/// @param walkAcc
-/// @param runAcc
+
 function updateHsp(walkAcc, runAcc) {
 	if(dash) hsp = approach(hsp, dir*(runSpd-abs(khsp)*11/12), runAcc); 
 	else {
@@ -98,7 +97,7 @@ function checkGrip() {
 }
 
 function wallJump(usePrevFrame) {
-    vsp = -jumpSpd;	khsp = wallKickSpd*-(usePrevFrame ? gripDirLastFrame : grip); snd(aJump);
+    vsp = -jumpSpd*(dash ? 9/10 : 1); khsp = wallKickSpd*-(usePrevFrame ? gripDirLastFrame : grip); snd(aJump);
 	wallJumpParticles(grip); wallJumpedThisFrame = true;
 	state = "jump"; 
 	event_perform(ev_other, ev_user5);

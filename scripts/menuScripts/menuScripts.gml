@@ -1,14 +1,14 @@
 //note that array_push and array_pop are the only functions that work with structs 
 function initMenu() {
 	enum gs {
-		menu, game, select, options, paused, optionsGame, username, length
+		menu, game, select, options, paused, optionsGame, edit, username, length
 	}
 	
 	gameState = is_undefined(data[?"username"]) ? gs.menu : gs.menu;
 	activeMenu = [true, false, true, true, true, true, true];
 	//row[i], col[i] = number of rows and columns for each menu state
-	maxRow = [4, 0, 5, 6, 4, 6, 2];
-	maxCol = [1, 0, 8, 1, 1, 1, 1];
+	maxRow = [4, 0, 5, 6, 4, 6, 2, 0];
+	maxCol = [1, 0, 8, 1, 1, 1, 1, 0];
 	
 	//[xpos, ypos, w, h], (x, y) is in the range (0, 0) to (vw, vh)
 	selectorFrom = [0, 0, 0, 0];

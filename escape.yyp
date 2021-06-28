@@ -132,6 +132,7 @@
     {"id":{"name":"level5","path":"rooms/level5/level5.yy",},"order":11,},
     {"id":{"name":"menuActions","path":"scripts/menuActions/menuActions.yy",},"order":13,},
     {"id":{"name":"level24","path":"rooms/level24/level24.yy",},"order":31,},
+    {"id":{"name":"level8b","path":"rooms/level8b/level8b.yy",},"order":38,},
     {"id":{"name":"oPlatform","path":"objects/oPlatform/oPlatform.yy",},"order":30,},
     {"id":{"name":"menuScripts","path":"scripts/menuScripts/menuScripts.yy",},"order":14,},
     {"id":{"name":"level12","path":"rooms/level12/level12.yy",},"order":20,},
@@ -191,6 +192,7 @@
     {"roomId":{"name":"level27","path":"rooms/level27/level27.yy",},},
     {"roomId":{"name":"editor","path":"rooms/editor/editor.yy",},},
     {"roomId":{"name":"template","path":"rooms/template/template.yy",},},
+    {"roomId":{"name":"level8b","path":"rooms/level8b/level8b.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":0,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},

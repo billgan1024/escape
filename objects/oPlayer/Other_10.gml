@@ -41,9 +41,11 @@ switch(state)
 			freecam = !freecam; snd(freecam ? aCamOn : aCamOff);
 		}
 		khsp = 0;
-		updateHsp(walkAcc, walkAcc/8);
+		//for running, accelerate slowly if you're trying to speed up to your maximum speed
+		//accelerate slightly quicker if you're trying to stop
+		updateHsp(sign(hsp) == sign(dir) ? walkAcc/4 : walkAcc, sign(hsp) == sign(dir) ? walkAcc/14 : walkAcc/6);
 		if(jump || preparedJump) { 
-			vsp = -jumpSpd; state = "jump"; snd(aJump); 
+			vsp = -jumpSpd*(hsp > walkSpd ? 11/12 : 1); state = "jump"; snd(aJump); 
 			event_perform(ev_other, ev_user3); 
 		}
 		if(!place_meeting(x, y+1, oGround) && !place_meeting(x, y+1, oPlatform)) {
@@ -54,7 +56,9 @@ switch(state)
 		//special check to cancel wallkick speed if you started to move in the other direction and released the key
 		checkReleasedWallKick();
 		khsp = approach(khsp, 0, fric);
-		updateHsp(airAcc, airAcc/2); 
+		//if you're trying to dash mid-air, the cost to increase ur speed to maximum speed is greater
+		//than the cost to stop
+		updateHsp(sign(hsp) == sign(dir) ? airAcc/2 : airAcc, sign(hsp) == sign(dir) && abs(hsp) > walkSpd ? airAcc/4 : airAcc/2); 
 		updateVsp();
 		if(jump)
 		{
@@ -62,7 +66,7 @@ switch(state)
 			else if(gripTimer) wallJump(true);
 			else {
 				khsp = 0;
-				vsp = -jumpSpd;	snd(aJump);
+				vsp = -jumpSpd*(hsp > walkSpd ? 11/12 : 1); snd(aJump);
 				if(a[2] != infinity) a[2] = infinity; else state = "djump";
 			}
 			event_perform(ev_other, ev_user4);
@@ -73,8 +77,8 @@ switch(state)
 		if(!dead) smoke(c_gray, 120, -0.005, true, 0.5);
 		checkReleasedWallKick();
 		khsp = approach(khsp, 0, fric);
+		updateHsp(sign(hsp) == sign(dir) ? airAcc/2 : airAcc, sign(hsp) == sign(dir) && abs(hsp) > walkSpd ? airAcc/4 : airAcc/2);  
 		updateVsp();
-		updateHsp(airAcc, airAcc/2); 
 		if(jump)
 		{
 			if(grip != 0) wallJump(false);

@@ -1,8 +1,8 @@
-walkSpd = 2.9; 
-runSpd = 3.6;
+walkSpd = 3.2; 
+runSpd = 4.3;
 jumpSpd = 5.3;
-walkAcc = 3;
-airAcc = 0.4;
+walkAcc = 1.2;
+airAcc = 0.2;
 bufferTime = 15;
 phsp = 0;
 cameraSpd = 0;
