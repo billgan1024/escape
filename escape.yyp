@@ -147,6 +147,7 @@
     {"id":{"name":"createOptionsItems","path":"scripts/createOptionsItems/createOptionsItems.yy",},"order":2,},
     {"id":{"name":"oArrowControl","path":"objects/oArrowControl/oArrowControl.yy",},"order":5,},
     {"id":{"name":"createPausedItems","path":"scripts/createPausedItems/createPausedItems.yy",},"order":3,},
+    {"id":{"name":"testingScripts","path":"scripts/testingScripts/testingScripts.yy",},"order":14,},
   ],
   "Options": [
     {"name":"Linux","path":"options/linux/options_linux.yy",},

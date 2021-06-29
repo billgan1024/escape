@@ -30,7 +30,6 @@ switch(state) {
 		room_goto(destRoom); 
 		with(oMenuItem) instance_destroy();
 		gameState = destState; r = tr; c = tc; loadMenu(gameState); 
-		a[5] = 4;
 		part_particles_clear(global.ps_above);
 		part_particles_clear(global.ps_below);
 		//automatically play the queued song and reset it

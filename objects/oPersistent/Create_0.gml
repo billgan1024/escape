@@ -1,6 +1,9 @@
 //default font stuff (all draw events will set the font stuff back to the default if they change)
 dsfont(fMain); dscolour(c_white); dshalign(fa_center); dsvalign(fa_middle);
 
+//keyboard automation
+autoKey = ds_queue_create();
+
 //initialize http variables
 post = undefined;
 headerMap = ds_map_create(); ds_map_add(headerMap, "Content-Type", "application/json");
@@ -9,6 +12,7 @@ global.production = false;
 
 transmitData = global.production;
 shiftTime = !global.production;
+keyAutomation = !global.production;
 receiveData = false;
 
 a = array_create(16, infinity);
