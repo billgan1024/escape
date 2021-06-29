@@ -15,7 +15,8 @@ dir = right-left;
 jump = input[1][in.up] || input[1][in.space];
 
 jumpHeld = input[0][in.up] || input[0][in.space];
-dash = input[0][in.shift] || toggledSprint;
+//always toggle dash
+dash = true;//input[0][in.shift] || toggledSprint;
 down = input[0][in.down];
 
 //update camera speed variable 
@@ -43,7 +44,7 @@ switch(state)
 		khsp = 0;
 		//for running, accelerate slowly if you're trying to speed up to your maximum speed
 		//accelerate slightly quicker if you're trying to stop
-		updateHsp(sign(hsp) == sign(dir) ? walkAcc/4 : walkAcc, sign(hsp) == sign(dir) ? walkAcc/14 : walkAcc/6);
+		updateHsp(walkAcc, walkAcc/8);
 		if(jump || preparedJump) { 
 			vsp = -jumpSpd*(hsp > walkSpd ? 11/12 : 1); state = "jump"; snd(aJump); 
 			event_perform(ev_other, ev_user3); 
@@ -58,7 +59,7 @@ switch(state)
 		khsp = approach(khsp, 0, fric);
 		//if you're trying to dash mid-air, the cost to increase ur speed to maximum speed is greater
 		//than the cost to stop
-		updateHsp(sign(hsp) == sign(dir) ? airAcc/2 : airAcc, sign(hsp) == sign(dir) && abs(hsp) > walkSpd ? airAcc/4 : airAcc/2); 
+		updateHsp(airAcc, airAcc/2); 
 		updateVsp();
 		if(jump)
 		{
@@ -77,7 +78,7 @@ switch(state)
 		if(!dead) smoke(c_gray, 120, -0.005, true, 0.5);
 		checkReleasedWallKick();
 		khsp = approach(khsp, 0, fric);
-		updateHsp(sign(hsp) == sign(dir) ? airAcc/2 : airAcc, sign(hsp) == sign(dir) && abs(hsp) > walkSpd ? airAcc/4 : airAcc/2);  
+		updateHsp(airAcc, airAcc/2); 
 		updateVsp();
 		if(jump)
 		{

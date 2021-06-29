@@ -4,7 +4,7 @@ delay = 0;
 bulletSpd = 0;
 delayStart = 0;
 laserAlpha = 0;
-len = 0;
+lightLength = 0;
 angleStart = 0;
 t = 0;
 

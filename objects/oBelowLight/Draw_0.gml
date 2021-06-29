@@ -2,7 +2,7 @@
 //the laser lights will still be drawn at the below layer
 //even if you're iterating through every missile cannon
 with(oMissileCannon) draw_sprite_general(sLaserLight, 
-	0, 0, 0, len, 15, 
+	0, 0, 0, lightLength, 15, 
 	x+lengthdir_x(15/2, image_angle+90), 
 	y+lengthdir_y(15/2, image_angle+90), 
 	1, 1, image_angle, c_white, c_white, c_white, 
@@ -10,7 +10,7 @@ with(oMissileCannon) draw_sprite_general(sLaserLight,
 
 with(oLaserCannon) {
 	if(state == 1) {
-		draw_sprite_ext(sLaser, 0, x, y, len, laserWidth, image_angle, c_white, 1); 
+		draw_sprite_ext(sLaser, 0, x, y, lightLength, laserWidth, image_angle, c_white, 1); 
 	}
 }
 

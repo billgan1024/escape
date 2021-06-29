@@ -1,1 +1,1 @@
-text = "Hold shift to move faster";
+text = "Hold up while falling to glide";

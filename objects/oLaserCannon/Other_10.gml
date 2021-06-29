@@ -8,7 +8,7 @@ if(sway) {
 else image_angle = (image_angle + angularSpd) % 360;
 
 c = lightCollision(x, y, x+lengthdir_x(2560, image_angle), y+lengthdir_y(2560, image_angle), oGround, false, false);
-var dx = c[1]-x, dy = c[2]-y; len = sqrt(dx*dx + dy*dy);
+var dx = c[1]-x, dy = c[2]-y; lightLength = sqrt(dx*dx + dy*dy);
 
 if(state == 1) {
     if(!oPlayer.dead && collision_line(x, y, c[1], c[2], oPlayer, false, false)) {

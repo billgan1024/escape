@@ -97,7 +97,7 @@ function checkGrip() {
 }
 
 function wallJump(usePrevFrame) {
-    vsp = -jumpSpd*(dash ? 9/10 : 1); khsp = wallKickSpd*-(usePrevFrame ? gripDirLastFrame : grip); snd(aJump);
+    vsp = -jumpSpd; khsp = wallKickSpd*-(usePrevFrame ? gripDirLastFrame : grip); snd(aJump);
 	wallJumpParticles(grip); wallJumpedThisFrame = true;
 	state = "jump"; 
 	event_perform(ev_other, ev_user5);
