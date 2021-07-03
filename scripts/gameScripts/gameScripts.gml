@@ -1,9 +1,12 @@
 function resetArea() {
 	with(oEnemy) { x = xstart; y = ystart; hsp = hspStart; }
 	with(oSpike) { 
-		image_angle = 0; pos = startPos; angle = startAngle;
-		x = path_get_x(pathIdx, pos) + lengthdir_x(radius, angle) + offsetX;
-		y = path_get_y(pathIdx, pos) + lengthdir_y(radius, angle) + offsetY;
+		image_angle = 0; angle = startAngle;
+		if(pathIdx != -1) {
+			pos = startPos; 
+			x = path_get_x(pathIdx, pos) + lengthdir_x(radius, angle) + offsetX;
+			y = path_get_y(pathIdx, pos) + lengthdir_y(radius, angle) + offsetY;
+		}
 	}
 	with(oCoin) { image_angle = 0; x = xstart; t = 0; a[1] = random_range(90, 120); }
 	with(oMovingPlatform) { t = 0; }
@@ -57,4 +60,18 @@ function createLevel(img) {
 	        }
     	}
 	}
+}
+
+function getDeathLocations() {
+	surf = surface_create(room_width, room_height);
+	surface_set_target(surf);
+	draw_clear(c_white);
+	dscolour(make_color_rgb(22, 24, 26));
+	with(oGround) {
+		draw_rectangle(x, y, x + 60*image_xscale - 1, y + 60*image_yscale-1, false);
+	}
+	dscolour(c_white);
+	get = http_request("http://escape-server-1024.herokuapp.com/deaths", "GET", oPersistent.headerMap, "");
+	surface_reset_target();
+	surface_save(surf, + room_get_name(room) + ".png");
 }

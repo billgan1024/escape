@@ -9,11 +9,12 @@ post = undefined;
 headerMap = ds_map_create(); ds_map_add(headerMap, "Content-Type", "application/json");
 
 global.production = false;
+receiveData = true;
+testObjects = false;
+keyAutomation = true;
 
 transmitData = global.production;
 shiftTime = !global.production;
-keyAutomation = !global.production;
-receiveData = false;
 
 a = array_create(16, infinity);
 randomize();
@@ -32,21 +33,16 @@ global.inputCodes = [vk_left, vk_right, vk_up, vk_down, vk_space, vk_shift, vk_e
 bindInput();
 
 for(var i = 0; i < 3; i++) input[i] = array_create(in.length);
+
 fileName = "data.dat";
 data = ds_map_create();
 if(file_exists(fileName)) {	ds_map_destroy(data); data = ds_map_secure_load(fileName); }
 else init();
-//read in values in an array so that it can be used in the draw event
+
+customLevels = ds_map_create();
+loadCustomLevels();
 window_set_fullscreen(data[?"fs"]);
-//log("idx", asset_get_index("utilScripts"));
 
-//this enum assigns numbers to values 
-//gs.menu = 0, gs.game = 1, and so on
-//menu -> (select, options)
-//paused -> optionsGame
-
-//since we're implementing this functionality as an update, there will be ppl who have a data file
-//but not a username field, so update that accordingly
 initMenu();
 loadMenu(gameState);
 
@@ -72,13 +68,6 @@ paused = false;
 //enable interacting and disable snap
 a[4] = inputDelay;
 
-//all constant text data for the menu screens
-titles = ["Escape", "", "Level Select", "Options", "Game Paused", "Options", ""];
-bottomLeft = ["Bill Gan", "", "", "", "", "", ""];
-bottomRight = ["Arrow/WASD Keys: Navigate\nEnter: Select\nEsc: Back", "", "", "", "", "", ""];
-menuTitles = [/*data[?"lvl"] > 1 ? "Continue" : "Play"*/"Play", "Level Select", "Options", "Quit"];
-pauseTitles = ["Back to Game", "Retry Level", "Options", "Main Menu"];
-navigationHelp = "Arrow Keys/WASD/Mouse: Navigate\nEnter: Select\nEsc: Back";
 
 //[timeFactor as a multiple of the desired game speed, total number of frames that have passed]
 //update these according to delta time in the step event

@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "createItems",
+    "path": "folders/Scripts/Menu/createItems.yy",
   },
   "resourceVersion": "1.0",
-  "name": "menuScripts",
+  "name": "createLevelsItems",
   "tags": [],
   "resourceType": "GMScript",
 }

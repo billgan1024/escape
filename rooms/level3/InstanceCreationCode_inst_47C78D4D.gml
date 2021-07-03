@@ -1,1 +1,1 @@
-text = "Hold up after jumping to glide";
+text = "Hold jump while falling to glide";

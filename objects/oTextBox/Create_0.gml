@@ -1,8 +1,7 @@
-text = ""; r = 0; c = 0; w = 0; h = 0;
-left = undefined;
-right = undefined;
-up = undefined;
-down = undefined;
-enter = undefined;
-
-
+//note that text boxes are not reachable via keyboard controls, but they still have a row and column
+//so that you can grab text via menu item position
+text = ""; 
+selected = false;
+label = "";
+r = 0; c = 0; w = 800; h = 100;
+vOffset = 9;

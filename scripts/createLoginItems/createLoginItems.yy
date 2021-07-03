@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Menu/createItems.yy",
   },
   "resourceVersion": "1.0",
-  "name": "createOptionsItems",
+  "name": "createLoginItems",
   "tags": [],
   "resourceType": "GMScript",
 }

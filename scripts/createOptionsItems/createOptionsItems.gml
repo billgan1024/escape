@@ -1,14 +1,13 @@
+//accept a state that will be used to decide what state you will transition to once you go back 
 function createOptionsItems(escState) {
-	//accept a state that will be used to decide what state you will transition to once you go back 
     var labels = [
     	"Sound FX: " + string(data[?"sfx"]) + "%", 
     	"Music: " + string(data[?"mus"]) + "%", 
     	"Fullscreen: " + (data[?"fs"] ? "On" : "Off"), 
     	"Timer: " + (data[?"timer"] ? "On" : "Off"), 
-    	"Toggle Sprint: " + (data[?"toggle-sprint"] ? "On" : "Off") 
     ]
     //set actions + args 2 times for different 'groups' of buttons
-	var actions = [changeSoundVol, changeMusicVol, toggleFs, toggleTimer, toggleSprint];
+	var actions = [changeSoundVol, changeMusicVol, toggleFs, toggleTimer];
     for(var i = 0; i < 2; i++) {
     	with(instance_create_layer(vw/2, 400+120*i, "Persistent", oButton)) {
     		r = i;
@@ -25,7 +24,7 @@ function createOptionsItems(escState) {
 		//so that you can play the animation
 		for(var j = 0; j < 2; j++) {
 			with(instance_create_layer(vw/2-250+500*j, 400+120*i, "Persistent", oButton)) {
-				r = i; c = j+1;
+				r = i; c = -1+2*j;
 				spr = sArrowIcon;
 				w = sprite_get_width(sArrowIcon)+h_offset;
 				h = sprite_get_height(sArrowIcon)+v_offset;
@@ -37,7 +36,7 @@ function createOptionsItems(escState) {
     		}
 		}	
 	}
-	for(var i = 2; i < 5; i++) {
+	for(var i = 2; i < 4; i++) {
     	with(instance_create_layer(vw/2, 400+120*i, "Persistent", oButton)) {
     		r = i;
 			up = [changeCursor, [-1, 0]];
@@ -49,7 +48,7 @@ function createOptionsItems(escState) {
     	}
 	}
 	with(instance_create_layer(vw/2, 400+120*7, "Persistent", oButton)) {
-		r = 5;
+		r = 4;
 		c = span;
 		up = [changeCursor, [-1, 0]];
 		down = [changeCursor, [1, 0]];
@@ -85,7 +84,3 @@ function toggleTimer() {
 	data[?"timer"] = !data[?"timer"]; save(); changeText("Timer: " + (data[?"timer"] ? "On" : "Off"), 3, 0);
 }
 
-function toggleSprint() {
-	data[?"toggle-sprint"] = !data[?"toggle-sprint"]; save();
-	changeText("Toggle Sprint: " + (data[?"toggle-sprint"] ? "On" : "Off"), 4, 0);
-}

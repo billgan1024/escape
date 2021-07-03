@@ -4,9 +4,10 @@ a = array_create(16, infinity);
 //the spike can be coded to revolve around that moving point to allow for more complex movement
 //can also toggle absoluteness
 //update: now supports automatically creating horizontal and vertical paths
+//and also the default behaviour is a spike with speed 0
 pathIdx = -1;
 spd = 0; loop = false;
-rotateSpd = 0;
+rotateSpd = 1;
 
 pos = 0; startPos = 0;
 
@@ -17,6 +18,7 @@ offsetX = 0; offsetY = 0;
 
 //update boundaries for hpath using the boundary boxes (for vertical boundaries, it's always
 //floor(y/vh)*vh + 30, floor(y/vh)*vh + vh - 30
+//this is used by hpath() and vpath() in the creation code, which always runs after the create event.
 lb = 0; rb = 0; top = floor(y/vh)*vh; var t = top;
 var xList = ds_list_create();
 with(oBoundary) {

@@ -4,8 +4,16 @@ function init() {
 	data[?"sfx"] = 100;
 	data[?"timer"] = false;
 	data[?"lvl"] = 32;
-	data[?"toggle-sprint"] = false;
 	save();
+}
+
+function loadCustomLevels() {
+	if(!directory_exists("levels")) directory_create("levels");
+    for(var s = file_find_first("levels/*.dat", 0); s != ""; s = file_find_next()) {
+    	log(s);
+    	//load each custom level into an entry in the customLevels map
+    	//customLevels[?""] = ds_map_secure_load()	
+    }
 }
 
 function save() { 
