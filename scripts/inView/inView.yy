@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Menu",
-    "path": "folders/Scripts/Menu.yy",
+    "name": "Utility",
+    "path": "folders/Scripts/Utility.yy",
   },
   "resourceVersion": "1.0",
-  "name": "menuChanges",
+  "name": "inView",
   "tags": [],
   "resourceType": "GMScript",
 }

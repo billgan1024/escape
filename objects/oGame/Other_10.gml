@@ -2,7 +2,6 @@
 t += 1/240;
 //these events are run only once, before the game deactivates everything except for the current region
 //get all death locations for this level
-if(oPersistent.receiveData && !surface_exists(surf)) getDeathLocations();
 if(oPersistent.testObjects) verifyObjects();
 shake = approach(shake, 0, 0.08);
 borderRadius = smoothApproach(borderRadius, oPlayer.freecam ? 30 : 0, 0.08);

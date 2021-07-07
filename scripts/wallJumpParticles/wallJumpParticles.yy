@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "Particles",
+    "path": "folders/Scripts/Particles.yy",
   },
   "resourceVersion": "1.0",
-  "name": "playerScripts",
+  "name": "wallJumpParticles",
   "tags": [],
   "resourceType": "GMScript",
 }

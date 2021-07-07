@@ -3,9 +3,10 @@ function initMenu() {
 		//this enum assigns numbers to values 
 		//gs.menu = 0, gs.game = 1, and so on
 		//levels: the list of custom levels you have in the menu 
+		//levelData: shown when you're editing the metadata or creating a new level in the menu room
 		//edit: level editor room
 		//username: if there is no username, prompt the user for one
-		menu, game, select, options, paused, optionsGame, logIn, register, levels, edit, length
+		menu, game, select, options, paused, optionsGame, logIn, register, levels, levelData, edit, length
 	}
 	
 	gameState = is_undefined(data[?"username"]) ? gs.menu : gs.menu;

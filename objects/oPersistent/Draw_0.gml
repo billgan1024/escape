@@ -13,8 +13,8 @@ with(oButton) {
 }
 with(oTextBox) draw_text(vx+x, vy+y, text);
 with(oTextBox) {
-	draw_rectangle_width(vx+x-w/2, vy+y-h/2, vx+x+w/2, vy+y+h/2-vOffset, 2, other.alpha/2);
-	draw_rectangle_width(vx+x-w/2+4, vy+y-h/2+4, vx+x+w/2-4, vy+y+h/2-4-vOffset, 2, other.alpha/2);
+	drawRectangleWidth(vx+x-w/2, vy+y-h/2, vx+x+w/2, vy+y+h/2-vOffset, 2, other.alpha/2);
+	drawRectangleWidth(vx+x-w/2+4, vy+y-h/2+4, vx+x+w/2-4, vy+y+h/2-4-vOffset, 2, other.alpha/2);
 }
 //draw selector rectangle if you're not in game
 if(gameState != gs.game) {
@@ -22,7 +22,7 @@ if(gameState != gs.game) {
 	//x, y is the center position of the text
 	var sx = selectorFrom[0], sy = selectorFrom[1], sw = selectorFrom[2], sh = selectorFrom[3];
 	var xx = vx+sx-sw/2, yy = vy+sy-sh/2;
-	draw_rectangle_width(xx, yy, xx+sw, yy+sh-vOffset, 4, alpha/5);
+	drawRectangleWidth(xx, yy, xx+sw, yy+sh-vOffset, 4, alpha/5);
 }
 
 //draw transition tint if we're switching rooms

@@ -19,3 +19,10 @@ function loadCustomLevels() {
 function save() { 
 	ds_map_secure_save(data, fileName); 
 }
+
+function loadSettings() {
+	fileName = "data.dat";
+	data = ds_map_create();
+	if(file_exists(fileName)) {	ds_map_destroy(data); data = ds_map_secure_load(fileName); }
+	else init();
+}

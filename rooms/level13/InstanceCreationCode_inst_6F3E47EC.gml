@@ -1,0 +1,1 @@
+text = "Tip: Standing still allows you to jump higher";

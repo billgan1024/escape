@@ -1,3 +1,4 @@
+a = array_create(16, infinity);
 //default font stuff (all draw events will set the font stuff back to the default if they change)
 dsfont(fMain); dscolour(c_white); dshalign(fa_center); dsvalign(fa_middle);
 
@@ -11,12 +12,11 @@ headerMap = ds_map_create(); ds_map_add(headerMap, "Content-Type", "application/
 global.production = false;
 receiveData = true;
 testObjects = false;
-keyAutomation = true;
+keyAutomation = false;
 
 transmitData = global.production;
 shiftTime = !global.production;
 
-a = array_create(16, infinity);
 randomize();
 h = window_get_height();
 window_set_size(h/3*4, h/4*3);
@@ -34,12 +34,7 @@ bindInput();
 
 for(var i = 0; i < 3; i++) input[i] = array_create(in.length);
 
-fileName = "data.dat";
-data = ds_map_create();
-if(file_exists(fileName)) {	ds_map_destroy(data); data = ds_map_secure_load(fileName); }
-else init();
-
-customLevels = ds_map_create();
+loadSettings();
 loadCustomLevels();
 window_set_fullscreen(data[?"fs"]);
 

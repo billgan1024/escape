@@ -16,7 +16,6 @@ jump = input[1][in.up] || input[1][in.space];
 
 jumpHeld = input[0][in.up] || input[0][in.space];
 //always toggle dash
-dash = true;//input[0][in.shift] || toggledSprint;
 down = input[0][in.down];
 
 //update camera speed variable 
@@ -44,13 +43,13 @@ switch(state)
 		khsp = 0;
 		//for running, accelerate slowly if you're trying to speed up to your maximum speed
 		//accelerate slightly quicker if you're trying to stop
-		updateHsp(walkAcc, walkAcc/8);
+		updateHsp(runAcc);
 		if(jump || preparedJump) { 
-			vsp = -jumpSpd*(hsp > walkSpd ? 11/12 : 1); state = "jump"; snd(aJump); 
+			vsp = -jumpSpd; state = "jump"; snd(aJump); 
 			event_perform(ev_other, ev_user3); 
 		}
 		if(!place_meeting(x, y+1, oGround) && !place_meeting(x, y+1, oPlatform)) {
-			state = "jump"; a[2] = bufferTime;	
+			state = "jump"; a[2] = coyoteTimeBuffer;	
 		}
 	break;
 	case "jump":
@@ -59,15 +58,15 @@ switch(state)
 		khsp = approach(khsp, 0, fric);
 		//if you're trying to dash mid-air, the cost to increase ur speed to maximum speed is greater
 		//than the cost to stop
-		updateHsp(airAcc, airAcc/2); 
+		updateHsp(airAcc); 
 		updateVsp();
 		if(jump)
 		{
 			if(grip != 0) wallJump(false);
-			else if(gripTimer) wallJump(true);
+			else if(preparedWallJump) wallJump(true);
 			else {
 				khsp = 0;
-				vsp = -jumpSpd*(hsp > walkSpd ? 11/12 : 1); snd(aJump);
+				vsp = -jumpSpd; snd(aJump);
 				if(a[2] != infinity) a[2] = infinity; else state = "djump";
 			}
 			event_perform(ev_other, ev_user4);
@@ -75,18 +74,18 @@ switch(state)
 		if((place_meeting(x, y+1, oGround) || place_meeting(x, y+1, oPlatform)) && vsp >= 0) { state = "ground"; }
 	break;
 	case "djump":
-		if(!dead) smoke(c_gray, 120, -0.005, true, 0.5);
+		if(!dead) smoke(c_gray, 120, -0.005, true, 0.5, x, y);
 		checkReleasedWallKick();
 		khsp = approach(khsp, 0, fric);
-		updateHsp(airAcc, airAcc/2); 
+		updateHsp(airAcc); 
 		updateVsp();
 		if(jump)
 		{
 			if(grip != 0) wallJump(false);
-			else if(gripTimer) wallJump(true);
+			else if(preparedWallJump) wallJump(true);
 			else {
 				//jump buffer (like geometry dash)
-				preparedJump = true; a[3] = jumpBuffer;	
+				preparedJump = true; a[3] = preparedJumpBuffer;	
 			}
 		}
 		if((place_meeting(x, y+1, oGround) || place_meeting(x, y+1, oPlatform)) && vsp >= 0) { state = "ground"; }
