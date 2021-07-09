@@ -32,6 +32,7 @@ switch(state) {
 		gameState = destState; r = tr; c = tc; loadMenu(gameState); 
 		part_particles_clear(global.ps_above);
 		part_particles_clear(global.ps_below);
+		part_particles_clear(global.ps_bg);
 		//automatically play the queued song and reset it
 		if(destSong != -1) { mus(destSong); destSong = -1; }
 		//reset attempts if necessary

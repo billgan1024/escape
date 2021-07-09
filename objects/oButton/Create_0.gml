@@ -1,6 +1,7 @@
 text = ""; r = 0; c = 0; w = 0; h = 0;
 scale = mainScale;
 baseScale = mainScale;
+disabled = false;
 willScale = true;
 willMoveCursor = true;
 vOffset = 9;

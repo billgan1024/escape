@@ -16,8 +16,8 @@ function createOptionsItems(escState) {
 			left = [actions[i], [-10]];
 			right = [actions[i], [10]];
 			text = labels[i];
-			w = string_width(labels[i])+h_offset;
-			h = string_height(labels[i])+v_offset;
+			w = string_width(text)+h_offset;
+			h = string_height(text)+v_offset;
 			willScale = false;
     	}
 		//for the graphics icons, assign (r, c) that is out of bounds so that they won't be selected
@@ -26,8 +26,8 @@ function createOptionsItems(escState) {
 			with(instance_create_layer(vw/2-250+500*j, 400+120*i, "Persistent", oButton)) {
 				r = i; c = -1+2*j;
 				spr = sArrowIcon;
-				w = sprite_get_width(sArrowIcon)+h_offset;
-				h = sprite_get_height(sArrowIcon)+v_offset;
+				w = sprite_get_width(spr)+h_offset;
+				h = sprite_get_height(spr)+v_offset;
 				imageIndex = j;
 				enter = [actions[i], [-10+20*j]];
 				willMoveCursor = false;
@@ -43,8 +43,8 @@ function createOptionsItems(escState) {
 			down = [changeCursor, [1, 0]];
 			enter = [actions[i], []];
 			text = labels[i];
-			w = string_width(labels[i])+h_offset;
-			h = string_height(labels[i])+v_offset;
+			w = string_width(text)+h_offset;
+			h = string_height(text)+v_offset;
     	}
 	}
 	with(instance_create_layer(vw/2, 400+120*7, "Persistent", oButton)) {
@@ -54,8 +54,8 @@ function createOptionsItems(escState) {
 		down = [changeCursor, [1, 0]];
 		enter = oPersistent.escActions[escState];
 		text = "Back";
-		w = string_width("Back")+h_offset;
-		h = string_height("Back")+v_offset;
+		w = string_width(text)+h_offset;
+		h = string_height(text)+v_offset;
 	}
 }
 

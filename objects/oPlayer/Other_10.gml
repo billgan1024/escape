@@ -19,7 +19,7 @@ jumpHeld = input[0][in.up] || input[0][in.space];
 down = input[0][in.down];
 
 //update camera speed variable 
-cameraSpd = approach(cameraSpd, 5.5*dir, 0.4);
+cameraSpd = approach(cameraSpd, 5.3*dir, 0.4);
 
 //if we're in freecam mode, cancel all inputs and move the camera
 if(freecam) {
@@ -31,7 +31,6 @@ if(freecam) {
 	
 	dir = 0; jump = false; jumpHeld = false; dash = false; down = false;
 }
-
 
 switch(state)
 {

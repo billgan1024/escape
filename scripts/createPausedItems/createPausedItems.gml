@@ -10,8 +10,8 @@ function createPausedItems() {
 			down = [changeCursor, [1, 0]];
 			enter = [actions[i], args[i]];
 			text = labels[i];
-			w = string_width(labels[i])+h_offset;
-			h = string_height(labels[i])+v_offset;
+			w = string_width(text)+h_offset;
+			h = string_height(text)+v_offset;
 		}
 	}
 }

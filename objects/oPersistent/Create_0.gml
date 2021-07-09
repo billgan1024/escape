@@ -10,7 +10,7 @@ post = undefined;
 headerMap = ds_map_create(); ds_map_add(headerMap, "Content-Type", "application/json");
 
 global.production = false;
-receiveData = true;
+receiveData = false;
 testObjects = false;
 keyAutomation = false;
 
@@ -70,7 +70,7 @@ a[4] = inputDelay;
 time = [1, 0];
 pTime = [1, 0];
 
-a[3] = random_range(240, 300);
+a[3] = random_range(180, 240);
 
 global.ps_above = part_system_create(); global.ps_below = part_system_create(); global.ps_bg = part_system_create();
 part_system_depth(global.ps_above, layer_get_depth("Above")); part_system_depth(global.ps_below, layer_get_depth("Below")); part_system_depth(global.ps_bg, layer_get_depth("Below"));

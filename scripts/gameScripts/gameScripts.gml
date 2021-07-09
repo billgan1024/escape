@@ -24,6 +24,8 @@ function resetArea() {
 	}
 	with(oGem) { t = 0; a[1] = random_range(15, 60); }
 	with(oGemOrange) { state = 0; t = 0; a[1] = random_range(15, 60); }
+	part_particles_clear(global.ps_above);
+	part_particles_clear(global.ps_below);
 }
 
 //for testing purposes only, since this function takes a lot of time to execute

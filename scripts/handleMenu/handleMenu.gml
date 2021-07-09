@@ -7,5 +7,5 @@ function handleMenu() {
 	if(input[1][in.right] && !is_undefined(cur.right)) { script_execute_ext(cur.right[0], cur.right[1]); snd(aScroll); checkSelected(); clearInput(); }
 	if(input[1][in.up] && !is_undefined(cur.up)) { script_execute_ext(cur.up[0], cur.up[1]); snd(aScroll); checkSelected(); clearInput(); }
 	if(input[1][in.down] && !is_undefined(cur.down)) { script_execute_ext(cur.down[0], cur.down[1]); snd(aScroll); checkSelected(); clearInput(); }
-	if(input[1][in.enter] && !is_undefined(cur.enter)) { script_execute_ext(cur.enter[0], cur.enter[1]); snd(aSelect); checkSelected(); clearInput(); }
+	if(input[1][in.enter] && !is_undefined(cur.enter) && !cur.disabled) { script_execute_ext(cur.enter[0], cur.enter[1]); snd(aSelect); checkSelected(); clearInput(); }
 }

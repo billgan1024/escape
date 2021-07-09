@@ -12,8 +12,8 @@ function initMenu() {
 	gameState = is_undefined(data[?"username"]) ? gs.menu : gs.menu;
 	activeMenu = [true, false, true, true, true, true, true];
 	//row[i], col[i] = number of rows and columns for each menu state
-	maxRow = [4, 0, 5, 5, 4, 5, 3];
-	maxCol = [1, 0, 8, 1, 1, 1, 1];
+	maxRow = [4, 0, 5, 5, 4, 5, 3, 3, 5];
+	maxCol = [1, 0, 8, 1, 1, 1, 1, 3, 4];
 	
 	//all constant text data for the menu screens
 	titles = ["Escape", "", "Level Select", "Options", "Game Paused", "Options", "Log In", "Register", "Custom Levels", ""];
@@ -37,4 +37,5 @@ function initMenu() {
 	vOffset = 0;
 	
 	assignMenuCreationFunctions();
+	assignMenuBackgroundItems();
 }

@@ -23,8 +23,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Draw",
+    "path": "folders/Objects/Draw.yy",
   },
   "resourceVersion": "1.0",
   "name": "oCoinLight",

@@ -31,14 +31,15 @@ function updateLocal() {
 	part_system_update(global.ps_above);
 	part_system_update(global.ps_below); 
 	with(all) {
-		if(object_index != oPersistent && object_index != oMenuItem) update();
+		if(object_index != oPersistent && object_index != oMenuItem && object_index != oBg) update();
 	}
 }
 
 function updateGlobal() {
-    //updates things that are persistent (persistent + menu stuff)
+    //updates things that are persistent (persistent + menu stuff + background stuff)
 	part_system_update(global.ps_bg);
 	with(oMenuItem) update();
+	with(oBg) update();
 	update(); 
 }
 

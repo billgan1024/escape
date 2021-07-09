@@ -1,22 +1,24 @@
 function createLevelsItems() {
-    //function for creating the list of levels in the menu room
     
-    //load all levels into the customLevels struct
-    customLevels = ds_map_create();
-    for(var s = file_find_first("levels/*.dat", 0); s != ""; s = file_find_next()) {
-        //s = levelName.dat
-        
-        //this code will not convert the map into a list when you use json_encode
-        //customLevels[?string_replace(s, ".dat", "")] = ds_map_secure_load("levels/" + s);
-        
-        //this code will convert the nested map to nested json structures
-        ds_map_add_map(customLevels, string_replace(s, ".dat", ""), ds_map_secure_load("levels/" + s));
+    //by default, create the first page (you can define more transition states in oPersistent to load other pages
+    //while remaining on the levels gamestate)
+    loadPage(0);
+}
+
+function loadPage(page) {
+    for(var i = 0; i < 4; i++) {
+        for(var j = 0; j < 4; j++) {
+            var idx = 16*page+4*i+j;
+            with(instance_create_layer(vw/2-120*1.5+120*j, 400+120*i, "Persistent", oButton)) {
+                r = i; c = j;
+                up = [changeCursor, [-1, 0]];
+				down = [changeCursor, [1, 0]];
+				left = [changeCursor, [0, -1]];
+				right = [changeCursor, [0, 1]];
+                text = idx < ds_list_size(other.levelNames) ? other.levelNames[|idx] : "...";
+    			w = string_width(text)+h_offset;
+    			h = string_height(text)+v_offset;
+            }
+        } 
     }
-    file_find_close();
-    
-    //with ds_map_add_map, arrays are loaded as lists, and structs are loaded as json objects 
-    //i.e. customLevels[?"test"][?"level"][0][$"x"] will not work here
-    log(customLevels[?"test"][?"level"][|0][?"x"]);
-    log(customLevels[?"test"][?"level"][|0][?"y"]);
-    log(json_encode(customLevels));
 }
