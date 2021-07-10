@@ -187,6 +187,7 @@
     {"id":{"name":"assignMenuBackgroundItems","path":"scripts/assignMenuBackgroundItems/assignMenuBackgroundItems.yy",},"order":7,},
     {"id":{"name":"drawMenu","path":"scripts/drawMenu/drawMenu.yy",},"order":8,},
     {"id":{"name":"loadCustomLevels","path":"scripts/loadCustomLevels/loadCustomLevels.yy",},"order":0,},
+    {"id":{"name":"createLevelDataItems","path":"scripts/createLevelDataItems/createLevelDataItems.yy",},"order":7,},
   ],
   "Options": [
     {"name":"Linux","path":"options/linux/options_linux.yy",},

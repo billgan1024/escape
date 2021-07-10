@@ -12,8 +12,10 @@ switch(state) {
 	alpha = approach(alpha, 0, fadeSpeed);
 	if(alpha == 0) {
 		//destroy all items and load the new gameState
+		//also update array tracking menu item IDs
 		snap = true;
 		with(oMenuItem) instance_destroy();
+		ds_grid_clear(itemIDs, 0);
 		gameState = destState; r = tr; c = tc;
 		loadMenu(gameState); 
 		state++;
@@ -29,6 +31,7 @@ switch(state) {
 		snap = true;
 		room_goto(destRoom); 
 		with(oMenuItem) instance_destroy();
+		ds_grid_clear(itemIDs, 0);
 		gameState = destState; r = tr; c = tc; loadMenu(gameState); 
 		part_particles_clear(global.ps_above);
 		part_particles_clear(global.ps_below);

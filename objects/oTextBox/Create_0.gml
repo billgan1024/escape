@@ -5,3 +5,8 @@ selected = false;
 label = "";
 r = 0; c = 0; w = 800; h = 100;
 vOffset = 9;
+
+containTextScale = 1; 
+
+//default character limit
+limit = 16;

@@ -6,6 +6,10 @@ willScale = true;
 willMoveCursor = true;
 vOffset = 9;
 
+//for text, clamp the width by restricting the scale if the text is too big
+//note that 
+containTextScale = 1;
+
 spr = undefined;
 imageIndex = 0;
 

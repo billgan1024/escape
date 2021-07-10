@@ -9,6 +9,9 @@ function loadCustomLevels() {
         ds_map_add_map(customLevels, name, ds_map_secure_load("levels/" + s));
     }
     file_find_close();
+    //set up additional global variables
+    minPage = 0; maxPage = min(ceil(ds_map_size(customLevels)/16), 1);
+    customLevelPage = 0;
     
     //load the order from the data file
     levelNames = ds_list_create();

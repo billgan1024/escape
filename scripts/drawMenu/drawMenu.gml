@@ -38,5 +38,5 @@ function drawMenu() {
     
     //reset to default font settings (note that in the draw code, all deviations from the default
     //settings are resolved as soon as possible)
-    //dsalpha(1);
+    dsalpha(1);
 }

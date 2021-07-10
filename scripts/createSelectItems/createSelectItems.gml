@@ -2,7 +2,7 @@ function createSelectItems() {
     for(var i = 0; i < 4; i++) {
 		for(var j = 0; j < 8; j++) {
 			with(instance_create_layer(vw/2-120*3.5+120*j, 400+120*i, "Persistent", oButton)) {
-				r = i; c = j;
+				r = i; c = j; other.itemIDs[#r, c] = id;
 				up = [changeCursor, [-1, 0]];
 				down = [changeCursor, [1, 0]];
 				left = [changeCursor, [0, -1]];
@@ -15,8 +15,7 @@ function createSelectItems() {
 		}
 	}
 	with(instance_create_layer(vw/2, 400+120*7, "Persistent", oButton)) {
-		r = 4;
-		c = span;
+		r = 4; c = span; other.itemIDs[#r, 0] = id; 
 		up = [changeCursor, [-1, 0]];
 		down = [changeCursor, [1, 0]];
 		enter = oPersistent.escActions[gs.select];
