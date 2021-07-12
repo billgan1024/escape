@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Item Creation",
-    "path": "folders/Scripts/Menu/Item Creation.yy",
+    "name": "Transition",
+    "path": "folders/Scripts/Menu/Transition.yy",
   },
   "resourceVersion": "1.0",
-  "name": "createLoginItems",
+  "name": "initTransition",
   "tags": [],
   "resourceType": "GMScript",
 }

@@ -1,0 +1,1 @@
+alphaScale = approach(alphaScale, alphaScaleTo, 0.04);

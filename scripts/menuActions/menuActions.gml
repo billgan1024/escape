@@ -34,7 +34,7 @@ function transitionTo(newState, newRow, newCol, newRoom, newSong) {
 function teleportTo(newState) {
 	r = 0; c = 0; ds_stack_clear(pr); ds_stack_clear(pc); 
 	canInteract = false; snap = true; a[4] = inputDelay;
-	with(oMenuItem) instance_destroy();
+	with(oMenuItem) instance_destroy(); cur = undefined;
 	gameState = newState; loadMenu(gameState);
 }
 
@@ -42,11 +42,6 @@ function changeCursor(dr, dc) {
 	//log(object_get_name(object_index));
 	r = (r+dr+maxRow[gameState]) % maxRow[gameState];
 	c = (c+dc+maxCol[gameState]) % maxCol[gameState];	
-}
-
-//changes the text of the current selected button by matching a particular row/column
-function changeText(newText, mr, mc) {
-	with(itemIDs[#mr, mc]) {
-		text = newText; w = string_width(newText)+h_offset; h = string_height(newText)+v_offset;
-	}
+	//only update the pointer to the current menu item, all selector variables will follow
+	cur = itemIDs[#r, c];
 }

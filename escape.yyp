@@ -188,6 +188,9 @@
     {"id":{"name":"drawMenu","path":"scripts/drawMenu/drawMenu.yy",},"order":8,},
     {"id":{"name":"loadCustomLevels","path":"scripts/loadCustomLevels/loadCustomLevels.yy",},"order":0,},
     {"id":{"name":"createLevelDataItems","path":"scripts/createLevelDataItems/createLevelDataItems.yy",},"order":7,},
+    {"id":{"name":"initTransition","path":"scripts/initTransition/initTransition.yy",},"order":0,},
+    {"id":{"name":"handleTransition","path":"scripts/handleTransition/handleTransition.yy",},"order":1,},
+    {"id":{"name":"setItemDimensions","path":"scripts/setItemDimensions/setItemDimensions.yy",},"order":11,},
   ],
   "Options": [
     {"name":"Linux","path":"options/linux/options_linux.yy",},
@@ -259,7 +262,7 @@
     {"folderPath":"folders/Paths/level20.yy","order":16,"resourceVersion":"1.0","name":"level20","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Paths/level4.yy","order":26,"resourceVersion":"1.0","name":"level4","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Objects/Menu.yy","order":35,"resourceVersion":"1.0","name":"Menu","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/Scripts/Menu/createItems.yy","order":0,"resourceVersion":"1.0","name":"createItems","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/Menu/Item Creation.yy","order":0,"resourceVersion":"1.0","name":"Item Creation","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Objects/Controllers.yy","order":36,"resourceVersion":"1.0","name":"Controllers","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts/Menu.yy","order":15,"resourceVersion":"1.0","name":"Menu","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts/Player.yy","order":13,"resourceVersion":"1.0","name":"Player","tags":[],"resourceType":"GMFolder",},
@@ -268,6 +271,7 @@
     {"folderPath":"folders/Scripts/Debug.yy","order":16,"resourceVersion":"1.0","name":"Debug","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts/Custom Levels.yy","order":15,"resourceVersion":"1.0","name":"Custom Levels","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Objects/Draw.yy","order":30,"resourceVersion":"1.0","name":"Draw","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/Menu/Transition.yy","order":9,"resourceVersion":"1.0","name":"Transition","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},

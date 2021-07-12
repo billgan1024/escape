@@ -2,10 +2,10 @@ function handleMouseActions() {
     //handle mouse events (again, only if canInteract is true)
     var hover = false;
     with(oButton) {
-    	if(mouseOver(vx+x-w/2, vy+y-h/2, vx+x+w/2, vy+y+h/2-vOffset) && other.canInteract && willScale) {
+    	if(other.canInteract && !disabled && !is_undefined(enter) && mouseOver(vx+x-w/2, vy+y-h/2, vx+x+w/2, vy+y+h/2-vOffset)) {
     		scale = smoothApproach(scale, 1, 0.3, 0.005);
     		hover = true;
-    		if(other.input[1][in.mbLeft] && !is_undefined(enter)) {
+    		if(other.input[1][in.mbLeft]) {
     			//instantly snap the cursor onto the clicked element so that any interaction will update
     			//cur, which will represent the clicked element
     			if(willMoveCursor) { other.r = r; other.c = c; other.cur = id; }

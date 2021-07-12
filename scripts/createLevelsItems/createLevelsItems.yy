@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "createItems",
-    "path": "folders/Scripts/Menu/createItems.yy",
+    "name": "Item Creation",
+    "path": "folders/Scripts/Menu/Item Creation.yy",
   },
   "resourceVersion": "1.0",
   "name": "createLevelsItems",

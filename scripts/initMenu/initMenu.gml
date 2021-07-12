@@ -13,7 +13,7 @@ function initMenu() {
 	activeMenu = [true, false, true, true, true, true, true];
 	//row[i], col[i] = number of rows and columns for each menu state
 	maxRow = [4, 0, 5, 5, 4, 5, 3, 3, 6, 2];
-	maxCol = [1, 0, 8, 3, 1, 3, 1, 3, 5, 4];
+	maxCol = [1, 0, 8, 1, 1, 1, 1, 1, 4, 4];
 	
 	//all constant text data for the menu screens
 	titles = ["Escape", "", "Level Select", "Options", "Game Paused", "Options", "Log In", "Register", "Custom Levels", ""];
@@ -24,25 +24,21 @@ function initMenu() {
 	navigationHelp = "Arrow Keys/WASD/Mouse: Navigate\nEnter: Select\nEsc: Back"
 	pauseTitles = ["Back to Game", "Retry Level", "Options", "Main Menu"];
 	
-	//[xpos, ypos, w, h], (x, y) is in the range (0, 0) to (vw, vh)
-	selectorFrom = [0, 0, 0, 0];
-	selectorTo = [0, 0, 0, 0];
+	selector = [0, 0, 0, 0];
+	vOffset = 0; vOffsetTo = 0;
+	
 	//r, c = current row, col; cur = current menu item instance ID
 	//tr, tc = row, col after transition
 	//pr, pc = previous row, previous col which will be used when u press escape
 	r = 0; c = 0; tr = 0; tc = 0;
 	pr = ds_stack_create(); pc = ds_stack_create();
-	cur = noone; hover = noone;
+	cur = undefined; 
 	
 	//use this for easy access to individual elements
-	//note that span elements will have the spanning axis index = 0 e.g. a button at r = 4, c = span will have its ID 
-	//stored at itemsID[#4, 0]
+	//note that span elements will have multiple entries (the id will be filling up the entire row/column)
 	//every time an object is created, make sure to update this array
 	//every time we transition to a new state, make sure to clear the array
 	itemIDs = ds_grid_create(8, 8);
-	
-	//bottom offset for drawing the selector properly
-	vOffset = 0;
 	
 	assignMenuCreationFunctions();
 	assignMenuBackgroundItems();

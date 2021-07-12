@@ -1,13 +1,20 @@
 function checkSelected() {
 	with(oButton) {
 		if((oPersistent.r == r || r == span) && (oPersistent.c == c || c == span)) {
-			oPersistent.cur = id; oPersistent.vOffset = vOffset; updateSelectorTo(x, y, w, h); break;
+			//only change current pointer; all other selector properties will follow
+			oPersistent.cur = id; break;
 		}
 	}
 }
 
 function updateSelector() {
-	for(var i = 0; i < 4; i++) selectorFrom[i] = smoothApproach(selectorFrom[i], selectorTo[i], snap ? 1 : 0.12); 
+	if(is_undefined(cur)) return;
+	var spd = snap ? 1 : 0.12;
+	selector[0] = smoothApproach(selector[0], cur.x, spd);
+	selector[1] = smoothApproach(selector[1], cur.y, spd);
+	selector[2] = smoothApproach(selector[2], cur.w, spd);
+	selector[3] = smoothApproach(selector[3], cur.h, spd);
+	vOffset = smoothApproach(vOffset, cur.vOffset, spd);
 }
 
 function updateSelectorTo() {

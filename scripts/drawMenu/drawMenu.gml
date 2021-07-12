@@ -14,10 +14,14 @@ function drawMenu() {
     dsfont(fMain);
     
     with(oButton) {
-    	if(disabled) dsalpha(other.alpha/2);
-    	if(spr != undefined) draw_sprite_ext(spr, imageIndex, vx+x, vy+y, scale, scale, 0, c_white, other.alpha); 
-    	else draw_text_transformed(vx+x, vy+y, text, scale, scale, 0);
-    	if(disabled) dsalpha(other.alpha); 
+    	if(spr != undefined) draw_sprite_ext(spr, imageIndex, vx+x, vy+y, scale*customScale, scale*customScale, 0, c_white,
+    	other.alpha*alphaScale); 
+    	else {
+        	dsalpha(other.alpha*alphaScale);
+        	var adjustScale = min(maxWidth/string_width(text), 1);
+    	    draw_text_transformed(vx+x, vy+y, text, scale*adjustScale*customScale, scale*adjustScale*customScale, 0);
+    	    dsalpha(other.alpha);
+    	}
     }
     with(oTextBox) draw_text(vx+x, vy+y, text);
     with(oTextBox) {
@@ -28,7 +32,7 @@ function drawMenu() {
     if(gameState != gs.game) {
     	//selectorFrom[] = [x, y, w, h]
     	//x, y is the center position of the text
-    	var sx = selectorFrom[0], sy = selectorFrom[1], sw = selectorFrom[2], sh = selectorFrom[3];
+    	var sx = selector[0], sy = selector[1], sw = selector[2], sh = selector[3];
     	var xx = vx+sx-sw/2, yy = vy+sy-sh/2;
     	drawRectangleWidth(xx, yy, xx+sw, yy+sh-vOffset, 4, alpha/5);
     }

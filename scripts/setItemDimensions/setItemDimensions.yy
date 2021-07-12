@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Item Creation",
-    "path": "folders/Scripts/Menu/Item Creation.yy",
+    "name": "Utility",
+    "path": "folders/Scripts/Utility.yy",
   },
   "resourceVersion": "1.0",
-  "name": "createLoginItems",
+  "name": "setItemDimensions",
   "tags": [],
   "resourceType": "GMScript",
 }
