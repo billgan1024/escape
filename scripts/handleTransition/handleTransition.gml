@@ -5,11 +5,12 @@ function handleTransition() {
     	if(alpha == 0) {
     		//destroy all items and load the new gameState
     		//also update array tracking menu item IDs
+    		//make the cursor snap 
     		snap = true;
-    		with(oMenuItem) instance_destroy();
-    		ds_grid_clear(itemIDs, 0); cur = undefined; 
-    		gameState = destState; r = tr; c = tc;
+    		clearMenu(); gameState = destState;
+    		//loadmenu to establish the new grid, then simply update r, c, and cur
     		loadMenu(gameState); 
+    		changeCursor(tr, tc, true);
     		state++;
     	}
     	break;
@@ -22,9 +23,7 @@ function handleTransition() {
     	if(tAlpha == 1) {
     		snap = true;
     		room_goto(destRoom); 
-    		with(oMenuItem) instance_destroy();
-    		ds_grid_clear(itemIDs, 0); cur = undefined;
-    		gameState = destState; r = tr; c = tc; loadMenu(gameState); 
+    		clearMenu(); gameState = destState; loadMenu(gameState); changeCursor(tr, tc, true);
     		part_particles_clear(global.ps_above);
     		part_particles_clear(global.ps_below);
     		part_particles_clear(global.ps_bg);
@@ -38,6 +37,21 @@ function handleTransition() {
     	case 4: 
     	tAlpha = approach(tAlpha, 0, fadeSpeed);
     	if(tAlpha == 0) { state = 0; canInteract = true; snap = false; }
+    	break;
+    	
+    	case 5:
+    	sAlpha = approach(sAlpha, 0, fadeSpeed);
+    	if(sAlpha == 0) {
+    	    snap = true;
+    	    script_execute_ext(transitionFunction[0], transitionFunction[1]); 
+    	    if(!is_undefined(tr) && !is_undefined(tc)) changeCursor(tr, tc, true);
+    	    state++;
+    	}
+    	break;
+    	
+    	case 6:
+    	sAlpha = approach(sAlpha, 1, fadeSpeed);
+    	if(sAlpha == 1) { state = 0; canInteract = true; snap = false; }
     	break;
     }
 }

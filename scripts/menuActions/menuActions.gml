@@ -10,7 +10,6 @@ function transitionTo(newState, newRow, newCol, newRoom, newSong) {
 	//note: argument_count won't be accurate if you're including all the arguments in the function ^
 	//use the undefined check
 	if(is_undefined(newRow) && is_undefined(newCol)) { newRow = 0; newCol = 0; } 
-	
 	if(newRow == -1 && newCol == -1) {
 		tr = ds_stack_pop(pr); tc = ds_stack_pop(pc); 
 	} else { 
@@ -29,19 +28,32 @@ function transitionTo(newState, newRow, newCol, newRoom, newSong) {
 	}
 }
 
+//handle any in-state transition by setting a rectangular section of the grid in which those elements are dimmed,
+//then execute any function that loads new content
+//leave newRow, newCol = undefined for no change
+function inStateTransition(r1, c1, r2, c2, startFunction, endFunction, newRow, newCol) {
+	tr1 = r1; tc1 = c1; tr2 = r2; tc2 = c2; 
+	//for now, always accept a new selector location
+	tr = newRow; tc = newCol;
+	script_execute_ext(startFunction[0], startFunction[1]);
+	transitionFunction = endFunction; canInteract = false;
+	state = 5;
+}
+
 //teleport to a new state without transition e.g. going from gs.game to gs.paused
 //this will also clear the history
 function teleportTo(newState) {
-	r = 0; c = 0; ds_stack_clear(pr); ds_stack_clear(pc); 
+	ds_stack_clear(pr); ds_stack_clear(pc); 
 	canInteract = false; snap = true; a[4] = inputDelay;
-	with(oMenuItem) instance_destroy(); cur = undefined;
-	gameState = newState; loadMenu(gameState);
+	clearMenu();
+	gameState = newState; loadMenu(gameState); changeCursor(0, 0, true);
 }
 
-function changeCursor(dr, dc) {
+function changeCursor(dr, dc, absolute) {
+	if(is_undefined(absolute)) absolute = false;
 	//log(object_get_name(object_index));
-	r = (r+dr+maxRow[gameState]) % maxRow[gameState];
-	c = (c+dc+maxCol[gameState]) % maxCol[gameState];	
+	if(absolute) { r = dr; c = dc; }
+	else { r = (r+dr+maxRow[gameState]) % maxRow[gameState]; c = (c+dc+maxCol[gameState]) % maxCol[gameState]; }
 	//only update the pointer to the current menu item, all selector variables will follow
 	cur = itemIDs[#r, c];
 }

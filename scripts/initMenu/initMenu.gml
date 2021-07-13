@@ -12,7 +12,7 @@ function initMenu() {
 	gameState = is_undefined(data[?"username"]) ? gs.menu : gs.menu;
 	activeMenu = [true, false, true, true, true, true, true];
 	//row[i], col[i] = number of rows and columns for each menu state
-	maxRow = [4, 0, 5, 5, 4, 5, 3, 3, 6, 2];
+	maxRow = [4, 0, 5, 5, 4, 5, 3, 3, 7, 2];
 	maxCol = [1, 0, 8, 1, 1, 1, 1, 1, 4, 4];
 	
 	//all constant text data for the menu screens
@@ -27,18 +27,17 @@ function initMenu() {
 	selector = [0, 0, 0, 0];
 	vOffset = 0; vOffsetTo = 0;
 	
+	//use this for easy access to individual elements
+	//note that span elements will have multiple entries (the id will be filling up the entire row/column)
+	//every time an object is created, make sure to update this array
+	//every time we transition to a new state, make sure to clear the array
+	itemIDs = ds_grid_create(8, 8); ds_grid_clear(itemIDs, undefined);
 	//r, c = current row, col; cur = current menu item instance ID
 	//tr, tc = row, col after transition
 	//pr, pc = previous row, previous col which will be used when u press escape
 	r = 0; c = 0; tr = 0; tc = 0;
 	pr = ds_stack_create(); pc = ds_stack_create();
 	cur = undefined; 
-	
-	//use this for easy access to individual elements
-	//note that span elements will have multiple entries (the id will be filling up the entire row/column)
-	//every time an object is created, make sure to update this array
-	//every time we transition to a new state, make sure to clear the array
-	itemIDs = ds_grid_create(8, 8);
 	
 	assignMenuCreationFunctions();
 	assignMenuBackgroundItems();

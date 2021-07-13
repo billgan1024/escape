@@ -1,4 +1,4 @@
-function loadCustomLevels() {
+function initCustomLevels() {
     if(!directory_exists("levels")) directory_create("levels");
     customLevels = ds_map_create();
     
@@ -14,7 +14,7 @@ function loadCustomLevels() {
     levelNames = ds_list_create();
     if(!is_undefined(data[?"levelNames"])) ds_list_read(levelNames, data[?"levelNames"]);
     else { data[?"levelNames"] = ds_list_write(levelNames); save(); } 
-    for(var i = 0; i < 13; i++) ds_list_add(levelNames, "test"+string(i));
+    for(var i = 0; i < 16*3-5; i++) ds_list_add(levelNames, "test"+string(i));
     
     //track current page (maintain this as a global variable that doesn't get reset between room changes)
     minPage = 1; maxPage = max(ceil(ds_list_size(levelNames)/16), 1);

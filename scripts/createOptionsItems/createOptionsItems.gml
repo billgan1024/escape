@@ -20,6 +20,7 @@ function createOptionsItems(escState) {
 			text = labels[i];
 			setItemDimensions();
     	}
+    	#region page arrows
 		//for the graphics icons, assign (r, c) that is out of bounds so that they won't be selected
 		//so that you can play the animation
 		for(var j = 0; j < 2; j++) {
@@ -29,13 +30,14 @@ function createOptionsItems(escState) {
 				spr = sArrowIcon;
 				imageIndex = j;
 				enter = [actions[i], [-10+20*j]];
-				disabled = d[i][j]; if(disabled) { alphaScale = 1/8; alphaScaleTo = 1/8; }
+				disabled = d[i][j]; if(disabled) { alphaScale = 1/8; alphaScaleTo = alphaScale; }
 				willMoveCursor = false;
 				scale = 0.8; baseScale = 0.8;
 				vOffset = 0;
 				setItemDimensions();
     		}
 		}	
+		#endregion
 	}
 	#endregion
 	#region other options 

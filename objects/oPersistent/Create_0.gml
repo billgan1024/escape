@@ -35,11 +35,12 @@ bindInput();
 for(var i = 0; i < 3; i++) input[i] = array_create(in.length);
 
 loadSettings();
-loadCustomLevels();
+initCustomLevels();
 window_set_fullscreen(data[?"fs"]);
 
 initMenu();
 loadMenu(gameState);
+changeCursor(0, 0, true);
 
 //camera data for levels (cameraData[0] = dummy value)
 //it is calculated with boundary objects

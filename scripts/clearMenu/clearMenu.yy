@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Custom Levels",
-    "path": "folders/Scripts/Custom Levels.yy",
+    "name": "Menu",
+    "path": "folders/Scripts/Menu.yy",
   },
   "resourceVersion": "1.0",
-  "name": "loadCustomLevels",
+  "name": "clearMenu",
   "tags": [],
   "resourceType": "GMScript",
 }

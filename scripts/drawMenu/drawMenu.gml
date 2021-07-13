@@ -17,7 +17,7 @@ function drawMenu() {
     	if(spr != undefined) draw_sprite_ext(spr, imageIndex, vx+x, vy+y, scale*customScale, scale*customScale, 0, c_white,
     	other.alpha*alphaScale); 
     	else {
-        	dsalpha(other.alpha*alphaScale);
+        	dsalpha(other.alpha*alphaScale*(r >= other.tr1 && r <= other.tr2 && c >= other.tc1 && c <= other.tc2 ? other.sAlpha : 1));
         	var adjustScale = min(maxWidth/string_width(text), 1);
     	    draw_text_transformed(vx+x, vy+y, text, scale*adjustScale*customScale, scale*adjustScale*customScale, 0);
     	    dsalpha(other.alpha);

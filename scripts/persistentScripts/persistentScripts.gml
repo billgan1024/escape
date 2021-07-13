@@ -1,12 +1,3 @@
-function checkSelected() {
-	with(oButton) {
-		if((oPersistent.r == r || r == span) && (oPersistent.c == c || c == span)) {
-			//only change current pointer; all other selector properties will follow
-			oPersistent.cur = id; break;
-		}
-	}
-}
-
 function updateSelector() {
 	if(is_undefined(cur)) return;
 	var spd = snap ? 1 : 0.12;

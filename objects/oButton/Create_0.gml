@@ -1,7 +1,11 @@
 text = ""; r = 0; c = 0; w = 0; h = 0;
+//scale: scalar for showing whether the button is highlighted or not
+//baseScale: the value for when the mouse isn't hovered over the button
 scale = mainScale;
 baseScale = mainScale;
 disabled = false;
+
+//whether r, c, and cur will move to the current item after it is clicked
 willMoveCursor = true;
 //custom scale factor for text (this is applied AFTER the limiting maxWidth scale is applied)
 customScale = 1;
