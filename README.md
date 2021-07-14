@@ -20,8 +20,3 @@ Your primary objective is to collect all the coins to unlock the door to grab th
 ![screenshot5](https://github.com/pblpbl1024/escape/blob/main/screenshots/Screenshot%202021-04-30%20150006.png)
 ![screenshot6](https://github.com/pblpbl1024/escape/blob/main/screenshots/Screenshot%202021-04-30%20150016.png)
 ![screenshot7](https://github.com/pblpbl1024/escape/blob/main/screenshots/Screenshot%202021-04-30%20161830.png)
-\
-
-dc
-g
-fdg
