@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "aPlatform",
-  "duration": 0.149762,
+  "duration": 0.144762,
   "parent": {
     "name": "SFX",
     "path": "folders/Sounds/SFX.yy",

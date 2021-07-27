@@ -9,7 +9,7 @@ autoKey = ds_queue_create();
 post = undefined;
 headerMap = ds_map_create(); ds_map_add(headerMap, "Content-Type", "application/json");
 
-global.production = false;
+global.production = true;
 receiveData = false;
 testObjects = false;
 keyAutomation = false;
@@ -18,7 +18,7 @@ transmitData = global.production;
 shiftTime = !global.production;
 
 randomize();
-h = window_get_height();
+h = display_get_height();
 window_set_size(h/3*4, h/4*3);
 a[1] = 1;
 t = 0;
@@ -92,7 +92,7 @@ attempts = 0;
 resetAttempts = false;
 
 //wasFocused (tracking the time when the window loses focus)
-wasFocused = true;
+//wasFocused = true;
 
 mus(aMenu); 
 //audio_sound_gain(m, 0, 0);

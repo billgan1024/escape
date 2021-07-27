@@ -8,7 +8,7 @@ function assignMenuCreationFunctions() {
 	menuData[gs.options] = [createOptionsItems, [gs.options]];
 	menuData[gs.paused] = [createPausedItems, []];
 	menuData[gs.optionsGame] = [createOptionsItems, [gs.optionsGame]];
-	menuData[gs.logIn] = [createLoginItems, []];
+	menuData[gs.login] = [createLoginItems, []];
 	menuData[gs.register] = [createRegisterItems, []];
 	menuData[gs.levels] = [createLevelsItems, []];
 	

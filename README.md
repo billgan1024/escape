@@ -2,7 +2,6 @@
 An action platformer I started during Hack the North 2021 and am now attempting to finish.
 
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=pblpbl1024.escape)
-![downloads](https://img.shields.io/github/downloads/pblpbl1024/escape/total)
 
 ## Installation
 [Itch.io link](https://pblpbl.itch.io/escape)

@@ -10,6 +10,7 @@ willMoveCursor = true;
 //custom scale factor for text (this is applied AFTER the limiting maxWidth scale is applied)
 customScale = 1;
 
+//smooth alpha transition
 alphaScale = 1; alphaScaleTo = 1;
 
 //note that by default, the font height is too large at the bottom, so use this to reduce the size of the bottom space

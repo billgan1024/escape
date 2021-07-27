@@ -34,7 +34,8 @@ function transitionTo(newState, newRow, newCol, newRoom, newSong) {
 function inStateTransition(r1, c1, r2, c2, startFunction, endFunction, newRow, newCol) {
 	tr1 = r1; tc1 = c1; tr2 = r2; tc2 = c2; 
 	//for now, always accept a new selector location
-	tr = newRow; tc = newCol;
+	if(r >= tr1 && r <= tr2 && c >= tc1 && c <= tc2) { tr = newRow; tc = newCol; }
+	else { tr = undefined; tc = undefined; }
 	script_execute_ext(startFunction[0], startFunction[1]);
 	transitionFunction = endFunction; canInteract = false;
 	state = 5;

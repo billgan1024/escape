@@ -34,7 +34,10 @@ function handleMouseActions() {
         with(oTextBox) {
             if(mouseOver(vx+x-w/2, vy+y-h/2, vx+x+w/2, vy+y+h/2-vOffset)) {
                 selected = true; selectedOne = true; keyboard_string = text;
-            } else selected = false;
+                textCursor = true; a[1] = 120; 
+            } else {
+                selected = false; textCursor = false; a[1] = infinity;
+            }
         }
         if(selectedOne) keyboard_unset_map(); else bindInput();
     }

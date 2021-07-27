@@ -1,9 +1,11 @@
 function createLoginItems() {
-    var labels = ["Username/Email", "Password"];
-    for(var i = 0; i < 2; i++) {
-        with(instance_create_layer(vw/2, 400+120*i, "Persistent", oTextBox)) {
-            label = labels[i];
-        }
+    var labels = ["Username", "Password"];
+    
+    with(instance_create_layer(vw/2, 400, "Persistent", oTextBox)) {
+        label = "Username"; 
+    }
+    with(instance_create_layer(vw/2, 400+180, "Persistent", oTextBox)) {
+        label = "Password"; limit = 32; passwordField = true;
     }
     
     //buttons: login, signup, and quit
@@ -11,7 +13,7 @@ function createLoginItems() {
     var actions = [undefined, undefined, quit];
     var args = [[], [], []];
     for(var i = 0; i < 3; i++) {
-        with(instance_create_layer(vw/2, 400+120*(i+2), "Persistent", oButton)) {
+        with(instance_create_layer(vw/2, 400+120*(i+4), "Persistent", oButton)) {
             r = i; 
             up = [changeCursor, [-1, 0]];
 			down = [changeCursor, [1, 0]];

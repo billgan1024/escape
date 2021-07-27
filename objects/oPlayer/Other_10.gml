@@ -44,11 +44,11 @@ switch(state)
 		//accelerate slightly quicker if you're trying to stop
 		updateHsp(runAcc);
 		if(jump || preparedJump) { 
-			vsp = -jumpSpd; state = "jump"; snd(aJump); 
+			vsp = -jumpSpd; state = "jump"; snd(aJump); canGlide = true;
 			event_perform(ev_other, ev_user3); 
 		}
 		if(!place_meeting(x, y+1, oGround) && !place_meeting(x, y+1, oPlatform)) {
-			state = "jump"; a[2] = coyoteTimeBuffer;	
+			state = "jump"; a[2] = coyoteTimeBuffer; 
 		}
 	break;
 	case "jump":
@@ -61,7 +61,8 @@ switch(state)
 		updateVsp();
 		if(jump)
 		{
-			if(grip != 0) wallJump(false);
+			canGlide = true;
+			if(grip != 0) wallJump(false); 
 			else if(preparedWallJump) wallJump(true);
 			else {
 				khsp = 0;
@@ -70,7 +71,7 @@ switch(state)
 			}
 			event_perform(ev_other, ev_user4);
 		}
-		if((place_meeting(x, y+1, oGround) || place_meeting(x, y+1, oPlatform)) && vsp >= 0) { state = "ground"; }
+		if((place_meeting(x, y+1, oGround) || place_meeting(x, y+1, oPlatform)) && vsp >= 0) { state = "ground"; canGlide = false; }
 	break;
 	case "djump":
 		if(!dead) smoke(c_gray, 120, -0.005, true, 0.5, x, y);
@@ -80,14 +81,14 @@ switch(state)
 		updateVsp();
 		if(jump)
 		{
-			if(grip != 0) wallJump(false);
-			else if(preparedWallJump) wallJump(true);
+			if(grip != 0) { wallJump(false); canGlide = true; }
+			else if(preparedWallJump) { wallJump(true); canGlide = true; }
 			else {
 				//jump buffer (like geometry dash)
 				preparedJump = true; a[3] = preparedJumpBuffer;	
 			}
 		}
-		if((place_meeting(x, y+1, oGround) || place_meeting(x, y+1, oPlatform)) && vsp >= 0) { state = "ground"; }
+		if((place_meeting(x, y+1, oGround) || place_meeting(x, y+1, oPlatform)) && vsp >= 0) { state = "ground"; canGlide = false; }
 	break;
 }	
 

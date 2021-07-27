@@ -7,6 +7,7 @@ coyoteTimeBuffer = 15;
 phsp = 0;
 cameraSpd = 0;
 airRes = 0.1; 
+canGlide = false;
 yscale = 1;
 
 //variable to track when the player loses grip on a wall (coyote time implementation for wall jump)

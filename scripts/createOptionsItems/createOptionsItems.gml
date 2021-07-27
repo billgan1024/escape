@@ -97,12 +97,19 @@ function changeMusicVol(dv) {
 
 function toggleFs() {
 	data[?"fs"]	 = !data[?"fs"]; save(); 
-	window_set_fullscreen(data[?"fs"]); window_set_size(h/3*4, h/4*3);
-	a[1] = 15;
+	window_set_fullscreen(data[?"fs"]); 
+	
+	//necessary for windows but not mac
+	h = display_get_height();
+	window_set_size(h/3*4, h/4*3); 
+	a[1] = inputDelay;
+	
+	// a[1] = inputDelay;
 	with(itemIDs[#2, 0]) {
 		text = "Fullscreen: " + (other.data[?"fs"] ? "On" : "Off"); setItemDimensions();
 	}
-	canInteract = false; a[4] = inputDelay*6;
+	//mouse_clear(mb_left); keyboard_key_release(vk_enter);
+	//canInteract = false; a[4] = inputDelay*12;
 }
 
 function toggleTimer() {

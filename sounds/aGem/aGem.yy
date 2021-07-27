@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "aGem.wav",
-  "duration": 1.199125,
+  "duration": 1.194125,
   "parent": {
     "name": "SFX",
     "path": "folders/Sounds/SFX.yy",

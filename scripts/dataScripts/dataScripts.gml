@@ -4,11 +4,11 @@ function initData() {
 	data[?"sfx"] = 100;
 	data[?"timer"] = false;
 	data[?"lvl"] = 32;
-	save();
+	saveData();
 }
 
-function save() { 
-	ds_map_secure_save(data, fileName); 
+function saveData() { 
+	ds_map_arcfour_save(data, fileName); 
 }
 
 function loadSettings() {

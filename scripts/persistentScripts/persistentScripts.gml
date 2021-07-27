@@ -29,7 +29,9 @@ function updateLocal() {
 	part_system_update(global.ps_above);
 	part_system_update(global.ps_below); 
 	with(all) {
-		if(object_index != oPersistent && object_index != oMenuItem && object_index != oBg) update();
+		//important note: even though oButton and oTextBox are children of oMenuItem, the object_index check still
+		//needs to be done separately (u can't use oMenuItem here)
+		if(object_index != oPersistent && object_index != oButton && object_index != oTextBox && object_index != oBg) update();
 	}
 }
 

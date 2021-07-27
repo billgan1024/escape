@@ -6,19 +6,30 @@ function initMenu() {
 		//levelData: shown when you're editing the metadata or creating a new level in the menu room
 		//edit: level editor room
 		//username: if there is no username, prompt the user for one
-		menu, game, select, options, paused, optionsGame, logIn, register, levels, levelData, edit, length
+		menu, game, select, options, paused, optionsGame, login, register, levels, levelData, edit, length
 	}
 	
-	gameState = is_undefined(data[?"username"]) ? gs.menu : gs.menu;
+	gameState = is_undefined(data[?"username"]) ? gs.login : gs.menu;
 	activeMenu = [true, false, true, true, true, true, true];
 	//row[i], col[i] = number of rows and columns for each menu state
-	maxRow = [4, 0, 5, 5, 4, 5, 3, 3, 7, 2];
-	maxCol = [1, 0, 8, 1, 1, 1, 1, 1, 4, 4];
+	
+	maxRow[gs.menu]        = 4;    maxCol[gs.menu]        = 1;
+	maxRow[gs.game]        = 0;    maxCol[gs.game]        = 0;
+	maxRow[gs.select]      = 5;    maxCol[gs.select]      = 8;
+	maxRow[gs.options]     = 5;    maxCol[gs.options]     = 1;
+	maxRow[gs.paused]      = 4;    maxCol[gs.paused]      = 1;
+	maxRow[gs.optionsGame] = 5;    maxCol[gs.optionsGame] = 1;
+	maxRow[gs.login]       = 3;    maxCol[gs.login]       = 1;
+	maxRow[gs.register]    = 3;    maxCol[gs.register]    = 1;
+	maxRow[gs.levels]      = 7;    maxCol[gs.levels]      = 4;
+	maxRow[gs.levelData]   = 2;    maxCol[gs.levelData]   = 4;
+	maxRow[gs.edit]        = 0;    maxCol[gs.edit]        = 0;
 	
 	//all constant text data for the menu screens
+	var str = "Arrow/WASD/Mouse: Navigate\nEnter/LMB: Select\nEsc: Back"; 
 	titles = ["Escape", "", "Level Select", "Options", "Game Paused", "Options", "Log In", "Register", "Custom Levels", ""];
 	bottomLeft = ["Bill Gan", "", "", "", "", "", "", "", "", ""];
-	bottomRight = ["Arrow/WASD/Mouse: Navigate\nEnter/LMB: Select\nEsc: Back", "", "", "", "", "", "", "", "", ""];
+	bottomRight = [str, "", "", "", "", "", str, "", "", ""];
 	menuTitles = [/*data[?"lvl"] > 1 ? "Continue" : "Play"*/"Play", "Level Select", "Options", "Quit"];
 	
 	navigationHelp = "Arrow Keys/WASD/Mouse: Navigate\nEnter: Select\nEsc: Back"

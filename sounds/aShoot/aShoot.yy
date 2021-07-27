@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "aShoot.ogg",
-  "duration": 0.22212,
+  "duration": 0.21712,
   "parent": {
     "name": "SFX",
     "path": "folders/Sounds/SFX.yy",

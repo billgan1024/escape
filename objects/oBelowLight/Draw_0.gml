@@ -15,13 +15,13 @@ with(oLaserCannon) {
 }
 
 with(oLaserCannon) {
-	if(state == 0) draw_sprite_ext(sLaserLight2, 0, x, y, len, 0.06, image_angle, c_white, 0.4);
+	if(state == 0) draw_sprite_ext(sLaserLight2, 0, x, y, lightLength, 0.06, image_angle, c_white, 0.4);
 }
 gpu_set_blendmode(bm_add);
 with(oLaserCannon) {
 	if(state == 1) {
 		draw_sprite_ext(sLaserLightCircle, 0, x, y, 1, 1, image_angle, c_purple, 0.4);
-		draw_sprite_ext(sLaserLight2, 0, x, y, len, 1, image_angle, c_purple, 0.4);
+		draw_sprite_ext(sLaserLight2, 0, x, y, lightLength, 1, image_angle, c_purple, 0.4);
 		draw_sprite_ext(sLaserLightCircle, 0, c[1], c[2], 1, 1, image_angle+180, c_purple, 0.4);
 		draw_sprite_ext(sLaserBurst, 0, c[1], c[2], laserBurstSize, laserBurstSize, 0, c_white, 1);
 	}

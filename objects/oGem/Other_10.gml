@@ -6,13 +6,6 @@ if(place_meeting(x, y, oPlayer)) {
 	firework(c_white, c_green);
 	shrink(sGem);
 	oGame.targetLvl = oGame.lvl+1; oGame.a[1] = 120; oGame.resetAttempts = true;
-	var body = {
-		level: oGame.lvl,
-		attempts: oPersistent.attempts,
-		duration: oGame.t
-	}
-	with(oPersistent) {
-		if(transmitData) post = http_request("https://escape-server-1024.herokuapp.com/completions/add", "POST", headerMap, json_stringify(body));
-	}
+	if(oPersistent.transmitData) logCompletion(oGame.lvl, oPersistent.attempts, oGame.t);
 	instance_destroy();
 }

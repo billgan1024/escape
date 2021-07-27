@@ -3,6 +3,7 @@ t += 1/240;
 handleTransition();
 //update the target selector size + vOffset, then make the current selector size + vOffset lerp towards those values
 updateSelector();
+// log(mouse_check_button(mb_left));
 
 //smooth transition handler for menus and room switching
 //when you want to initiate a menu transition, disable interacting and enable snapping

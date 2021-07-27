@@ -2,6 +2,7 @@ function createLevelsItems() {
 	//customLevelPage is a global variable (we want it to persist between transitions)
 	//first, set up the custom level buttons without any text
     var hs = 540, vs = 150;
+    
     for(var i = 0; i < 4; i++) {
         for(var j = 0; j < 4; j++) {
             with(instance_create_layer(vw/2-hs*1.5+hs*j, 420+vs*i, "Persistent", oButton)) {
@@ -16,7 +17,7 @@ function createLevelsItems() {
     
     var labels = ["New Level", "Back"];
     var actions = [undefined, escActions[gameState]];
-    #region bottom
+    #region bottom 
     for(var i = 0; i < 2; i++) {
     	with(instance_create_layer(vw/2, 400+120*(i+6), "Persistent", oButton)) {
 	    	r = i+5; c = span;
@@ -64,16 +65,16 @@ function loadCustomTab(page, smooth) {
 		setItemDimensions();
     }
 	var d = [customLevelPage == 1, customLevelPage == maxPage];
-	var actions = [[inStateTransition, [1, 0, 4, 3, [loadCustomTab, [customLevelPage-1, true]], [loadCustomPage, [customLevelPage-1]], 1, 0]], 
-		[inStateTransition, [1, 0, 4, 3, [loadCustomTab, [customLevelPage+1, true]], [loadCustomPage, [customLevelPage+1]], 1, 0]]];
+	var actions = [[inStateTransition, [1, 0, 4, 3, [loadCustomTab, [customLevelPage-1, true]], [loadCustomPage, [customLevelPage-1]]]], 
+		[inStateTransition, [1, 0, 4, 3, [loadCustomTab, [customLevelPage+1, true]], [loadCustomPage, [customLevelPage+1]]]]];
 	with(itemIDs[#0, 0]) {
 		//set the arrow controls on the top tab as required
-		if(!d[0]) { left = actions[0]; array_pop(left[1]); array_pop(left[1]); } else left = undefined;
-		if(!d[1]) { right = actions[1]; array_pop(right[1]); array_pop(right[1]); } else right = undefined;
+		if(!d[0]) left = actions[0]; else left = undefined;
+		if(!d[1]) right = actions[1]; else right = undefined;
 	}
     for(var i = 0; i < 2; i++) {
     	with(itemIDs[#0, i+4]) {
-    		enter = actions[i];
+    		enter = actions[i]; 
     		disabled = d[i]; 
     		alphaScaleTo = disabled ? 1/8 : 1;
     		if(!smooth) alphaScale = alphaScaleTo;

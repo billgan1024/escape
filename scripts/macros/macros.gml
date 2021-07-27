@@ -27,6 +27,7 @@
 //text is actually scaled lower so that we can enlarge it to the original size when menu items are hovered over
 //note that w and h of text buttons is determined upon creation with the initial scale of 1.
 #macro mainScale 0.92
+#macro mainTextBoxScale 0.8
 
 #macro h_offset 30
 #macro v_offset 9
