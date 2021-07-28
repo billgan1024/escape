@@ -9,7 +9,7 @@ function initMenu() {
 		menu, game, select, options, paused, optionsGame, login, register, levels, levelData, edit, length
 	}
 	
-	gameState = is_undefined(data[?"username"]) ? gs.login : gs.menu;
+	gameState = is_undefined(data[?"username"]) ? gs.menu : gs.menu;
 	activeMenu = [true, false, true, true, true, true, true];
 	//row[i], col[i] = number of rows and columns for each menu state
 	

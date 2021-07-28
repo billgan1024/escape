@@ -66,7 +66,7 @@ function createOptionsItems(escState) {
 
 function changeSoundVol(dv) {
 	//changes data[?"mus"], then update the gain +  
-	data[?"sfx"] = clamp(data[?"sfx"]+dv, 0, 100); save();
+	data[?"sfx"] = clamp(data[?"sfx"]+dv, 0, 100); saveData();
 	updateSoundVol();
 	with(itemIDs[#0, 0]) {
 		text = "Sound FX: " + string(other.data[?"sfx"]) + "%"; setItemDimensions(); 
@@ -82,7 +82,7 @@ function changeSoundVol(dv) {
 //to toggle a switch, this function can also set properties of the current selected object
 function changeMusicVol(dv) {
 	//changes data[?"mus"], then update the gain + text 
-	data[?"mus"] = clamp(data[?"mus"]+dv, 0, 100); save();
+	data[?"mus"] = clamp(data[?"mus"]+dv, 0, 100); saveData();
 	updateMusicVol();
 	with(itemIDs[#1, 0]) {
 		text = "Music: " + string(other.data[?"mus"]) + "%"; setItemDimensions();
@@ -96,7 +96,7 @@ function changeMusicVol(dv) {
 }
 
 function toggleFs() {
-	data[?"fs"]	 = !data[?"fs"]; save(); 
+	data[?"fs"]	 = !data[?"fs"]; saveData(); 
 	window_set_fullscreen(data[?"fs"]); 
 	
 	//necessary for windows but not mac
@@ -113,7 +113,7 @@ function toggleFs() {
 }
 
 function toggleTimer() {
-	data[?"timer"] = !data[?"timer"]; save(); 
+	data[?"timer"] = !data[?"timer"]; saveData(); 
 	with(itemIDs[#3, 0]) {
 		text = "Timer: " + (other.data[?"timer"] ? "On" : "Off"); setItemDimensions();
 	}

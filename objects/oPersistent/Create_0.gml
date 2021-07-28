@@ -16,6 +16,7 @@ keyAutomation = false;
 
 transmitData = global.production;
 shiftTime = !global.production;
+configSecrets();
 
 randomize();
 h = display_get_height();
@@ -34,6 +35,7 @@ bindInput();
 
 for(var i = 0; i < 3; i++) input[i] = array_create(in.length);
 
+configSecrets();
 loadSettings();
 initCustomLevels();
 window_set_fullscreen(data[?"fs"]);

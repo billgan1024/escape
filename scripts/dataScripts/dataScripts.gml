@@ -8,12 +8,12 @@ function initData() {
 }
 
 function saveData() { 
-	ds_map_arcfour_save(data, fileName); 
+	ds_map_arcfour_save(data, fileName, saveKey); 
 }
 
 function loadSettings() {
-	fileName = "data.dat";
+	fileName = "dataNew.dat";
 	data = ds_map_create();
-	if(file_exists(fileName)) {	ds_map_destroy(data); data = ds_map_secure_load(fileName); }
+	if(file_exists(fileName)) {	ds_map_destroy(data); data = ds_map_arcfour_load(fileName, saveKey); }
 	else initData();
 }

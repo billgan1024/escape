@@ -13,7 +13,7 @@ function initCustomLevels() {
     //load the order from the data file
     levelNames = ds_list_create();
     if(!is_undefined(data[?"levelNames"])) ds_list_read(levelNames, data[?"levelNames"]);
-    else { data[?"levelNames"] = ds_list_write(levelNames); save(); } 
+    else { data[?"levelNames"] = ds_list_write(levelNames); saveData(); } 
     for(var i = 0; i < 16*3-5; i++) ds_list_add(levelNames, "test"+string(i));
     
     //track current page (maintain this as a global variable that doesn't get reset between room changes)
