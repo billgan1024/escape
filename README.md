@@ -1,6 +1,16 @@
 # Escape
 An action platformer I started during Hack the North 2021 and am now attempting to finish.
 
+# User Interface Update
+![pic](https://img.itch.zone/aW1nLzYzMzk3MjAucG5n/original/guE54E.png)
+This update brings an essential update for the user interface system in Escape. Players are now able to interact with the menu system using a mouse. Additionally, various bugs have been fixed, and the code has been made more modular and flexible to allow for quicker development of future user interfaces (e.g. level design screens?)
+
+### Player Movement Changes
+
+* Reduced sprint speed slightly
+* While falling, you can now hold up/W to glide and fall slower
+
+
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=pblpbl1024.escape)
 
 ## Installation
