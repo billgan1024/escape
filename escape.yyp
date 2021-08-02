@@ -34,6 +34,7 @@
     {"id":{"name":"level17","path":"rooms/level17/level17.yy",},"order":9,},
     {"id":{"name":"createOptionsItems","path":"scripts/createOptionsItems/createOptionsItems.yy",},"order":4,},
     {"id":{"name":"aLaser","path":"sounds/aLaser/aLaser.yy",},"order":9,},
+    {"id":{"name":"oHttp","path":"objects/oHttp/oHttp.yy",},"order":4,},
     {"id":{"name":"sTranslucent","path":"sprites/sTranslucent/sTranslucent.yy",},"order":32,},
     {"id":{"name":"inBoundary","path":"scripts/inBoundary/inBoundary.yy",},"order":5,},
     {"id":{"name":"level14","path":"rooms/level14/level14.yy",},"order":6,},

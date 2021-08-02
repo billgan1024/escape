@@ -6,11 +6,12 @@ function createLevelsItems() {
     for(var i = 0; i < 4; i++) {
         for(var j = 0; j < 4; j++) {
             with(instance_create_layer(vw/2-hs*1.5+hs*j, 420+vs*i, "Persistent", oButton)) {
-                r = i+1; c = j; other.itemIDs[#r, c] = id;
+                r = i+1; c = j; 
                 up = [changeCursor, [-1, 0]];
 				down = [changeCursor, [1, 0]];
 				left = [changeCursor, [0, -1]];
 				right = [changeCursor, [0, 1]];
+				setItemDimensions();
             }
         } 
     }
@@ -36,14 +37,14 @@ function createLevelsItems() {
 		r = 0; c = span; 
 		up = [changeCursor, [-1, 0]];
 		down = [changeCursor, [1, 0]];
-		for(var i = 0; i < other.maxCol[other.gameState]; i++) other.itemIDs[#r, i] = id; 
+		setItemDimensions();
 		customScale = 0.8;
 	}
 	#endregion
 	#region page arrows (unreachable because they are outside of the subgrid formed by maxRow + maxCol)
 	for(var i = 0; i < 2; i++) {
 		with(instance_create_layer(vw/2-160+320*i, 320, "Persistent", oButton)) {
-			r = 0; c = i+4; other.itemIDs[#r, c] = id; customScale = 0.8;
+			r = 0; c = i+4;  customScale = 0.8;
 			spr = sArrowIcon; 
 			imageIndex = i; vOffset = 0; willMoveCursor = false;
 			setItemDimensions();
@@ -51,6 +52,7 @@ function createLevelsItems() {
 	}
 	#endregion
 	//fill in the data
+	//this function also calls setItemDimensions
 	loadCustomTab(customLevelPage, false);
     loadCustomPage(customLevelPage);
 }
@@ -60,7 +62,7 @@ function createLevelsItems() {
 //smooth: whether to adjust alphaScaleTo for page arrows
 function loadCustomTab(page, smooth) {
     customLevelPage = page;
-    with(itemIDs[#0, 0]) {
+    with(oPersistent.itemIDs[#0, 0]) {
     	text = "Page " + string(other.customLevelPage) + " of " + string(other.maxPage);
 		setItemDimensions();
     }

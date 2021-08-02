@@ -12,7 +12,7 @@ function createOptionsItems(escState) {
     var d = [[data[?"sfx"] == 0, data[?"sfx"] == 100], [data[?"mus"] == 0, data[?"mus"] == 100]];
     for(var i = 0; i < 2; i++) {
     	with(instance_create_layer(vw/2, 400+120*i, "Persistent", oButton)) {
-    		r = i; c = 0; other.itemIDs[#r, c] = id;
+    		r = i; c = 0; 
 			up = [changeCursor, [-1, 0]];
 			down = [changeCursor, [1, 0]];
 			left = [actions[i], [-10]];
@@ -26,7 +26,7 @@ function createOptionsItems(escState) {
 		for(var j = 0; j < 2; j++) {
 			with(instance_create_layer(vw/2-250+500*j, 400+120*i, "Persistent", oButton)) {
 				//define buttons which are outside of the maxRow/maxCol so that they are unreachable by keyboard
-				r = i; c = j+1; other.itemIDs[#r, c] = id;
+				r = i; c = j+1; 
 				spr = sArrowIcon;
 				imageIndex = j;
 				enter = [actions[i], [-10+20*j]];
@@ -43,7 +43,7 @@ function createOptionsItems(escState) {
 	#region other options 
 	for(var i = 2; i < 4; i++) {
     	with(instance_create_layer(vw/2, 400+120*i, "Persistent", oButton)) {
-    		r = i; c = 0; other.itemIDs[#r, c] = id;
+    		r = i; c = 0; 
 			up = [changeCursor, [-1, 0]];
 			down = [changeCursor, [1, 0]];
 			enter = actions[i];

@@ -3,19 +3,14 @@ cameraOffset = 0; //smoothApproach(cameraOffset, hsp*50, 0.004);
 //get input
 if(!dead) {
 	checkEnemy();
+	if(canMove) checkInput();
 }
-if(!dead && canMove) checkInput();
 
 if(input[1][in.shift] && oPersistent.data[?"toggle-sprint"]) toggledSprint = !toggledSprint;
 
-var right = input[0][in.right];
-var left = input[0][in.left];
-dir = right-left;
-
+dir = input[0][in.right]-input[0][in.left];
 jump = input[1][in.up] || input[1][in.space];
-
 jumpHeld = input[0][in.up] || input[0][in.space];
-//always toggle dash
 down = input[0][in.down];
 
 //update camera speed variable 
@@ -23,12 +18,9 @@ cameraSpd = approach(cameraSpd, 5.3*dir, 0.4);
 
 //if we're in freecam mode, cancel all inputs and move the camera
 if(freecam) {
-	
 	oGame.targetX = clamp(oGame.targetX + cameraSpd, oGame.leftBoundary, oGame.rightBoundary);
-	
 	//free camera movement 
 	//oGame.targetX += 6*dir; oGame.targetY += 6*(input[in.down]-input[in.up]);
-	
 	dir = 0; jump = false; jumpHeld = false; dash = false; down = false;
 }
 
@@ -40,8 +32,6 @@ switch(state)
 			freecam = !freecam; snd(freecam ? aCamOn : aCamOff);
 		}
 		khsp = 0;
-		//for running, accelerate slowly if you're trying to speed up to your maximum speed
-		//accelerate slightly quicker if you're trying to stop
 		updateHsp(runAcc);
 		if(jump || preparedJump) { 
 			vsp = -jumpSpd; state = "jump"; snd(aJump); canGlide = true;
@@ -55,8 +45,6 @@ switch(state)
 		//special check to cancel wallkick speed if you started to move in the other direction and released the key
 		checkReleasedWallKick();
 		khsp = approach(khsp, 0, fric);
-		//if you're trying to dash mid-air, the cost to increase ur speed to maximum speed is greater
-		//than the cost to stop
 		updateHsp(airAcc); 
 		updateVsp();
 		if(jump)

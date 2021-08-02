@@ -2,6 +2,8 @@
 //so that you can grab text via menu item position
 a = array_create(16, infinity);
 text = ""; 
+//actual text rendered
+drawText = ""; 
 selected = false;
 label = "";
 r = 0; c = 0; 
@@ -12,6 +14,8 @@ vOffset = 9;
 textCursor = false;
 //whether or not you replace the text with * in drawMenu()
 passwordField = false;
+
+flexScale = 1;
 
 //default character limit
 limit = 16;

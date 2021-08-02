@@ -9,7 +9,7 @@ autoKey = ds_queue_create();
 post = undefined;
 headerMap = ds_map_create(); ds_map_add(headerMap, "Content-Type", "application/json");
 
-global.production = true;
+global.production = false;
 receiveData = false;
 testObjects = false;
 keyAutomation = false;
@@ -40,6 +40,7 @@ loadSettings();
 initCustomLevels();
 window_set_fullscreen(data[?"fs"]);
 
+initTransition();
 initMenu();
 loadMenu(gameState);
 changeCursor(0, 0, true);
@@ -55,7 +56,6 @@ debugFps = [30, 60, 120, 240];
 
 snap = true; 
 
-initTransition();
 
 paused = false;
 

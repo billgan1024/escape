@@ -17,11 +17,11 @@ function update() {
 		for(var i = 1; i <= 15; i++) {
 			a[i]--;
 			if(a[i] <= 0) {
-				event_perform(ev_other, i+10);
+				event_user(i);
 			}
 		}
 	}
-	event_perform(ev_other, ev_user0);
+	event_user(0);
 }
 
 function updateLocal() {
@@ -31,7 +31,8 @@ function updateLocal() {
 	with(all) {
 		//important note: even though oButton and oTextBox are children of oMenuItem, the object_index check still
 		//needs to be done separately (u can't use oMenuItem here)
-		if(object_index != oPersistent && object_index != oButton && object_index != oTextBox && object_index != oBg) update();
+		if(object_index != oPersistent && object_index != oButton && object_index != oTextBox && 
+			object_index != oBg && object_index != oHttp) update();
 	}
 }
 
@@ -40,6 +41,7 @@ function updateGlobal() {
 	part_system_update(global.ps_bg);
 	with(oMenuItem) update();
 	with(oBg) update();
+	with(oHttp) update();
 	update(); 
 }
 
