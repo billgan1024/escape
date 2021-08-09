@@ -1,7 +1,13 @@
 # Escape
 An action platformer I started during Hack the North 2021 and am now attempting to finish.
 
-### User Interface Update
+### Levels completed: 27/32 (more to come soon...)
+
+### August 9, 2021: User Account Systems
+
+This post marks the beginning of the implementation of a user account system, complete with login, register, and profile components. Users will be able to register for an account which will allow them to submit scores to a leaderboard and even upload their own levels using a level editor (which is planned to be added to the game). This is all possible with the many useful technologies of Firebase, including Firebase Authentication, Cloud Firestore, and Firebase Functions.
+
+### June 26, 2021: User Interface Update
 ![pic](https://img.itch.zone/aW1nLzYzMzk3MjAucG5n/original/guE54E.png)
 This update brings an essential update for the user interface system in Escape. Players are now able to interact with the menu system using a mouse. Additionally, various bugs have been fixed, and the code has been made more modular and flexible to allow for quicker development of future user interfaces (e.g. level design screens?)
 
