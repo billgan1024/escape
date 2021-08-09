@@ -1,4 +1,5 @@
 function updateSelector() {
+	//updates all properties of the selector, including its dimensions, vOffset, and alpha
 	if(is_undefined(cur)) return;
 	var spd = snap ? 1 : 0.12;
 	selector[0] = smoothApproach(selector[0], cur.x, spd);
@@ -6,6 +7,7 @@ function updateSelector() {
 	selector[2] = smoothApproach(selector[2], cur.w, spd);
 	selector[3] = smoothApproach(selector[3], cur.h, spd);
 	vOffset = smoothApproach(vOffset, cur.vOffset, spd);
+	selectorAlpha = alpha/5*(r >= tr1 && r <= tr2 && c >= tc1 && c <= tc2 ? sAlpha : 1);
 }
 
 function updateSelectorTo() {

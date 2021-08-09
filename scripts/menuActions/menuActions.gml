@@ -15,6 +15,7 @@ function transitionTo(newState, newRow, newCol, newRoom, newSong) {
 	} else { 
 		ds_stack_push(pr, r); ds_stack_push(pc, c); tr = newRow; tc = newCol; 
 	}
+	
 	canInteract = false; 
 	if(is_undefined(newRoom)) {
 		state = 1; destState = newState;
@@ -54,7 +55,10 @@ function changeCursor(dr, dc, absolute) {
 	if(is_undefined(absolute)) absolute = false;
 	//log(object_get_name(object_index));
 	if(absolute) { r = dr; c = dc; }
-	else { r = (r+dr+maxRow[gameState]) % maxRow[gameState]; c = (c+dc+maxCol[gameState]) % maxCol[gameState]; }
+	else { 
+		r = (r+dr+stateData[gameState][$"maxRow"]) % stateData[gameState][$"maxRow"];
+	    c = (c+dc+stateData[gameState][$"maxCol"]) % stateData[gameState][$"maxCol"]; 
+	}
 	//only update the pointer to the current menu item, all selector variables will follow
 	cur = itemIDs[#r, c];
 }

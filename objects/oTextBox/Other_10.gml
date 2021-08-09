@@ -20,3 +20,4 @@ if(passwordField) {
 
 //update scale factors
 flexScale = min((w-60)/(string_width(drawText)*mainTextBoxScale), 1);
+cursorOffset = string_width(drawText)*mainTextBoxScale*flexScale/2+(string_length(drawText) > 0 ? 3 : 0);

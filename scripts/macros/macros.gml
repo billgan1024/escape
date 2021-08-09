@@ -29,5 +29,10 @@
 #macro mainScale 0.92
 #macro mainTextBoxScale 0.8
 
+//describes the padding of buttons so that the selector wraps around them with a certain gap
 #macro h_offset 30
 #macro v_offset 9
+
+#macro bottom_offset 9
+
+#macro httpTimeout 5

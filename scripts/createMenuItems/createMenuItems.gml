@@ -11,7 +11,7 @@ function createMenuItems() {
 			down = [changeCursor, [1, 0]];
 			enter = actions[i];
 			text = labels[i];
-			setItemDimensions();
+			updateItemProperties();
 		}
 	}
 	#endregion

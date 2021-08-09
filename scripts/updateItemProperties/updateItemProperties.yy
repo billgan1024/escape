@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Utility",
-    "path": "folders/Scripts/Utility.yy",
+    "name": "Post-Item Creation",
+    "path": "folders/Scripts/Menu/Post-Item Creation.yy",
   },
   "resourceVersion": "1.0",
-  "name": "setItemDimensions",
+  "name": "updateItemProperties",
   "tags": [],
   "resourceType": "GMScript",
 }

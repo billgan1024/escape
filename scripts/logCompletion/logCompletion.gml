@@ -5,6 +5,6 @@ function logCompletion(lvl, att, dur) {
 		duration: dur 
 	}
 	with(oPersistent) {
-		post = http_request("https://us-central1-escape-server-32386.cloudfunctions.net/add?collection=completions", "POST", headerMap, json_stringify(body));
+		post = http_request("https://us-central1-escape-server-32386.cloudfunctions.net/add?collection=completions", "POST", global.headerMap, json_stringify(body));
 	}
 }

@@ -3,19 +3,19 @@
 a = array_create(16, infinity);
 text = ""; 
 //actual text rendered
+//also track position of cursor
 drawText = ""; 
+cursorOffset = 0;
 selected = false;
 label = "";
-r = 0; c = 0; 
 
 //for text boxes, use the width to scale the text downwards if the string length is too high
-w = 600; h = 100;
+w = 800; h = 100;
 vOffset = 9;
 textCursor = false;
 //whether or not you replace the text with * in drawMenu()
 passwordField = false;
 
-flexScale = 1;
-
 //default character limit
 limit = 16;
+flexScale = 1;

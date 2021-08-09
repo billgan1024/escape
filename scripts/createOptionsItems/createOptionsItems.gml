@@ -5,7 +5,7 @@ function createOptionsItems(escState) {
     	"Music: " + string(data[?"mus"]) + "%", 
     	"Fullscreen: " + (data[?"fs"] ? "On" : "Off"), 
     	"Timer: " + (data[?"timer"] ? "On" : "Off"), 
-    ]
+    ];
     //set actions + args 2 times for different 'groups' of buttons
 	var actions = [changeSoundVol, changeMusicVol, [toggleFs, []], [toggleTimer, []]];
     #region audio
@@ -18,7 +18,7 @@ function createOptionsItems(escState) {
 			left = [actions[i], [-10]];
 			right = [actions[i], [10]];
 			text = labels[i];
-			setItemDimensions();
+			updateItemProperties();
     	}
     	#region page arrows
 		//for the graphics icons, assign (r, c) that is out of bounds so that they won't be selected
@@ -30,11 +30,11 @@ function createOptionsItems(escState) {
 				spr = sArrowIcon;
 				imageIndex = j;
 				enter = [actions[i], [-10+20*j]];
-				disabled = d[i][j]; if(disabled) { alphaScale = 1/8; alphaScaleTo = alphaScale; }
+				disabled = d[i][j]; 
 				willMoveCursor = false;
 				scale = 0.8; baseScale = 0.8;
 				vOffset = 0;
-				setItemDimensions();
+				updateItemProperties();
     		}
 		}	
 		#endregion
@@ -48,18 +48,18 @@ function createOptionsItems(escState) {
 			down = [changeCursor, [1, 0]];
 			enter = actions[i];
 			text = labels[i];
-			setItemDimensions();
+			updateItemProperties();
     	}
 	}
 	#endregion
 	#region back
 	with(instance_create_layer(vw/2, 400+120*7, "Persistent", oButton)) {
-		r = 4; c = span; other.itemIDs[#r, 0] = id;
+		r = 4; c = span; 
 		up = [changeCursor, [-1, 0]];
 		down = [changeCursor, [1, 0]];
 		enter = other.escActions[escState];
 		text = "Back";
-		setItemDimensions();
+		updateItemProperties();
 	}
 	#endregion
 }
@@ -69,7 +69,7 @@ function changeSoundVol(dv) {
 	data[?"sfx"] = clamp(data[?"sfx"]+dv, 0, 100); saveData();
 	updateSoundVol();
 	with(itemIDs[#0, 0]) {
-		text = "Sound FX: " + string(other.data[?"sfx"]) + "%"; setItemDimensions(); 
+		text = "Sound FX: " + string(other.data[?"sfx"]) + "%"; updateItemProperties(); 
 	}
 	var d = [data[?"sfx"] == 0, data[?"sfx"] == 100];
 	for(var i = 0; i < 2; i++) {
@@ -85,7 +85,7 @@ function changeMusicVol(dv) {
 	data[?"mus"] = clamp(data[?"mus"]+dv, 0, 100); saveData();
 	updateMusicVol();
 	with(itemIDs[#1, 0]) {
-		text = "Music: " + string(other.data[?"mus"]) + "%"; setItemDimensions();
+		text = "Music: " + string(other.data[?"mus"]) + "%"; updateItemProperties();
 	}
 	var d = [data[?"mus"] == 0, data[?"mus"] == 100];
 	for(var i = 0; i < 2; i++) {
@@ -106,7 +106,7 @@ function toggleFs() {
 	
 	// a[1] = inputDelay;
 	with(itemIDs[#2, 0]) {
-		text = "Fullscreen: " + (other.data[?"fs"] ? "On" : "Off"); setItemDimensions();
+		text = "Fullscreen: " + (other.data[?"fs"] ? "On" : "Off"); updateItemProperties();
 	}
 	//mouse_clear(mb_left); keyboard_key_release(vk_enter);
 	//canInteract = false; a[4] = inputDelay*12;
@@ -115,7 +115,7 @@ function toggleFs() {
 function toggleTimer() {
 	data[?"timer"] = !data[?"timer"]; saveData(); 
 	with(itemIDs[#3, 0]) {
-		text = "Timer: " + (other.data[?"timer"] ? "On" : "Off"); setItemDimensions();
+		text = "Timer: " + (other.data[?"timer"] ? "On" : "Off"); updateItemProperties();
 	}
 }
 

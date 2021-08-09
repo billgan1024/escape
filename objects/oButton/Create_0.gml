@@ -21,7 +21,7 @@ overallAlpha = 1;
 
 //note that by default, the font height is too large at the bottom, so use this to reduce the size of the bottom space
 //on the selector rectangle
-vOffset = 9;
+vOffset = bottom_offset;
 
 //max width of the text on this button; if the text is too big, the scale will compensate for that
 maxWidth = 480;

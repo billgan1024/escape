@@ -10,7 +10,7 @@ function createSelectItems() {
 				right = [changeCursor, [0, 1]];
 				enter = [transitionTo, [gs.game, 0, 0, asset_get_index("level" + string(8*i+j+1)), aGame]];
 				text = 8*i+j+1;
-				setItemDimensions();
+				updateItemProperties();
 			}
 		}
 	}
@@ -23,7 +23,7 @@ function createSelectItems() {
 		down = [changeCursor, [1, 0]];
 		enter = other.escActions[other.gameState];
 		text = "Back";
-		setItemDimensions();
+		updateItemProperties();
 	}
 	#endregion
 }

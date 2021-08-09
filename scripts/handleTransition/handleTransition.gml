@@ -7,9 +7,9 @@ function handleTransition() {
     		//also update array tracking menu item IDs
     		//make the cursor snap 
     		snap = true;
-    		clearMenu(); gameState = destState;
-    		//loadmenu to establish the new grid, then simply update r, c, and cur
-    		loadMenu(gameState); 
+    		clearMenu(); 
+    		//load the dest state (also updates the current gamestate)
+    		loadMenu(destState);
     		changeCursor(tr, tc, true);
     		state++;
     	}
@@ -23,7 +23,9 @@ function handleTransition() {
     	if(tAlpha == 1) {
     		snap = true;
     		room_goto(destRoom); 
-    		clearMenu(); gameState = destState; loadMenu(gameState); changeCursor(tr, tc, true);
+    		clearMenu();
+    		loadMenu(destState);
+    		changeCursor(tr, tc, true);
     		part_particles_clear(global.ps_above);
     		part_particles_clear(global.ps_below);
     		part_particles_clear(global.ps_bg);

@@ -7,9 +7,10 @@ autoKey = ds_queue_create();
 
 //initialize http variables
 post = undefined;
-headerMap = ds_map_create(); ds_map_add(headerMap, "Content-Type", "application/json");
+global.headerMap = ds_map_create();
+global.headerMap[?"Content-Type"] = "application/json";
 
-global.production = false;
+global.production = true;
 receiveData = false;
 testObjects = false;
 keyAutomation = false;
@@ -26,11 +27,11 @@ t = 0;
 
 //input data
 enum in {
-	left, right, up, down, space, shift, enter, esc, mbLeft, mbRight, mbMiddle, length 
+	left, right, up, down, space, shift, enter, esc, tab, mbLeft, mbRight, mbMiddle, length 
 }
 
 //a[5] = 240;
-global.inputCodes = [vk_left, vk_right, vk_up, vk_down, vk_space, vk_shift, vk_enter, vk_escape, mb_left, mb_right, mb_middle];
+global.inputCodes = [vk_left, vk_right, vk_up, vk_down, vk_space, vk_shift, vk_enter, vk_escape, vk_tab, mb_left, mb_right, mb_middle];
 bindInput();
 
 for(var i = 0; i < 3; i++) input[i] = array_create(in.length);
@@ -40,7 +41,6 @@ loadSettings();
 initCustomLevels();
 window_set_fullscreen(data[?"fs"]);
 
-initTransition();
 initMenu();
 loadMenu(gameState);
 changeCursor(0, 0, true);
@@ -55,13 +55,10 @@ fpsLevel = 3;
 debugFps = [30, 60, 120, 240];
 
 snap = true; 
-
-
 paused = false;
 
 //enable interacting and disable snap
 a[4] = inputDelay;
-
 
 //[timeFactor as a multiple of the desired game speed, total number of frames that have passed]
 //update these according to delta time in the step event

@@ -11,7 +11,7 @@ function createLevelsItems() {
 				down = [changeCursor, [1, 0]];
 				left = [changeCursor, [0, -1]];
 				right = [changeCursor, [0, 1]];
-				setItemDimensions();
+				updateItemProperties();
             }
         } 
     }
@@ -22,12 +22,11 @@ function createLevelsItems() {
     for(var i = 0; i < 2; i++) {
     	with(instance_create_layer(vw/2, 400+120*(i+6), "Persistent", oButton)) {
 	    	r = i+5; c = span;
-	    	for(var j = 0; j < other.maxCol[other.gameState]; j++) other.itemIDs[#r, j] = id;
 			up = [changeCursor, [-1, 0]];
 			down = [changeCursor, [1, 0]];
 			enter = actions[i];
 			text = labels[i];
-			setItemDimensions();
+			updateItemProperties();
 		}
     }
     #endregion
@@ -37,7 +36,7 @@ function createLevelsItems() {
 		r = 0; c = span; 
 		up = [changeCursor, [-1, 0]];
 		down = [changeCursor, [1, 0]];
-		setItemDimensions();
+		updateItemProperties();
 		customScale = 0.8;
 	}
 	#endregion
@@ -47,7 +46,7 @@ function createLevelsItems() {
 			r = 0; c = i+4;  customScale = 0.8;
 			spr = sArrowIcon; 
 			imageIndex = i; vOffset = 0; willMoveCursor = false;
-			setItemDimensions();
+			updateItemProperties();
 		}
 	}
 	#endregion
@@ -62,38 +61,38 @@ function createLevelsItems() {
 //smooth: whether to adjust alphaScaleTo for page arrows
 function loadCustomTab(page, smooth) {
     customLevelPage = page;
-    with(oPersistent.itemIDs[#0, 0]) {
-    	text = "Page " + string(other.customLevelPage) + " of " + string(other.maxPage);
-		setItemDimensions();
-    }
 	var d = [customLevelPage == 1, customLevelPage == maxPage];
 	var actions = [[inStateTransition, [1, 0, 4, 3, [loadCustomTab, [customLevelPage-1, true]], [loadCustomPage, [customLevelPage-1]]]], 
 		[inStateTransition, [1, 0, 4, 3, [loadCustomTab, [customLevelPage+1, true]], [loadCustomPage, [customLevelPage+1]]]]];
+	
+	//update page tab
 	with(itemIDs[#0, 0]) {
-		//set the arrow controls on the top tab as required
+    	text = "Page " + string(other.customLevelPage) + " of " + string(other.maxPage);
 		if(!d[0]) left = actions[0]; else left = undefined;
 		if(!d[1]) right = actions[1]; else right = undefined;
+		updateItemProperties();
 	}
+	//set the arrow controls to take in mouse input 
     for(var i = 0; i < 2; i++) {
     	with(itemIDs[#0, i+4]) {
     		enter = actions[i]; 
     		disabled = d[i]; 
-    		alphaScaleTo = disabled ? 1/8 : 1;
-    		if(!smooth) alphaScale = alphaScaleTo;
+    		updateItemProperties(smooth);
     	}	
     }
 }
 
 function loadCustomPage(page) {
-    //load any particular page by simply assigning text to the existing box
+    //load any particular page by simply assigning text to the existing boxes
     for(var i = 0; i < 4; i++) {
         for(var j = 0; j < 4; j++) {
             var idx = 16*(page-1)+4*i+j;
             with(itemIDs[#i+1, j]) {
 				if(idx < ds_list_size(other.levelNames)) { 
-					text = other.levelNames[|idx]; disabled = false; alphaScale = 1; alphaScaleTo = 1;
-				} else { text = "..."; disabled = true; alphaScale = 1/3; alphaScaleTo = 1/3; }
-				setItemDimensions();
+					text = other.levelNames[|idx]; disabled = false; 
+				} else { text = "..."; disabled = true; }
+				//post-create event
+				updateItemProperties(false, 1/3);
             }
         } 
     }

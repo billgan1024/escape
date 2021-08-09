@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Menu",
-    "path": "folders/Scripts/Menu.yy",
+    "name": "Notification",
+    "path": "folders/Scripts/Menu/Notification.yy",
   },
   "resourceVersion": "1.0",
-  "name": "handleMouseActions",
+  "name": "handleNotification",
   "tags": [],
   "resourceType": "GMScript",
 }

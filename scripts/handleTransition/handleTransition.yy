@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Transition",
-    "path": "folders/Scripts/Menu/Transition.yy",
+    "name": "Lifecycle",
+    "path": "folders/Scripts/Menu/Lifecycle.yy",
   },
   "resourceVersion": "1.0",
   "name": "handleTransition",

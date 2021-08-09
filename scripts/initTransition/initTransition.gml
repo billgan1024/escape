@@ -1,5 +1,5 @@
 function initTransition() {
-    //transition data (handles menu AND room transitions)
+	//transition data (handles menu AND room transitions)
     state = 0; alpha = 1; 
     tAlpha = 0; 
     

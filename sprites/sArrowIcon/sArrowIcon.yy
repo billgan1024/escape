@@ -73,8 +73,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Sprites",
-    "path": "folders/Sprites.yy",
+    "name": "Icons",
+    "path": "folders/Sprites/Icons.yy",
   },
   "resourceVersion": "1.0",
   "name": "sArrowIcon",
