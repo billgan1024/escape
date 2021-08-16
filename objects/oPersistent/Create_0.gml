@@ -2,6 +2,9 @@ a = array_create(16, infinity);
 //default font stuff (all draw events will set the font stuff back to the default if they change)
 dsfont(fMain); dscolour(c_white); dshalign(fa_center); dsvalign(fa_middle);
 
+//global objects
+globalObjects = [oPersistent, oTextBox, oButton, oBg, oHttp, oTesting];
+
 //keyboard automation
 autoKey = ds_queue_create();
 
@@ -10,14 +13,13 @@ post = undefined;
 global.headerMap = ds_map_create();
 global.headerMap[?"Content-Type"] = "application/json";
 
-global.production = true;
+global.production = false;
 receiveData = false;
 testObjects = false;
 keyAutomation = false;
 
 transmitData = global.production;
 shiftTime = !global.production;
-configSecrets();
 
 randomize();
 h = display_get_height();
@@ -36,8 +38,7 @@ bindInput();
 
 for(var i = 0; i < 3; i++) input[i] = array_create(in.length);
 
-configSecrets();
-loadSettings();
+loadData();
 initCustomLevels();
 window_set_fullscreen(data[?"fs"]);
 

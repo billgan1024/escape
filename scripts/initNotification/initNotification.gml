@@ -5,6 +5,10 @@ function initNotification() {
     //by oPersistent.alpha
     //simply control it using handleNotification() running continuously
     
+    //IMPORTANT:
+    //all http requests will disable interaction and create a notification whle in progress using the 'reqImportant'
+    //variable
+    
     notifAlpha = 0;
     notifState = 0;
     notifDuration = 0;
@@ -14,4 +18,6 @@ function initNotification() {
     notifSpr = [undefined, undefined];
     notifImgAngle = [0, 0];
     notifImgRotateSpd = [0, 0];
+    notifFunction = [undefined, undefined];
+    
 }

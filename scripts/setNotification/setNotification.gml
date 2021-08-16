@@ -1,20 +1,20 @@
 /// @param notif
 /// @param spr 
-/// @param angle 
-/// @param rotateSpd 
 /// @param [duration=infinity] 
-function setNotification(notif, spr, angle, rotateSpd, duration) {
+/// @param [notifFunction=undefined]
+function setNotification(notif, spr, duration, func) {
     //by default, there is no duration
     if(is_undefined(duration)) duration = infinity;
     else duration *= 240;
     
-    if(is_undefined(angle)) angle = 0;
-    if(is_undefined(rotateSpd)) rotateSpd = 0;
-    notifText[1] = notif;
-    notifSpr[1] = spr;
-    notifImgAngle[1] = angle; 
-    notifImgRotateSpd[1] = rotateSpd;
-    
-    notifDuration = duration;
-    notifState = 1;
+    //automatically set angle and rotateSpd
+    with(oPersistent) {
+        notifText[1] = notif;
+        notifSpr[1] = spr;
+        if(spr == sLoadingIcon) { notifImgAngle[1] = 0; notifImgRotateSpd[1] = -1; }
+        else { notifImgAngle[1] = 0; notifImgRotateSpd[1] = 0; }
+        notifFunction[1] = func;
+        notifDuration = duration;
+        notifState = 1;
+    }
 }

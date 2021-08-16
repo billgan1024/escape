@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Send Requests",
-    "path": "folders/Scripts/HTTP/Send Requests.yy",
+    "name": "Utility",
+    "path": "folders/Scripts/Utility.yy",
   },
   "resourceVersion": "1.0",
-  "name": "logCompletion",
+  "name": "validEmail",
   "tags": [],
   "resourceType": "GMScript",
 }

@@ -23,7 +23,6 @@
 //span keyword for menu items which take up the whole row/column
 #macro span -2
 
-
 //text is actually scaled lower so that we can enlarge it to the original size when menu items are hovered over
 //note that w and h of text buttons is determined upon creation with the initial scale of 1.
 #macro mainScale 0.92
@@ -36,3 +35,4 @@
 #macro bottom_offset 9
 
 #macro httpTimeout 5
+#macro refreshTime 3540

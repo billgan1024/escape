@@ -22,8 +22,8 @@ function handleTransition() {
     	tAlpha = approach(tAlpha, 1, fadeSpeed);
     	if(tAlpha == 1) {
     		snap = true;
-    		room_goto(destRoom); 
     		clearMenu();
+    		room_goto(destRoom); 
     		loadMenu(destState);
     		changeCursor(tr, tc, true);
     		part_particles_clear(global.ps_above);

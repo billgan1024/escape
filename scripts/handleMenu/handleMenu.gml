@@ -3,13 +3,17 @@ function handleMenu() {
 	//pro tip: calling a function using id.f() will have the caller as that object
 	//however, using script_execute(id.f) will have the caller as the original instance which called script_execute;
 	//in this case, it's oPersistent
+	
+	//a key concept for this menu is to never allow the user to press two buttons in the same frame
+	//this is done by completely wiping the input array after a function was successfully activated by an input
+	
 	if(input[1][in.left] && !is_undefined(cur.left)) { script_execute_ext(cur.left[0], cur.left[1]); snd(aScroll); clearInput(); }
 	if(input[1][in.right] && !is_undefined(cur.right)) { script_execute_ext(cur.right[0], cur.right[1]); snd(aScroll); clearInput(); }
 	if(input[1][in.up] && !is_undefined(cur.up)) { script_execute_ext(cur.up[0], cur.up[1]); snd(aScroll); clearInput(); }
 	if(input[1][in.down] && !is_undefined(cur.down)) { script_execute_ext(cur.down[0], cur.down[1]); snd(aScroll); clearInput(); }
 	if(input[1][in.enter] && !is_undefined(cur.enter) && !cur.disabled) { script_execute_ext(cur.enter[0], cur.enter[1]); snd(aSelect); clearInput(); }
 	
-    //handle mouse events (again, only if canInteract is true)
+    //handle mouse events (again, only if canInteract is true and reqImportant is false)
     with(oButton) {
     	if(!disabled && mouseOver(vx+x-w/2, vy+y-h/2, vx+x+w/2, vy+y+h/2-vOffset)) {
     		scale = smoothApproach(scale, 1, 0.3, 0.005);
@@ -34,6 +38,14 @@ function handleMenu() {
     	else scale = smoothApproach(scale, baseScale, 0.3, 0.005);
     }
     
+    //check if the user clicked the notification
+	if(!is_undefined(notifFunction[0]) && mouseOver(vx, vy+vh-100+bottom_offset, vx+vw, vy+vh)) {
+		hover = true;
+		if(input[1][in.mbLeft]) {
+			snd(aSelect); script_execute_ext(notifFunction[0][0], notifFunction[0][1]); clearInput();
+		}
+    }
+    
     //clicking logic for textboxes
     //note: when the window isn't focused, mouse presses are not even registered so it's fine if
     //persistent logic runs all the time.
@@ -48,7 +60,11 @@ function handleMenu() {
                 selected = false; textCursor = false; a[1] = infinity;
             }
         }
-        if(selectedOne) keyboard_unset_map(); else bindInput();
+        if(selectedOne) {
+        	keyboard_unset_map(); 
+        	clearInput();
+        }
+        else bindInput();
     }
     
     //scroll to the next textbox
@@ -57,17 +73,14 @@ function handleMenu() {
     	var s = ds_list_size(textboxIDs);
     	for(var i = 0; i < s; i++) {
     		if(textboxIDs[|i].selected) {
-    			
     			with(textboxIDs[|i]) { selected = false; textCursor = false; a[1] = infinity; }
     			with(textboxIDs[|(i+1)%s]) {
     				selected = true; keyboard_string = text;
 	                textCursor = true; a[1] = 120; 
     			}
+    			clearInput();
     			break;	
     		}
     	}
     }
-    
-    if(menuData[gameState] == undefined) window_set_cursor(cr_none);
-    else window_set_cursor(hover ? cr_drag : cr_default);
 }

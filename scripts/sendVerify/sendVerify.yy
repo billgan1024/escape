@@ -6,7 +6,7 @@
     "path": "folders/Scripts/HTTP/Send Requests.yy",
   },
   "resourceVersion": "1.0",
-  "name": "logCompletion",
+  "name": "sendVerify",
   "tags": [],
   "resourceType": "GMScript",
 }

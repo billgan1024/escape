@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Send Requests",
-    "path": "folders/Scripts/HTTP/Send Requests.yy",
+    "name": "Resolve Requests",
+    "path": "folders/Scripts/HTTP/Resolve Requests.yy",
   },
   "resourceVersion": "1.0",
-  "name": "logCompletion",
+  "name": "cancelRequest",
   "tags": [],
   "resourceType": "GMScript",
 }

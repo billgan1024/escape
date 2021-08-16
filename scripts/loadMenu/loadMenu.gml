@@ -6,6 +6,6 @@ function loadMenu(_destState) {
 		script_execute_ext(menuData[gameState][0], _destState[1]);
 	} else {
 		gameState = _destState;
-		script_execute_ext(menuData[gameState][0], menuData[gameState][1]);
+		if(!is_undefined(menuData[gameState])) script_execute_ext(menuData[gameState][0], menuData[gameState][1]);
 	}
 }

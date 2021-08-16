@@ -36,28 +36,20 @@ function createRegisterItems() {
 
 //todo: after they register, go to the login page with their email and password already set.
 //prompt them to check their email to verify it. then the user presses login to go in
+//called from oPersistent
 function register() {
-	var _email = oPersistent.textboxIDs[|1].text;
-	var _pass = oPersistent.textboxIDs[|2].text;
-	var _confirmPass = oPersistent.textboxIDs[|3].text;
-	
-	//basic validation
-	if(string_pos("@", _email) < 2 || string_length(_email) < 3) setNotification("Enter a valid email address.", sErrorIcon, 0, 0, 4);
-	else if(_pass != _confirmPass) setNotification("Passwords do not match.", sErrorIcon, 0, 0, 4);
-	else {
-		with(oHttp) {
-			//new update: post to this cloud function so u can send all ur stuff
-			//this will only create a user in the backend which will not give you an auth/refresh token automatically
-			var body = {
-				email: _email, 
-				password: _pass,
-				returnSecureToken: "true"
-			}
-			
-			reqID = http_request(functionUrlPrefix + "signUp", "POST", global.headerMap, json_stringify(body));
-			reqType = request.register;
-			a[1] = httpTimeout*240;
-		}
-		setNotification("Creating account...", sLoadingIcon, 0, -1);
-	}
+    var _email = oPersistent.textboxIDs[|1].text;
+    var _pass = oPersistent.textboxIDs[|2].text;
+    var _confirmPass = oPersistent.textboxIDs[|3].text;
+    
+    //basic validation
+    if(invalidEmail(_email)) setNotification("Enter a valid email address.", sErrorIcon, 4);
+    else if(_pass != _confirmPass) setNotification("Passwords do not match.", sErrorIcon, 4);
+	else if(string_length(_pass) == 0) setNotification("Enter a valid password.", sErrorIcon, 4);
+    else {
+        with(oHttp) {
+        	isRegistering = true;
+        	sendRegister(_email, _pass); 
+        }
+    }
 }

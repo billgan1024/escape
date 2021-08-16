@@ -8,24 +8,27 @@
 /// @param [newSong] (leave blank to avoid switching the song, or -1 to stop playing the song) 
 function transitionTo(newState, newRow, newCol, newRoom, newSong) {
 	//note: argument_count won't be accurate if you're including all the arguments in the function ^
-	//use the undefined check
-	if(is_undefined(newRow) && is_undefined(newCol)) { newRow = 0; newCol = 0; } 
-	if(newRow == -1 && newCol == -1) {
-		tr = ds_stack_pop(pr); tc = ds_stack_pop(pc); 
-	} else { 
-		ds_stack_push(pr, r); ds_stack_push(pc, c); tr = newRow; tc = newCol; 
-	}
-	
-	canInteract = false; 
-	if(is_undefined(newRoom)) {
-		state = 1; destState = newState;
-	} else {
-		//every new room transition will automatically clear the previous row/col stack 
-		state = 3; destState = newState; destRoom = newRoom;
-		ds_stack_clear(pr); ds_stack_clear(pc);
-	}
-	if(!is_undefined(newSong)) {
-		stopMusic(); if(newSong != -1) destSong = newSong;
+	//use the is_undefined check
+	//update: this function is now global and any instance calling it will always use oPersistent as the caller
+	with(oPersistent) {
+		if(is_undefined(newRow) && is_undefined(newCol)) { newRow = 0; newCol = 0; } 
+		if(newRow == -1 && newCol == -1) {
+			tr = ds_stack_pop(pr); tc = ds_stack_pop(pc); 
+		} else { 
+			ds_stack_push(pr, r); ds_stack_push(pc, c); tr = newRow; tc = newCol; 
+		}
+		
+		canInteract = false; 
+		if(is_undefined(newRoom)) {
+			state = 1; destState = newState;
+		} else {
+			//every new room transition will automatically clear the previous row/col stack 
+			state = 3; destState = newState; destRoom = newRoom;
+			ds_stack_clear(pr); ds_stack_clear(pc);
+		}
+		if(!is_undefined(newSong)) {
+			stopMusic(); if(newSong != -1) destSong = newSong;
+		}
 	}
 }
 

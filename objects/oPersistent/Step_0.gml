@@ -1,5 +1,4 @@
 checkInputPressed(); 
-//log("fps", fps);
 //log("fps-real", fps_real);
 //log(delta_time/1000000*fps);
 time[0] = min(delta_time/1000000*debugFps[fpsLevel], 8);

@@ -29,29 +29,28 @@ function createLoginItems(email, pass) {
     }
 }
 
+
 //json_encode turns maps into strings, json_stringify turns structs into strings (u need to send json as a string
 //otherwise, only the struct/map reference will be sent)
 //also, returnSecureToken needs to be a boolean according to firebase docs, but true evaluates to 1 (an integer)
 //thus, send it as a string (wtf lol)
 
 //login: only log them in once their email is verified
+//called from oPersistent
 function login() {
 	//grabs username and password
 	var _email = oPersistent.textboxIDs[|0].text;
 	var _pass = oPersistent.textboxIDs[|1].text;
+	
 	//update: this button will sign the user in, then also check to make sure the email is verified
 	//thus, u need to make two requests; one to make sure their password is right (if it is, give them the auth and refresh token)
 	//and one to make sure their email is verified
-	with(oHttp) {
-		var body = {
-			email: _email,
-			password: _pass, 
-			returnSecureToken: "true"
+	if(invalidEmail(_email)) setNotification("Enter a valid email address.", sErrorIcon, 4);
+	else if(string_length(_pass) == 0) setNotification("Enter a valid password.", sErrorIcon, 4);
+	else {
+		with(oHttp) {
+			isRegistering = false;
+			sendLogin(_email, _pass);
 		}
-		//note that body should be a string containing data (not just a map index)
-		reqID = http_request(apiUrlPrefix + "accounts:signInWithPassword" + apiUrlSuffix, "POST", global.headerMap, json_stringify(body));
-		reqType = request.login;
-		a[1] = httpTimeout*240;
 	}
-	setNotification("Logging in...", sLoadingIcon, 0, -1);
 }

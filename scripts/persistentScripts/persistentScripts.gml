@@ -33,18 +33,14 @@ function updateLocal() {
 	with(all) {
 		//important note: even though oButton and oTextBox are children of oMenuItem, the object_index check still
 		//needs to be done separately (u can't use oMenuItem here)
-		if(object_index != oPersistent && object_index != oButton && object_index != oTextBox && 
-			object_index != oBg && object_index != oHttp) update();
+		if(arrayFind(oPersistent.globalObjects, object_index) == -1) update();
 	}
 }
 
 function updateGlobal() {
     //updates things that are persistent (persistent + menu stuff + background stuff)
 	part_system_update(global.ps_bg);
-	with(oMenuItem) update();
-	with(oBg) update();
-	with(oHttp) update();
-	update(); 
+	for(var i = 0; i < len(globalObjects); i++) with(globalObjects[i]) update();
 }
 
 //operate on this array by reference by using the @ accessor
@@ -55,7 +51,7 @@ function step() {
     if(floor(time[1]) != floor(time[1]-time[0]))
     {
     	var rem = floor(time[1]) - floor(time[1]-time[0]);
-    	repeat rem {
+    	repeat(rem) {
 	    	if(gameState != gs.paused && gameState != gs.optionsGame) updateLocal();
     		updateGlobal();
     	}

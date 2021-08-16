@@ -14,8 +14,9 @@ updateSelector();
 
 
 //handle pausing and menus only if the menu isn't transitioning
+//also only handle notificaitons only if the menu isn't transitioning
 hover = false;
-if(canInteract) {
+if(canInteract && !oHttp.reqImportant) {
 	if(menuData[gameState] != undefined) handleMenu();
 	//always handle escape function 
 	if(input[1][in.esc] && !is_undefined(escActions[gameState])) { 
