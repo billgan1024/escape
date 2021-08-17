@@ -215,6 +215,8 @@
     {"id":{"name":"resolveVerificationEmail","path":"scripts/resolveVerificationEmail/resolveVerificationEmail.yy",},"order":2,},
     {"id":{"name":"resolveLogin","path":"scripts/resolveLogin/resolveLogin.yy",},"order":3,},
     {"id":{"name":"validEmail","path":"scripts/validEmail/validEmail.yy",},"order":13,},
+    {"id":{"name":"sendResetEmail","path":"scripts/sendResetEmail/sendResetEmail.yy",},"order":6,},
+    {"id":{"name":"resolveResetEmail","path":"scripts/resolveResetEmail/resolveResetEmail.yy",},"order":5,},
   ],
   "Options": [
     {"name":"Linux","path":"options/linux/options_linux.yy",},

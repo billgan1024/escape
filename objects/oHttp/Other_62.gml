@@ -23,6 +23,8 @@ if(reqID == async_load[?"id"]) {
             break;
             case request.verificationEmail: resolveVerificationEmail();
             break;
+            case request.resetEmail: resolveResetEmail();
+            break;
         }
     } else if(async_load[?"status"] < 0) {
         //error fetching from the server (probably not connected to the internet)

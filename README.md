@@ -2,6 +2,9 @@
 An action platformer I started during Hack the North 2021 and am now attempting to finish.
 
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=pblpbl1024.escape)
+
+### YouTube video showcases [here](https://youtube.com/playlist?list=PLPNkAYOUT2atOESzGCqV2DMUHghGJIOUC)
+
 ### Levels completed: 27/32 
 
 ### August 9, 2021: User Account Systems

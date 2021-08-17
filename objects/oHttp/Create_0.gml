@@ -9,6 +9,7 @@ functionUrlPrefix = "https://us-central1-escape-3db6a.cloudfunctions.net/";
 //authentication data including the current user (refresh token is saved locally so you can instantly sign in)
 authToken = "";
 refreshToken = "";
+user = "";
 
 //todo: make all post requests protected by anticheat w/ an external client that validates the input data sent along with
 //the result
@@ -20,6 +21,7 @@ enum request {
     update, //update profile
     verify, //check if email is verified
     verificationEmail, //send a verification email
+    resetEmail, //send a password reset email
 }
 
 //store transient information about the current HTTP request

@@ -13,7 +13,7 @@ post = undefined;
 global.headerMap = ds_map_create();
 global.headerMap[?"Content-Type"] = "application/json";
 
-global.production = false;
+global.production = false; 
 receiveData = false;
 testObjects = false;
 keyAutomation = false;
