@@ -22,8 +22,11 @@ if(canInteract && !oHttp.reqImportant) {
 	if(input[1][in.esc] && !is_undefined(escActions[gameState])) { 
 		script_execute_ext(escActions[gameState][0], escActions[gameState][1]); snd(aSelect); clearInput(); 
 	}
+} else {
+	//note that handleMenu updates button text scaling but only when you can interact
+	//thus, make sure all buttons are resetting to their original scale if you can't interact anyways
+	with(oButton) scale = smoothApproach(scale, baseScale, 0.3, 0.005);
 }
-
 if(menuData[gameState] == undefined) window_set_cursor(cr_none);
 else window_set_cursor(hover ? cr_drag : cr_default);
 clearInput();
