@@ -32,8 +32,10 @@ if(!oPlayer.dead && !oPlayer.freecam) {
 		//be left on to not cause problems
 		//then activate te region
 		instance_deactivate_all(true);
-		instance_activate_object(oPersistent);
-		instance_activate_object(oBg);
+		//activate all global objects
+		for(var i = 0; i < len(global.globalObjects); i++) instance_activate_object(global.globalObjects[i]);
+		//activate all objects local to the entire room (thus u also need to make sure
+		//they remain active)
 		instance_activate_object(oCoinLight);
 		instance_activate_object(oBelowLight);
 		instance_activate_object(oBulletLight);
@@ -41,7 +43,7 @@ if(!oPlayer.dead && !oPlayer.freecam) {
 		instance_activate_object(oBorder);
 		//instance_activate_object(oBulletCannon);
 		//note: region checks intersections of bounding boxes,
-		//since falling/moving platforms have sNone if the player's not above them,
+		//since falling/moving platforms don't have a bounding box if the player's not above them,
 		//they wont activate so you need to activate them manually
 		instance_activate_object(oFallingPlatform);
 		instance_activate_object(oMovingPlatform);

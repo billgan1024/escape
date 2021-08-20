@@ -11,6 +11,7 @@
     {"id":{"name":"sLaser","path":"sprites/sLaser/sLaser.yy",},"order":17,},
     {"id":{"name":"p34","path":"paths/p34/p34.yy",},"order":0,},
     {"id":{"name":"sGemOrange","path":"sprites/sGemOrange/sGemOrange.yy",},"order":10,},
+    {"id":{"name":"level28","path":"rooms/level28/level28.yy",},"order":31,},
     {"id":{"name":"gameScripts","path":"scripts/gameScripts/gameScripts.yy",},"order":21,},
     {"id":{"name":"p16","path":"paths/p16/p16.yy",},"order":1,},
     {"id":{"name":"oBorder","path":"objects/oBorder/oBorder.yy",},"order":38,},
@@ -263,6 +264,7 @@
     {"roomId":{"name":"level8b","path":"rooms/level8b/level8b.yy",},},
     {"roomId":{"name":"level9","path":"rooms/level9/level9.yy",},},
     {"roomId":{"name":"template","path":"rooms/template/template.yy",},},
+    {"roomId":{"name":"level28","path":"rooms/level28/level28.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":0,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},

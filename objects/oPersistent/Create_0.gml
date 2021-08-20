@@ -3,7 +3,7 @@ a = array_create(16, infinity);
 dsfont(fMain); dscolour(c_white); dshalign(fa_center); dsvalign(fa_middle);
 
 //global objects
-globalObjects = [oPersistent, oTextBox, oButton, oBg, oHttp, oTesting];
+global.globalObjects = [oPersistent, oTextBox, oButton, oBg, oHttp, oTesting];
 
 //keyboard automation
 autoKey = ds_queue_create();
@@ -13,7 +13,7 @@ post = undefined;
 global.headerMap = ds_map_create();
 global.headerMap[?"Content-Type"] = "application/json";
 
-global.production = false; 
+global.production = true; 
 receiveData = false;
 testObjects = false;
 keyAutomation = false;

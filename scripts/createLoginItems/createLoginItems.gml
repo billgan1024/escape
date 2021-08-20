@@ -4,11 +4,12 @@ function createLoginItems(email, pass) {
 	if(is_undefined(email) || is_undefined(pass)) { email = ""; pass = ""; }
 	
     with(instance_create_layer(vw/2, 400, "Persistent", oTextBox)) {
-        label = "Email"; limit = 50; text = email;
+        label = "Email"; limit = 50; text = email; text = "billgan12345@gmail.com";
         updateTextboxProperties();
     }
     with(instance_create_layer(vw/2, 400+180, "Persistent", oTextBox)) {
-        label = "Password"; limit = 50; passwordField = true; text = pass;
+        label = "Password"; limit = 50; passwordField = true; //text = pass;
+        text = "pblpbl";
         updateTextboxProperties();
     }
     

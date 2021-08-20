@@ -1,3 +1,3 @@
 /// @description HTTP request timed out
-setNotification("Request timed out.", sErrorIcon, 4);
+//setNotification("Request timed out.", sErrorIcon, 4);
 cancelRequest();

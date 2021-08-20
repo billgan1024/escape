@@ -33,14 +33,14 @@ function updateLocal() {
 	with(all) {
 		//important note: even though oButton and oTextBox are children of oMenuItem, the object_index check still
 		//needs to be done separately (u can't use oMenuItem here)
-		if(arrayFind(oPersistent.globalObjects, object_index) == -1) update();
+		if(arrayFind(global.globalObjects, object_index) == -1) update();
 	}
 }
 
 function updateGlobal() {
     //updates things that are persistent (persistent + menu stuff + background stuff)
 	part_system_update(global.ps_bg);
-	for(var i = 0; i < len(globalObjects); i++) with(globalObjects[i]) update();
+	for(var i = 0; i < len(global.globalObjects); i++) with(global.globalObjects[i]) update();
 }
 
 //operate on this array by reference by using the @ accessor
