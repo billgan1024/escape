@@ -9,13 +9,13 @@ function initMenu() {
 		menu, game, select, options, paused, optionsGame, login, register, verifyEmail, levels, levelData, edit, length
 	}
 	
-	gameState = is_undefined(data[?"username"]) ? gs.login : gs.menu;
+	gameState = is_undefined(data[?"username"]) ? gs.menu : gs.menu;
 	// gameState = gs.menu;
 	activeMenu = [true, false, true, true, true, true, true];
 	//row[i], col[i] = number of rows and columns for each menu state
 	
 	//metadata for every gamestate
-	stateData = array_create(in.length);
+	stateData = array_create(gs.length);
 	stateData[gs.menu]        = { maxRow: 4, maxCol: 1, title: "Escape" };
 	stateData[gs.game]        = { maxRow: 0, maxCol: 0, title: "" };
 	stateData[gs.select]      = { maxRow: 5, maxCol: 8, title: "Level Select" };

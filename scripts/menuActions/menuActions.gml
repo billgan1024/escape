@@ -64,4 +64,13 @@ function changeCursor(dr, dc, absolute) {
 	}
 	//only update the pointer to the current menu item, all selector variables will follow
 	cur = itemIDs[#r, c];
+	//bugfix: if you're snapping to another element, set selector dimensions immediately
+	if(!is_undefined(cur) && snap) {
+		selector[0] = cur.x;
+		selector[1] = cur.y;
+		selector[2] = cur.w;
+		selector[3] = cur.h;
+		vOffset = cur.vOffset;
+		selectorAlpha = alpha/5*(r >= tr1 && r <= tr2 && c >= tc1 && c <= tc2 ? sAlpha : 1);
+	}
 }

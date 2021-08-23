@@ -1,13 +1,25 @@
-//sLevel = sprite_add("level27.png", 1, false, false, 0, 0);
-//createLevel(sLevel);
-//sprite_delete(sLevel);
 a = array_create(16, infinity);
 shake = 0;
 
-targetX = 0; 
-targetY = 0;
+//cameraX, cameraY = camera position which will approach the player's position + player's offset
+cameraX = 0; cameraY = 0;
+//keep track of an internal camera state
+//this is for vertical camera movement
+//ground: only approach player's y position if the player is on the ground
+//also check if player moved to the top or bottom of the screen; if so, then switch to follow
+//follow: always approach the player's y position smoothly, with a certain max speed 
+
+//avoid race condition with the player's first update event
+vState = "follow";
+//vlevel: y-level of the ground the player is standing on
+//this is so that the game 'remembers' what you were standing on previously so it can continue
+//approaching that level
+vLevel = 0;
+
+//vertical section length in which the camera switches state
+vSection = 470;
+
 lvl = real(string_digits(room_get_name(room)));
-show_debug_message(lvl);
 targetLvl = 0;
 t = 0;
 
@@ -16,32 +28,19 @@ resetAttempts = false;
 
 borderRadius = 0;
 
-//data visualization
-surf = -1;
-get = undefined;
-
-//update camera data:
-//get x and y coords of all boundaries in the room
-//sort array by y coord first, then x coord
-//then update the oPersistent.cameraData array (note that u can edit a lot of 'undefined' areas in a GMS2 array lmao)
-if(oPersistent.cameraData[lvl] == -1)
-{
-	var l = lvl;
-	var flag = array_create(room_height/vh);
-	with(oBoundary)
-	{
-		//append the x coord to the end of data[level][ycoord]
-		//note that we can append things by assuming that the position already exists
-		var yy = y/vh;
-		if(!flag[yy]) {
-			oPersistent.cameraData[l][yy][0] = x; flag[yy] = true;
-		}
-		else oPersistent.cameraData[l][yy][array_length(oPersistent.cameraData[l][yy])] = x;
-	}
-	//finally, sort all of the boundaries by x-coord and adjust the right boundary x-values
-	for(var i = 0; i < array_length(oPersistent.cameraData[lvl]); i++) {
-		oPersistent.cameraData[lvl][i] = arraySort(oPersistent.cameraData[lvl][i], true);
-		for(var j = 1; j < array_length(oPersistent.cameraData[lvl][i]); j += 2) oPersistent.cameraData[lvl][i][j] += 60; 
-	}
+roomID = 0;
+//make sure boundary boxes are created before this object
+//so that the variable r exists
+boundingBox = undefined;
+boundaries = array_create(instance_number(oBoundary)/2, []);
+with(oBoundary) {
+	array_push(other.boundaries[r], x);
+	array_push(other.boundaries[r], y);
+	log(x, y);
 }
-show_debug_message(oPersistent.cameraData);
+
+for(var i = 0; i < len(boundaries); i++) {
+	if(boundaries[i][0] > boundaries[i][2]) swap(boundaries[i], 0, 2);
+	if(boundaries[i][1] > boundaries[i][3]) swap(boundaries[i], 1, 3);
+}
+log(boundaries);

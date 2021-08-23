@@ -10,10 +10,6 @@ function updateSelector() {
 	selectorAlpha = alpha/5*(r >= tr1 && r <= tr2 && c >= tc1 && c <= tc2 ? sAlpha : 1);
 }
 
-function updateSelectorTo() {
-	for(var i = 0; i < 4; i++) oPersistent.selectorTo[i] = argument[i]; 
-}
-
 function update() {
 	if(variable_instance_exists(id, "a")) {
 		for(var i = 1; i <= 15; i++) {

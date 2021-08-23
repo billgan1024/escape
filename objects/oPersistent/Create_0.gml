@@ -13,7 +13,7 @@ post = undefined;
 global.headerMap = ds_map_create();
 global.headerMap[?"Content-Type"] = "application/json";
 
-global.production = true; 
+global.production = false; 
 receiveData = false;
 testObjects = false;
 keyAutomation = false;
@@ -52,10 +52,9 @@ cameraData = array_create(33, -1);
 //show_debug_message(cameraData);
 
 //fps (for debug)
-fpsLevel = 3;
-debugFps = [30, 60, 120, 240];
+debugFps = [15, 30, 60, 120, 240];
+fpsLevel = len(debugFps)-1;
 
-snap = true; 
 paused = false;
 
 //enable interacting and disable snap

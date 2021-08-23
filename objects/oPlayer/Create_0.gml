@@ -10,6 +10,8 @@ airRes = 0.1;
 canGlide = false;
 yscale = 1;
 
+cameraOffsetX = 0;
+
 //variable to track when the player loses grip on a wall (coyote time implementation for wall jump)
 //basically keep track of the grip direction and store it in a variable whenever it changes
 //while the timer after the grip changes has not run out, allow the player to wall jump as if they
@@ -20,7 +22,7 @@ preparedWallJump = false;
 preparedWallJumpBuffer = 20;
 wallJumpedThisFrame = false;
 //input variables
-dir = 1;
+dir = 1; //either 1 or -1 depending on where you're facing
 jump = false;
 jumpHeld = false;
 dash = false;
@@ -55,6 +57,6 @@ toggledSprint = false;
 for(var i = 0; i < 3; i++) input[i] = array_create(in.length);
 
 //update the view instantly
-camera_set_view_pos(view_camera[0], clamp(oPlayer.x - vw/2, 0, room_width-vw), clamp(floor(oPlayer.y/vh)*vh, 0, room_height/vh-1));
+//camera_set_view_pos(view_camera[0], clamp(oPlayer.x - vw/2, 0, room_width-vw), clamp(floor(oPlayer.y/vh)*vh, 0, room_height/vh-1));
 //increase attempts
 oPersistent.attempts++;

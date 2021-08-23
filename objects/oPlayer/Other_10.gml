@@ -1,5 +1,5 @@
 /// @description handle state
-cameraOffset = 0; //smoothApproach(cameraOffset, hsp*50, 0.004);
+cameraOffsetX = approach(cameraOffsetX, hsp*50, sign(hsp) == sign(cameraOffsetX) ? 1 : 4);
 //get input
 if(!dead) {
 	checkEnemy();
@@ -18,9 +18,9 @@ cameraSpd = approach(cameraSpd, 5.3*dir, 0.4);
 
 //if we're in freecam mode, cancel all inputs and move the camera
 if(freecam) {
-	oGame.targetX = clamp(oGame.targetX + cameraSpd, oGame.leftBoundary, oGame.rightBoundary);
+	oGame.cameraX = clamp(oGame.cameraX + cameraSpd, oGame.leftBoundary, oGame.rightBoundary);
 	//free camera movement 
-	//oGame.targetX += 6*dir; oGame.targetY += 6*(input[in.down]-input[in.up]);
+	//oGame.cameraX += 6*dir; oGame.cameraY += 7*(input[in.down]-input[in.up]);
 	dir = 0; jump = false; jumpHeld = false; dash = false; down = false;
 }
 

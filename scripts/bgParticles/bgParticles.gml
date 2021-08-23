@@ -1,6 +1,7 @@
 function bgParticles() {
-	var sz = room == menu ? [0.16, 0.2] : [0.14, 0.18];
-	var ap = room == menu ? [0.2, 0.3] : [0.15, 0.25]; 
+	var sz = room == menu ? [0.16, 0.2] : [0.16, 0.2];
+	var ap = room == menu ? [0.2, 0.3] : [0.2, 0.3]; 
+	var spd = room == menu ? [3, 3.5] : [3, 3.5];
 	for(var i = 0; i < room_height/vh; i++) {
 		var e = part_type_create();
 		part_type_shape(e, pt_shape_sphere);

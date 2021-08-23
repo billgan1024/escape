@@ -83,4 +83,19 @@ function handleMenu() {
     		}
     	}
     }
+    
+    //exit out of the textbox
+    if(input[1][in.esc]) {
+    	
+        var selectedOne = false;
+        with(oTextBox) {
+        	if(selected) {
+        		selected = false; textCursor = false; a[1] = infinity; selectedOne = true;
+        		break;
+        	}
+        }
+        if(selectedOne) {
+        	clearInput(); bindInput();
+        }
+    }
 }

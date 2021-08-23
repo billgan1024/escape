@@ -9,4 +9,5 @@ function initTransition() {
     
     destState = -1; destRoom = -1; destSong = -1;
     canInteract = false; 
+	snap = true; 
 }

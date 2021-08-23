@@ -1,2 +1,3 @@
-offset = ((-vx*3/4 % 1920) + 1920 + speedOffset) % 1920;
+offsetX = ((-vx*3/4 % bgWidth) + bgWidth + speedOffset) % bgWidth;
+offsetY = ((-vy*3/4 % bgHeight) + bgHeight) % bgHeight;
 speedOffset += bgSpd*(room == menu ? 3 : 1);

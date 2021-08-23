@@ -19,6 +19,8 @@ hover = false;
 if(canInteract && !oHttp.reqImportant) {
 	if(menuData[gameState] != undefined) handleMenu();
 	//always handle escape function 
+	//note that the escape function can be overridden by the de-selection of a textbox,
+	//which will take priority
 	if(input[1][in.esc] && !is_undefined(escActions[gameState])) { 
 		script_execute_ext(escActions[gameState][0], escActions[gameState][1]); snd(aSelect); clearInput(); 
 	}
