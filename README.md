@@ -15,6 +15,8 @@ This post marks the beginning of the implementation of a user account system, co
 
 **View more blog posts on the [wiki](https://github.com/pblpbl1024/escape/wiki)**
 
+**Check out upcoming features on the [feature roadmap](https://github.com/pblpbl1024/escape/projects/1)**
+
 ## Installation
 [Itch.io link](https://pblpbl.itch.io/escape)
 
