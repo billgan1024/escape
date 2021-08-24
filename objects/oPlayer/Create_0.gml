@@ -5,12 +5,14 @@ runAcc = 0.375;
 airAcc = 0.2;
 coyoteTimeBuffer = 15;
 phsp = 0;
-cameraSpd = 0;
 airRes = 0.1; 
 canGlide = false;
 yscale = 1;
 
 cameraOffsetX = 0;
+cameraOffsetY = 0;
+cameraSpdX = 0;
+cameraSpdY = 0;
 
 //variable to track when the player loses grip on a wall (coyote time implementation for wall jump)
 //basically keep track of the grip direction and store it in a variable whenever it changes
@@ -22,7 +24,8 @@ preparedWallJump = false;
 preparedWallJumpBuffer = 20;
 wallJumpedThisFrame = false;
 //input variables
-dir = 1; //either 1 or -1 depending on where you're facing
+dirX = 0;
+dirY = 0;
 jump = false;
 jumpHeld = false;
 dash = false;
@@ -40,7 +43,7 @@ preparedJump = false;
 preparedJumpBuffer = 15;
 
 //state = "ground", "buffer", "jump", "fall", "blink"
-state = "ground"; 
+state = "djump"; 
 
 //death variable so that the player never gets destroyed
 dead = false;
@@ -49,7 +52,7 @@ dead = false;
 freecam = false;
 
 //disable movement for a bit
-canMove = false;
+canInput = false;
 a[1] = inputDelay;
 
 toggledSprint = false;

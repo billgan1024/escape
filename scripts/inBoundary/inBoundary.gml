@@ -1,5 +1,6 @@
 function inBoundary() {
     //allow leeway for bullets to disappear naturally
-    return x >= oGame.leftBoundary-sprite_width/2-120 && x <= oGame.rightBoundary+vw+sprite_width/2+120 
-    && y >= oGame.yLevel*vh-sprite_height/2-120 && y <= oGame.yLevel*vh+vh+sprite_height/2+120; 
-}
+    var leeway = 120;
+    return x >= oGame.boundaries[0]-leeway && x <= oGame.boundaries[2]+leeway 
+    && y >= oGame.boundaries[1]-leeway && y <= oGame.boundaries[3]+leeway;
+    }

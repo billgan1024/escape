@@ -1,3 +1,8 @@
+t += 1/240;
+//these events are run only once, before the game deactivates everything except for the current region
+//get all death locations for this level
+if(oPersistent.testObjects) verifyObjects();
+
 //note that under normal circumstances, it is ill-advised to only start updating on step 0
 //however, it seems that in gamemaker's underlying implementation, 
 //create events are run in the same step that you're switching rooms.
@@ -50,30 +55,31 @@ if(!oPlayer.dead) {
 		}
 	}
 	//now, update camera position if the player isn't controlling it 
-	if(!oPlayer.freecam) {
+	if(oPlayer.state != "freecam") {
 		//remember that [cameraX, cameraY] describes the top-left corner
 		cameraX = smoothApproach(cameraX, clamp(oPlayer.x+oPlayer.cameraOffsetX-vw/2, 
-		boundingBox[0], boundingBox[2]-vw), 0.01);
-		
+		boundingBox[0], boundingBox[2]-vw), 0.01, 0.001);
 		switch(vState) {
 			case "ground":
+				if(oPlayer.state == "ground") vLevel = oPlayer.y-vh/2;
 				cameraY = smoothApproach(cameraY, clamp(vLevel, 
-				boundingBox[1], boundingBox[3]-vh), 0.01, 0.4);
-				if(oPlayer.y < vy+360 || oPlayer.y > vy+vh-360) vState = "follow";
+				boundingBox[1], boundingBox[3]-vh), 0.01, 0.001);
+				if(oPlayer.y < vy+vSection || oPlayer.y > vy+vh-vSection) vState = "follow";
 			break;
 			
 			case "follow":	
-				cameraY = smoothApproach(cameraY, clamp(oPlayer.y+oPlayer-vh/2, 
-				boundingBox[1], boundingBox[3]-vh), 0.01, 0.4);
-				if(oPlayer.state == "ground") {
-					vLevel = oPlayer.y-vh/2; vState = "ground";
-				}
+				cameraY = smoothApproach(cameraY, clamp(oPlayer.y+oPlayer.cameraOffsetY-vh/2, 
+				boundingBox[1], boundingBox[3]-vh), 0.01, 0.001);
+				if(oPlayer.state == "ground") vState = "ground";
 			break;	
 		}
 	}
 }
 
 camera_set_view_pos(view_camera[0], cameraX + random_range(-shake, shake), cameraY + random_range(-shake, shake));
+
+shake = approach(shake, 0, 0.08);
+borderRadius = smoothApproach(borderRadius, oPlayer.state == "freecam" ? 30 : 0, 0.08);
 //update camera data:
 //get x and y coords of all boundaries in the room
 //sort array by y coord first, then x coord
@@ -101,13 +107,7 @@ camera_set_view_pos(view_camera[0], cameraX + random_range(-shake, shake), camer
 	}
 }*/
 
-t += 1/240;
-//these events are run only once, before the game deactivates everything except for the current region
-//get all death locations for this level
-if(oPersistent.testObjects) verifyObjects();
 
-shake = approach(shake, 0, 0.08);
-borderRadius = smoothApproach(borderRadius, oPlayer.freecam ? 30 : 0, 0.08);
 
 /*
 if(!oPlayer.dead && !oPlayer.freecam) {

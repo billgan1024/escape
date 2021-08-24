@@ -1,44 +1,45 @@
 /// @description handle state
 cameraOffsetX = approach(cameraOffsetX, hsp*50, sign(hsp) == sign(cameraOffsetX) ? 1 : 4);
+cameraOffsetY = approach(cameraOffsetY, vsp*80, sign(vsp) == sign(cameraOffsetY) ? 1 : 4);
 //get input
 if(!dead) {
 	checkEnemy();
-	if(canMove) checkInput();
+	if(canInput) checkInput();
 }
 
 if(input[1][in.shift] && oPersistent.data[?"toggle-sprint"]) toggledSprint = !toggledSprint;
 
-dir = input[0][in.right]-input[0][in.left];
+dirX = input[0][in.right]-input[0][in.left];
+dirY = input[0][in.down]-input[0][in.up];
+
 jump = input[1][in.up] || input[1][in.space];
 jumpHeld = input[0][in.up] || input[0][in.space];
 down = input[0][in.down];
 
-//update camera speed variable 
-cameraSpd = approach(cameraSpd, 5.3*dir, 0.4);
-
-//if we're in freecam mode, cancel all inputs and move the camera
-if(freecam) {
-	oGame.cameraX = clamp(oGame.cameraX + cameraSpd, oGame.leftBoundary, oGame.rightBoundary);
-	//free camera movement 
-	//oGame.cameraX += 6*dir; oGame.cameraY += 7*(input[in.down]-input[in.up]);
-	dir = 0; jump = false; jumpHeld = false; dash = false; down = false;
-}
-
+//daily reminder that the player shouldn't be allowed to enter two states at once
+//in the same frame
 switch(state)
 {
 	case "ground": 
-		//only allow freecam if the player is actually on solid ground
-		if(input[1][in.enter] && place_meeting(x, y+1, oGround)) {
-			freecam = !freecam; snd(freecam ? aCamOn : aCamOff);
-		}
-		khsp = 0;
+		//only allow freecam if the player is actually on solid ground and not moving
+		//code that always runs in this state
+		khsp = 0;	
 		updateHsp(runAcc);
+		if(input[1][in.enter] && place_meeting(x, y+1, oGround) && hsp == 0) {
+			state = "freecam"; 
+			//on entering the freecam state, reset the speeds
+			snd(aCamOn);
+			cameraSpdX = 0; cameraSpdY = 0;
+			break;
+		}
 		if(jump || preparedJump) { 
 			vsp = -jumpSpd; state = "jump"; snd(aJump); canGlide = true;
 			event_perform(ev_other, ev_user3); 
+			break;
 		}
 		if(!place_meeting(x, y+1, oGround) && !place_meeting(x, y+1, oPlatform)) {
 			state = "jump"; a[2] = coyoteTimeBuffer; 
+			break;
 		}
 	break;
 	case "jump":
@@ -57,9 +58,7 @@ switch(state)
 				vsp = -jumpSpd; snd(aJump);
 				if(a[2] != infinity) a[2] = infinity; else state = "djump";
 			}
-			event_perform(ev_other, ev_user4);
 		}
-		if((place_meeting(x, y+1, oGround) || place_meeting(x, y+1, oPlatform)) && vsp >= 0) { state = "ground"; canGlide = false; }
 	break;
 	case "djump":
 		if(!dead) smoke(c_gray, 120, -0.005, true, 0.5, x, y);
@@ -76,15 +75,26 @@ switch(state)
 				preparedJump = true; a[3] = preparedJumpBuffer;	
 			}
 		}
-		if((place_meeting(x, y+1, oGround) || place_meeting(x, y+1, oPlatform)) && vsp >= 0) { state = "ground"; canGlide = false; }
+	break;
+	case "freecam":
+		//free camera movement 
+		//update camera speed variable 
+		cameraSpdX = approach(cameraSpdX, 5.3*dirX, 0.4);
+		cameraSpdY = approach(cameraSpdY, 5.3*dirY, 0.4);
+		// oGame.cameraX += 6*dirX; oGame.cameraY += 6*dirY; 
+		oGame.cameraX = clamp(oGame.cameraX + cameraSpdX, oGame.boundingBox[0], oGame.boundingBox[2]-vw);
+		oGame.cameraY = clamp(oGame.cameraY + cameraSpdY, oGame.boundingBox[1], oGame.boundingBox[3]-vh);
+		if(input[1][in.enter]) {
+			state = "ground"; snd(aCamOff);
+		}
 	break;
 }	
 
 //falling platform check
-if(vsp >= 0) pCollision(); else phsp = 0;
 
-//check collision
+//check collision + update position if the player isn't dead
 if(!dead) {
+	if(vsp >= 0) pCollision(); else phsp = 0;
 	hCollision(); vCollision();
 }
 

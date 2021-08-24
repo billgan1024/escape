@@ -1,3 +1,3 @@
 /// @description enable movement
-canMove = true;
+canInput = true;
 a[1] = infinity;

@@ -16,7 +16,7 @@
     {"pathId":null,"colour":4278190335,"visible":true,"depth":0,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":30,"gridY":30,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"Paths","tags":[],"resourceType":"GMRPathLayer",},
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"oBoundary","path":"objects/oBoundary/oBoundary.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":0.0,"y":0.0,"resourceVersion":"1.0","name":"inst_36A637D","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[],"isDnd":false,"objectId":{"name":"oBoundary","path":"objects/oBoundary/oBoundary.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":3780.0,"y":0.0,"resourceVersion":"1.0","name":"inst_7022E752","tags":[],"resourceType":"GMRInstance",},
+        {"properties":[],"isDnd":false,"objectId":{"name":"oBoundary","path":"objects/oBoundary/oBoundary.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":3780.0,"y":1380.0,"resourceVersion":"1.0","name":"inst_7022E752","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":100,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":30,"gridY":30,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"Persistent","tags":[],"resourceType":"GMRInstanceLayer",},
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"oGame","path":"objects/oGame/oGame.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":0.0,"y":0.0,"resourceVersion":"1.0","name":"inst_132C941B","tags":[],"resourceType":"GMRInstance",},
@@ -82,7 +82,6 @@
   "creationCodeFile": "${project_dir}/rooms/level6/RoomCreationCode.gml",
   "inheritCode": false,
   "instanceCreationOrder": [
-    {"name":"inst_132C941B","path":"rooms/level13/level13.yy",},
     {"name":"inst_49EB641A","path":"rooms/level13/level13.yy",},
     {"name":"inst_6779EBF2","path":"rooms/level13/level13.yy",},
     {"name":"inst_6D76C79","path":"rooms/level13/level13.yy",},
@@ -104,6 +103,7 @@
     {"name":"inst_3182BEDF","path":"rooms/level13/level13.yy",},
     {"name":"inst_36A637D","path":"rooms/level13/level13.yy",},
     {"name":"inst_7022E752","path":"rooms/level13/level13.yy",},
+    {"name":"inst_132C941B","path":"rooms/level13/level13.yy",},
     {"name":"inst_9B449DB","path":"rooms/level13/level13.yy",},
     {"name":"inst_140C0E45","path":"rooms/level13/level13.yy",},
     {"name":"inst_E80C011","path":"rooms/level13/level13.yy",},

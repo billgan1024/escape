@@ -1,3 +1,3 @@
 function updateHsp(acc) {
-	hsp = approach(hsp, dir*(runSpd-abs(khsp)*11/12), acc); 
+	hsp = approach(hsp, dirX*(runSpd-abs(khsp)*11/12), acc); 
 }
