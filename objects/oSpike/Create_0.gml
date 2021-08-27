@@ -19,19 +19,8 @@ offsetX = 0; offsetY = 0;
 //update boundaries for hpath using the boundary boxes (for vertical boundaries, it's always
 //floor(y/vh)*vh + 30, floor(y/vh)*vh + vh - 30
 //this is used by hpath() and vpath() in the creation code, which always runs after the create event.
-lb = 0; rb = 0; top = floor(y/vh)*vh; var t = top;
-var xList = ds_list_create();
-with(oBoundary) {
-	if(y == t) ds_list_add(xList, x);
-}
-ds_list_sort(xList, true);
-for(var i = 0; i < ds_list_size(xList); i++) {
-	if(i % 2 == 1) {
-		xList[|i] += 60;
-		if(x >= xList[|i-1] && x <= xList[|i]) {
-			lb = xList[|i-1]; rb = xList[|i]; break;
-		}
-	}
-}
 //whether or not pathIdx points to a path created in-game (it needs to be destroyed on cleanup)
+
+//what room this spike exists in (for boundaries)
+roomID = getBoundingBoxID();
 customPath = false;

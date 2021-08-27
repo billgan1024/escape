@@ -17,7 +17,7 @@ vState = "follow";
 vLevel = 0;
 
 //vertical section length in which the camera switches state
-vSection = 400;
+vSection = vSectionDefault;
 //max # of pixels to move per second vertically when you're smoothly approaching the player's
 //y-value
 vMaxApproachRate = 4;
@@ -36,9 +36,8 @@ roomID = 0;
 boundingBox = undefined;
 boundaries = array_create(instance_number(oBoundary)/2, []);
 with(oBoundary) {
-	array_push(other.boundaries[r], x);
-	array_push(other.boundaries[r], y);
-	log(x, y);
+	other.boundaries[r][len(other.boundaries[r])] = x;
+	other.boundaries[r][len(other.boundaries[r])] = y;
 }
 
 for(var i = 0; i < len(boundaries); i++) {
@@ -46,4 +45,5 @@ for(var i = 0; i < len(boundaries); i++) {
 	if(boundaries[i][1] > boundaries[i][3]) swap(boundaries[i], 1, 3);
 	boundaries[i][2] += 60; boundaries[i][3] += 60;
 }
+
 log(boundaries);

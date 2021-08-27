@@ -28,7 +28,7 @@ function open(_x, _y) {
 //constructs a single point at the starting position as a path.
 function point() {
 	customPath = true;
-	pathIdx = path_add(); path_add_point(pathIdx, x, y, 100);
+	pathIdx = path_add(); path_add_point(pathIdx, x, y, 0);
 }
 
 /// @param spd
@@ -38,10 +38,10 @@ function hpath(_spd) {
 	//returning from the left.
 	customPath = true;
 	pathIdx = path_add(); var x1 = x, x2 = x;
-	while(x1 > lb && open(x1, y)) x1 -= 30;
-	while(x2 < rb && open(x2, y)) x2 += 30;
+	while(x1 > oGame.boundaries[roomID][0] && open(x1, y)) x1 -= 30;
+	while(x2 < oGame.boundaries[roomID][2] && open(x2, y)) x2 += 30;
 	x1 += 30; x2 -= 30;
-	path_add_point(pathIdx, x1, y, 100); path_add_point(pathIdx, x2, y, 100);
+	path_add_point(pathIdx, x1, y, 0); path_add_point(pathIdx, x2, y, 0);
 	path_set_closed(pathIdx, false);
 	path_set_kind(pathIdx, 0);
 	spd = _spd/4; rotateSpd = getRotateSpd(spd); pos = (x-x1)/(x2-x1); startPos = pos;
@@ -54,10 +54,10 @@ function vpath(_spd) {
 	//returning from the left.
 	customPath = true;
 	pathIdx = path_add(); var y1 = y, y2 = y;
-	while(y1 > top && open(x, y1)) y1 -= 30;
-	while(y2 < top+vh && open(x, y2)) y2 += 30;
+	while(y1 > oGame.boundaries[roomID][1] && open(x, y1)) y1 -= 30;
+	while(y2 < oGame.boundaries[roomID][3] && open(x, y2)) y2 += 30;
 	y1 += 30; y2 -= 30;
-	path_add_point(pathIdx, x, y1, 100); path_add_point(pathIdx, x, y2, 100);
+	path_add_point(pathIdx, x, y1, 0); path_add_point(pathIdx, x, y2, 0);
 	path_set_closed(pathIdx, false);
 	path_set_kind(pathIdx, 0);
 	spd = _spd/4; rotateSpd = getRotateSpd(spd); pos = (y-y1)/(y2-y1); startPos = pos;

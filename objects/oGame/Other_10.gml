@@ -70,97 +70,18 @@ if(!oPlayer.dead) {
 			case "follow":	
 				cameraY = smoothApproach(cameraY, clamp(oPlayer.y+oPlayer.cameraOffsetY-vh/2, 
 				boundingBox[1], boundingBox[3]-vh), 0.01, 0.001);
-				if(oPlayer.state == "ground") vState = "ground";
+				//if(oPlayer.state == "ground") vState = "ground";
 			break;	
+			
+			case "disabled":
+				//only approach the current v-level; never change it 
+				cameraY = smoothApproach(cameraY, clamp(vLevel, 
+				boundingBox[1], boundingBox[3]-vh), 0.01, 0.001);
+			break;
 		}
 	}
 }
-
 camera_set_view_pos(view_camera[0], cameraX + random_range(-shake, shake), cameraY + random_range(-shake, shake));
 
 shake = approach(shake, 0, 0.08);
 borderRadius = smoothApproach(borderRadius, oPlayer.state == "freecam" ? 30 : 0, 0.08);
-//update camera data:
-//get x and y coords of all boundaries in the room
-//sort array by y coord first, then x coord
-//then update the oPersistent.cameraData array (note that u can edit a lot of 'undefined' areas in a GMS2 array lmao)
-//new: implement new camera system based on a collection of boundary boxes defined by
-//oBoundary objects with their own room ids starting from 1
-/*if(oPersistent.cameraData[lvl] == -1)
-{
-	var l = lvl;
-	var flag = array_create(room_height/vh);
-	with(oBoundary)
-	{
-		//append the x coord to the end of data[level][ycoord]
-		//note that we can append things by assuming that the position already exists
-		var yy = y/vh;
-		if(!flag[yy]) {
-			oPersistent.cameraData[l][yy][0] = x; flag[yy] = true;
-		}
-		else oPersistent.cameraData[l][yy][array_length(oPersistent.cameraData[l][yy])] = x;
-	}
-	//finally, sort all of the boundaries by x-coord and adjust the right boundary x-values
-	for(var i = 0; i < array_length(oPersistent.cameraData[lvl]); i++) {
-		oPersistent.cameraData[lvl][i] = arraySort(oPersistent.cameraData[lvl][i], true);
-		for(var j = 1; j < array_length(oPersistent.cameraData[lvl][i]); j += 2) oPersistent.cameraData[lvl][i][j] += 60; 
-	}
-}*/
-
-
-
-/*
-if(!oPlayer.dead && !oPlayer.freecam) {
-	targetX = smoothApproach(vx, clamp(oPlayer.x+oPlayer.cameraOffset-vw/2, 
-		leftBoundary, rightBoundary), 0.01, 0.005);
-	targetY = clamp(floor(oPlayer.y/vh)*vh, 0, room_height-vh);
-	
-	//check if player exited the current section
-	var newLevel = targetY/vh;
-	//important note: left and right boundary is for the camera which has a top-left origin
-	//this means that when querying the actual area for the player's location,
-	//add vw to the right boundary
-	if(newLevel != yLevel || oPlayer.x > rightBoundary+vw || oPlayer.x < leftBoundary) {
-		//loop through all intervals at this y-level; if the player's x coord
-		//falls in one of them, set the new left and right boundaries to be this interval
-		for(var i = 0; i < array_length(oPersistent.cameraData[lvl][newLevel]); i += 2) {
-			var newLeft = oPersistent.cameraData[lvl][newLevel][i], newRight = oPersistent.cameraData[lvl][newLevel][i+1];
-			//show_debug_message(newLeft);
-			//show_debug_message(newRight);
-			if(oPlayer.x >= newLeft && oPlayer.x <= newRight) {
-				leftBoundary = newLeft; rightBoundary = newRight-vw;
-				targetX = clamp(oPlayer.x-vw/2, leftBoundary, rightBoundary);
-				break;
-			}
-		}
-		//deactivate everything except for key objects or objects which should
-		//be left on to not cause problems
-		//then activate te region
-		instance_deactivate_all(true);
-		//activate all global objects
-		for(var i = 0; i < len(global.globalObjects); i++) instance_activate_object(global.globalObjects[i]);
-		//activate all objects local to the entire room (thus u also need to make sure
-		//they remain active)
-		instance_activate_object(oCoinLight);
-		instance_activate_object(oBelowLight);
-		instance_activate_object(oBulletLight);
-		instance_activate_object(oPlayer);	
-		instance_activate_object(oBorder);
-		//instance_activate_object(oBulletCannon);
-		//note: region checks intersections of bounding boxes,
-		//since falling/moving platforms don't have a bounding box if the player's not above them,
-		//they wont activate so you need to activate them manually
-		instance_activate_object(oFallingPlatform);
-		instance_activate_object(oMovingPlatform);
-		//activate region (note: things with bounding boxes on the border aren't activated)
-		instance_activate_region(leftBoundary, targetY, rightBoundary-leftBoundary+vw, vh, true);
-		//with(oDoor) { count = instance_number(oCoin); show_debug_message(count); }
-		//	with(oCoin) { with(oDoor){  count++; show_debug_message(count); }  }
-		//a[2] = 1;
-		//reset enemies after the new ones are active
-		resetArea(); 
-	}
-}
-camera_set_view_pos(view_camera[0], targetX + random_range(-shake, shake), targetY + random_range(-shake, shake));
-yLevel = targetY/vh;
-*/

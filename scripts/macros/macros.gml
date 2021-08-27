@@ -36,3 +36,6 @@
 
 #macro httpTimeout 5
 #macro refreshTime 3540
+
+//default length of vertical section (camera)
+#macro vSectionDefault 400
