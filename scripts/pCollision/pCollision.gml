@@ -1,5 +1,5 @@
 function pCollision() {
-	var p = instance_place(x, y+1, oMovingPlatform); 
+	var p = instance_place(x, y+1, oHorizontalPlatform); 
 	if(p != noone) {
 		phsp = p.hsp; //log(x-p.x);
 	} else phsp = 0;

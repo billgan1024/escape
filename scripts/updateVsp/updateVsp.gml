@@ -7,7 +7,7 @@ function updateVsp() {
 			if(vsp > maxGrav/3) vsp = approach(vsp, maxGrav/3, grav*4); 
 			else vsp = approach(vsp, maxGrav/3, grav/3); 
 		} else if(down) {
-			vsp = smoothApproach(vsp, maxGrav*9/8, 0.026, 0.005);
+			vsp = smoothApproach(vsp, maxGrav*9/8, 0.027, 0.005);
 		} else if(jumpHeld && canGlide) {
 			if(vsp > maxGrav/2) vsp = approach(vsp, maxGrav/2, grav*4); 
 			else vsp = approach(vsp, maxGrav/2, grav*2/5); 

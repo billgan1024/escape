@@ -3,6 +3,18 @@ function checkInput() {
 		if(i < in.length-3) input[0][i] = keyboard_check(global.inputCodes[i]);	
 		else input[0][i] = mouse_check_button(global.inputCodes[i]);	
 	}
+	
+	//if the player is calling it, set appropriate variables
+	if(object_index == oPlayer) {
+		if(input[1][in.shift] && oPersistent.data[?"toggle-sprint"]) toggledSprint = !toggledSprint;
+		
+		dirX = input[0][in.right]-input[0][in.left];
+		dirY = input[0][in.down]-input[0][in.up];
+		
+		jump = input[1][in.up] || input[1][in.space];
+		jumpHeld = input[0][in.up] || input[0][in.space];
+		down = input[0][in.down];
+	}
 }
 
 function checkInputPressed() {

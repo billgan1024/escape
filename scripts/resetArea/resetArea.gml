@@ -9,7 +9,7 @@ function resetArea() {
 		}
 	}
 	with(oCoin) { image_angle = 0; x = xstart; t = 0; a[1] = random_range(90, 120); }
-	with(oMovingPlatform) { t = 0; }
+	with(oHorizontalPlatform) { t = 0; }
 	with(oFallingPlatform) { state = 0; a[1] = random_range(40, 60); a[2] = infinity; }
 	instance_destroy(oBullet);
 	instance_destroy(oMissile, false);	

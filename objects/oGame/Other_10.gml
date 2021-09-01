@@ -40,7 +40,7 @@ if(!oPlayer.dead) {
 				//since falling/moving platforms don't have a bounding box if the player's not above them,
 				//they wont activate so you need to activate them manually
 				instance_activate_object(oFallingPlatform);
-				instance_activate_object(oMovingPlatform);
+				instance_activate_object(oHorizontalPlatform);
 				//activate region (note: things with bounding boxes on the border aren't activated)
 				instance_activate_region(boundingBox[0], boundingBox[1], boundingBox[2]-boundingBox[0], boundingBox[3]-boundingBox[1], true);
 				//reset enemies after the new room is active
@@ -59,27 +59,10 @@ if(!oPlayer.dead) {
 		//remember that [cameraX, cameraY] describes the top-left corner
 		cameraX = smoothApproach(cameraX, clamp(oPlayer.x+oPlayer.cameraOffsetX-vw/2, 
 		boundingBox[0], boundingBox[2]-vw), 0.01, 0.001);
-		switch(vState) {
-			case "ground":
-				if(oPlayer.state == "ground") vLevel = oPlayer.y-vh/2;
-				cameraY = smoothApproach(cameraY, clamp(vLevel, 
-				boundingBox[1], boundingBox[3]-vh), 0.01, 0.001);
-				if(oPlayer.y < vy+vSection || oPlayer.y > vy+vh-vSection) vState = "follow";
-			break;
-			
-			case "follow":	
-				cameraY = smoothApproach(cameraY, clamp(oPlayer.y+oPlayer.cameraOffsetY-vh/2, 
-				boundingBox[1], boundingBox[3]-vh), 0.01, 0.001);
-				//if(oPlayer.state == "ground") vState = "ground";
-			break;	
-			
-			case "disabled":
-				//only approach the current v-level; never change it 
-				cameraY = smoothApproach(cameraY, clamp(vLevel, 
-				boundingBox[1], boundingBox[3]-vh), 0.01, 0.001);
-			break;
-		}
+		cameraY = smoothApproach(cameraY, clamp(oPlayer.y-vh/2, 
+		boundingBox[1], boundingBox[3]-vh), 0.01, 0.001);
 	}
+	
 }
 camera_set_view_pos(view_camera[0], cameraX + random_range(-shake, shake), cameraY + random_range(-shake, shake));
 

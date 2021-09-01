@@ -1,6 +1,5 @@
 /// @description handle state
 cameraOffsetX = approach(cameraOffsetX, hsp*50, sign(hsp) == sign(cameraOffsetX) ? 1 : 4);
-cameraOffsetY = 0;//approach(cameraOffsetY, vsp*100, sign(vsp) == sign(cameraOffsetY) ? 1 : 4);
 //get input
 if(!dead) {
 	checkEnemy();
@@ -35,10 +34,6 @@ switch(state)
 		if(jump || preparedJump) { 
 			vsp = -jumpSpd; state = "jump"; snd(aJump); canGlide = true;
 			event_perform(ev_other, ev_user3); 
-			break;
-		}
-		if(!place_meeting(x, y+1, oGround) && !place_meeting(x, y+1, oPlatform)) {
-			state = "jump"; a[2] = coyoteTimeBuffer; 
 			break;
 		}
 	break;
@@ -90,7 +85,6 @@ switch(state)
 	break;
 }	
 
-//falling platform check
 
 //check collision + update position if the player isn't dead
 if(!dead) {
@@ -98,9 +92,10 @@ if(!dead) {
 	hCollision(); vCollision();
 }
 
-//check if you're grabbing onto any walls and update grip timer if necessary
-//make sure you can wall jump a short time after leaving the wall, but not after you already performed a wall jump
-//while touching the wall
+// //check if you're grabbing onto any walls and update grip timer if necessary
+// //make sure you can wall jump a short time after leaving the wall, but not after you already performed a wall jump
+// //while touching the wall
 checkGrip();
 wallJumpedThisFrame = false;
+
 clearInput();

@@ -11,6 +11,7 @@ function updateSelector() {
 }
 
 function update() {
+	//a[1] = k => k steps from now, do something
 	if(variable_instance_exists(id, "a")) {
 		for(var i = 1; i <= 15; i++) {
 			a[i]--;
@@ -29,6 +30,8 @@ function updateLocal() {
 	with(all) {
 		//important note: even though oButton and oTextBox are children of oMenuItem, the object_index check still
 		//needs to be done separately (u can't use oMenuItem here)
+		
+		//oPlayer: run all necessary state code 
 		if(arrayFind(global.globalObjects, object_index) == -1) update();
 	}
 }
