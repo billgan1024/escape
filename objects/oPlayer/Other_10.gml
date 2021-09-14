@@ -83,12 +83,44 @@ switch(state)
 			state = "ground"; snd(aCamOff);
 		}
 	break;
+	case "platform":
+		khsp = 0;
+		updateHsp(runAcc);
+		//vPlatformSpd = pixels moved this frame
+		vPlatformSpd = dwave(currentPlatform.ystart-currentPlatform.radius*60,
+			currentPlatform.ystart+currentPlatform.radius*60, currentPlatform.period, currentPlatform.t+1/240);
+			
+		//todo: keep track of any ground you're moving into in both directions
+		//and keep track of any platforms you're moving into
+		//while in the platform state, the player should only get picked up by other
+		//vertical platforms moving upward
+		//landingOnPlatform: = true when you're landing on another platform that isn't 
+		//the current one
+		var touchingAnotherPlatform = instance_pla
+		var landingOnPlatform = vPlatformSpd >= 0 && (place_meeting(x, y+vPlatformSpd, oPlatform) !== noone) &&  && 
+			!place_meeting(x, y, oPlatform);
+		if(place_meeting(x, y+vPlatformSpd, oGround) || landingOnPlatform) {
+			//seek out the ground/platform. break ties by going to whichever object is closer
+			while(!place_meeting(x, y+sign(vPlatformSpd), oGround) && (landingOnPlatform ? 
+				!place_meeting(x, y+sign(vPlatformSpd), oPlatform) : true)) {
+					y += sign(vPlatformSpd);
+				}
+			vPlatformSpd = 0;
+		}
+		y += vPlatformSpd;
+		//-30+wave(currentPlatform.ystart-currentPlatform.radius*60,
+			//currentPlatform.ystart+currentPlatform.radius*60, currentPlatform.period, currentPlatform.t+1/240);  
+		if(jump || preparedJump) {
+			vsp = -jumpSpd+min(0, vPlatformSpd*9/20); state = "jump"; snd(aJump); canGlide = true;
+			event_perform(ev_other, ev_user3); 
+			break;
+		}
+	break;
 }	
 
 
 //check collision + update position if the player isn't dead
 if(!dead) {
-	if(vsp >= 0) pCollision(); else phsp = 0;
 	hCollision(); vCollision();
 }
 
@@ -97,5 +129,3 @@ if(!dead) {
 // //while touching the wall
 checkGrip();
 wallJumpedThisFrame = false;
-
-clearInput();

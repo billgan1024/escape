@@ -4,7 +4,6 @@ jumpSpd = 5.3;
 runAcc = 0.375;
 airAcc = 0.2;
 coyoteTimeBuffer = 15;
-phsp = 0;
 airRes = 0.1; 
 canGlide = false;
 yscale = 1;
@@ -31,12 +30,16 @@ jumpHeld = false;
 dash = false;
 down = false;
 grip = false;
+//vertical platform boost
+//note that this boost is lost immediately after leaving the platform
+vPlatformSpd = 0;
 
 hsp = 0;
 vsp = 0;
 khsp = 0;
 fric = 0.024;
 wallKickSpd = 4.4;
+currentPlatform = noone;
 
 //preparedJump for when you're pressing jump as you're falling 
 preparedJump = false;

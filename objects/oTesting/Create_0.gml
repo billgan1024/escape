@@ -5,6 +5,9 @@ t1[?"enemies"] = [{x: 2, y: 3}, {x: 3, y: 4}];
 // var file = get_save_filename_ext("*.dat", "", "", "Open a saved level");
 a = array_create(16, infinity);
 a[1] = 30;
+ b = [1, 2, 3];
+ array_delete(b, 0, 1);
+ log(b);
 
 // tmp = ds_map_create();
 // tmp[?"a"] = 32;
