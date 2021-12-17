@@ -99,13 +99,6 @@ function step() {
 	    		updateLocal();
 	    	}
     		updateGlobal(); 
-	    // 	if(gameState != gs.paused && gameState != gs.optionsGame) {
-	    // 		with(all) {
-		   // 		if(arrayFind(global.globalObjects, object_index) == -1) {
-		   // 			event_user(15);
-					// }
-	    // 		}
-	    // 	}
     	}
     }
 }

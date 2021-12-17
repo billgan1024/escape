@@ -2,6 +2,10 @@ a = array_create(16, infinity);
 //default font stuff (all draw events will set the font stuff back to the default if they change)
 dsfont(fMain); dscolour(c_white); dshalign(fa_center); dsvalign(fa_middle);
 
+// frequency scalar for background particles (the rate at which particles are fired goes up 
+// when the room is higher)
+bgParticleScalar = 1;
+
 //global objects
 global.globalObjects = [oPersistent, oTextBox, oButton, oBg, oHttp, oTesting];
 

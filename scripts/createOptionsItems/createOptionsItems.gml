@@ -102,7 +102,7 @@ function toggleFs() {
 	//necessary for windows but not mac
 	h = display_get_height();
 	window_set_size(h/3*4, h/4*3); 
-	a[1] = inputDelay;
+	a[1] = 15;
 	
 	// a[1] = inputDelay;
 	with(itemIDs[#2, 0]) {

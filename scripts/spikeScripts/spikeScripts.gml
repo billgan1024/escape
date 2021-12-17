@@ -87,3 +87,32 @@ function generateSpikes(l, r, circularSpd, startingAngle, radial) {
 	//deactivate this spike
 	image_alpha = 0; mask_index = sNone;
 }
+
+/// @param l
+/// @param r
+/// @param circularSpd
+/// @param startingAngle
+/// @param radial
+/// @param [stepSize=1]
+function generatePlatforms(l, r, circularSpd, startingAngle, radial, stepSize) {
+	if(is_undefined(stepSize)) stepSize = 1;
+	//literally the same function for generating spikes but for platforms
+	for(var i = l; i <= r; i += stepSize) {
+		with(instance_create_layer(x + lengthdir_x(60*i, startingAngle), y + lengthdir_y(60*i, startingAngle), "Platforms", oPlatformNew)) {
+			pathIdx = other.pathIdx; spd = other.spd; loop = other.loop;
+			angle = startingAngle; startAngle = angle; 
+			offsetX = other.offsetX; offsetY = other.offsetY;
+			radius = 60*i; pos = other.pos; startPos = pos;
+			if(radial) {
+				angularSpd = circularSpd; 
+				rotateSpd = getRotateSpd(degtorad(circularSpd)*radius);
+			} else {
+				//remember to divide pathSpd by 4
+				angularSpd = radtodeg((circularSpd/4)/radius);
+				rotateSpd = getRotateSpd(circularSpd/4);
+			}
+		}
+	}
+	//deactivate this spike
+	image_alpha = 0; mask_index = sNone;
+}

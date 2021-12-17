@@ -9,19 +9,6 @@ cameraX = 0; cameraY = 0;
 //also check if player moved to the top or bottom of the screen; if so, then switch to follow
 //follow: always approach the player's y position smoothly, with a certain max speed 
 
-//avoid race condition with the player's first update event
-vState = "follow";
-//vlevel: y-level of the ground the player is standing on
-//this is so that the game 'remembers' what you were standing on previously so it can continue
-//approaching that level
-vLevel = 0;
-
-//vertical section length in which the camera switches state
-vSection = vSectionDefault;
-//max # of pixels to move per second vertically when you're smoothly approaching the player's
-//y-value
-vMaxApproachRate = 4;
-
 lvl = real(string_digits(room_get_name(room)));
 targetLvl = 0;
 t = 0;
@@ -46,4 +33,4 @@ for(var i = 0; i < len(boundaries); i++) {
 	boundaries[i][2] += 60; boundaries[i][3] += 60;
 }
 
-log(boundaries);
+// log(boundaries);

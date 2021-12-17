@@ -19,6 +19,7 @@ if(!oPlayer.dead) {
 				boundingBox[1] = boundaries[i][1];
 				boundingBox[2] = boundaries[i][2];
 				boundingBox[3] = boundaries[i][3];
+				oPersistent.bgParticleScalar = (boundingBox[3]-boundingBox[1])/1440;
 				//instantly snap (also reset the offset)
 				oPlayer.cameraOffsetX = 0; oPlayer.cameraOffsetY = 0;
 				cameraX = clamp(oPlayer.x+oPlayer.cameraOffsetX-vw/2, boundingBox[0], boundingBox[2]-vw);

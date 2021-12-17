@@ -15,7 +15,7 @@
   "option_mac_allow_fullscreen": true,
   "option_mac_interpolate_pixels": true,
   "option_mac_vsync": true,
-  "option_mac_resize_window": true,
+  "option_mac_resize_window": false,
   "option_mac_enable_retina": true,
   "option_mac_scale": 0,
   "option_mac_texture_page": "2048x2048",

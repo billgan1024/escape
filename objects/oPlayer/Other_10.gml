@@ -96,9 +96,9 @@ switch(state)
 		//vertical platforms moving upward
 		//landingOnPlatform: = true when you're landing on another platform that isn't 
 		//the current one
-		var touchingAnotherPlatform = instance_pla
-		var landingOnPlatform = vPlatformSpd >= 0 && (place_meeting(x, y+vPlatformSpd, oPlatform) !== noone) &&  && 
-			!place_meeting(x, y, oPlatform);
+		//var touchingAnotherPlatform = instance_pla
+		// var landingOnPlatform = vPlatformSpd >= 0 && (place_meeting(x, y+vPlatformSpd, oPlatform) !== noone) &&  && 
+			// !place_meeting(x, y, oPlatform);
 		if(place_meeting(x, y+vPlatformSpd, oGround) || landingOnPlatform) {
 			//seek out the ground/platform. break ties by going to whichever object is closer
 			while(!place_meeting(x, y+sign(vPlatformSpd), oGround) && (landingOnPlatform ? 
