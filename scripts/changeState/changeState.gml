@@ -6,9 +6,13 @@ function changeState() {
 		if(!place_meeting(x, y+1, oGround) && (platform == noone ? true : 
 		//!place_meeting(x, y+1, platform)
 		!(y == platform.y-30 && x+30 > platform.x-120 && x-30 < platform.x+120))) {
-			state = "jump"; a[2] = coyoteTimeBuffer; platform = noone;
+			state = "jump"; a[2] = coyoteTimeBuffer; 
+			// set exiting velocity, and if you are getting boosted upwards, we might need to disable jump for a while
+			if(platform != noone) vsp = platform.vsp;
+			if(platform != noone) hsp += platform.hsp;
+			platform = noone;
 		}
-		//assuming ur not on a platform, if u left it, update the thing.
+		//assuming u were on a platform, if you left it (but are still on the ground), update platform.
 		if(platform != noone && !(y == platform.y-30 && x+30 > platform.x-120 && x-30 < platform.x+120)) {
 			platform = noone;	
 		}

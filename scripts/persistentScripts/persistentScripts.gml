@@ -66,10 +66,8 @@ function updateLocal() {
 	with(oPlatformNew) {
 		//now pick up new entities by checking all collisions at the new location 
 		//and finding out if py >= other.y+30 (the platform was below the player)
-		//for every new object it collides into, add it to carried 
 		//and set its y-value to y-30
-		//note that this is sufficient since carried instances would already move with the platform
-		//don't pick up players that are already on this platform 
+
 		
 		//first check player
 		//accurate place_meeting check
@@ -103,27 +101,43 @@ function updateLocal() {
 				dx = 0;
 			}
 			x += dx;
-			//move y normally, except if you're going to collide into something at the top, then get squished 
-			//otherwise, this platform brings u to ground
-			var dy = platform.y-platform.py;
-			if(place_meeting(x, y+dy, oGround))
-			{
-				while(!place_meeting(x, y+sign(dy), oGround)) y += sign(dy);
-				if(dy < 0) death(aExplosion);
-				else oPlayer.platform = noone; 
+			
+			//now move y
+			var targetPlatform = noone;
+			if(dy >= 0) targetPlatform = seekPlatform(dy);
+			if(targetPlatform != noone) {
+				var g = instance_place(floor(x), floor(y+dy), oGround);
+				if(g != noone) {
+					//blocks always have integer coordinates so this is fine
+					if(g.bbox_top <= targetPlatform.y) {
+						y = g.bbox_top-30; 
+					} else y = targetPlatform.y-30;
+				} else {
+					y = targetPlatform.y-30;
+					// log(targetPlatform.y-30);
+				}
 				dy = 0;
+			} else {
+				//move y normally, except if you're going to collide into something at the top, then get squished 
+				//otherwise, this platform brings u to ground
+				if(place_meeting(x, y+dy, oGround))
+				{
+					while(!place_meeting(x, y+sign(dy), oGround)) y += sign(dy);
+					if(dy < 0) death(aExplosion);
+					dy = 0;
+				}
 			}
 			y += dy;
 		} 		
 	}
-	//update vertical speed (distance travelled) last frame
+;	//update horizontal/vertical speed (distance travelled) last frame
 	with(oPlatformNew) {
 		if(!deactivated) {
+			hsp = x-px;
 			vsp = y-py;
 			px = x; py = y;
 		}
 	}
-	
 	
 	with(all) {
 		if(arrayFind(global.globalObjects, object_index) == -1) {
@@ -132,6 +146,7 @@ function updateLocal() {
 	}
 	
 	//then also check oPlatformNew (is the player right on top and is their vsp >= 0 so that they are on this platform now?)
+	//in case of ties between platforms and ground, the platform will win and set the platform state accordingly
 	with(oPlatformNew) {
 		if(!deactivated && !oPlayer.dead && oPlayer.vsp >= 0 &&
 			oPlayer.y == y-30 && oPlayer.x+30 > x-120 && oPlayer.x-30 < x+120) {
