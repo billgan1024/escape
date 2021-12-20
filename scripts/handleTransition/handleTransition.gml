@@ -29,6 +29,9 @@ function handleTransition() {
     		part_particles_clear(global.ps_above);
     		part_particles_clear(global.ps_below);
     		part_particles_clear(global.ps_bg);
+    		//just to make sure we don't spawn in a new particle right now
+    		if(destRoom == menu) a[3] = random_range(180, 240);
+            else a[3] = random_range(90, 120);
     		//automatically play the queued song and reset it
     		if(destSong != -1) { mus(destSong); destSong = -1; }
     		//reset attempts if necessary

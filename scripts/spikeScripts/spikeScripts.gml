@@ -114,5 +114,5 @@ function generatePlatforms(l, r, circularSpd, startingAngle, radial, stepSize) {
 		}
 	}
 	//deactivate this spike
-	image_alpha = 0; mask_index = sNone;
+	image_alpha = 0; deactivated = true;
 }

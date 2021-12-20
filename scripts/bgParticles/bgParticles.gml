@@ -1,5 +1,5 @@
 function bgParticles() {
-	var sz = room == menu ? [0.16, 0.2] : [0.14, 0.18];
+	var sz = room == menu ? [0.16, 0.2] : [0.16, 0.18];
 	var ap = room == menu ? [0.2, 0.3] : [0.2, 0.25];
 	var spd = room == menu ? [3, 3.5] : [6, 6.5];
 	for(var i = 0; i < room_height/vh; i++) {

@@ -27,15 +27,18 @@ function setLaserInterval(_delayStart, _delayActive, _delayRest) {
 	angularSpd = _angularSpd;
 }
 
+//general function for setting wave functionality
+//radius negative <=> flipped
 /// @param radius
 /// @param period
-/// @param [flip=false]
-function setWave(_radius, _period) {
+/// @param waveDir
+function setWave(_radius, _period, _waveDir) {
 	//note: setWave can also be used to set laser cannon stuff
 	if(object_index == oCoin || object_index == oLaserCannon) sway = true;
-	radius = _radius; period = _period; 
-	if(argument_count == 3) flip = argument[2];
+	radius = _radius; period = _period; waveDir = _waveDir;
+	// if(argument_count == 3) flip = argument[2];
 }
+
 
 function missileCollision(obj) {
 	if(place_meeting(x, y, obj)) 

@@ -7,7 +7,7 @@ a = array_create(16, infinity);
 a[1] = 30;
  b = [1, 2, 3];
  array_delete(b, 0, 1);
- log(b);
+//  log(b);
 
 // tmp = ds_map_create();
 // tmp[?"a"] = 32;

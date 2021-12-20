@@ -8,6 +8,9 @@ airRes = 0.1;
 canGlide = false;
 yscale = 1;
 
+particleX = xstart;
+particleY = ystart;
+
 cameraOffsetX = 0;
 cameraOffsetY = 0;
 cameraSpdX = 0;
@@ -36,17 +39,20 @@ vPlatformSpd = 0;
 
 hsp = 0;
 vsp = 0;
+hsp_frac = 0;
+vsp_frac = 0;
 khsp = 0;
 fric = 0.024;
 wallKickSpd = 4.4;
-currentPlatform = noone;
+platform = noone;
+pickedUpByPlatform = false;
 
 //preparedJump for when you're pressing jump as you're falling 
 preparedJump = false;
 preparedJumpBuffer = 15;
 
 //state = "ground", "buffer", "jump", "fall", "blink"
-state = "djump"; 
+state = "ground"; 
 
 //death variable so that the player never gets destroyed
 dead = false;

@@ -8,7 +8,7 @@ bgParticleScalar = 1;
 
 //global objects
 global.globalObjects = [oPersistent, oTextBox, oButton, oBg, oHttp, oTesting];
-
+	
 //keyboard automation
 autoKey = ds_queue_create();
 
@@ -56,7 +56,7 @@ cameraData = array_create(33, -1);
 //show_debug_message(cameraData);
 
 //fps (for debug)
-debugFps = [15, 30, 60, 120, 240];
+debugFps = [2, 30, 60, 120, 240];
 fpsLevel = len(debugFps)-1;
 
 paused = false;

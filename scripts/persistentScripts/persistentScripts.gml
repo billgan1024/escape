@@ -28,23 +28,130 @@ function updateLocal() {
     //updates things that can be paused (everything in game)
 	part_system_update(global.ps_above);
 	part_system_update(global.ps_below); 
-	//first, resolve every object's other_user0 event
-	with(all) {
-		//important note: even though oButton and oTextBox are children of oMenuItem, the object_index check still
-		//needs to be done separately (u can't use oMenuItem here)
+	//move platforms to their new location
+	with(oPlatformNew) {
+		if(!deactivated) {
+		//move to the new location
+		t += 1/240;
+		if(pathIdx != -1) {
+			var actualSpd = spd/path_get_length(pathIdx);
+			pos += actualSpd;
+			if(loop) pos = frac(pos);
+			else {
+				if(pos <= 0) {
+					var d = -pos;	
+					pos += 2*d;
+					spd *= -1;
+				} else if(pos >= 1) {
+					var d = pos-1;	
+					pos -= 2*d;
+					spd *= -1;
+				}
+			}
+			angle = (angle + angularSpd + 360) % 360;
+			//add offsetX and offsetY to account for when the platform is isolated from the original path location
+			//basically, this represents that the whole path is translated by that vector
+			x = path_get_x(pathIdx, pos) + lengthdir_x(radius, angle) + offsetX;
+			y = path_get_y(pathIdx, pos) + lengthdir_y(radius, angle) + offsetY;
+		} else {
+			if(waveDir == "h") x = wave(xstart-60*radius, xstart+60*radius, period, t);	
+			else if(waveDir == "v") y = wave(ystart-60*radius, ystart+60*radius, period, t);
+		}
+		//floor for precise collisions(?)
+		// x = round(x);
+		// y = round(y);
+		}
+	}
+	
+	with(oPlatformNew) {
+		//now pick up new entities by checking all collisions at the new location 
+		//and finding out if py >= other.y+30 (the platform was below the player)
+		//for every new object it collides into, add it to carried 
+		//and set its y-value to y-30
+		//note that this is sufficient since carried instances would already move with the platform
+		//don't pick up players that are already on this platform 
 		
-		//oPlayer: run all necessary state code + hCollision + vCollision into platforms
+		//first check player
+		//accurate place_meeting check
+		if(!deactivated) {
+			if(!oPlayer.dead && oPlayer.platform != id &&
+				//place_meeting(x, y, oPlayer)
+				oPlayer.y+30 > y && oPlayer.y-30 < y+30 && oPlayer.x+30 > x-120 && oPlayer.x-30 < x+120
+				&& py >= oPlayer.y+30) {
+					log("picked up");
+				oPlayer.y = y-30;	
+				oPlayer.vsp = 0; oPlayer.vsp_frac = 0;
+				oPlayer.a[2] = infinity;
+				oPlayer.state = "ground";
+				oPlayer.platform = id;
+				oPlayer.canGlide = false;
+				oPlayer.pickedUpByPlatform = true;
+				// ds_list_add(carried, player);
+			}
+		}	
+	}
+	
+	
+	// for each entity, update their coords if they're on a platform and didn't just get picked up (and not already dead)
+	with(oPlayer) {
+		if(!dead && !pickedUpByPlatform && platform != noone) {
+			var dx = platform.x-platform.px, dy = platform.y-platform.py;
+			//move x normally
+			if(place_meeting(x+dx, y, oGround))
+			{
+				while(!place_meeting(x+sign(dx), y, oGround)) x += sign(dx);
+				dx = 0;
+			}
+			x += dx;
+			//move y normally, except if you're going to collide into something at the top, then get squished 
+			//otherwise, this platform brings u to ground
+			var dy = platform.y-platform.py;
+			if(place_meeting(x, y+dy, oGround))
+			{
+				while(!place_meeting(x, y+sign(dy), oGround)) y += sign(dy);
+				if(dy < 0) death(aExplosion);
+				else oPlayer.platform = noone; 
+				dy = 0;
+			}
+			y += dy;
+		} 		
+	}
+	//update vertical speed (distance travelled) last frame
+	with(oPlatformNew) {
+		if(!deactivated) {
+			vsp = y-py;
+			px = x; py = y;
+		}
+	}
+	
+	
+	with(all) {
 		if(arrayFind(global.globalObjects, object_index) == -1) {
 			update();
 		}
 	}
-	//then, resolve platform move code
+	
+	//then also check oPlatformNew (is the player right on top and is their vsp >= 0 so that they are on this platform now?)
+	with(oPlatformNew) {
+		if(!deactivated && !oPlayer.dead && oPlayer.vsp >= 0 &&
+			oPlayer.y == y-30 && oPlayer.x+30 > x-120 && oPlayer.x-30 < x+120) {
+			//do a collision check + state update instantly
+			oPlayer.vsp = 0; oPlayer.vsp_frac = 0;
+			oPlayer.a[2] = infinity;
+			oPlayer.state = "ground";
+			oPlayer.platform = id;
+			oPlayer.canGlide = false;
+			// if(ds_list_find_index(carried, oPlayer.id) == -1) ds_list_add(carried, oPlayer.id);
+		}
+	}
+	
+	//finally, set picked up by platform to false 
+	with(oPlayer) {
+		if(!dead) pickedUpByPlatform = false;		
+	}
+	
+	
 	with(oHorizontalPlatform) {
-		//TODO: move the player this step if they are on the platform
-		//update mask: this platform only has a mask when the player is above it
-		// if(oPlayer.y+30 < y+1 && oPlayer.vsp >= 0) mask_index = sPlatform; 
-		// else mask_index = sNone;
-		//make sure you don't move the platform before the player, otherwise the collision check might fail
 		t += 1/240;
 		with(oPlayer) {
 		    if(vsp >= 0 && place_meeting(x, y+1, other) && !place_meeting(x, y, other)) {
@@ -73,11 +180,7 @@ function updateLocal() {
 		}
 		y += dy;
 	}
-	//then, check if the player is exiting a state and finally clear input
-	with(oPlayer) {
-		changeState();
-		clearInput();
-	}
+	
 }
 
 function updateGlobal() {
