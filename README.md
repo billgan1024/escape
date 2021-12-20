@@ -12,8 +12,8 @@ An action platformer I started during Hack the North 2021 and am now attempting 
 
 https://user-images.githubusercontent.com/17630457/146822582-6834ddcb-00fc-4f72-a544-db287436d43f.mp4
 
-The new moving platform system aims to make the creation of custom paths for moving platforms efficient and easy. 
-Right now, moving platforms can pick up multiple entities and move or rotate in any direction. Key features like vertical platform pickup, bonus velocity when 
+The new moving platform system aims to make the creation of custom paths for moving platforms easy and efficient.
+Right now, moving platforms can pick up multiple entities and they can be programmed to move or rotate in any direction. Key features like vertical platform pickup, bonus velocity when 
 leaving a platform, correct collision with existing walls, and death by being squished by a platform have been implemented as well.
 
 ### August 9, 2021: User Account Systems
