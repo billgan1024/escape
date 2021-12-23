@@ -1,8 +1,8 @@
 image_angle += 0.75;
 t += 1/240;
-if(sway) {
-	x = wave(xstart-60*radius, xstart+60*radius, period, t*(flip ? -1 : 1));
-}
+// wave only if the wavedir is set
+if(waveDir == "h") x = wave(xstart-60*radius, xstart+60*radius, period, t);	
+else if(waveDir == "v") y = wave(ystart-60*radius, ystart+60*radius, period, t);
 if(place_meeting(x, y, oPlayer)) {
 	snd(aCoin);
 

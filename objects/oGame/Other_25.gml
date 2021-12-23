@@ -41,7 +41,6 @@ if(!oPlayer.dead) {
 				//since falling/moving platforms don't have a bounding box if the player's not above them,
 				//they wont activate so you need to activate them manually
 				instance_activate_object(oFallingPlatform);
-				instance_activate_object(oHorizontalPlatform);
 				//activate region (note: things with bounding boxes on the border aren't activated)
 				instance_activate_region(boundingBox[0], boundingBox[1], boundingBox[2]-boundingBox[0], boundingBox[3]-boundingBox[1], true);
 				//reset enemies after the new room is active

@@ -82,11 +82,11 @@ if(!dead) {
 		case "freecam":
 			//free camera movement 
 			//update camera speed variable 
-			// cameraSpdX = approach(cameraSpdX, 5.3*dirX, 0.4);
-			// cameraSpdY = approach(cameraSpdY, 5.3*dirY, 0.4);
-			oGame.cameraX += 6*dirX; oGame.cameraY += 6*dirY; 
-			//oGame.cameraX = clamp(oGame.cameraX + cameraSpdX, oGame.boundingBox[0], oGame.boundingBox[2]-vw);
-			//oGame.cameraY = clamp(oGame.cameraY + cameraSpdY, oGame.boundingBox[1], oGame.boundingBox[3]-vh);
+			cameraSpdX = approach(cameraSpdX, 5.3*dirX, 0.4);
+			cameraSpdY = approach(cameraSpdY, 5.3*dirY, 0.4);
+			// oGame.cameraX += 6*dirX; oGame.cameraY += 6*dirY; 
+			oGame.cameraX = clamp(oGame.cameraX + cameraSpdX, oGame.boundingBox[0], oGame.boundingBox[2]-vw);
+			oGame.cameraY = clamp(oGame.cameraY + cameraSpdY, oGame.boundingBox[1], oGame.boundingBox[3]-vh);
 			if(input[1][in.enter]) {
 				state = "ground"; snd(aCamOff);
 			}

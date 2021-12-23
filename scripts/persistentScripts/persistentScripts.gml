@@ -176,37 +176,6 @@ function updateLocal() {
 		if(!dead) pickedUpByPlatform = false;		
 	}
 	
-	
-	with(oHorizontalPlatform) {
-		t += 1/240;
-		with(oPlayer) {
-		    if(vsp >= 0 && place_meeting(x, y+1, other) && !place_meeting(x, y, other)) {
-		        //move the player by the same amount of pixels as this platform moved this frame
-		        //but don't move them inside a platform lol
-		        var dx = dwave(other.xstart-60*other.radius, other.xstart+60*other.radius, other.period, other.t)*(other.flip ? -1 : 1);
-		        if(place_meeting(x+dx, y, oGround)) {
-		            while(!place_meeting(x+sign(dx), y, oGround)) {
-		                x += sign(dx);
-		            }
-		            dx = 0;
-		        }
-		        x += dx;
-		    }
-		}
-		x = wave(xstart-60*radius, xstart+60*radius, period, t*(flip ? -1 : 1));
-	}
-	with(oVerticalPlatform) {
-		t += 1/240;
-		//move to the new position
-		var dy = dwave(ystart-60*radius, ystart+60*radius, period, t)*(flip ? -1 : 1);
-		//pick up the player if this object passes through
-		if(dy <= 0 && place_meeting(x, y+dy, oPlayer) && !place_meeting(x, y, oPlayer)) {
-		    oPlayer.state = "platform"; oPlayer.canGlide = false; oPlayer.currentPlatform = id;
-		    oPlayer.y += (y+dy-30)-oPlayer.y; oPlayer.vsp = 0; 
-		}
-		y += dy;
-	}
-	
 }
 
 function updateGlobal() {

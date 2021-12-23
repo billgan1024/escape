@@ -1,1 +1,1 @@
-setWave(5, 3.5);
+setWave(5, 3.5, "h");

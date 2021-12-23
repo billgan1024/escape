@@ -20,7 +20,6 @@ function resetArea() {
 			 deactivated = false; image_alpha = 1;
 		}
 	}
-	with(oHorizontalPlatform) { t = 0; }
 	with(oFallingPlatform) { state = 0; a[1] = random_range(40, 60); a[2] = infinity; }
 	instance_destroy(oBullet);
 	instance_destroy(oMissile, false);	

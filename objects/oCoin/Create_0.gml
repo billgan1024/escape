@@ -7,3 +7,4 @@ radius = 0;
 period = 0;
 flip = false;
 t = 0;
+waveDir = "";
