@@ -10,9 +10,13 @@ function updateSelector() {
 	selectorAlpha = alpha/5*(r >= tr1 && r <= tr2 && c >= tc1 && c <= tc2 ? sAlpha : 1);
 }
 
+function updateBefore() {
+	event_user(15);	
+}
+//normal step
 function update() {
 	//a[1] = k => k steps from now, do something
-	//a[0] = step, a[15] = end step
+	//a[0] = step, a[15] = begin step
 	if(variable_instance_exists(id, "a")) {
 		for(var i = 1; i <= 14; i++) {
 			a[i]--;
@@ -28,8 +32,11 @@ function updateLocal() {
     //updates things that can be paused (everything in game)
 	part_system_update(global.ps_above);
 	part_system_update(global.ps_below); 
+
+	with(all) updateBefore();	
+	
 	//move platforms to their new location
-	with(oMovingPlatform) {
+	with(oPlatform) {
 		if(!deactivated) {
 		//move to the new location
 		t += 1/240;
@@ -63,7 +70,7 @@ function updateLocal() {
 		}
 	}
 	
-	with(oMovingPlatform) {
+	with(oPlatform) {
 		//now pick up new entities by checking all collisions at the new location 
 		//and finding out if py >= other.y+30 (the platform was below the player)
 		//and set its y-value to y-30
@@ -131,7 +138,7 @@ function updateLocal() {
 		} 		
 	}
 ;	//update horizontal/vertical speed (distance travelled) last frame
-	with(oMovingPlatform) {
+	with(oPlatform) {
 		if(!deactivated) {
 			hsp = x-px;
 			vsp = y-py;
@@ -145,9 +152,9 @@ function updateLocal() {
 		}
 	}
 	
-	//then also check oMovingPlatform (is the player right on top and is their vsp >= 0 so that they are on this platform now?)
+	//then also check oPlatform (is the player right on top and is their vsp >= 0 so that they are on this platform now?)
 	//in case of ties between platforms and ground, the platform will win and set the platform state accordingly
-	with(oMovingPlatform) {
+	with(oPlatform) {
 		if(!deactivated && !oPlayer.dead && oPlayer.vsp >= 0 &&
 			oPlayer.y == y-30 && oPlayer.x+30 > x-120 && oPlayer.x-30 < x+120) {
 			//do a collision check + state update instantly

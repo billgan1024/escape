@@ -20,8 +20,8 @@ function changeState() {
         //you're in mid-air, so check if you touched the ground 
         //note that place meeting for y+1, oGround doesn't need the vsp >= 0 check since
         //there's no way to enter the ground from below
-        //that's why there's a vsp check for oMovingPlatform
-        // var g = instance_place(x, y+1, oMovingPlatform), h = instance_place(x, y, oMovingPlatform);
+        //that's why there's a vsp check for oPlatform
+        // var g = instance_place(x, y+1, oPlatform), h = instance_place(x, y, oPlatform);
         if(place_meeting(x, y+1, oGround)) { 
             state = "ground"; canGlide = false; a[2] = infinity; vsp = 0; vsp_frac = 0;
         } 

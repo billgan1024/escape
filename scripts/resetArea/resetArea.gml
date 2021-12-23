@@ -1,14 +1,25 @@
 function resetArea() {
+	log("reset area");
 	with(oEnemy) { x = xstart; y = ystart; hsp = hspStart; }
 	with(oSpike) { 
 		image_angle = 0; angle = startAngle;
 		if(pathIdx != -1) {
 			pos = startPos; 
+			//note: in this current state, u need to set the position if spikes update their position before oGame, so 
+			//we need to put oGame's logic in begin step
 			x = path_get_x(pathIdx, pos) + lengthdir_x(radius, angle) + offsetX;
 			y = path_get_y(pathIdx, pos) + lengthdir_y(radius, angle) + offsetY;
 		}
 	}
 	with(oCoin) { image_angle = 0; x = xstart; t = 0; a[1] = random_range(90, 120); }
+	with(oPlatform) {
+		t = 0;
+		//only set falling platforms back to their original state
+		if(object_index == oFallingPlatform) {
+			 state = 0; a[1] = random_range(40, 60); a[2] = infinity; 
+			 deactivated = false; image_alpha = 1;
+		}
+	}
 	with(oHorizontalPlatform) { t = 0; }
 	with(oFallingPlatform) { state = 0; a[1] = random_range(40, 60); a[2] = infinity; }
 	instance_destroy(oBullet);

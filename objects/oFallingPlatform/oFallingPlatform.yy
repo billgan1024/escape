@@ -8,8 +8,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "oMovingPlatform",
-    "path": "objects/oMovingPlatform/oMovingPlatform.yy",
+    "name": "oPlatform",
+    "path": "objects/oPlatform/oPlatform.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,

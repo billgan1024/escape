@@ -20,3 +20,4 @@ if(pathIdx != -1) {
 	y = path_get_y(pathIdx, pos) + lengthdir_y(radius, angle) + offsetY;
 }
 image_angle = (image_angle+rotateSpd) % 360;
+log(y);

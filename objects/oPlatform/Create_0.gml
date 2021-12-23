@@ -30,4 +30,5 @@ px = xstart; py = ystart;
 vsp = 0;
 
 //whether or not this platform is deactivated (we deactivate the original platform when using generatePlatforms)
+//deactivated platforms won't participate in collision events
 deactivated = false;
