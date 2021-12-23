@@ -98,7 +98,7 @@ function generatePlatforms(l, r, circularSpd, startingAngle, radial, stepSize) {
 	if(is_undefined(stepSize)) stepSize = 1;
 	//literally the same function for generating spikes but for platforms
 	for(var i = l; i <= r; i += stepSize) {
-		with(instance_create_layer(x + lengthdir_x(60*i, startingAngle), y + lengthdir_y(60*i, startingAngle), "Platforms", oPlatformNew)) {
+		with(instance_create_layer(x + lengthdir_x(60*i, startingAngle), y + lengthdir_y(60*i, startingAngle), "Platforms", oMovingPlatform)) {
 			pathIdx = other.pathIdx; spd = other.spd; loop = other.loop;
 			angle = startingAngle; startAngle = angle; 
 			offsetX = other.offsetX; offsetY = other.offsetY;

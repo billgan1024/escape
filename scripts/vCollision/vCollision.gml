@@ -40,8 +40,8 @@ function vCollision() {
 
 function seekPlatform(vsp) {
 	var targetPlatform = noone, targetY = infinity;
-	for(var i = 0; i < instance_number(oPlatformNew); i++) {
-		var p = instance_find(oPlatformNew, i);
+	for(var i = 0; i < instance_number(oMovingPlatform); i++) {
+		var p = instance_find(oMovingPlatform, i);
 		// log(p.y);
 		if(!p.deactivated && p.y >= y+30 && y+vsp+30 > p.y && 
 			//place_meeting(x, y+vsp, p)

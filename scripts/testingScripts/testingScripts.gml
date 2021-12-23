@@ -18,7 +18,7 @@ function verifyObjects() {
             log(oGame.lvl, x, y); instance_destroy();
         }
    } 
-    with(oPlatform) {
+    with(oMovingPlatform) {
         if(layer != layer_get_id("Platforms") || xstart%30 != 0 || ystart%30 != 0) {
             log(oGame.lvl, xstart, ystart); instance_destroy();
         }

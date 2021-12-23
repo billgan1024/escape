@@ -1,5 +1,6 @@
+event_inherited();
 state = 0;
-a = array_create(16, infinity);
-a[1] = random_range(40, 60);
+a[1] = random_range(30, 40);
 //x-offset from original location
 offset = 0;
+deactivated = false;

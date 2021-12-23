@@ -29,7 +29,7 @@ function updateLocal() {
 	part_system_update(global.ps_above);
 	part_system_update(global.ps_below); 
 	//move platforms to their new location
-	with(oPlatformNew) {
+	with(oMovingPlatform) {
 		if(!deactivated) {
 		//move to the new location
 		t += 1/240;
@@ -63,7 +63,7 @@ function updateLocal() {
 		}
 	}
 	
-	with(oPlatformNew) {
+	with(oMovingPlatform) {
 		//now pick up new entities by checking all collisions at the new location 
 		//and finding out if py >= other.y+30 (the platform was below the player)
 		//and set its y-value to y-30
@@ -131,7 +131,7 @@ function updateLocal() {
 		} 		
 	}
 ;	//update horizontal/vertical speed (distance travelled) last frame
-	with(oPlatformNew) {
+	with(oMovingPlatform) {
 		if(!deactivated) {
 			hsp = x-px;
 			vsp = y-py;
@@ -145,9 +145,9 @@ function updateLocal() {
 		}
 	}
 	
-	//then also check oPlatformNew (is the player right on top and is their vsp >= 0 so that they are on this platform now?)
+	//then also check oMovingPlatform (is the player right on top and is their vsp >= 0 so that they are on this platform now?)
 	//in case of ties between platforms and ground, the platform will win and set the platform state accordingly
-	with(oPlatformNew) {
+	with(oMovingPlatform) {
 		if(!deactivated && !oPlayer.dead && oPlayer.vsp >= 0 &&
 			oPlayer.y == y-30 && oPlayer.x+30 > x-120 && oPlayer.x-30 < x+120) {
 			//do a collision check + state update instantly
@@ -156,7 +156,11 @@ function updateLocal() {
 			oPlayer.state = "ground";
 			oPlayer.platform = id;
 			oPlayer.canGlide = false;
-			// if(ds_list_find_index(carried, oPlayer.id) == -1) ds_list_add(carried, oPlayer.id);
+			
+			// also check if the player is on top of a falling platform
+			if(object_index == oFallingPlatform && state == 0) {
+				snd(aPlatform); state = 1; a[2] = 210;
+			}
 		}
 	}
 	
