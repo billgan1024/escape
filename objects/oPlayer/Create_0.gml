@@ -44,8 +44,13 @@ vsp_frac = 0;
 khsp = 0;
 fric = 0.024;
 wallKickSpd = 4.4;
+
+//moving platform logic
 platform = noone;
 pickedUpByPlatform = false;
+
+//conveyor belt logic
+conveyorBelt = noone;
 
 //preparedJump for when you're pressing jump as you're falling 
 preparedJump = false;

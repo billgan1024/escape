@@ -7,7 +7,8 @@ if(!dead) {
 	// vsp += vsp_frac;
 	
 	cameraOffsetX = approach(cameraOffsetX, hsp*50, sign(hsp) == sign(cameraOffsetX) ? 1 : 4);
-	checkEnemy();
+	//if you died, immediately stop the step event
+	if(checkEnemy()) { clearInput(); exit; }
 	if(canInput) checkInput();
 	
 	

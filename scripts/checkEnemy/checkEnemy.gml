@@ -1,5 +1,6 @@
+//returns true if the player died this frame
 function checkEnemy() {
-	if(y-30 >= room_height) death(aSplat);
+	if(y-30 >= room_height) { death(aSplat); return true; }
 	var enemy = instance_place(x, y, oEnemyParent);
 	if(enemy != noone) {
 		death(aExplosion);
@@ -10,5 +11,7 @@ function checkEnemy() {
 				firework(c_orange, c_orange, 0.1, 2);
 			}
 		}
+		return true;
 	}
+	return false;
 }

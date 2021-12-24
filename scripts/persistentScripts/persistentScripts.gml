@@ -10,6 +10,7 @@ function updateSelector() {
 	selectorAlpha = alpha/5*(r >= tr1 && r <= tr2 && c >= tc1 && c <= tc2 ? sAlpha : 1);
 }
 
+//other_user15 is the begin step event
 function updateBefore() {
 	event_user(15);	
 }
@@ -146,6 +147,20 @@ function updateLocal() {
 		}
 	}
 	
+	// update the player's x location if they're on a conveyor belt
+	with(oPlayer) {
+		if(!dead && conveyorBelt != noone) {
+			var dx = conveyorBelt.moveSpd;
+			//move x normally
+			if(place_meeting(x+dx, y, oGround))
+			{
+				while(!place_meeting(x+sign(dx), y, oGround)) x += sign(dx);
+				dx = 0;
+			}
+			x += dx;
+		}
+	}
+	
 	with(all) {
 		if(arrayFind(global.globalObjects, object_index) == -1) {
 			update();
@@ -171,10 +186,24 @@ function updateLocal() {
 		}
 	}
 	
-	//finally, set picked up by platform to false 
+	//check for conveyor belts as well
+	//since this is just one variable, we can reset oPlayer.conveyorBelt if they aren't on the conveyor belt 
+	//anymore
 	with(oPlayer) {
-		if(!dead) pickedUpByPlatform = false;		
+		if(!dead)
+		{
+			var newConveyorBelt = noone;
+			with(oConveyorBelt) {
+				if(place_meeting(x, y-1, oPlayer)) {
+					newConveyorBelt = id;	
+				}
+			}
+			oPlayer.conveyorBelt = newConveyorBelt;
+			//reset picked up by platform this frame
+			pickedUpByPlatform = false;		
+		}
 	}
+	
 	
 }
 
