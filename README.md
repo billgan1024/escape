@@ -8,13 +8,17 @@ An action platformer I started during Hack the North 2021 and am now attempting 
 
 ### Levels completed: 27/32 
 
-### December 20, 2021: Revamped Moving Platforms
+### December 20, 2021: Revamped Moving Platforms + Conveyor Belts
 
 https://user-images.githubusercontent.com/17630457/146822582-6834ddcb-00fc-4f72-a544-db287436d43f.mp4
 
 The new moving platform system aims to make the creation of custom paths for moving platforms easy and efficient.
 Right now, moving platforms can pick up multiple entities and they can be programmed to move or rotate in any direction. Key features like vertical platform pickup, bonus velocity when 
 leaving a platform, correct collision with existing walls, and death by being squished by a platform have been implemented as well.
+
+Additionally, the start of conveyor belts have been implemented. The final version of conveyor belts allows them to be placed vertically as well. 
+
+https://user-images.githubusercontent.com/17630457/147370872-8d76a18c-b053-42aa-ad21-9d347efb8a60.mp4
 
 ### August 9, 2021: User Account Systems
 ![login](https://github.com/pblpbl1024/escape/blob/main/screenshots/Escape%202021-08-09%202_05_19%20PM.png)
