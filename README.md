@@ -18,7 +18,7 @@ leaving a platform, correct collision with existing walls, and death by being sq
 
 Additionally, the start of conveyor belts have been implemented. The final version of conveyor belts allows them to be placed vertically as well. 
 
-https://user-images.githubusercontent.com/17630457/147370872-8d76a18c-b053-42aa-ad21-9d347efb8a60.mp4
+https://user-images.githubusercontent.com/17630457/147371036-da648f6e-9246-469c-b313-8f6c02855d87.mp4
 
 ### August 9, 2021: User Account Systems
 ![login](https://github.com/pblpbl1024/escape/blob/main/screenshots/Escape%202021-08-09%202_05_19%20PM.png)
