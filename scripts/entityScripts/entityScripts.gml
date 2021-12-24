@@ -20,11 +20,10 @@ function setCannon(_delayStart, _delay, _bulletSpd) {
 /// @param delayActive
 /// @param delayRest
 /// @param [angularSpd = 0]
-function setLaserInterval(_delayStart, _delayActive, _delayRest) {
-	var _angularSpd = 0; if(argument_count == 4) angularSpd = argument[3];
+function setLaserInterval(_delayStart, _delayActive, _delayRest, _angularSpd) {
 	a[1] = _delayStart; delayStart = _delayStart;
 	delayActive = _delayActive; delayRest = _delayRest; angleStart = image_angle;
-	angularSpd = _angularSpd;
+	angularSpd = _angularSpd ?? 0;
 }
 
 //general function for setting wave functionality

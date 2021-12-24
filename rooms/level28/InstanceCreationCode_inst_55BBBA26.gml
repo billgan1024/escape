@@ -1,0 +1,1 @@
+setLaserInterval(120, 180, 300, -0.25);

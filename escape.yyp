@@ -177,6 +177,7 @@
     {"id":{"name":"level2","path":"rooms/level2/level2.yy",},"order":12,},
     {"id":{"name":"oBulletCannon","path":"objects/oBulletCannon/oBulletCannon.yy",},"order":42,},
     {"id":{"name":"oPlatform","path":"objects/oPlatform/oPlatform.yy",},"order":67,},
+    {"id":{"name":"p36","path":"paths/p36/p36.yy",},"order":0,},
     {"id":{"name":"oEnemyBlocker","path":"objects/oEnemyBlocker/oEnemyBlocker.yy",},"order":47,},
     {"id":{"name":"inputScripts","path":"scripts/inputScripts/inputScripts.yy",},"order":23,},
     {"id":{"name":"level18","path":"rooms/level18/level18.yy",},"order":10,},
@@ -317,6 +318,7 @@
     {"folderPath":"folders/Scripts/HTTP/Resolve Requests.yy","order":7,"resourceVersion":"1.0","name":"Resolve Requests","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts/Game.yy","order":18,"resourceVersion":"1.0","name":"Game","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts/Utility/Platforms.yy","order":16,"resourceVersion":"1.0","name":"Platforms","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Paths/level28.yy","order":28,"resourceVersion":"1.0","name":"level28","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
