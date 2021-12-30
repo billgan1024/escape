@@ -4,7 +4,7 @@ An action platformer I started during Hack the North 2021 and am now attempting 
 ## Download
 Download the game on [itch.io](https://pblpbl.itch.io/escape).
 
-![visitors](https://visitor-badge.glitch.me/badge?page_id=billgan1024.escape)
+![visitors](https://visitor-badge-reloaded.herokuapp.com/badge?page_id=billgan1024.escape)
 ![downloads](https://img.shields.io/github/downloads/billgan1024/escape/total)
 
 ### YouTube video showcases [here](https://youtube.com/playlist?list=PLPNkAYOUT2atOESzGCqV2DMUHghGJIOUC)
