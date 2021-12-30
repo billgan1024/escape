@@ -1,6 +1,9 @@
 # Escape
 An action platformer I started during Hack the North 2021 and am now attempting to finish.
 
+## Download
+Download the game on [itch.io](https://pblpbl.itch.io/escape).
+
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=billgan1024.escape)
 ![downloads](https://img.shields.io/github/downloads/billgan1024/escape/total)
 
