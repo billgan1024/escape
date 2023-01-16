@@ -26,10 +26,10 @@ function resetArea() {
 	with(oBulletCannon) { a[1] = delayStart; a[2] = infinity; }
 	with(oMissileCannon) { 
 		a[1] = delayStart; a[2] = infinity; image_angle = angleStart; 
-		len = 0; laserAlpha = 0;
+		lightLength = 0; laserAlpha = 0;
 	}
 	with(oLaserCannon) {
-		state = 0; a[1] = delayStart; a[2] = infinity; t = 0; len = 0; a[3] = 8;
+		state = 0; a[1] = delayStart; a[2] = infinity; t = 0; lightLength = 0; a[3] = 8;
 		image_angle = angleStart;
 	}
 	with(oGem) { t = 0; a[1] = random_range(15, 60); }
